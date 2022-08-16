@@ -2,7 +2,8 @@ const express = require('express');
 const UserRouter = express.Router();
 const login = require('../controller/LoginController');
 const signUp = require('../controller/SignUpController');
-const multer = require('multer');
+const multer = require('multer'); 
+const User = require('../model/User');
 
 /* 프로필 이미지 업로드 */
 const profileUpload = multer({
