@@ -13,7 +13,28 @@
         <%-include('loginCSS')%>
 
         <script>
-            
+            function loginUser() {
+                var form=document.getElementById("login_form");
+                axios ({
+                    method:'post',
+                    url: "http://localhost:8000/user/login",
+                    data: {
+                        id:form.user.value,
+                        password: form.pw.value
+                    }
+                })
+                .then((rep) => {console.log(rep.data)})
+            }
+
+
+            function SignUp() {
+                document.location.href="http://localhost:8000/user/sign";
+            }
+
+            function findPw() {
+                document.location.href="http://localhost:8080/user/findUser";
+            }
+
         </script>
     
     </head>
@@ -46,12 +67,12 @@
 
                             <div>
                                 <span>아직도 스윗이 아니신가요?</span>
-                                <a href="#" target="_self" onclick="SignUp();">회원가입</a>
+                                <a href="http://localhost:8080/user/sign" target="_self" onclick="SignUp();">회원가입</a>
                                 <span>하러가기</span>
                             </div>
 
                             <div>
-                            <a href="#" target="_self" onclick="findPw();">비밀번호 찾기</a>
+                            <a href="http://localhost:8080/user/findeUser" target="_self" onclick="findPw();">비밀번호 찾기</a>
                             </div>
                             
                         </form>
