@@ -1,6 +1,11 @@
 const models = require("../model");
 
 
+/* 회원가입 화면 */
+exports.signUp_index = (req, res) => {
+    res.render('SignUp'); 
+}
+
 /* 회원가입 시, 프로필 이미지 저장 */
 exports.uploadProfile = (req, res) => {
     return res.send({
