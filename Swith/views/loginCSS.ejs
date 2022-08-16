@@ -2,46 +2,108 @@
     @font-face {
         font-family: "GS_bold";
         src: url("../fonts/GmarketSansTTF/GmarketSansTTFBold.ttf") format("truetype");
+    }
+    @font-face{
         font-family: "GS_light" ;
         src: url("../fonts/GmarketSansTTF/GmarketSansTTFLight.ttf") format("truetype");
+    }
+    @font-face{
         font-family: "GS_medium";
         src: url("../fonts/GmarketSansTTF/GmarketSansTTFMedium.ttf") format("truetype");
     }
-
+    
     * {
-        font-family: "GS_bold"
+        font-family: "GS_bold";
     }
+
+    /* 전체 컨테이너 설정 */
+
     .container {
-        margin: auto;
+        margin-left:50px;
+        margin-right: 50px;
+        padding: 0px;
+        width:100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    }
 
-
-    .login_background {
-        width:1280px;
-        position: relative;
     }
 
     .login_main {
         position: relative;
     }
 
+
+    .login_background {
+        width:1280px;
+        /* position: absolute; */
+        z-index: 1;
+        /* left:0; */
+    }
+
+
+    /* 폼 내부 설정 */
+
+    #login_form {
+        position: absolute;
+        /* left:490px; */
+        left:50vh;
+        /* top:250px; */
+        top:20vh;
+        z-index: 3;
+        padding:0 10px 10px 0;
+        display: block;
+    }
+
+
+    h1 {
+        font-weight: bold;
+        margin-top: 0.5rem;
+    }
+
     .form_background {
         width : 640px;
         height: 640px;
-        background-color: lightgrey;
-        opacity: 0.5;
+        background-color: white;
+        opacity: 0.7;
         position:absolute;
-        top:100px;
-        left:320px;
-        z-index:1;
+        display: block;
+        /* top:100px; */
+        top:10vh;
+        /* left:320px; */
+        left:35vh; 
+        /* 이렇게 해도 될랑가.. */
+        z-index:2;
+    }
+    /* 위에 애는 login_main기준으로 움직임 */
+
+
+    .login_form_user, .login_form_pw {
+        border: 0;
+        background-color: #4686C2;
+        width:300px;
+        height: 50px;
+        border-radius: 30px;
+        
+    }
+    input {
+        text-align: center;
+    }
+    input::-webkit-input-placeholder { color: white; text-align: center; opacity: 0.5;}
+    input:focus {
+        outline: 3px solid #4686C2
     }
 
-    .login_form {
-        position: relative;
-        top:150px;
-        z-index: 2;
+    .loginUser {
+        background-color: #4686C2;
+        border:0;
+        border-radius: 20px;
+        width: 120px;
+        height:35px;
     }
 
-
+    a:link { text-decoration:none; }
+    
 </style>

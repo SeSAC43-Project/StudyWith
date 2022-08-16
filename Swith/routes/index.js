@@ -5,6 +5,6 @@ const multer = require('multer');
 const User = require('../model/User');
 
 UserRouter.get('/login', login.login_index); 
-// UserRouter.post('/login',login.post_login);
+UserRouter.post('/login',login.post_login);
 
 module.exports = UserRouter;
