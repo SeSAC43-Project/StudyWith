@@ -14,18 +14,20 @@
 
         <script>
             function loginUser() {
-                var form=document.getElementById("login_form");
+                var form = document.getElementById('login_form'); 
                 axios ({
                     method:'post',
                     url: "http://localhost:8000/user/login",
                     data: {
-                        id:form.user.value,
-                        password: form.pw.value
+                        id: form.id.value,
+                        pw: form.password.value, 
                     }
                 })
-                .then((rep) => {console.log(rep.data)})
+                .then((req) => { return req.data; })
+                .then((data) => {
+                    alert(data);
+                });
             }
-
 
             function SignUp() {
                 document.location.href="http://localhost:8000/user/sign";
@@ -52,27 +54,28 @@
                     <img src="/login/login_image.png" class="login_background">
                     <div class="form_background">
                         <h1>LOGIN</h1>
-                        <form class="login_form">
-                            <input type="text" id="user" placeholder="아이디"><br>
-                            <input type="password" id="pw" placeholder="비밀번호">
+                        <!-- 아이디로!!!!! -->
+                        <form id="login_form">
+                            <input type="text" id="user" name='id' placeholder="아이디"><br>
+                            <input type="password" id="pw" name='password' placeholder="비밀번호">
                             <br>
 
-                            <input type="checkbox" id="userid_Remmber">아이디를 기억해줘!
+                            <div></div>아이디를 기억해줘!
 
                             <br>
 
-                            <button type="button" onclick="loginUser();">로그인하기</button>
+                            <button type="button" onclick="loginUser()">로그인하기</button>
                             
                             <br>
 
                             <div>
                                 <span>아직도 스윗이 아니신가요?</span>
-                                <a href="http://localhost:8080/user/sign" target="_self" onclick="SignUp();">회원가입</a>
+                                <a href="http://localhost:8000/user/signup" target="_self" onclick="SignUp();">회원가입</a>
                                 <span>하러가기</span>
                             </div>
 
                             <div>
-                            <a href="http://localhost:8080/user/findeUser" target="_self" onclick="findPw();">비밀번호 찾기</a>
+                            <a href="http://localhost:8000/user/findeUser" target="_self" onclick="findPw();">비밀번호 찾기</a>
                             </div>
                             
                         </form>
