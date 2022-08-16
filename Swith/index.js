@@ -9,6 +9,9 @@ app.use(express.urlencoded({extended: true}));
 app.use( express.static('public'));
 app.use( bodyParser.json() );
 
+const UserRouter = require('./routes');
+app.use('/user', UserRouter);
+
 app.listen(port, ()=>{
     console.log( "Server Port : ", port );
 });
