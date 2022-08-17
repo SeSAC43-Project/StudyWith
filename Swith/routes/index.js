@@ -23,8 +23,10 @@ const profileUpload = multer({
 /* 로그인 관련 */
 UserRouter.get('/login', login.login_index); // 로그인 화면
 UserRouter.post('/login',login.post_login); // 로그인 실행
-UserRouter.get('/find', login.find_index); // 비밀번호 찾기 화면
-UserRouter.post('/find', login.post_find); // 비밀번호 찾기 화면
+UserRouter.post('/find',login.find_index); // 비밀번호 찾기 화면
+UserRouter.post('/find',login.post_find); // 비밀번호 찾기 실행 
+UserRouter.post('/modify',login.modify_index); // 비밀번호 변경 화면
+UserRouter.post('/modify',login.post_modify); // 비밀번호 변경 실행 
 
 /* 회원가입 관련 */
 UserRouter.get('/signup', signUp.signUp_index); //회원가입 화면
