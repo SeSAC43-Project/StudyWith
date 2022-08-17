@@ -1,7 +1,9 @@
 const express = require('express'); 
 const UserRouter = express.Router();
+const FeedRouter = express.Router();
 const login = require('../controller/LoginController');
 const signUp = require('../controller/SignUpController');
+const feed = require('../controller/FeedController');
 const multer = require('multer');
 const path = require('path');
 const User = require('../model/User');
@@ -36,4 +38,10 @@ UserRouter.post('/signup/upload', profileUpload.single('profileImg'), signUp.upl
 UserRouter.post('/signup/isId', signUp.isId); // 아이디 중복검사
 UserRouter.post('/signup/isName', signUp.isName); // 닉네임 중복검사
 
-module.exports = UserRouter;
+/* 게시물 관련 */
+FeedRouter.get('/write', feed.write_index); // 게시물 등록 index
+
+module.exports = {
+    UserRouter, 
+    FeedRouter
+}
