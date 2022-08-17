@@ -14,7 +14,6 @@ CREATE TABLE user (
     category2 VARCHAR(20) NOT NULL,
     category3 VARCHAR(20) NOT NULL,
     join_date DATETIME NOT NULL,
-    studylist INT
 );
 
 ----------------------------------------------------------
@@ -53,3 +52,9 @@ select * from studymember;
 select * from studygroup inner join user on user.user_id = studygroup.user_id where study_id=1;
 SELECT * from user inner join studymember on studymember.user_id = user.user_id inner join studygroup on studygroup.study_id = studymember.study_id;
  
+
+    join_date DATETIME NOT NULL
+);
+
+-- 로그인 테스트
+insert into user values('aa', '1234', '이름은?', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'cpding', '2022-08-16');
