@@ -29,3 +29,4 @@ exports.fine_index = (req, res) => {
 exports.post_find = (req, res) => {
     console.log(req.body);
 }
+
