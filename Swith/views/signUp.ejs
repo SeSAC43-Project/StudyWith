@@ -10,8 +10,19 @@
   <link rel="stylesheet" href="/public/css/signUp.css" />
 
   <script>
-    function userImg() {
-
+    function userProfile() {
+        var form = document.getElementById("img_upload");
+                axios ({
+                    method:'post',
+                    url: "http://localhost:8000/user/signup",
+                    data: {
+                    user_image: form.profileImg.value,
+                    }
+                })
+                .then((req) => { return req.data;})
+                .then((data) => {
+                    alert(data);
+                })
     }
 
     function idCheck() {
@@ -24,12 +35,12 @@
                     method:'post',
                     url: "http://localhost:8000/user/signup",
                     data: {
-                      user_id: form.id.value,
-                      user_name: form.nickname.value,
-                      user_password: form.password.value,
-                      category1: form.firstField.value,
-                      category2: form.secondField.value,
-                      category3: form.thirdField.value
+                    user_id: form.id.value,
+                    user_name: form.nickname.value,
+                    user_password: form.password.value,
+                    category1: form.firstField.value,
+                    category2: form.secondField.value,
+                    category3: form.thirdField.value
                     }
                 })
                 .then((req) => { return req.data;})
@@ -45,10 +56,12 @@
   <div class="container">
         <div>회원정보를 입력해주세요!</div>
         
-        <form id="form_register">
-            
-            <button type="button" class="profile" onclick="userImg()"></button>
+        <form action="/signup/upload" id="img_upload" method="post">
+            <input type="file" class="profile" id="profileImg" onchange="userProfile();"></button>
+        </form>
 
+        <form action="/signup" id="form_register" method="post">
+            
             <input type="text" name="id" placeholder="아이디" class="userid"/>
                 <button type="button" id="overlap-check" onclick="idCheck()">중복<br>확인</button>
 

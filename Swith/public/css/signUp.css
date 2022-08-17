@@ -23,6 +23,13 @@
   right: 0;
   margin: auto;
 }
+.profile:hover{
+  cursor:pointer;
+  background-color: gray;
+}
+.profile:focus {
+  background-color: black;
+}
 
 .userid {
   text-align: center;
