@@ -9,10 +9,11 @@ exports.signUp_index = (req, res) => {
 
 /* 회원가입 시, 프로필 이미지 저장 */
 exports.uploadProfile = (req, res) => {
-    return res.send({
+    console.log("req.file", req.file);
+    res.json({
         success: true,
         user_image: req.file.path,
-        // fileName: res.req.file.filename,
+        //fileName: res.req.file.filename,
     });
 }
 
