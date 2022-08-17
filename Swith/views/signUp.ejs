@@ -12,6 +12,10 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <script>
+    function userImg() {
+
+    }
+
     function idCheck() {
         var form = document.getElementById("form_register");
         axios({
@@ -60,14 +64,14 @@
       var form = document.getElementById("form_register");
                 axios ({
                     method:'post',
-                    url: "http://localhost:8000/signup",
+                    url: "http://localhost:8000/user/signup",
                     data: {
-                      id: form.id.value,
-                      nickname: form.nickname.value,
-                      password: form.password.value,
-                      firstField: form.firstField.value,
-                      secondField: form.secondField.value,
-                      thirdField: form.thirdField.value
+                      user_id: form.id.value,
+                      user_name: form.nickname.value,
+                      user_password: form.password.value,
+                      category1: form.firstField.value,
+                      category2: form.secondField.value,
+                      category3: form.thirdField.value
                     }
                 })
                 .then((req) => { return req.data;})
@@ -82,10 +86,11 @@
 <body>
   <div class="container">
         <div>회원정보를 입력해주세요!</div>
-
-        <button type="button" class="profile"></button>
-
+        
         <form id="form_register">
+            
+            <button type="button" class="profile" onclick="userImg()"></button>
+
             <input type="text" name="id" placeholder="아이디" class="userid"/>
                 <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button>
 
