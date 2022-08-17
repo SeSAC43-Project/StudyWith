@@ -5,6 +5,7 @@ const signUp = require('../controller/SignUpController');
 const multer = require('multer'); 
 const User = require('../model/User');
 
+
 /* 프로필 이미지 업로드 */
 const profileUpload = multer({
     storage: multer.diskStorage({
@@ -29,6 +30,5 @@ UserRouter.post('/signup', signUp.post_user); // 회원가입
 UserRouter.post('/signup/upload', profileUpload.single('view input value name'), signUp.uploadProfile); // 프로필 이미지 업로드
 UserRouter.post('/signup/isId', signUp.isId); // 아이디 중복검사
 UserRouter.post('/signup/isName', signUp.isName); // 닉네임 중복검사
-
 
 module.exports = UserRouter;

@@ -14,27 +14,28 @@
 
         <script>
             function loginUser() {
-                var form = document.getElementById('login_form'); 
+                var form = document.getElementById('login_form');
                 axios ({
                     method:'post',
                     url: "http://localhost:8000/user/login",
                     data: {
-                        id: form.id.value,
-                        pw: form.password.value, 
+                        id : form.id.value,
+                        pw: form.password.value,
+                        remember : form.id_remember.value,
                     }
                 })
-                .then((req) => { return req.data; })
+                .then((req) => { return req.data;})
                 .then((data) => {
                     alert(data);
-                });
+                })
             }
 
-            function SignUp() {
+            function register() {
                 document.location.href="http://localhost:8000/user/sign";
             }
 
             function findPw() {
-                document.location.href="http://localhost:8080/user/findUser";
+                document.location.href="http://localhost:8000/user/findUser";
             }
 
         </script>
@@ -52,35 +53,52 @@
                 <div class="col-2"></div>
                 <div class="col-8 login_main">
                     <img src="/login/login_image.png" class="login_background">
-                    <div class="form_background">
+                    <div class="form_background"></div>
+                    <form id="login_form">
                         <h1>LOGIN</h1>
-                        <!-- 아이디로!!!!! -->
-                        <form id="login_form">
-                            <input type="text" id="user" name='id' placeholder="아이디"><br>
-                            <input type="password" id="pw" name='password' placeholder="비밀번호">
+
+                        <!-- <div></div> 여기는 나중에 경고창 띄울 곳-->
+                            <input type="text" id="user" name="id" class="login_form_user" placeholder="아이디" style="color:white"><br><br>
+                            <input type="password" id="pw" name="password"  class="login_form_pw" placeholder="비밀번호" style="color:white">
                             <br>
 
-                            <div></div>아이디를 기억해줘!
+                            <input type="checkbox" id="userid_Remmber" name="id_remember"><span style="font-size: 0.7rem;">아이디를 기억해줘!</span>
+                        
+                            <!-- <div></div>아이디를 기억해줘! -->
+
 
                             <br>
+                            <br>
 
-                            <button type="button" onclick="loginUser()">로그인하기</button>
+
+                            <button type="button" class="loginUser" style="color:#FFE19C" onclick="loginUser();">로그인하기</button>
+
                             
-                            <br>
+                            <br><br>
 
                             <div>
-                                <span>아직도 스윗이 아니신가요?</span>
-                                <a href="http://localhost:8000/user/signup" target="_self" onclick="SignUp();">회원가입</a>
+
+                                <span>아직도 스윗이 아니신가요?</span>&nbsp;
+                                <a href="http://localhost:8000/user/sign" target="_self" onclick="register();" style="color:#4686C2; font-weight:bolder">회원가입</a>&nbsp
+
                                 <span>하러가기</span>
                             </div>
-
+                            <br>
                             <div>
-                            <a href="http://localhost:8000/user/findeUser" target="_self" onclick="findPw();">비밀번호 찾기</a>
+
+                            <a href="http://localhost:8000/user/findeUser" target="_self" onclick="findPw();" style="color:black; font-weight: bolder;">비밀번호 찾기</a>
+
                             </div>
-                            
-                        </form>
-                    </div>
-                    
+
+                            <hr>
+
+                                <div class="kakao_login" onclick="kakaoLogin();">
+                                <a href="javascript:void()">
+                                    <span><img src="/login/kakao_login.png" width="150px;"></span>
+                                </a></div>
+                        
+                    </form>
+                </div>
                 </div>
                 <div class="col-2"></div>
                 </div>
