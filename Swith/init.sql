@@ -17,6 +17,8 @@ CREATE TABLE user (
     studylist INT
 );
 
+----------------------------------------------------------
+
 --좋아요 수 카운트
 SELECT COUNT(*) FROM user WHERE user_id=1;
 
