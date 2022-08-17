@@ -29,13 +29,16 @@ create table user (
 	user_id int(2) not null primary key,
     username varchar(4) 
 );
+
 insert into user values (4,'abcd');
+
 create table studygroup (
 	study_id int(2) not null primary key,
     user_id int(2) not null,
     studyname varchar(10),
     foreign key (user_id) references user(user_id)
     );
+
 insert into studygroup values(2,4,'sesac4');
     
 create table studymember (
@@ -44,17 +47,14 @@ create table studymember (
     user_id int(2) not null,
     foreign key (study_id) references studygroup(study_id),
     foreign key (user_id) references user(user_id)
-    );
-    insert into studymember values(5,2,3);
+);
+
+insert into studymember values(5,2,3);
     
     
 select * from studymember;
 select * from studygroup inner join user on user.user_id = studygroup.user_id where study_id=1;
 SELECT * from user inner join studymember on studymember.user_id = user.user_id inner join studygroup on studygroup.study_id = studymember.study_id;
- 
-
-    join_date DATETIME NOT NULL
-);
 
 -- 로그인 테스트
 insert into user values('aa', '1234', '이름은?', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'cpding', '2022-08-16');
