@@ -114,8 +114,8 @@
   width: 250px;
   height: 450px;
   position: absolute;
-  top: 0;
-  bottom: -85%;
+  top: 80%;
+  bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
@@ -217,7 +217,7 @@
   border-radius: 20px 20px 20px 20px;
   position: absolute;
   top: 0;
-  bottom: -550px;
+  bottom: -75%;
   left: 0;
   right: 0;
   margin: auto;
