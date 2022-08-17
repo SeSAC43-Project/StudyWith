@@ -10,8 +10,7 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     
-        <%-include('loginCSS')%>
-
+        <link rel="stylesheet" href="/public/css/login.css"> 
         <script>
             function loginUser() {
                 var form = document.getElementById('login_form');
@@ -49,11 +48,11 @@
         <tbody>
             <div class="container text-center">
                 <div class="login_main">
-                    <img src="/login/login_image.png" class="login_background">
+                    <img src="/public/login/login_image.png" class="login_background">
                     <div class="form_background"></div>
                     <!-- <div class="form_section"> -->
                     <form id="login_form">
-                        <img src="/login/logo.png" width="300px;" class="login_logo"><br>
+                        <img src="../public/login/logo.png" width="300px;" class="login_logo"><br>
 
                         <!-- <div></div> 여기는 나중에 경고창 띄울 곳-->
                             <input type="text" id="user" name="id" class="login_form_user" placeholder="아이디" style="color:white"><br><br>
