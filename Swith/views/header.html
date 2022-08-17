@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/7d78f8313d.js" crossorigin="anonymous"></script>
+    <script src="js/includeHTML.js"></script>
+    <title>header</title>
+    <script>
+        export default {
+            name: "Header",
+            data () {
+            return {
+              username : {  /* 쿠키에 저장된 값 디코딩해서 가져오기  */
+                message :  decodeURIComponent(document.cookie),
+                },
+             computed : {  /* 여기서 쿠키를 반환하면, v-if에서 쿠키 존재하면 true로 인식  */
+                cookie(){
+                    return document.cookie
+                }
+                },
+            };
+        }
+    }
+    // function includeHTML() {
+    //     var z, i, elmnt, file, xhttp;
+    //     z = document.getElementsByTagName("*");
+    //     for (i = 0; i < z.length; i++) {
+    //         elmnt = z[i];
+    //         file = elmnt.getAttribute("include-html");
+    //         if (file) {
+    //         xhttp = new XMLHttpRequest();
+    //         xhttp.onreadystatechange = function() {
+    //             if (this.readyState == 4 && this.status == 200) {
+    //             elmnt.innerHTML = this.responseText;
+    //             elmnt.removeAttribute("include-html");
+    //             includeHTML();        }
+    //         }      
+    //         xhttp.open("GET", file, true);
+    //         xhttp.send();
+    //         return;
+    //         }
+    //     }
+    //     }
+
+    // function {
+    //         var header = document.getElementById("");
+            
+    //     };
+    //     axios({
+    //         method: 'post',
+    //         url: 'http://localhost:8000/user/login',
+    //         data: user
+    //     }).then((rep) => {return rep.data} )
+    //     .then((data) => {
+    //         document.location.href="/user/login"
+    //     });
+    </script>
+    <style>
+    body {
+        margin: 0;
+        font-family: 'market Sans';
+    }
+    a {
+        text-decoration: none;
+        color: white;
+    }
+    ul {
+        padding-left: 0;
+    }
+    li {
+        list-style: none;
+    }
+    header {
+        padding: 20px;
+        background-color: #4686C2;
+        position: relative;
+    }
+    #navbar {
+        width: 100%;
+        display: contents;
+        align-items: center;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .navbar_logo {
+        display: block;
+        text-align: center;
+        bottom: 10px;
+        cursor: pointer;
+    }
+    .navbar:hover {
+        cursor: pointer;
+    }
+    .navbar_menu {
+        margin: 1.5rem;
+        margin-top: -50px;
+        padding-left: 20px;
+        column-width: 100px;
+        cursor: pointer;
+    }
+    .login_user {
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .user {
+        position: absolute;
+        display: flex;
+        margin-top:10px;
+        /* margin-left: 20px; */
+        align-items: center;
+        margin: 0 20px;
+        top: 45px;
+        right: 0;
+    }
+    .login {
+        margin: 0 30px;
+    }
+    .logout {
+        margin: 0 30px;
+        display: none;
+    }
+    .mypage {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav id="navbar">
+            <div class="navbar_logo">
+                <img width="100" height="70" src="../views/img/Swith.png" alt="logo" style="text-align:center"><a href="index.js"></a></img>
+            </div>
+
+            <ul class="navbar_menu">
+                <li class="menu"><a href="#">스터디등록</a></li>
+                <li class="menu"><a href="#">스터디조회</a></li>
+            </ul>
+            
+        <div id="login_user">    
+            <ul class="user">
+                <ul class="login">
+                    <i class="fa-solid fa-user"></i>
+                    <a href="#">로그인</a>
+                </ul>
+            </ul>
+        </div>        
+            <ul class="logout">
+                <i class="fa-solid fa-user"></i>
+                <a href="#">로그아웃</a>
+            </ul>
+            <ul class="mypage">
+                <i class="fa-solid fa-memo-circle-info"></i>
+                <a href="#">마이페이지</a>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>
