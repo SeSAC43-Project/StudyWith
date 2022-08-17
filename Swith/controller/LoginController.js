@@ -1,5 +1,6 @@
 const Models  = require('../model');
 
+// 로그인 페이지 렌더링
 exports.login_index = (req, res) => {
     res.render('login'); 
 }
@@ -18,3 +19,14 @@ exports.post_login = (req, res) => {
         res.send('로그인 실패'); 
     });
 }
+
+// 비밀번호찾기 페이지 렌더링
+exports.fine_index = (req, res) => {
+    res.render('user_find'); 
+}
+
+// 비밀번호 찾기 기능 구현
+exports.post_find = (req, res) => {
+    console.log(req.body);
+}
+
