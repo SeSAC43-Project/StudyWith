@@ -10,7 +10,7 @@
   text-align: center;
 }
 
-.profile {
+.profile label {
   width: 70px;
   height: 70px;
   border: 3px solid;
@@ -22,13 +22,24 @@
   left: 0;
   right: 0;
   margin: auto;
+  text-align: center;
 }
-.profile:hover{
+.profile label:hover{
   cursor:pointer;
-  background-color: gray;
+  background-color: #4686C2;
 }
-.profile:focus {
-  background-color: black;
+.profile label:active {
+  background-color: #4686C2;
+}
+.profile input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .userid {
@@ -45,7 +56,7 @@
   margin: auto;
 }
 
-#overlap-check {
+#id-check {
   text-align: center;
   width: 50px;
   height: 35px;
@@ -121,7 +132,7 @@
   width: 250px;
   height: 450px;
   position: absolute;
-  top: 80%;
+  top: 125%;
   bottom: 0;
   left: 0;
   right: 0;
@@ -184,36 +195,48 @@
 }
 
 .firstList {
-  width: 180px;
-  height: 20px;
+  width: 190px;
+  height: 30px;
   position: absolute;
   top: 0;
   bottom: 0px;
   left: 60px;
   right: 0;
   margin: auto;
+  text-align: center;
+  border: 1px solid;
+  border-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
 }
 
 .secondList {
-  width: 180px;
-  height: 20px;
+  width: 190px;
+  height: 30px;
   position: absolute;
   top: 0;
   bottom: 0px;
   left: 60px;
   right: 0;
   margin: auto;
+  text-align: center;
+  border: 1px solid;
+  border-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
 }
 
 .thirdList {
-  width: 180px;
-  height: 20px;
+  width: 190px;
+  height: 30px;
   position: absolute;
   top: 0;
   bottom: 0px;
   left: 60px;
   right: 0;
   margin: auto;
+  text-align: center;
+  border: 1px solid;
+  border-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
 }
 
 .register {
@@ -224,7 +247,7 @@
   border-radius: 20px 20px 20px 20px;
   position: absolute;
   top: 0;
-  bottom: -75%;
+  bottom: 20%;
   left: 0;
   right: 0;
   margin: auto;

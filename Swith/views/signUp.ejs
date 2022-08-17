@@ -7,7 +7,7 @@
   <title>StudyWITH</title>
   <link rel="icon" href="../swithlogo.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-  <!-- <link rel="stylesheet" href="/public/css/signUp.css" /> -->
+  <link rel="stylesheet" href="/public/css/signUp.css" />
   <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -97,9 +97,12 @@
 <body>
   <div class="container">
         <div>회원정보를 입력해주세요!</div>
-        
+
         <form action="/signup/upload" id="img_upload" method="post">
-            <input type="file" class="profile" id="profileImg" onchange="userProfile();"></button>
+            <div class="profile">
+            <label for="profileImg"><br><br>프로필+</label>
+            <input type="file" id="profileImg" onchange="userProfile();" />
+            </div>
         </form>
 
         <form action="/signup" id="form_register" method="post">
@@ -117,42 +120,39 @@
         <div class="field">관심분야
         
                 <div class="first">1순위
-                    <input type="text" name="firstField" list="firstList" class="firstList"><br>
-                        <datalist id="firstList">
-                            <option value="컴퓨터/IT"></option>
-                            <option value="언어"></option>
-                            <option value="자격증"></option>
-                            <option value="인증"></option>
-                            <option value="취업/이직"></option>
-                            <option value="공모전"></option>
-                            <option value="취미"></option>
-                        </datalist>
+                        <select name="firstField" class="firstList">
+                            <option value="1">컴퓨터/IT</option>
+                            <option value="2">언어</option>
+                            <option value="3">자격증</option>
+                            <option value="4">인증</option>
+                            <option value="5">취업/이직</option>
+                            <option value="6">공모전</option>
+                            <option value="7">취미</option>
+                        </select>
                 </div>
         
                 <div class="second">2순위
-                    <input type="text" name="secondField" list="firstList" class="secondList"><br>
-                        <datalist id="firstList">
-                            <option value="컴퓨터/IT"></option>
-                            <option value="언어"></option>
-                            <option value="자격증"></option>
-                            <option value="인증"></option>
-                            <option value="취업/이직"></option>
-                            <option value="공모전"></option>
-                            <option value="취미"></option>
-                        </datalist>
+                        <select name="secondField" class="secondList">
+                            <option value="1">컴퓨터/IT</option>
+                            <option value="2">언어</option>
+                            <option value="3">자격증</option>
+                            <option value="4">인증</option>
+                            <option value="5">취업/이직</option>
+                            <option value="6">공모전</option>
+                            <option value="7">취미</option>
+                        </select>
                 </div>
         
                 <div class="third">3순위
-                    <input type="text" name="thirdField" list="firstList" class="thirdList"><br>
-                        <datalist id="firstList">
-                            <option value="컴퓨터/IT"></option>
-                            <option value="언어"></option>
-                            <option value="자격증"></option>
-                            <option value="인증"></option>
-                            <option value="취업/이직"></option>
-                            <option value="공모전"></option>
-                            <option value="취미"></option>
-                        </datalist>
+                        <select name="thirdField" class="thirdList">
+                            <option value="1">컴퓨터/IT</option>
+                            <option value="2">언어</option>
+                            <option value="3">자격증</option>
+                            <option value="4">인증</option>
+                            <option value="5">취업/이직</option>
+                            <option value="6">공모전</option>
+                            <option value="7">취미</option>
+                        </select>
                 </div>
             </form>
         
