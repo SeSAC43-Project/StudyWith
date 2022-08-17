@@ -34,7 +34,7 @@ exports.post_find = (req, res) => {
         // hint와 answer db와 일치하는 지 확인
 
         if (req.body.hint == result.hint && req.body.hint_answer == result.hint_answer) {
-            res.render('modify', result.user_password); 
+            res.send(result.user_password); 
             return 
         }
         res.send('질문과 답을 재확인 해주세요');
