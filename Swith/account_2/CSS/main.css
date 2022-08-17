@@ -1,0 +1,231 @@
+.container {
+  width: 400px;
+  height: 450px;
+  position: absolute;
+  top: 0;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+
+.profile {
+  width: 70px;
+  height: 70px;
+  border: 3px solid;
+  border-color: #4686C2;
+  border-radius: 50px 50px 50px 50px;
+  position: absolute;
+  top: 0;
+  bottom: 70%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.userid {
+  text-align: center;
+  width: 250px;
+  height: 30px;
+  background-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
+  position: absolute;
+  top: 0;
+  bottom: 30%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#overlap-check {
+  text-align: center;
+  width: 50px;
+  height: 35px;
+  background-color: white;
+  border-color: #4686C2;
+  border-radius: 10px 10px 10px 10px;
+  position: absolute;
+  top: 0;
+  bottom: 30%;
+  left: 320px;
+  right: 0;
+  margin: auto;
+}
+
+.nickname {
+  text-align: center;
+  width: 250px;
+  height: 30px;
+  background-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
+  position: absolute;
+  top: 0;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#nickname-check {
+  text-align: center;
+  width: 50px;
+  height: 35px;
+  background-color: white;
+  border-color: #4686C2;
+  border-radius: 10px 10px 10px 10px;
+  position: absolute;
+  top: 0;
+  bottom: 10%;
+  left: 320px;
+  right: 0;
+  margin: auto;
+}
+
+.pw {
+  text-align: center;
+  width: 250px;
+  height: 30px;
+  background-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
+  position: absolute;
+  top: 0;
+  bottom: -10%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.pwConfirm {
+  text-align: center;
+  width: 250px;
+  height: 30px;
+  background-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
+  position: absolute;
+  top: 0;
+  bottom: -30%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.field {
+  width: 250px;
+  height: 450px;
+  position: absolute;
+  top: 0;
+  bottom: -85%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: left;
+}
+
+.first {
+  width: 50px;
+  height: 30px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  bottom: 370px;
+  left: 0;
+  right: 200px;
+  margin: auto;
+  border: 1px solid;
+  border-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 30px;
+}
+
+.second {
+  width: 50px;
+  height: 30px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  bottom: 290px;
+  left: 0;
+  right: 200px;
+  margin: auto;
+  border: 1px solid;
+  border-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 30px;
+}
+
+.third {
+  width: 50px;
+  height: 30px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  bottom: 210px;
+  left: 0;
+  right: 200px;
+  margin: auto;
+  border: 1px solid;
+  border-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 30px;
+}
+
+.firstList {
+  width: 180px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0px;
+  left: 60px;
+  right: 0;
+  margin: auto;
+}
+
+.secondList {
+  width: 180px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0px;
+  left: 60px;
+  right: 0;
+  margin: auto;
+}
+
+.thirdList {
+  width: 180px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  bottom: 0px;
+  left: 60px;
+  right: 0;
+  margin: auto;
+}
+
+.join {
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  background-color: #4686C2;
+  border-radius: 20px 20px 20px 20px;
+  position: absolute;
+  top: 0;
+  bottom: -550px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  line-height: 30px;
+}
+
+a {
+  text-decoration-line : none;
+}
+
