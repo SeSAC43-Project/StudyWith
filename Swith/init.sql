@@ -1,0 +1,1 @@
+create databse swit;

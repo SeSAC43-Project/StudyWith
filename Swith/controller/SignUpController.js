@@ -1,6 +1,7 @@
 const models = require("../model");
 
 
+
 /* 회원가입 화면 */
 exports.signUp_index = (req, res) => {
     res.render('SignUp'); 

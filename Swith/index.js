@@ -6,8 +6,7 @@ const port = 8000;
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended: true}));
-app.use( express.static('public'));
-app.use("/login",express.static('public/login')); 
+app.use( "public", express.static('public')); 
 app.use( bodyParser.json() );
 
 const UserRouter = require('./routes');
