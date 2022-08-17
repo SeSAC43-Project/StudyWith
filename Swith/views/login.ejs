@@ -17,8 +17,8 @@
                     method:'post',
                     url: "http://localhost:8000/user/login",
                     data: {
-                        id : form.id.value,
-                        pw: form.password.value,
+                        user_id : form.id.value,
+                        user_password : form.password.value,
                     }
                 })
                 .then((req) => { return req.data;})
@@ -74,15 +74,15 @@
                             <div>
 
                                 <span>아직도 스윗이 아니신가요?</span>&nbsp;
-                                <a href="http://localhost:8000/user/signup" target="_self" onclick="register();" style="color:#4686C2; font-weight:bolder">회원가입</a>&nbsp
-
+                                <!-- <a href="http://localhost:8000/user/signup" target="_self" onclick="register();" style="color:#4686C2; font-weight:bolder">회원가입</a>&nbsp -->
+                                <a href="javascript:void(0);" onclick="register();return false;">회원가입</a>&nbsp;
                                 <span>하러가기</span>
                             </div>
                             <br>
                             <div>
 
-                            <a href="http://localhost:8000/user/findeUser" target="_self" onclick="findPw();" style="color:black; font-weight: bolder;">비밀번호 찾기</a>
-
+                            <!-- <a href="http://localhost:8000/user/findUser" target="_self" onclick="findPw();" style="color:black; font-weight: bolder;">비밀번호 찾기</a> -->
+                            <a href="javascript:void(0);" onclick="findPw();return false;">비밀번호 찾기</a>
                             </div>
                         
                     </form>
