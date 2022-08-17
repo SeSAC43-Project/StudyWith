@@ -28,7 +28,6 @@ UserRouter.post('/find',login.post_find); // 비밀번호 찾기 실행
 UserRouter.post('/modify',login.modify_index); // 비밀번호 변경 화면
 UserRouter.post('/modify',login.post_modify); // 비밀번호 변경 실행 
 
-
 /* 회원가입 관련 */
 UserRouter.get('/signup', signUp.signUp_index); //회원가입 화면
 UserRouter.post('/signup', signUp.post_user); // 회원가입

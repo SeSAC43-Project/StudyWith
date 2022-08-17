@@ -1,6 +1,6 @@
 const Models  = require('../model');
 
-// 로그인 화면 렌더링
+// 로그인 페이지 렌더링
 exports.login_index = (req, res) => {
     res.render('login'); 
 }
