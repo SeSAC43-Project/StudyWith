@@ -15,9 +15,16 @@ CREATE TABLE user (
     category3 VARCHAR(20) NOT NULL,
     join_date DATETIME NOT NULL,
 );
+----------------------------------------------------------
+-- 테스트 코드
+
+-- 로그인 테스트
+insert into user values('aa', '1234', '이름은?', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'cpding', '2022-08-16');
+
+
 
 ----------------------------------------------------------
-
+--* Back 참고용
 --좋아요 수 카운트
 SELECT COUNT(*) FROM user WHERE user_id=1;
 
@@ -56,5 +63,3 @@ select * from studymember;
 select * from studygroup inner join user on user.user_id = studygroup.user_id where study_id=1;
 SELECT * from user inner join studymember on studymember.user_id = user.user_id inner join studygroup on studygroup.study_id = studymember.study_id;
 
--- 로그인 테스트
-insert into user values('aa', '1234', '이름은?', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'cpding', '2022-08-16');
