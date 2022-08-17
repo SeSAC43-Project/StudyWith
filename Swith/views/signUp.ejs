@@ -7,11 +7,53 @@
   <title>StudyWITH</title>
   <link rel="icon" href="../swithlogo.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-  <link rel="stylesheet" href="/public/css/signUp.css" />
+  <!-- <link rel="stylesheet" href="/public/css/signUp.css" /> -->
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <script>
     function idCheck() {
+        var form = document.getElementById("form_register");
+        axios({
+            method: "post",
+            url: "http://localhost:8000/user/signup/isId",
+            data: {
+                user_id: form.id.value
+            }
+        }).then((req) => { 
+            return req.data;
+        }).then((data) => {
+            if (data.checkid == true) {
+                var button = document.getElementById("id-check"); 
+                button.innerHTML = "사용<br>가능";
+                // button.disabled = true;
+            } else {
+                var button = document.getElementById("id-check"); 
+                button.innerHTML = "불가능<br>다시시도";
+            }
+        });
+    }
 
+    function nicknameCheck() {
+        var form = document.getElementById("form_register");
+        axios({
+            method: "post",
+            url: "http://localhost:8000/user/signup/isName",
+            data: {
+                user_name: form.nickname.value
+            }
+        }).then((req) => { 
+            return req.data;
+        }).then((data) => {
+            if (data.checkname == true) {
+                var button = document.getElementById("nickname-check"); 
+                button.innerHTML = "사용<br>가능";
+                // button.disabled = true;   
+            } else {
+                var button = document.getElementById("nickname-check"); 
+                button.innerHTML = "불가능<br>다시시도";
+            }
+        });
     }
 
     function register() {
@@ -43,9 +85,9 @@
 
         <button type="button" class="profile"></button>
 
-        <form>
+        <form id="form_register">
             <input type="text" name="id" placeholder="아이디" class="userid"/>
-                <button type="button" id="overlap-check" onclick="idCheck()">중복<br>확인</button>
+                <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button>
 
             <input type="text" name="nickname" placeholder="닉네임" class="nickname"/>
                 <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button>
