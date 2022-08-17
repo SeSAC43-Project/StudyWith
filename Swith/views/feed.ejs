@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시물등록</title>
+</head>
+<body>
+    <h2>스터디 등록</h2>
+    <form>
+        스터디명<br>
+        <input type="text" name="study_name" placeholder="스터디 그룹명을 적어주세요">
+        <br>
+        카테고리 <p>*카테고리를 선택해주세요.</p>
+        <ul>
+            <li><input type="checkbox">언어</li>
+            <li><input type="checkbox">자격증</li>
+            <li><input type="checkbox">취업</li>
+            <li><input type="checkbox">IT</li>
+            <li><input type="checkbox">취미</li>
+            <li><input type="checkbox">인증</li>
+            <li><input type="checkbox">공모전</li>
+        </ul>
+        <br>
+        스터디형태<br>
+        <input type="radio" name="study_form">온라인
+        <input type="radio" name="study_form">오프라인
+        <br>
+        모집인원<br>
+        <input type="text" placeholder="모집인원을 적어주세요">명<br>
+        그룹이미지<br>
+        <input type="file">
+        스터디 소개글<br>
+        <input type="textarea" placeholder="스터디 소개글을 적어주세요."><br>
+        스터디 기간<br>
+
+        <select name="start_period">
+            <option></option>
+            <option></option>
+            <option></option>
+        </select><br>
+
+        해시태그<br>
+        <input type="text" placeholder="해시태그를 입력해주세요"><br>
+
+        <button type="button" onclick="writeFeed();">스터디 등록</button>
+
+    </form>
+</body>
+</html>
