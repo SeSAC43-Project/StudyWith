@@ -8,21 +8,21 @@
     <script src="js/includeHTML.js"></script>
     <title>header</title>
     <script>
-        export default {
-            name: "Header",
-            data () {
-            return {
-              username : {  /* 쿠키에 저장된 값 디코딩해서 가져오기  */
-                message :  decodeURIComponent(document.cookie),
-                },
-             computed : {  /* 여기서 쿠키를 반환하면, v-if에서 쿠키 존재하면 true로 인식  */
-                cookie(){
-                    return document.cookie
-                }
-                },
-            };
-        }
-    }
+    //     export default {
+    //         name: "Header",
+    //         data () {
+    //         return {
+    //           username : {  /* 쿠키에 저장된 값 디코딩해서 가져오기  */
+    //             message :  decodeURIComponent(document.cookie),
+    //             },
+    //          computed : {  /* 여기서 쿠키를 반환하면, v-if에서 쿠키 존재하면 true로 인식  */
+    //             cookie(){
+    //                 return document.cookie
+    //             }
+    //             },
+    //         };
+    //     }
+    // }
     // function includeHTML() {
     //     var z, i, elmnt, file, xhttp;
     //     z = document.getElementsByTagName("*");
@@ -131,7 +131,7 @@
     <header class="header">
         <nav id="navbar">
             <div class="navbar_logo">
-                <img width="100" height="70" src="../public/login/login_image.png" alt="logo" style="text-align:center"><a href="index.js"></a></img>
+                <img width="100" height="70" src="../public/login/logo.png" alt="logo" style="text-align:center"><a href="index.js"></a></img>
             </div>
 
             <ul class="navbar_menu">
