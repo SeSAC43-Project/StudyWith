@@ -8,58 +8,99 @@
   <link rel="icon" href="../swithlogo.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
   <link rel="stylesheet" href="/public/css/signUp.css" />
+
+  <script>
+    function idCheck() {
+
+    }
+
+    function register() {
+      var form = document.getElementById("form_register");
+                axios ({
+                    method:'post',
+                    url: "http://localhost:8000/signup",
+                    data: {
+                      id: form.id.value,
+                      nickname: form.nickname.value,
+                      password: form.password.value,
+                      firstField: form.firstField.value,
+                      secondField: form.secondField.value,
+                      thirdField: form.thirdField.value
+                    }
+                })
+                .then((req) => { return req.data;})
+                .then((data) => {
+                    alert(data);
+                })
+    }
+
+  </script>
+
 </head>
 <body>
   <div class="container">
-    <div>회원정보를 입력해주세요!</div>
-    <button type="button" class="profile"></button>
-    <input type="text" placeholder="아이디" class="userid"/>
-      <button type="button" id="overlap-check" onclick="">중복<br>확인</button>
-    <input type="text" placeholder="닉네임" class="nickname"/>
-      <button type="button" id="nickname-check">중복<br>확인</button>
-    <input type="password" placeholder="비밀번호" class="pw"/>
-    <input type="password" placeholder="비밀번호 확인" class="pwConfirm"/>
+        <div>회원정보를 입력해주세요!</div>
+
+        <button type="button" class="profile"></button>
+
+        <form>
+            <input type="text" name="id" placeholder="아이디" class="userid"/>
+                <button type="button" id="overlap-check" onclick="idCheck()">중복<br>확인</button>
+
+            <input type="text" name="nickname" placeholder="닉네임" class="nickname"/>
+                <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button>
+
+            <input type="password" name="password" placeholder="비밀번호" class="pw"/>
+
+            <input type="password" placeholder="비밀번호 확인" class="pwConfirm"/>
+
+        <div class="field">관심분야
+        
+                <div class="first">1순위
+                    <input type="text" name="firstField" list="firstList" class="firstList"><br>
+                        <datalist id="firstList">
+                            <option value="컴퓨터/IT"></option>
+                            <option value="언어"></option>
+                            <option value="자격증"></option>
+                            <option value="인증"></option>
+                            <option value="취업/이직"></option>
+                            <option value="공모전"></option>
+                            <option value="취미"></option>
+                        </datalist>
+                </div>
+        
+                <div class="second">2순위
+                    <input type="text" name="secondField" list="firstList" class="secondList"><br>
+                        <datalist id="firstList">
+                            <option value="컴퓨터/IT"></option>
+                            <option value="언어"></option>
+                            <option value="자격증"></option>
+                            <option value="인증"></option>
+                            <option value="취업/이직"></option>
+                            <option value="공모전"></option>
+                            <option value="취미"></option>
+                        </datalist>
+                </div>
+        
+                <div class="third">3순위
+                    <input type="text" name="thirdField" list="firstList" class="thirdList"><br>
+                        <datalist id="firstList">
+                            <option value="컴퓨터/IT"></option>
+                            <option value="언어"></option>
+                            <option value="자격증"></option>
+                            <option value="인증"></option>
+                            <option value="취업/이직"></option>
+                            <option value="공모전"></option>
+                            <option value="취미"></option>
+                        </datalist>
+                </div>
+            </form>
+        
+            <div class="register">
+                <a href="javascript:register();" id="signup"><font color= "white">회원가입</font></a>
+            </div>
+        </div>
   </div>
-  <div class="field">관심분야
-    <div class="first">1순위
-      <input type="text" list="firstList" class="firstList"><br>
-      <datalist id="firstList">
-          <option value="컴퓨터/IT"></option>
-          <option value="언어"></option>
-          <option value="자격증"></option>
-          <option value="인증"></option>
-          <option value="취업/이직"></option>
-          <option value="공모전"></option>
-          <option value="취미"></option>
-      </datalist>
-    </div>
-    <div class="second">2순위
-      <input type="text" list="firstList" class="secondList"><br>
-      <datalist id="firstList">
-          <option value="컴퓨터/IT"></option>
-          <option value="언어"></option>
-          <option value="자격증"></option>
-          <option value="인증"></option>
-          <option value="취업/이직"></option>
-          <option value="공모전"></option>
-          <option value="취미"></option>
-      </datalist>
-    </div>
-    <div class="third">3순위
-      <input type="text" list="firstList" class="thirdList"><br>
-      <datalist id="firstList">
-          <option value="컴퓨터/IT"></option>
-          <option value="언어"></option>
-          <option value="자격증"></option>
-          <option value="인증"></option>
-          <option value="취업/이직"></option>
-          <option value="공모전"></option>
-          <option value="취미"></option>
-      </datalist>
-    </div>
-  </div>
-  <div class="join">
-    <a href=""><font color= "white">회원가입</font></a>
-  </div>
+
 </body>
 </html>
