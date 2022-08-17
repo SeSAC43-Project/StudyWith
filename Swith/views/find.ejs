@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,14 +26,37 @@
                 })
                 .then((req) => { return req.data; })
                 .then((data) => {
-                    alert(data);
+                    console.log('여기가 악', data);
+                    if (data == "") { // 답 틀리면
+                        FalseCase();
+                    } else { // 답 맞으면
+                        TrueCase(data);
+                    }
                 });
             }
+            
+        // 비밀 번호 찾기 답을 틀린 경우 
+        function FalseCase() {
+            $('#PopUp').html("<p>질문과 답을 재확인해주세요.</p>");
+        }
 
-            function register() {
-                document.location.href="http://localhost:8000/user/modify";
-            }
+        // 비밀번호 찾기 답을 맞은 경우
+        function TrueCase(data) {
+            $('#PopUp').html("<p>"+ data +"</p>");
+        }
+
+        function register() {
+            document.location.href="http://localhost:8000/user/modify";
+        }
     </script>
+    <style>
+        .PopUp {
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
     <tbody>
@@ -53,8 +76,9 @@
                     <option value="2">좌우명을 입력해주세요.</option>
                     <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
                     <input type="text" name="answer" placeholder="답변을 입력해주세요.">
+                    <div id="PopUp" class="PopUp"></div>
                 </select>
-                <button tpye="button" onclick="password_find()">비밀번호 찾기</button>
+                <button type="button" onclick="password_find()">비밀번호 찾기</button>
                 </form>
     </tbody>
 </body>
