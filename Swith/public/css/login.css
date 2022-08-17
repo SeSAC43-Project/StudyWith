@@ -1,4 +1,3 @@
-<style>
     @font-face {
         font-family: 'GS_bold'; 
         src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
@@ -100,5 +99,3 @@
     }
 
     a:link { text-decoration:none; }
-    
-</style>
