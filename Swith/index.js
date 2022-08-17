@@ -11,6 +11,7 @@ app.use( bodyParser.json() );
 
 const UserRouter = require('./routes');
 app.use('/user', UserRouter);
+app.use('/feed', UserRouter);
 
 app.listen(port, ()=>{
     console.log( "Server Port : ", port );
