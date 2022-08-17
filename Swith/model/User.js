@@ -48,11 +48,7 @@ const User = (Sequelize, DataTypes) => {
             join_date: {
                 type: DataTypes.DATE,
                 allowNull: false, 
-            },
-            studylist: {
-                type: DataTypes.INTEGER
             }
-            
         },
         // 모델의 옵션
         {
