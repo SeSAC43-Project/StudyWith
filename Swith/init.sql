@@ -13,13 +13,13 @@ CREATE TABLE user (
     category1 VARCHAR(20) NOT NULL,
     category2 VARCHAR(20) NOT NULL,
     category3 VARCHAR(20) NOT NULL,
-    join_date DATETIME NOT NULL,
+    join_date DATETIME NOT NULL
 );
 ----------------------------------------------------------
 -- 테스트 코드
 
 -- 로그인 테스트
-insert into user values('aa', '1234', '이름은?', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'cpding', '2022-08-16');
+insert into user values('aa', '1234', '1', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'coding', '2022-08-16');
 
 
 

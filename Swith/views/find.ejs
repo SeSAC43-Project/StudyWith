@@ -19,15 +19,15 @@
                     method:'post',
                     url: "http://localhost:8000/user/find",
                     data: {
-                        user_id : form.id.value,
-                        ussr_find : form.find.value,
-                        user_answer : form.answer.value
+                        user_id : form.user_id.value,
+                        hint : form.hint.value,
+                        hint_answer : form.answer.value
                     }
                 })
-                .then((req) => { return req.data;})
+                .then((req) => { return req.data; })
                 .then((data) => {
                     alert(data);
-                })
+                });
             }
 
             function register() {
@@ -40,16 +40,18 @@
         <div class="container text-center">
             <div class="row">
             <div class="col-2"></div>
-            
+            <div class="col-8 login_main">
+                <img src="/login/login_image.png" class="pw_background">
+                <div class="form_background"></div>
                 <form id="find_password" method="POST">
                     <h1>비밀번호 찾기</h1>
 
-                <div><input id="id" type="text" name="id" placeholder="아이디" required></div>
-                <select name="find">
-                    <option value="1">전체</option>
-                    <option value="2">어느 중학교 출신인가요?</option>
-                    <option value="3">좌우명을 입력해주세요.</option>
-                    <option value="4">학창시절에 좋아했던 과목은 무엇인가요?</option>
+                <div><input id="id" type="text" name="user_id" placeholder="아이디" required></div>
+                <select name="hint">
+                    <option value="0">전체</option>
+                    <option value="1">어느 중학교 출신인가요?</option>
+                    <option value="2">좌우명을 입력해주세요.</option>
+                    <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
                     <input type="text" name="answer" placeholder="답변을 입력해주세요.">
                 </select>
                 <button tpye="button" onclick="password_find()">비밀번호 찾기</button>
