@@ -21,7 +21,6 @@
                     data: {
                         id : form.id.value,
                         pw: form.password.value,
-                        remember : form.id_remember.value,
                     }
                 })
                 .then((req) => { return req.data;})
@@ -49,25 +48,22 @@
         </thead>
         <tbody>
             <div class="container text-center">
-                <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8 login_main">
+                <div class="login_main">
                     <img src="/login/login_image.png" class="login_background">
                     <div class="form_background"></div>
+                    <!-- <div class="form_section"> -->
                     <form id="login_form">
-                        <h1>LOGIN</h1>
+                        <img src="/login/logo.png" width="300px;" class="login_logo"><br>
 
                         <!-- <div></div> 여기는 나중에 경고창 띄울 곳-->
                             <input type="text" id="user" name="id" class="login_form_user" placeholder="아이디" style="color:white"><br><br>
                             <input type="password" id="pw" name="password"  class="login_form_pw" placeholder="비밀번호" style="color:white">
                             <br>
 
-                            <input type="checkbox" id="userid_Remmber" name="id_remember"><span style="font-size: 0.7rem;">아이디를 기억해줘!</span>
-                        
+                            <div class="remember"><label for="userid_Remember" style="font-size: 0.7rem;"><input type="checkbox" id="userid_Remember" name="id_remember">&nbsp;아이디를 기억해줘!</label></div>
                             <!-- <div></div>아이디를 기억해줘! -->
 
 
-                            <br>
                             <br>
 
 
@@ -89,18 +85,10 @@
                             <a href="http://localhost:8000/user/findeUser" target="_self" onclick="findPw();" style="color:black; font-weight: bolder;">비밀번호 찾기</a>
 
                             </div>
-
-                            <hr>
-
-                                <div class="kakao_login" onclick="kakaoLogin();">
-                                <a href="javascript:void()">
-                                    <span><img src="/login/kakao_login.png" width="150px;"></span>
-                                </a></div>
                         
                     </form>
+                <!-- </div> -->
                 </div>
-                </div>
-                <div class="col-2"></div>
                 </div>
             </div>
 
