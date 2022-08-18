@@ -1,13 +1,13 @@
 const express = require('express'); 
 const UserRouter = express.Router();
 const FeedRouter = express.Router();
+const detailedPostRouter = express.Router();
 const login = require('../controller/LoginController');
 const signUp = require('../controller/SignUpController');
 const feed = require('../controller/FeedController');
+const detailedPost = require('../controller/DetailedPostController');
 const multer = require('multer');
 const path = require('path');
-const User = require('../model/User');
-
 
 /* 프로필 이미지 업로드 */
 const profileUpload = multer({
@@ -41,7 +41,11 @@ UserRouter.post('/signup/isName', signUp.isName); // 닉네임 중복검사
 /* 게시물 관련 */
 FeedRouter.get('/write', feed.write_index); // 게시물 등록 index
 
+/* 게시물 상세 조회 관련 */
+detailedPostRouter.get('/detailPost', detailedPost.detailedPost_index); //게시물 상세 조회 화면
+
 module.exports = {
     UserRouter, 
-    FeedRouter
+    FeedRouter,
+    detailedPostRouter
 }
