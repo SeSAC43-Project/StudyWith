@@ -73,6 +73,19 @@
                 });
             }
 
+            function pwCheck() {
+                if(document.getElementById('pw').value !='' && document.getElementById('pwConfirm').value!=''){
+                    if(document.getElementById('pw').value==document.getElementById('pwConfirm').value){
+                        document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                        document.getElementById('check').style.color='#4686C2';
+                    }
+                    else{
+                        document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                        document.getElementById('check').style.color='red';
+                    }
+                }
+            }
+
             function signup() {
             var form = document.getElementById("signup_form");
                 axios ({
@@ -140,8 +153,9 @@
         
                                 <input type="text" name="email" placeholder="이메일" class="email"/><br><br>
 
-                                <input type="password" name="password" placeholder="비밀번호" class="pw" style="color:white"/><br><br>
-                                <input type="password" placeholder="비밀번호 확인" class="pwConfirm" style="color:white" />
+                                <input type="password" name="password" placeholder="비밀번호" onchange="pwCheck()" id="pw" style="color:white" /><br><br>
+                                <input type="password" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color:white" /><br>
+                                <span id="check"></span>
                                 
                                 <br><br><br>
         

@@ -144,7 +144,7 @@ span {
   border: 0;
 } */
 
-.userid, .nickname, .email, .pw, .pwConfirm, .pwAnswer, .category_hint {
+.userid, .nickname, .email, #pw, #pwConfirm, .pwAnswer, .category_hint {
   border: 0;
   background-color: #4686C2;
   width:300px;
