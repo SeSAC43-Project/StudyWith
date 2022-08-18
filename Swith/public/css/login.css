@@ -21,20 +21,19 @@
 
     }
 
-    .login_main {
+    .find_main {
         position: relative;
     }
 
 
-    .login_background {
+    .find_background {
         width:1280px;
         z-index: 1;
     }
 
-
     /* 폼 내부 설정 */
 
-    #login_form {
+    #password_find {
         position: absolute;
         left:50vh;
         top:20vh; 
@@ -55,43 +54,40 @@
         position:absolute;
         display: block;
         top:10vh;
-        left:35vh; 
+        left:35vh;
         z-index:2;
     }
-    /* 위에 애는 login_main기준으로 움직임 */
+    /* 위에 애는 find_main기준으로 움직임 */
 
 
-    .login_form_user, .login_form_pw {
+    .find_password_user, .find .find_answer{
         border: 0;
         background-color: #4686C2;
         width:300px;
         height: 50px;
         border-radius: 30px;
-        
     }
     input {
         text-align: center;
     }
-    input::-webkit-input-placeholder { color: white; text-align: center; opacity: 0.5;}
-    input:focus {
+    .ifind_password_user::-webkit-input-placeholder { color: white; text-align: center; opacity: 0.5;}
+    .find_password_user:focus {
         outline: 3px solid #4686C2
     }
+
+    
 
     /* label[for="userid_Remember"]{
     position: relative;
     top: 1.5px;
     } */
 
-    .remember {
-        padding-top: 20px;
-    }
-
     input[id="userid_Remember"] {
         position:relative;
         top:3px;
     }
 
-    .loginUser {
+    .findUser {
         background-color: #4686C2;
         border:0;
         border-radius: 20px;
