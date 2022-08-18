@@ -41,3 +41,25 @@
 .modify_logo {
     padding-bottom: 50px;
 }
+
+.form_background {
+    margin: auto;
+    width: 640px;
+    height: 640px;
+    background-color: white;
+    opacity: 0.7;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+}
+
+/*  */
+
+.modify_info {
+    position: absolute;
+    z-index: 3;
+    display: inline-block;
+    text-align: center;
+    width: 400px;
+}
+
