@@ -21,7 +21,7 @@
                     data: {
                         user_id : form.user_id.value,
                         hint : form.hint.value,
-                        hint_answer : form.answer.value
+                        hint_answer : form.hint_answer.value
                     }
                 })
                 .then((req) => { return req.data; })
@@ -42,11 +42,7 @@
 
         // 비밀번호 찾기 답을 맞은 경우
         function TrueCase(data) {
-            $('#PopUp').html("<p>"+ data +"</p>");
-        }
-
-        function register() {
-            document.location.href="http://localhost:8000/user/modify";
+            $('#PopUp').html("<p>"+ data +"</p>"+"<button>비밀번호 변경</button>");
         }
     </script>
     <style>
@@ -66,7 +62,7 @@
             <div class="col-8 login_main">
                 <img src="/login/login_image.png" class="pw_background">
                 <div class="form_background"></div>
-                <form id="find_password" method="POST">
+                <form id="find_password" method="post" action="/user/modify">
                     <h1>비밀번호 찾기</h1>
 
                 <div><input id="id" type="text" name="user_id" placeholder="아이디" required></div>
@@ -75,10 +71,12 @@
                     <option value="1">어느 중학교 출신인가요?</option>
                     <option value="2">좌우명을 입력해주세요.</option>
                     <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
-                    <input type="text" name="answer" placeholder="답변을 입력해주세요.">
+                    <input type="text" name="hint_answer" placeholder="답변을 입력해주세요.">
                     <div id="PopUp" class="PopUp"></div>
                 </select>
-                <button type="button" onclick="password_find()">비밀번호 찾기</button>
+                <div id="button_site">
+                    <br><button id='find_button' type="button" onclick="password_find()">비밀번호 찾기</button><br>
+                </div>
                 </form>
     </tbody>
 </body>
