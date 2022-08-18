@@ -1,8 +1,21 @@
 html {
     background-color: #4686c2;
 }
-
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 form {
     background-color: white;
     border-radius: 30px;
+}
+
+.form_container {
+    width:500px;
 }

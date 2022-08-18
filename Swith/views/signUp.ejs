@@ -30,7 +30,7 @@
             // }
 
             function idCheck() {
-                var form = document.getElementById("form_register");
+                var form = document.getElementById("signup_form");
                 axios({
                     method: "post",
                     url: "http://localhost:8000/user/signup/isId",
@@ -46,13 +46,13 @@
                         // button.disabled = true;
                     } else {
                         var button = document.getElementById("id-check"); 
-                        button.innerHTML = "불가능<br>다시시도";
+                        button.innerHTML = "불가능<br>다시확인";
                     }
                 });
             }
 
             function nicknameCheck() {
-                var form = document.getElementById("form_register");
+                var form = document.getElementById("signup_form");
                 axios({
                     method: "post",
                     url: "http://localhost:8000/user/signup/isName",
@@ -87,8 +87,8 @@
             }
 
             function signup() {
-            var form = document.getElementById("signup_form");
-                axios ({
+                var form = document.getElementById("signup_form");
+                axios({
                     method:'post',
                     url: "http://localhost:8000/user/signup",
                     data: {
@@ -98,7 +98,6 @@
                         hint: form.hint.value,
                         hint_answer: form.hintanswer.value,
                         user_email: form.email.value,
-                        user_image: form.image.value,
                         category1: form.firstField.value,
                         category2: form.secondField.value,
                         category3: form.thirdField.value
@@ -161,9 +160,9 @@
         
                                 <span class="span_field">비밀번호 힌트 질문</span><br><br>
                                     <select name="hint" class="category_hint" style="color:rgb(200, 200, 200)">
-                                        <option value="1">어느 중학교 출신인가요?</option>
-                                        <option value="2">좌우명을 입력해주세요.</option>
-                                        <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
+                                        <option value="어느 중학교 출신인가요?">어느 중학교 출신인가요?</option>
+                                        <option value="좌우명을 입력해주세요.">좌우명을 입력해주세요.</option>
+                                        <option value="학창시절에 좋아했던 과목은 무엇인가요?">학창시절에 좋아했던 과목은 무엇인가요?</option>
                                     </select>
 
                                 <br><br>
@@ -175,13 +174,13 @@
                                 <span class="span_field">관심분야</span><br><br>
                                     <!-- <div class="first">1순위 -->
                                             <select name="firstField" class="category">
-                                                <option value="1">컴퓨터/IT</option>
-                                                <option value="2">언어</option>
-                                                <option value="3">자격증</option>
-                                                <option value="4">인증</option>
-                                                <option value="5">취업/이직</option>
-                                                <option value="6">공모전</option>
-                                                <option value="7">취미</option>
+                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                                <option value="언어">언어</option>
+                                                <option value="자격증">자격증</option>
+                                                <option value="인증">인증</option>
+                                                <option value="취업/이직">취업/이직</option>
+                                                <option value="공모전">공모전</option>
+                                                <option value="취미">취미</option>
                                             </select>
                                     <!-- </div> -->
         
@@ -189,13 +188,13 @@
         
                                     <!-- <div class="second">2순위 -->
                                             <select name="secondField" class="category">
-                                                <option value="1">컴퓨터/IT</option>
-                                                <option value="2">언어</option>
-                                                <option value="3">자격증</option>
-                                                <option value="4">인증</option>
-                                                <option value="5">취업/이직</option>
-                                                <option value="6">공모전</option>
-                                                <option value="7">취미</option>
+                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                                <option value="언어">언어</option>
+                                                <option value="자격증">자격증</option>
+                                                <option value="인증">인증</option>
+                                                <option value="취업/이직">취업/이직</option>
+                                                <option value="공모전">공모전</option>
+                                                <option value="취미">취미</option>
                                             </select>
                                     <!-- </div> -->
         
@@ -203,13 +202,13 @@
         
                                     <!-- <div class="third">3순위 -->
                                             <select name="thirdField" class="category">
-                                                <option value="1">컴퓨터/IT</option>
-                                                <option value="2">언어</option>
-                                                <option value="3">자격증</option>
-                                                <option value="4">인증</option>
-                                                <option value="5">취업/이직</option>
-                                                <option value="6">공모전</option>
-                                                <option value="7">취미</option>
+                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                                <option value="언어">언어</option>
+                                                <option value="자격증">자격증</option>
+                                                <option value="인증">인증</option>
+                                                <option value="취업/이직">취업/이직</option>
+                                                <option value="공모전">공모전</option>
+                                                <option value="취미">취미</option>
                                             </select>
                                     <!-- </div> -->
         
@@ -218,6 +217,7 @@
                                     <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">회원가입</button>
 
                                     <br><br><br>
+                                    
 
                                     <span>이미 스윗이신가요?</span>&nbsp;
                                     <a href="javascript:void(0);" onclick="user_login(); return false;">로그인</a>&nbsp;

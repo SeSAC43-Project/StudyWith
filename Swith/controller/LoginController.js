@@ -33,7 +33,7 @@ exports.post_find = (req, res) => {
         console.log('비번찾기 실행 :', result);
         // hint와 answer db와 일치하는 지 확인
         if (req.body.hint == result.hint && req.body.hint_answer == result.hint_answer) {
-            res.send(result.user_password); 
+            res.send('True'); 
         } else {
             res.send(null);
         }

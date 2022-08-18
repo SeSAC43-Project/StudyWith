@@ -31,7 +31,6 @@ const User = (Sequelize, DataTypes) => {
             },
             user_image: {
                 type: DataTypes.STRING(100),
-                allowNull: false, 
             },
             category1: {
                 type: DataTypes.STRING(20),
@@ -47,7 +46,8 @@ const User = (Sequelize, DataTypes) => {
             },
             join_date: {
                 type: DataTypes.DATE,
-                allowNull: false, 
+                allowNull: false,
+                defaultValue: DataTypes.NOW,
             }
         },
         // 모델의 옵션
