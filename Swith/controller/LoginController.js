@@ -40,12 +40,18 @@ exports.post_find = (req, res) => {
     });
 }
 
-// 비밀번호 변경 화면 렌더링
-exports.modify_index = (req, res) => {
-    res.render('modify'); 
+// 비밀번호 변경 페이지 렌더링, 아이디 갑 전달
+exports.post_modify = (req, res) => {
+    res.render('modify', {id: req.body.user_id});
 }
 
-// 비밀번호 변경 구현 
-exports.post_modify = (req, res) => {
-    console.log('비번변경');
+// 비밀번호 변경 실행 
+exports.post_update = (req, res) => {
+    let newObj = {
+        user_password : req.body.user_password
+    };
+    Models.User.update( newObj, {where: {user_id: req.body.user_id}})
+    .then((result) => {
+        res.send('비밀번호 수정 성공!');
+    });
 }
