@@ -22,8 +22,16 @@
                     }
                 })
                 .then((req) => { return req.data;})
-                .then((data) => {
+                .then((data) => {                  
                     alert(data);
+                    // if (data == true) {
+                    //     document.location.href="http://localhost:8000/";
+                    // }
+                    // else {
+                    //     console.log("로그인 실패!")
+                    //     // $(".warningLogin").html("아이디 또는 비밀번호를 확인해주세요.");
+                    //     // $(".warningLogin").css("color","red");
+                    // }
                 })
             }
 
@@ -45,23 +53,18 @@
         </nav>
         </thead>
         <tbody>
-            <div class="container text-center">
-                <div class="login_main">
-                    <img src="/public/login/login_image.png" class="login_background">
-                    <div class="form_background"></div>
-                    <!-- <div class="form_section"> -->
+            <div class="container">
+                <img src="/public/login/login_image.png" class="login_background">
                     <form id="login_form">
-
+                        <div class="form_background"></div>
+                        <div class="login_info">
                         <img src="/public/login/logo.png" width="300px;" class="login_logo"><br>
-
-                        <!-- <div></div> 여기는 나중에 경고창 띄울 곳-->
+                        <div class="warningLogin"></div>
                             <input type="text" id="user" name="id" class="login_form_user" placeholder="아이디" style="color:white"><br><br>
                             <input type="password" id="pw" name="password"  class="login_form_pw" placeholder="비밀번호" style="color:white">
                             <br>
 
                             <div class="remember"><label for="userid_Remember" style="font-size: 0.7rem;"><input type="checkbox" id="userid_Remember" name="id_remember">&nbsp;아이디를 기억해줘!</label></div>
-                            <!-- <div></div>아이디를 기억해줘! -->
-
 
                             <br>
 
@@ -84,12 +87,10 @@
                             <!-- <a href="http://localhost:8000/user/findUser" target="_self" onclick="findPw();" style="color:black; font-weight: bolder;">비밀번호 찾기</a> -->
                             <a href="javascript:void(0);" onclick="findPw();return false;">비밀번호 찾기</a>
                             </div>
-                        
+                        </div>
                     </form>
                 <!-- </div> -->
                 </div>
-                </div>
-            </div>
 
         </tbody>
     

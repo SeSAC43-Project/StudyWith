@@ -17,7 +17,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
+        position:relative;
 
     }
 
@@ -27,17 +27,20 @@
 
 
     .login_background {
+        position: absolute;
+        margin: auto;
         width:1280px;
+        /* width:100%; */
         z-index: 1;
     }
-
 
     /* 폼 내부 설정 */
 
     #login_form {
         position: absolute;
-        left:50vh;
-        top:20vh; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
         z-index: 3;
         padding:10px 10px 10px 10px;
     }
@@ -46,41 +49,45 @@
         padding-bottom: 50px;
     }
 
-
     .form_background {
+        margin:auto;
         width : 640px;
         height: 640px;
         background-color: white;
         opacity: 0.7;
         position:absolute;
-        display: block;
-        top:10vh;
-        left:35vh; 
+        display:flex;
+        justify-content: center;
+        /* display: block; */
+        /* top:10vh;
+        left:35vh;  */
         z-index:2;
     }
     /* 위에 애는 login_main기준으로 움직임 */
 
+    .login_info {
+        position:absolute;
+        z-index: 3;
+        display: inline-block;
+        text-align: center;
+        width:400px;
+    }
 
-    .login_form_user, .login_form_pw {
+    .login_form_user, .login_form_pw{
         border: 0;
         background-color: #4686C2;
         width:300px;
         height: 50px;
         border-radius: 30px;
-        
     }
     input {
         text-align: center;
     }
+    
     input::-webkit-input-placeholder { color: white; text-align: center; opacity: 0.5;}
     input:focus {
         outline: 3px solid #4686C2
     }
-
-    /* label[for="userid_Remember"]{
-    position: relative;
-    top: 1.5px;
-    } */
 
     .remember {
         padding-top: 20px;
