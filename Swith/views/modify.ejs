@@ -71,8 +71,10 @@
                 <img src="../public/login/logo.png" width="300px;" class="modify_logo"><br>
                 <!-- <div class="form_background"></div> -->
                 <div id="modify_password">
-                <div class="modify_card">    
-                    <h1 class="password_modify"><%=id%>님 비밀번호 변경</h1>
+                <div class="modify_card">
+                    <div class="pw_modify">  
+                        <h1 class="password_modify"><%=id%>님 비밀번호 변경</h1>
+                    </div>
 
                 <form id="modify_password">
                     <div><input id="id" type="text" name="id" class="modify_form_user" placeholder="아이디" style="color:white"></div><br>
@@ -81,7 +83,7 @@
 
                     <div><input id="pwd" type="password" name="password2" class="check_pwd" placeholder="비밀번호 확인"required style="color:white"><br><br>
                     <button type="button" class="modifyUser_1" onclick="pw_check()" style="color:white">일치 확인</button><br>
-                    </div>
+                    <!-- </div> -->
                     <div id="checkPw" class="checkPw"></div><br>
                     <button type="button" class="modifyUser_2"
                     onclick="password_modify()" style="color:white">비밀번호 변경하기</button>

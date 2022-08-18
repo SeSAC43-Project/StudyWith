@@ -30,7 +30,7 @@
 
 #modify_password {
     position: absolute;
-    display: flex;
+    display: flexbox;
     justify-content: center;
     align-items: center;
 
@@ -65,14 +65,24 @@
 }
 
 .modify_card {
-    margin-top: -30rem;
-    display: inline-block;
+    margin-top: -20rem;
+    padding-left: 2rem;
+    justify-content: center;
+    /* display: inline-block; */
+}
+
+.pw_modify {
+    position: absolute;
+    right: -350px;
+    top: -25rem;
 }
 
 .password_modify {
-    padding-inline: -10rem;
+    width: 400px;
+    /* padding-inline: -10rem; */
     text-align: center;
-    padding-top: 30px;
+    padding-top: -60px;
+    padding-left: -15rem;;
     font-size: 30px;
 }
 
