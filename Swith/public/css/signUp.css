@@ -1,5 +1,18 @@
+@font-face {
+  font-family: 'GS_bold'; 
+  src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+}
+
+* {
+  font-family: "GS_bold";
+}
+
+span {
+  font-family: "GS_bold";
+}
+
 .container {
-  margin: auto;
+  /* margin: auto;
   padding: 0px;
   width:100%;
   height: 100vh;
@@ -7,7 +20,17 @@
   align-items: center;
   justify-content: center;
   left: 50%;
-  top: 50%;
+  top: 50%; */
+
+  margin: auto;
+  padding: 0px;
+  width:100%;
+  height: 150vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position:relative;
+
 }
 
 .signup_main {
@@ -15,16 +38,28 @@
 }
 
 .signup_background {
+  /* width:1280px;
+  z-index: 1; */
+  position: absolute;
+  margin: auto;
   width:1280px;
+  /* width:100%; */
   z-index: 1;
 }
 
 #signup_form {
   /* position: absolute;
-  left:50vh; */
+  left:50vh;
   position: absolute;
-  /* left: 38%; */
+  left: 38%;
   top:20vh; 
+  z-index: 3;
+  padding:10px 10px 10px 10px; */
+
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 3;
   padding:10px 10px 10px 10px;
 }
@@ -41,7 +76,7 @@
 }
 
 #form_background {
-  width : 640px;
+  /* width : 640px;
   height: 640px;
   background-color: white;
   opacity: 0.7;
@@ -49,13 +84,32 @@
   display: block;
   top:10vh;
   left:35vh; 
+  z-index:2; */
+
+  margin:auto;
+  width : 640px;
+  height: 900px;
+  background-color: white;
+  opacity: 0.7;
+  position:absolute;
+  display:flex;
+  justify-content: center;
+  /* display: block; */
+  /* top:10vh;
+  left:35vh;  */
   z-index:2;
 }
 
 .user_info {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  font-weight: bold;
+  font-weight: bold; */
+
+  position:absolute;
+  z-index: 3;
+  display: inline-block;
+  text-align: center;
+  width:400px;
 }
 /* 
 .profile label {
@@ -90,12 +144,13 @@
   border: 0;
 } */
 
-.userid, .nickname, .pw, .pwConfirm {
+.userid, .nickname, .email, .pw, .pwConfirm, .pwAnswer, .category_hint {
   border: 0;
   background-color: #4686C2;
   width:300px;
   height: 30px;
   border-radius: 30px;
+  text-align: center;
 }
 
 input {
@@ -117,8 +172,8 @@ input:focus {
   height: 35px;
   position: absolute;
   top: 0;
-  bottom: 22%;
-  left: 320px;
+  bottom: 51%;
+  left: 360px;
   right: 0;
   margin: auto;
   font-size: 5px;
@@ -135,14 +190,14 @@ input:focus {
   height: 35px;
   position: absolute;
   top: 0;
-  bottom: 6%;
-  left: 320px;
+  bottom: 40%;
+  left: 360px;
   right: 0;
   margin: auto;
   font-size: 5px;
 }
 
-.category_field {
+.span_field {
   font-weight: bold;
 }
 
@@ -161,7 +216,7 @@ input:focus {
 }
 
 .category {
-  margin: auto;
+  /* margin: auto;
   position: relative;
   top: -30px;
   bottom: 0px;
@@ -174,15 +229,20 @@ input:focus {
   text-align: center;
   font-size: 10px;
   line-height: 30px;
-  width: 240px;
+  width: 300px;
+  height: 30px;
+  border-radius: 30px; */
+  border-color: #4686C2;
+  width:300px;
   height: 30px;
   border-radius: 30px;
+  text-align: center;
 }
 
 
 .signupBtn {
   cursor:pointer;
-  background-color: #4686C2;
+  /* background-color: #4686C2;
   border:0;
   border-radius: 20px;
   width: 120px;
@@ -191,7 +251,13 @@ input:focus {
   margin: auto;
   left: 100px;
   justify-content: center;
-  font-weight: bold;
+  font-weight: bold; */
+
+  background-color: #4686C2;
+  border:0;
+  border-radius: 20px;
+  width: 120px;
+  height:35px;
 }
 
 .userLogin {
@@ -202,5 +268,6 @@ input:focus {
 
 a {
   text-decoration-line : none;
+  font-family: "GS_bold";
 }
 
