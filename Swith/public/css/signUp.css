@@ -1,15 +1,63 @@
 .container {
-  width: 400px;
-  height: 450px;
-  position: absolute;
-  top: 0;
-  bottom: 10%;
-  left: 0;
-  right: 0;
   margin: auto;
-  text-align: center;
+  padding: 0px;
+  width:100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 50%;
 }
 
+.signup_main {
+  position: relative;
+}
+
+.signup_background {
+  width:1280px;
+  z-index: 1;
+}
+
+#signup_form {
+  /* position: absolute;
+  left:50vh; */
+  position: absolute;
+  /* left: 38%; */
+  top:20vh; 
+  z-index: 3;
+  padding:10px 10px 10px 10px;
+}
+
+#form_container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  top: 10%;
+}
+
+.signup_logo {
+  padding-bottom: 50px;
+}
+
+#form_background {
+  width : 640px;
+  height: 640px;
+  background-color: white;
+  opacity: 0.7;
+  position:absolute;
+  display: block;
+  top:10vh;
+  left:35vh; 
+  z-index:2;
+}
+
+.user_info {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+/* 
 .profile label {
   width: 70px;
   height: 70px;
@@ -40,219 +88,110 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+} */
+
+.userid, .nickname, .pw, .pwConfirm {
+  border: 0;
+  background-color: #4686C2;
+  width:300px;
+  height: 30px;
+  border-radius: 30px;
 }
 
-.userid {
+input {
   text-align: center;
-  width: 250px;
-  height: 30px;
-  background-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
-  position: absolute;
-  top: 0;
-  bottom: 30%;
-  left: 0;
-  right: 0;
-  margin: auto;
+}
+input::-webkit-input-placeholder { color: white; text-align: center; opacity: 0.5;}
+input:focus {
+    outline: 3px solid #4686C2
 }
 
 #id-check {
+  cursor:pointer;
+  background-color: #4686C2;
+  border:0;
+  border-radius: 20px;
+  color: whitesmoke;
   text-align: center;
   width: 50px;
   height: 35px;
-  background-color: white;
-  border-color: #4686C2;
-  border-radius: 10px 10px 10px 10px;
   position: absolute;
   top: 0;
-  bottom: 30%;
+  bottom: 22%;
   left: 320px;
   right: 0;
   margin: auto;
-}
-
-.nickname {
-  text-align: center;
-  width: 250px;
-  height: 30px;
-  background-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
-  position: absolute;
-  top: 0;
-  bottom: 10%;
-  left: 0;
-  right: 0;
-  margin: auto;
+  font-size: 5px;
 }
 
 #nickname-check {
+  cursor:pointer;
+  background-color: #4686C2;
+  border:0;
+  border-radius: 20px;
+  color: whitesmoke;
   text-align: center;
   width: 50px;
   height: 35px;
-  background-color: white;
-  border-color: #4686C2;
-  border-radius: 10px 10px 10px 10px;
   position: absolute;
   top: 0;
-  bottom: 10%;
+  bottom: 6%;
   left: 320px;
   right: 0;
   margin: auto;
+  font-size: 5px;
 }
 
-.pw {
-  text-align: center;
-  width: 250px;
-  height: 30px;
+.category_field {
+  font-weight: bold;
+}
+
+.first, .second, .third {
+  border: 0;
   background-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
-  position: absolute;
-  top: 0;
-  bottom: -10%;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.pwConfirm {
-  text-align: center;
-  width: 250px;
-  height: 30px;
-  background-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
-  position: absolute;
-  top: 0;
-  bottom: -30%;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.field {
-  width: 250px;
-  height: 450px;
-  position: absolute;
-  top: 125%;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  text-align: left;
-}
-
-.first {
-  width: 50px;
-  height: 30px;
-  background-color: white;
-  position: absolute;
-  top: 0;
-  bottom: 370px;
-  left: 0;
-  right: 200px;
-  margin: auto;
   border: 1px solid;
   border-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
   text-align: center;
   font-size: 10px;
   line-height: 30px;
-}
-
-.second {
   width: 50px;
   height: 30px;
-  background-color: white;
-  position: absolute;
-  top: 0;
-  bottom: 290px;
-  left: 0;
-  right: 200px;
+  border-radius: 30px;
+  color: whitesmoke;
+}
+
+.category {
   margin: auto;
+  position: relative;
+  top: -30px;
+  bottom: 0px;
+  left: 60px;
+  right: 0;
+  border: 0;
+  background-color: white;
   border: 1px solid;
   border-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
   text-align: center;
   font-size: 10px;
   line-height: 30px;
+  width: 240px;
+  height: 30px;
+  border-radius: 30px;
 }
 
-.third {
-  width: 50px;
-  height: 30px;
-  background-color: white;
-  position: absolute;
-  top: 0;
-  bottom: 210px;
-  left: 0;
-  right: 200px;
-  margin: auto;
-  border: 1px solid;
-  border-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
-  text-align: center;
-  font-size: 10px;
-  line-height: 30px;
-}
 
-.firstList {
-  width: 190px;
-  height: 30px;
-  position: absolute;
-  top: 0;
-  bottom: 0px;
-  left: 60px;
-  right: 0;
-  margin: auto;
-  text-align: center;
-  border: 1px solid;
-  border-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
-}
-
-.secondList {
-  width: 190px;
-  height: 30px;
-  position: absolute;
-  top: 0;
-  bottom: 0px;
-  left: 60px;
-  right: 0;
-  margin: auto;
-  text-align: center;
-  border: 1px solid;
-  border-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
-}
-
-.thirdList {
-  width: 190px;
-  height: 30px;
-  position: absolute;
-  top: 0;
-  bottom: 0px;
-  left: 60px;
-  right: 0;
-  margin: auto;
-  text-align: center;
-  border: 1px solid;
-  border-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
-}
-
-.register {
-  text-align: center;
-  width: 100px;
-  height: 30px;
+.signupBtn {
+  cursor:pointer;
   background-color: #4686C2;
-  border-radius: 20px 20px 20px 20px;
+  border:0;
+  border-radius: 20px;
+  width: 120px;
+  height:35px;
   position: absolute;
-  top: 0;
-  bottom: 20%;
-  left: 0;
-  right: 0;
   margin: auto;
-  text-align: center;
-  line-height: 30px;
+  left: 100px;
+  justify-content: center;
+  font-weight: bold;
 }
 
 a {
