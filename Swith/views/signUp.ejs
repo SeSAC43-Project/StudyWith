@@ -1,166 +1,217 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StudyWITH</title>
-  <link rel="icon" href="../swithlogo.png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-  <!-- <link rel="stylesheet" href="/public/css/signUp.css" /> -->
-  <!-- Axios -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>StudyWITH</title>
+        <link rel="icon" href="../swithlogo.png" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+        <link rel="stylesheet" href="/public/css/signUp.css" />
+        <!-- Axios -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-  <script>
-    function userProfile() {
-        var form = document.getElementById("img_upload");
-                axios ({
-                    method:'post',
-                    url: "http://localhost:8000/user/signup/upload",
+        <script>
+            // function userProfile() {
+            //     var form = document.getElementById("profile"); 
+            //     axios({
+            //         method: "post",
+            //         url: "http://localhost:8000/user/signup/upload",
+            //         headers: {
+            //             'Content-Type': 'multipart/form-data'
+            //         },
+            //     }).then((req) => { 
+            //         return req.data;
+            //     }).then((data) => {
+            //         if (data.success == true) {
+            //             console.log(data.user_image);
+            //         }
+            //     });
+            // }
+
+            function idCheck() {
+                var form = document.getElementById("form_register");
+                axios({
+                    method: "post",
+                    url: "http://localhost:8000/user/signup/isId",
                     data: {
-                    user_image: form.profileImg.value,
+                        user_id: form.id.value
                     }
-                })
-                .then((req) => { return req.data;})
-                .then((data) => {
-                    alert(data);
-                })
-    }
+                }).then((req) => { 
+                    return req.data;
+                }).then((data) => {
+                    if (data.checkid == true) {
+                        var button = document.getElementById("id-check"); 
+                        button.innerHTML = "사용<br>가능";
+                        // button.disabled = true;
+                    } else {
+                        var button = document.getElementById("id-check"); 
+                        button.innerHTML = "불가능<br>다시시도";
+                    }
+                });
+            }
 
-    function idCheck() {
-        var form = document.getElementById("form_register");
-        axios({
-            method: "post",
-            url: "http://localhost:8000/user/signup/isId",
-            data: {
-                user_id: form.id.value
+            function nicknameCheck() {
+                var form = document.getElementById("form_register");
+                axios({
+                    method: "post",
+                    url: "http://localhost:8000/user/signup/isName",
+                    data: {
+                        user_name: form.nickname.value
+                    }
+                }).then((req) => { 
+                    return req.data;
+                }).then((data) => {
+                    if (data.checkname == true) {
+                        var button = document.getElementById("nickname-check"); 
+                        button.innerHTML = "사용<br>가능";
+                        // button.disabled = true;   
+                    } else {
+                        var button = document.getElementById("nickname-check"); 
+                        button.innerHTML = "불가능<br>다시시도";
+                    }
+                });
             }
-        }).then((req) => { 
-            return req.data;
-        }).then((data) => {
-            if (data.checkid == true) {
-                var button = document.getElementById("id-check"); 
-                button.innerHTML = "사용<br>가능";
-                // button.disabled = true;
-            } else {
-                var button = document.getElementById("id-check"); 
-                button.innerHTML = "불가능<br>다시시도";
-            }
-        });
-    }
 
-    function nicknameCheck() {
-        var form = document.getElementById("form_register");
-        axios({
-            method: "post",
-            url: "http://localhost:8000/user/signup/isName",
-            data: {
-                user_name: form.nickname.value
-            }
-        }).then((req) => { 
-            return req.data;
-        }).then((data) => {
-            if (data.checkname == true) {
-                var button = document.getElementById("nickname-check"); 
-                button.innerHTML = "사용<br>가능";
-                // button.disabled = true;   
-            } else {
-                var button = document.getElementById("nickname-check"); 
-                button.innerHTML = "불가능<br>다시시도";
-            }
-        });
-    }
-
-    function register() {
-      var form = document.getElementById("form_register");
+            function signup() {
+            var form = document.getElementById("signup_form");
                 axios ({
                     method:'post',
                     url: "http://localhost:8000/user/signup",
                     data: {
-                    user_id: form.id.value,
-                    user_name: form.nickname.value,
-                    user_password: form.password.value,
-                    category1: form.firstField.value,
-                    category2: form.secondField.value,
-                    category3: form.thirdField.value
+                        user_id: form.id.value,
+                        user_name: form.nickname.value,
+                        user_password: form.password.value,
+                        hint: form.hint.value,
+                        hint_answer: form.hintanswer.value,
+                        user_email: form.email.value,
+                        user_image: form.image.value,
+                        category1: form.firstField.value,
+                        category2: form.secondField.value,
+                        category3: form.thirdField.value
                     }
                 })
                 .then((req) => { return req.data;})
                 .then((data) => {
                     alert(data);
                 })
-    }
+            }
 
-  </script>
+            function user_login() {
+                document.location.href="http://localhost:8000/user/login";
+            }
 
-</head>
-<body>
-  <div class="container">
-        <div>회원정보를 입력해주세요!</div>
-        
-        <form action="/signup/upload" id="img_upload" method="post">
-            <input type="file" class="profile" id="profileImg" onchange="userProfile();"></button>
-        </form>
+        </script>
+    </head>
 
-        <form action="/signup" id="form_register" method="post">
-            
-            <input type="text" name="id" placeholder="아이디" class="userid"/>
-                <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button>
+    <body>
+        <div class="container">
+            <div class="siginup_main">
+                <img src="/public/login/login_image.png" class="signup_background">
+                
+                <!-- <form action="signup/upload" enctype="multipart/form-data" id="img_upload" method="post">
+                    <div class="profile">
+                        <label for="profileImg"><br><br>프로필+</label>
+                        <input type="file" id="profileImg" name="profileImg"/>
+                        <button>프로필 사용하기</button>
+                        <%if(locals.user_image){%>
+                            <img src="<%=user_image%>">
+                            <%} %>
+                        </div>
+                    </form> -->
+                    
+                    <div id="form_container">
+                        
+                        <div id="form_background"></div>
+                        
 
-            <input type="text" name="nickname" placeholder="닉네임" class="nickname"/>
-                <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button>
+                        <form id="signup_form">
+                        
+                            <div class="user_info">회원정보를 입력해주세요!</div><br><br>
+                            
+                            <img src="/public/login/logo.png" width="300px;" class="signup_logo"><br>
+                            
+                            <input type="text" name="id" placeholder="아이디" class="userid" style="color:white" />
+                            <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button><br><br>
+    
+                            <input type="text" name="nickname" placeholder="닉네임" class="nickname" style="color:white" />
+                            <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button><br><br>
+    
+                            <input type="password" name="password" placeholder="비밀번호" class="pw" style="color:white"/><br><br>
+                            <input type="password" placeholder="비밀번호 확인" class="pwConfirm" style="color:white" />
+    
+                            <div>비밀번호 힌트 질문
+                                <select name="hint">
+                                    <option value="1">어느 중학교 출신인가요?</option>
+                                    <option value="2">좌우명을 입력해주세요.</option>
+                                    <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
+                                </select>
+                            </div>
+    
+                            <input type="text" name="hintanswer" placeholder="비밀번호 힌트 답"/>
+    
+                            <input type="text" name="email" placeholder="이메일" />
+                            <br><br>
+     
+                            <div class="category_field">관심분야<br><br>
+                                <div class="first">1순위
+                                        <select name="firstField" class="category">
+                                            <option value="1">컴퓨터/IT</option>
+                                            <option value="2">언어</option>
+                                            <option value="3">자격증</option>
+                                            <option value="4">인증</option>
+                                            <option value="5">취업/이직</option>
+                                            <option value="6">공모전</option>
+                                            <option value="7">취미</option>
+                                        </select>
+                                </div>
+    
+                                <br>
+    
+                                <div class="second">2순위
+                                        <select name="secondField" class="category">
+                                            <option value="1">컴퓨터/IT</option>
+                                            <option value="2">언어</option>
+                                            <option value="3">자격증</option>
+                                            <option value="4">인증</option>
+                                            <option value="5">취업/이직</option>
+                                            <option value="6">공모전</option>
+                                            <option value="7">취미</option>
+                                        </select>
+                                </div>
+    
+                                <br>
+    
+                                <div class="third">3순위
+                                        <select name="thirdField" class="category">
+                                            <option value="1">컴퓨터/IT</option>
+                                            <option value="2">언어</option>
+                                            <option value="3">자격증</option>
+                                            <option value="4">인증</option>
+                                            <option value="5">취업/이직</option>
+                                            <option value="6">공모전</option>
+                                            <option value="7">취미</option>
+                                        </select>
+                                </div>
+    
+                                <br><br>
+    
+                                <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">회원가입</button>
 
-            <input type="password" name="password" placeholder="비밀번호" class="pw"/>
+                            </div>
+                            
+                            <br><br>
 
-            <input type="password" placeholder="비밀번호 확인" class="pwConfirm"/>
+                            <div class="userLogin">
+                                <span>이미 스윗이신가요?</span>&nbsp;
+                                <a href="javascript:void(0);" onclick="user_login(); return false;">로그인</a>&nbsp;
+                                <span>하러가기</span>
+                            </div>
 
-        <div class="field">관심분야
-        
-                <div class="first">1순위
-                    <input type="text" name="firstField" list="firstList" class="firstList"><br>
-                        <datalist id="firstList">
-                            <option value="컴퓨터/IT"></option>
-                            <option value="언어"></option>
-                            <option value="자격증"></option>
-                            <option value="인증"></option>
-                            <option value="취업/이직"></option>
-                            <option value="공모전"></option>
-                            <option value="취미"></option>
-                        </datalist>
-                </div>
-        
-                <div class="second">2순위
-                    <input type="text" name="secondField" list="firstList" class="secondList"><br>
-                        <datalist id="firstList">
-                            <option value="컴퓨터/IT"></option>
-                            <option value="언어"></option>
-                            <option value="자격증"></option>
-                            <option value="인증"></option>
-                            <option value="취업/이직"></option>
-                            <option value="공모전"></option>
-                            <option value="취미"></option>
-                        </datalist>
-                </div>
-        
-                <div class="third">3순위
-                    <input type="text" name="thirdField" list="firstList" class="thirdList"><br>
-                        <datalist id="firstList">
-                            <option value="컴퓨터/IT"></option>
-                            <option value="언어"></option>
-                            <option value="자격증"></option>
-                            <option value="인증"></option>
-                            <option value="취업/이직"></option>
-                            <option value="공모전"></option>
-                            <option value="취미"></option>
-                        </datalist>
-                </div>
-            </form>
-        
-            <div class="register">
-                <a href="javascript:register();" id="signup"><font color= "white">회원가입</font></a>
+    
+                        </form>
+                    </div>
             </div>
         </div>
-  </div>
-
-</body>
+    </body>
 </html>

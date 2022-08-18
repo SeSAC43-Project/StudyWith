@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,16 +25,39 @@
                         hint_answer : form.hint_answer.value
                     }
                 })
-                .then((req) => { return req.data;})
+                .then((req) => { return req.data; })
                 .then((data) => {
-                    alert(data);
-                })
+                    console.log('여기가 악', data);
+                    if (data == "") { // 답 틀리면
+                        FalseCase();
+                    } else { // 답 맞으면
+                        TrueCase(data);
+                    }
+                });
             }
+            
+        // 비밀 번호 찾기 답을 틀린 경우 
+        function FalseCase() {
+            $('#PopUp').html("<p>질문과 답을 재확인해주세요.</p>");
+        }
 
-            function register() {
-                document.location.href="http://localhost:8000/user/modify";
-            }
+        // 비밀번호 찾기 답을 맞은 경우
+        function TrueCase(data) {
+            $('#PopUp').html("<p>"+ data +"</p>");
+        }
+
+        function register() {
+            document.location.href="http://localhost:8000/user/modify";
+        }
     </script>
+    <style>
+        .PopUp {
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
     <tbody>
@@ -52,14 +75,14 @@
                 <input type="text" id="user" name="user_id" class="find_password_user" placeholder="아이디" required style="color:white">
                 
                 <br><br>
-
-                
-                
+                <div><input id="id" type="text" name="user_id" placeholder="아이디" required></div>
                 <select name="hint" class="hint">
-                    <option value="1">전체</option>
-                    <option value="2">어느 중학교 출신인가요?</option>
-                    <option value="3">좌우명을 입력해주세요.</option>
-                    <option value="4">학창시절에 좋아했던 과목은 무엇인가요?</option>
+                    <option value="0">전체</option>
+                    <option value="1">어느 중학교 출신인가요?</option>
+                    <option value="2">좌우명을 입력해주세요.</option>
+                    <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
+                    <input type="text" name="answer" placeholder="답변을 입력해주세요.">
+                    <div id="PopUp" class="PopUp"></div>
                 </select>
                 <br><br>
                 <input type="text" name="hint_answer" class="hint_answer" placeholder="답변을 입력해주세요." required style="color:white"> 
