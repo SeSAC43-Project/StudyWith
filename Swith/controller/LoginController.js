@@ -55,3 +55,4 @@ exports.post_update = (req, res) => {
         res.send('비밀번호 수정 성공!');
     });
 }
+
