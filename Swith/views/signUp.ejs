@@ -96,6 +96,11 @@
                     alert(data);
                 })
             }
+
+            function user_login() {
+                document.location.href="http://localhost:8000/user/login";
+            }
+
         </script>
     </head>
 
@@ -135,7 +140,7 @@
                             <input type="password" name="password" placeholder="비밀번호" class="pw" style="color:white"/><br><br>
                             <input type="password" placeholder="비밀번호 확인" class="pwConfirm" style="color:white" />
     
-                            <!-- <div>비밀번호 힌트 질문
+                            <div>비밀번호 힌트 질문
                                 <select name="hint">
                                     <option value="1">어느 중학교 출신인가요?</option>
                                     <option value="2">좌우명을 입력해주세요.</option>
@@ -145,7 +150,7 @@
     
                             <input type="text" name="hintanswer" placeholder="비밀번호 힌트 답"/>
     
-                            <input type="text" name="email" placeholder="이메일" /> -->
+                            <input type="text" name="email" placeholder="이메일" />
                             <br><br>
      
                             <div class="category_field">관심분야<br><br>
@@ -194,6 +199,15 @@
                                 <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">회원가입</button>
 
                             </div>
+                            
+                            <br><br>
+
+                            <div class="userLogin">
+                                <span>이미 스윗이신가요?</span>&nbsp;
+                                <a href="javascript:void(0);" onclick="user_login(); return false;">로그인</a>&nbsp;
+                                <span>하러가기</span>
+                            </div>
+
     
                         </form>
                     </div>
