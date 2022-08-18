@@ -58,14 +58,21 @@
     //     });
     </script>
     <style>
+    @font-face {
+    font-family: 'GS_bold'; 
+    src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+    }
+    * {
+        font-family: "GS_bold";
+        }
     body {
         margin: 0;
         font-family: 'market Sans';
     }
-    a {
+    /* a {
         text-decoration: none;
         color: white;
-    }
+    } */
     ul {
         padding-left: 0;
     }
@@ -92,6 +99,10 @@
     }
     .navbar:hover {
         cursor: pointer;
+    }
+    .navbar_menu>a {
+        text-decoration: none;
+        color: white;
     }
     .navbar_menu {
         margin: 1.5rem;
