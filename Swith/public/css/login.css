@@ -17,8 +17,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-
     }
 
     .login_main {
@@ -45,7 +43,6 @@
     .login_logo {
         padding-bottom: 50px;
     }
-
 
     .form_background {
         width : 640px;
