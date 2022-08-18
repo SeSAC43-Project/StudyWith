@@ -194,6 +194,12 @@ input:focus {
   font-weight: bold;
 }
 
+.userLogin {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+
 a {
   text-decoration-line : none;
 }
