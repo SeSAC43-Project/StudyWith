@@ -18,13 +18,14 @@ CREATE TABLE user (
 
 CREATE TABLE studygroup (
 	study_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    head_id VARCHAR(45) NOT NULL,
+    head_id VARCHAR(20) NOT NULL,
     FOREIGN KEY (`head_id`) REFERENCES `user` (`user_id`),
     study_name VARCHAR(20) NOT NULL,
+    stuy_category VARCHAR(10) NOT NULL,
     study_form VARCHAR(45) NOT NULL,
-    study_recruit INT NOT NULL,
-    study_address VARCHAR(50) NOT NULL,
-    study_image VARCHAR(45) NOT NULL,
+    study_recruit VARCHAR(3) NOT NULL,
+    study_address VARCHAR(50),
+    study_image VARCHAR(100) NOT NULL,
     study_content MEDIUMTEXT NOT NULL,
     start_period DATETIME NOT NULL,
     end_period DATETIME NOT NULL,
@@ -41,8 +42,8 @@ CREATE TABLE studygroup (
 insert into user values('aa', '1234', '1', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'coding', '2022-08-16');
 
 --스터디 그룹 테스트
-INSERT INTO studygroup (head_id, study_name, study_form, study_recruit,study_address,study_image,study_content,start_period,end_period,hasgtag)
-VALUES("aa", "swith", "온라인", 6, "서울시 영등포구 문래동", "public/studygroup/12314","안녕하세요 swith입니다", '2022-08-16', '2022-12-30', "#공부#그룹#화이팅" );
+INSERT INTO studygroup (head_id, study_name, study_category, study_form, study_recruit, study_image,study_content,start_period,end_period,hasgtag)
+VALUES("aa", "swith", "IT", "온라인", "6",  "public/studygroup/12314","안녕하세요 swith입니다", '2022-08-16', '2022-12-30', "#공부#그룹#화이팅" );
 
 
 ----------------------------------------------------------
