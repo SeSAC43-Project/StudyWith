@@ -31,7 +31,6 @@ const User = (Sequelize, DataTypes) => {
             },
             user_image: {
                 type: DataTypes.STRING(100),
-                allowNull: false, 
             },
             category1: {
                 type: DataTypes.STRING(20),

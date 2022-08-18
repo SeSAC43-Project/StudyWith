@@ -49,7 +49,7 @@ exports.isName = (req, res) => {
 
 /* 회원가입 시, User 정보 저장 */
 exports.post_user = (req, res) => {
-
+    console.log(req.body);
     let object = {
         user_id: req.body.user_id,
         user_password: req.body.user_password,
@@ -57,7 +57,7 @@ exports.post_user = (req, res) => {
         hint_answer: req.body.hint_answer,
         user_name: req.body.user_name,
         user_email: req.body.user_email,
-        user_image: req.body.user_image,
+        // user_image: req.body.user_image,
         category1: req.body.category1,
         category2: req.body.category2,
         category3: req.body.category3,
