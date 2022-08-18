@@ -1,4 +1,11 @@
+const express = require('express');
+const app = express();
 const Models  = require('../model');
+const session = require('express-session'); 
+app.use(session({
+    secret: 'secret key', 
+    resave: false,
+}))
 
 // 로그인 페이지 렌더링
 exports.login_index = (req, res) => {
@@ -13,6 +20,7 @@ exports.post_login = (req, res) => {
         console.log('post login 실행 :', result); 
 
         if (req.body.user_password == result.user_password) {
+            req.session.user = req.body.user_id; 
             res.send('login 성공!');
             return 
         }
