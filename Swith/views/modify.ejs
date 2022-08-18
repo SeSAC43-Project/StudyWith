@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../public/css/modify.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
@@ -32,12 +32,14 @@
         
         function password_modify() {
             var form = document.getElementById('modify_password');
-            axios ({
+            let id = $('#id').val();
+            let pw = $('#pw').val();
+            axios({
                 method:'post',
                 url: "http://localhost:8000/user/update",
                 data: {
-                    user_id : form.id.value,
-                    user_password : form.password.value,
+                    user_id : id,
+                    user_password : pw, 
                 }
             })
             .then((req) => { return req.data;})
@@ -72,15 +74,18 @@
                 <div class="modify_card">    
                     <h1 class="password_modify"><%=id%>님 비밀번호 변경</h1>
 
-                <div><input id="id" type="text" name="id" class="modify_form_user" placeholder="아이디" style="color:white"></div><br>
-                <div><input id="pw" type="password" name="password" class="check_pw" placeholder="비밀번호"required style="color:white"></div><br>
-                <div><input id="pwd" type="password" name="password2" class="check_pwd" placeholder="비밀번호 확인"required style="color:white"><br><br>
-                <button type="button" class="modifyUser_1" onclick="pw_check()" style="color:white">일치 확인</button><br>
-                </div>
-                <div id="checkPw" class="checkPw"></div><br>
-                <button tpye="button" class="modifyUser_2"
-                onclick="password_modify()" style="color:white">비밀번호 변경하기</button>
-                </div>
+                <form id="modify_password">
+                    <div><input id="id" type="text" name="id" class="modify_form_user" placeholder="아이디" style="color:white"></div><br>
+                    
+                    <div><input id="pw" type="password" name="password" class="check_pw" placeholder="비밀번호"required style="color:white"></div><br>
+
+                    <div><input id="pwd" type="password" name="password2" class="check_pwd" placeholder="비밀번호 확인"required style="color:white"><br><br>
+                    <button type="button" class="modifyUser_1" onclick="pw_check()" style="color:white">일치 확인</button><br>
+                    </div>
+                    <div id="checkPw" class="checkPw"></div><br>
+                    <button type="button" class="modifyUser_2"
+                    onclick="password_modify()" style="color:white">비밀번호 변경하기</button>
+                    </div>
                 </form>
             </div>    
     </tbody>
