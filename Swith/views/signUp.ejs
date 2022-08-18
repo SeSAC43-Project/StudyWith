@@ -106,8 +106,8 @@
 
     <body>
         <div class="container">
-            <div class="siginup_main">
-                <img src="/public/login/login_image.png" class="signup_background">
+            <img src="/public/login/login_image.png" class="signup_background">
+            <!-- <div class="siginup_main"> -->
                 
                 <!-- <form action="signup/upload" enctype="multipart/form-data" id="img_upload" method="post">
                     <div class="profile">
@@ -120,95 +120,99 @@
                         </div>
                     </form> -->
                     
-                    <div id="form_container">
-                        
-                        <div id="form_background"></div>
-                        
-
+                    <!-- <div id="form_container"> -->
                         <form id="signup_form">
-                        
-                            <div class="user_info">회원정보를 입력해주세요!</div><br><br>
+                            <div id="form_background"></div>
                             
-                            <img src="/public/login/logo.png" width="300px;" class="signup_logo"><br>
                             
-                            <input type="text" name="id" placeholder="아이디" class="userid" style="color:white" />
-                            <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button><br><br>
-    
-                            <input type="text" name="nickname" placeholder="닉네임" class="nickname" style="color:white" />
-                            <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button><br><br>
-    
-                            <input type="password" name="password" placeholder="비밀번호" class="pw" style="color:white"/><br><br>
-                            <input type="password" placeholder="비밀번호 확인" class="pwConfirm" style="color:white" />
-    
-                            <div>비밀번호 힌트 질문
-                                <select name="hint">
-                                    <option value="1">어느 중학교 출신인가요?</option>
-                                    <option value="2">좌우명을 입력해주세요.</option>
-                                    <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
-                                </select>
-                            </div>
-    
-                            <input type="text" name="hintanswer" placeholder="비밀번호 힌트 답"/>
-    
-                            <input type="text" name="email" placeholder="이메일" />
-                            <br><br>
-     
-                            <div class="category_field">관심분야<br><br>
-                                <div class="first">1순위
-                                        <select name="firstField" class="category">
-                                            <option value="1">컴퓨터/IT</option>
-                                            <option value="2">언어</option>
-                                            <option value="3">자격증</option>
-                                            <option value="4">인증</option>
-                                            <option value="5">취업/이직</option>
-                                            <option value="6">공모전</option>
-                                            <option value="7">취미</option>
-                                        </select>
-                                </div>
-    
-                                <br>
-    
-                                <div class="second">2순위
-                                        <select name="secondField" class="category">
-                                            <option value="1">컴퓨터/IT</option>
-                                            <option value="2">언어</option>
-                                            <option value="3">자격증</option>
-                                            <option value="4">인증</option>
-                                            <option value="5">취업/이직</option>
-                                            <option value="6">공모전</option>
-                                            <option value="7">취미</option>
-                                        </select>
-                                </div>
-    
-                                <br>
-    
-                                <div class="third">3순위
-                                        <select name="thirdField" class="category">
-                                            <option value="1">컴퓨터/IT</option>
-                                            <option value="2">언어</option>
-                                            <option value="3">자격증</option>
-                                            <option value="4">인증</option>
-                                            <option value="5">취업/이직</option>
-                                            <option value="6">공모전</option>
-                                            <option value="7">취미</option>
-                                        </select>
-                                </div>
-    
+                            <div class="user_info">
+                                <img src="/public/login/logo.png" width="300px;" class="signup_logo"><br>
+
+                                <span class="span_field">회원정보를 입력해주세요!</span><br><br>
+                                
+                                <!-- <div class="idField"> -->
+                                <input type="text" name="id" placeholder="아이디" class="userid" style="color:white" />
+                                <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button><br><br>
+                                <!-- </div> -->
+        
+                                <input type="text" name="nickname" placeholder="닉네임" class="nickname" style="color:white" />
+                                <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button><br><br>
+        
+                                <input type="text" name="email" placeholder="이메일" class="email"/><br><br>
+
+                                <input type="password" name="password" placeholder="비밀번호" class="pw" style="color:white"/><br><br>
+                                <input type="password" placeholder="비밀번호 확인" class="pwConfirm" style="color:white" />
+                                
+                                <br><br><br>
+        
+                                <span class="span_field">비밀번호 힌트 질문</span><br><br>
+                                    <select name="hint" class="category_hint" style="color:rgb(200, 200, 200)">
+                                        <option value="1">어느 중학교 출신인가요?</option>
+                                        <option value="2">좌우명을 입력해주세요.</option>
+                                        <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
+                                    </select>
+
                                 <br><br>
-    
-                                <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">회원가입</button>
+        
+                                <input type="text" name="hintanswer" placeholder="비밀번호 힌트 답" class="pwAnswer" style="color:white" />
+        
+                                <br><br><br>
+        
+                                <span class="span_field">관심분야</span><br><br>
+                                    <!-- <div class="first">1순위 -->
+                                            <select name="firstField" class="category">
+                                                <option value="1">컴퓨터/IT</option>
+                                                <option value="2">언어</option>
+                                                <option value="3">자격증</option>
+                                                <option value="4">인증</option>
+                                                <option value="5">취업/이직</option>
+                                                <option value="6">공모전</option>
+                                                <option value="7">취미</option>
+                                            </select>
+                                    <!-- </div> -->
+        
+                                    <br><br>
+        
+                                    <!-- <div class="second">2순위 -->
+                                            <select name="secondField" class="category">
+                                                <option value="1">컴퓨터/IT</option>
+                                                <option value="2">언어</option>
+                                                <option value="3">자격증</option>
+                                                <option value="4">인증</option>
+                                                <option value="5">취업/이직</option>
+                                                <option value="6">공모전</option>
+                                                <option value="7">취미</option>
+                                            </select>
+                                    <!-- </div> -->
+        
+                                    <br><br>
+        
+                                    <!-- <div class="third">3순위 -->
+                                            <select name="thirdField" class="category">
+                                                <option value="1">컴퓨터/IT</option>
+                                                <option value="2">언어</option>
+                                                <option value="3">자격증</option>
+                                                <option value="4">인증</option>
+                                                <option value="5">취업/이직</option>
+                                                <option value="6">공모전</option>
+                                                <option value="7">취미</option>
+                                            </select>
+                                    <!-- </div> -->
+        
+                                    <br><br><br><br>
+        
+                                    <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">회원가입</button>
+
+                                    <br><br><br>
+
+                                    <span>이미 스윗이신가요?</span>&nbsp;
+                                    <a href="javascript:void(0);" onclick="user_login(); return false;">로그인</a>&nbsp;
+                                    <span>하러가기</span>
+                                </div>
+                                <!-- <div class="userLogin"> -->
+                                <!-- </div> -->
 
                             </div>
-                            
-                            <br><br>
-
-                            <div class="userLogin">
-                                <span>이미 스윗이신가요?</span>&nbsp;
-                                <a href="javascript:void(0);" onclick="user_login(); return false;">로그인</a>&nbsp;
-                                <span>하러가기</span>
-                            </div>
-
-    
                         </form>
                     </div>
             </div>
