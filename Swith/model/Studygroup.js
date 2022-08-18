@@ -35,7 +35,6 @@ const Studygroup = (Sequelize, DataTypes) => {
             },
             study_image: {
                 type: DataTypes.STRING(100), 
-                allowNull: false,
             },
             study_content: {
                 type: DataTypes.STRING(20),
