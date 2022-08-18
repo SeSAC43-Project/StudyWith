@@ -47,7 +47,8 @@ const User = (Sequelize, DataTypes) => {
             },
             join_date: {
                 type: DataTypes.DATE,
-                allowNull: false, 
+                allowNull: false,
+                defaultValue: DataTypes.NOW,
             }
         },
         // 모델의 옵션
