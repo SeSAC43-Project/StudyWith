@@ -8,7 +8,7 @@
         font-family: "GS_bold";
     }
 
-    html,body,tbody {
+    html,body {
         height:100%;
     }
     /* 전체 컨테이너 설정 */
@@ -22,6 +22,7 @@
         align-items: center;
         justify-content: center;
         position:relative;
+        box-sizing: border-box;
 
     }
 
@@ -31,7 +32,7 @@
 
 
     .login_background {
-        position: absolute;
+        /* position: absolute; */
         margin: auto;
         width:1280px;
         /* width:100%; */
@@ -75,6 +76,7 @@
         display: inline-block;
         text-align: center;
         width:400px;
+        box-sizing: border-box;
     }
 
     .login_form_user, .login_form_pw{
