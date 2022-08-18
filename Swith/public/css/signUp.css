@@ -144,7 +144,7 @@ span {
   border: 0;
 } */
 
-.userid, .nickname, .email, .pw, .pwConfirm, .pwAnswer, .category_hint {
+.userid, .nickname, .email, #pw, #pwConfirm, .pwAnswer, .category_hint {
   border: 0;
   background-color: #4686C2;
   width:300px;
@@ -172,7 +172,7 @@ input:focus {
   height: 35px;
   position: absolute;
   top: 0;
-  bottom: 51%;
+  bottom: 52%;
   left: 360px;
   right: 0;
   margin: auto;
@@ -190,7 +190,7 @@ input:focus {
   height: 35px;
   position: absolute;
   top: 0;
-  bottom: 40%;
+  bottom: 41%;
   left: 360px;
   right: 0;
   margin: auto;
