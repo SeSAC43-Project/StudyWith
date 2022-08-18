@@ -18,6 +18,7 @@
         align-items: center;
         justify-content: center;
         position:relative;
+
     }
 
     .login_main {
@@ -49,7 +50,6 @@
     .login_logo {
         padding-bottom: 50px;
     }
-
 
     .form_background {
         margin:auto;
