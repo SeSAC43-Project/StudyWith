@@ -8,7 +8,7 @@
         font-family: "GS_bold";
     }
 
-    html,body {
+    html,body,tbody {
         height:100%;
     }
     /* 전체 컨테이너 설정 */
