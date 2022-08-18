@@ -13,8 +13,27 @@ CREATE TABLE user (
     category1 VARCHAR(20) NOT NULL,
     category2 VARCHAR(20) NOT NULL,
     category3 VARCHAR(20) NOT NULL,
-    join_date DATETIME NOT NULL
+    join_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE studygroup (
+	study_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    head_id VARCHAR(45) NOT NULL,
+    FOREIGN KEY (`head_id`) REFERENCES `user` (`user_id`),
+    study_name VARCHAR(20) NOT NULL,
+    study_form VARCHAR(45) NOT NULL,
+    study_recruit INT NOT NULL,
+    study_address VARCHAR(50) NOT NULL,
+    study_image VARCHAR(45) NOT NULL,
+    study_content MEDIUMTEXT NOT NULL,
+    start_period DATETIME NOT NULL,
+    end_period DATETIME NOT NULL,
+    study_regdate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    hasgtag MEDIUMTEXT,
+    study_views INT DEFAULT 0
+);
+
+
 ----------------------------------------------------------
 -- 테스트 코드
 
