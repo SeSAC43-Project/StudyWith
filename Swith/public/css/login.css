@@ -21,7 +21,7 @@
 
     }
 
-    .login_main {
+    .find_main {
         position: relative;
     }
 
@@ -34,10 +34,9 @@
         z-index: 1;
     }
 
-
     /* 폼 내부 설정 */
 
-    #login_form {
+    #password_find {
         position: absolute;
         display: flex;
         justify-content: center;
@@ -65,7 +64,7 @@
         left:35vh;  */
         z-index:2;
     }
-    /* 위에 애는 login_main기준으로 움직임 */
+    /* 위에 애는 find_main기준으로 움직임 */
 
     .login_info {
         position:absolute;
@@ -75,22 +74,20 @@
         width:400px;
     }
 
-    .login_form_user, .login_form_pw {
+    .find_password_user, .find .find_answer{
         border: 0;
         background-color: #4686C2;
         width:300px;
         height: 50px;
         border-radius: 30px;
-        
     }
     input {
         text-align: center;
     }
-    input::-webkit-input-placeholder { color: white; text-align: center; opacity: 0.5;}
-    input:focus {
+    .ifind_password_user::-webkit-input-placeholder { color: white; text-align: center; opacity: 0.5;}
+    .find_password_user:focus {
         outline: 3px solid #4686C2
     }
-
     .remember {
         padding-top: 20px;
     }
@@ -100,7 +97,7 @@
         top:3px;
     }
 
-    .loginUser {
+    .findUser {
         background-color: #4686C2;
         border:0;
         border-radius: 20px;
