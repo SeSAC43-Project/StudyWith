@@ -34,6 +34,14 @@ CREATE TABLE studygroup (
     study_views INT DEFAULT 0
 );
 
+CREATE TABLE studymember (
+	study_id INT NOT NULL,
+    user_id VARCHAR(20) NOT NULL,
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+    FOREIGN KEY (`study_id`) REFERENCES `studygroup` (`study_id`),
+);
+
+
 
 ----------------------------------------------------------
 -- 테스트 코드
