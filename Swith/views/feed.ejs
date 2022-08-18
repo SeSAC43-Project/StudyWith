@@ -45,95 +45,129 @@
 
 </head>
 <body>
-    <h2>스터디 등록</h2>    
-    <div class="container">
 
-    <div class="form_container">
-        <form id="feed_info" enctype="multipart/form-data">
-            
-            <input type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요" required>
-            <br>
-            카테고리 <span>*카테고리를 선택해주세요.</span>
-            <ul>
-                <li><input type="radio" name="studyCategory" value="언어">언어</li>
-                <li><input type="radio" name="studyCategory" value="자격증">자격증</li>
-                <li><input type="radio" name="studyCategory" value="취업">취업</li>
-                <li><input type="radio" name="studyCategory" value="IT">IT</li>
-                <li><input type="radio" name="studyCategory" value="취미">취미</li>
-                <li><input type="radio" name="studyCategory" value="인증">인증</li>
-                <li><input type="radio" name="studyCategory" value="공모전">공모전</li>
-            </ul>
-            <br>
-            스터디형태<br>
-            <input type="radio" name="studyForm" id="online" value="온라인" required>
-            <label for="online">온라인</label>
-            <input type="radio" name="studyForm" id="offline" value="오프라인" required>
-            <label for="offline">오프라인</label>
-            <br>
-            모집인원
-            <input type="text" placeholder="모집인원을 적어주세요" name="studyRecrut">명<br>
-            그룹이미지
-            <input type="file" name="studyImage"><br>
-            스터디 소개글
-            <input type="textarea" placeholder="스터디 소개글을 적어주세요." name="studyContent"><br>
-            스터디 기간<br>
+    <nav>
 
-            시작일: <input type="hidden" name="start_period">
-            <select id="start_year" name="start_year">
-                <option>
-                    <%for(var i=2022; i<=2050; i++) {%>
-                        <option value="<%=i%>"><%=i%></option>
-                    <%}%>
-                </option>
-            </select>년
-            <select id="start_month" name="start_month">
-                <option>
-                    <%for(var j=1; j<=12; j++) {%>
-                        <option value="<%=j%>"><%=j%></option>
-                    <%}%>
-                </option>
-            </select>월
-            <select id="start_day" name="start_day">
-                <option>
-                    <%for(var k=1; k<=31; k++) {%>
-                        <option value="<%=k%>"><%=k%></option>
-                    <%}%>
-                </option>
-            </select>일
-            <br>
+    </nav>
 
+    <tbody>
+    <h2>스터디 등록</h2>
+    <br>
+    <div class="feed_container">
+    <form id="feed_info" class="form_container" enctype="multipart/form-data">
+            <div class="context_container">
+                <div class="form-row">
+                    <div class="name">스터디명</div>
+                    <div class="value">
+                    <input type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요" required></div>
+                </div>
+                    <br>
+                <div class="form-row">
+                    <div class="name">카테고리 <br><span style="font-size: 0.7rem;">*카테고리를 선택해주세요.</span></div>
+                    <div class="value">
+                    <ul>
+                        <li><input type="radio" name="studyCategory" value="언어">언어</li>
+                        <li><input type="radio" name="studyCategory" value="자격증">자격증</li>
+                        <li><input type="radio" name="studyCategory" value="취업">취업</li>
+                        <li><input type="radio" name="studyCategory" value="IT">IT</li>
+                        <li><input type="radio" name="studyCategory" value="취미">취미</li>
+                        <li><input type="radio" name="studyCategory" value="인증">인증</li>
+                        <li><input type="radio" name="studyCategory" value="공모전">공모전</li>
+                    </ul>
+                    </div>
+                </div>
+                    <br>
+                <div class="form-row">
+                    <div class="name">스터디형태</div><br>
+                    <div class="value">
+                        <input type="radio" name="studyForm" id="online" value="온라인" required>
+                        <label for="online">온라인</label>
+                        <input type="radio" name="studyForm" id="offline" value="오프라인" required>
+                        <label for="offline">오프라인</label>
+                    </div>
+                </div>
+                    <br>
+                <div class="form-row">
+                    <div class="name">모집인원</div>
+                    <div class="value">
+                    <input type="text" placeholder="모집인원을 적어주세요" name="studyRecrut">명
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="name">그룹이미지</div>
+                    <div class="value"><input type="file" name="studyImage"></div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="name">스터디 소개글</div>
+                    <div class="value"><input type="textarea" placeholder="스터디 소개글을 적어주세요." name="studyContent"></div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="name">스터디 기간<br></div>
+                    <div class="value">
+                    시작일: <input type="hidden" name="start_period">
+                    <select id="start_year" name="start_year">
+                        <option>
+                            <%for(var i=2022; i<=2050; i++) {%>
+                                <option value="<%=i%>"><%=i%></option>
+                            <%}%>
+                        </option>
+                    </select>년
+                    <select id="start_month" name="start_month">
+                        <option>
+                            <%for(var j=1; j<=12; j++) {%>
+                                <option value="<%=j%>"><%=j%></option>
+                            <%}%>
+                        </option>
+                    </select>월
+                    <select id="start_day" name="start_day">
+                        <option>
+                            <%for(var k=1; k<=31; k++) {%>
+                                <option value="<%=k%>"><%=k%></option>
+                            <%}%>
+                        </option>
+                    </select>일
+                    </div>
+                    <br>
+                    <br>
+                    <div class="value">
+                    종료일: <input type="hidden" name="end_period">
+                    <select id="end_year" name="end_year">
+                        <option>
+                            <%for(var i=2022; i<=2050; i++) {%>
+                                <option value="<%=i%>"><%=i%></option>
+                            <%}%>
+                        </option>
+                    </select>년
+                    <select id="end_month" name="end_month">
+                        <option>
+                            <%for(var j=1; j<=12; j++) {%>
+                                <option value="<%=j%>"><%=j%></option>
+                            <%}%>
+                        </option>
+                    </select>월
+                    <select id="end_day" name="end_day">
+                        <option>
+                            <%for(var k=1; k<=31; k++) {%>
+                                <option value="<%=k%>"><%=k%></option>
+                            <%}%>
+                        </option>
+                    </select>일
+                </div>
+                </div>
+                    <br>
+                <div class="form-row">
+                    <div class="name">해시태그</div>
+                    <div class="value"><input type="text" placeholder="해시태그를 입력해주세요" name="hashTag"></div>
+                </div>
+                <br><br>
 
-            종료일: <input type="hidden" name="end_period">
-            <select id="end_year" name="end_year">
-                <option>
-                    <%for(var i=2022; i<=2050; i++) {%>
-                        <option value="<%=i%>"><%=i%></option>
-                    <%}%>
-                </option>
-            </select>년
-            <select id="end_month" name="end_month">
-                <option>
-                    <%for(var j=1; j<=12; j++) {%>
-                        <option value="<%=j%>"><%=j%></option>
-                    <%}%>
-                </option>
-            </select>월
-            <select id="end_day" name="end_day">
-                <option>
-                    <%for(var k=1; k<=31; k++) {%>
-                        <option value="<%=k%>"><%=k%></option>
-                    <%}%>
-                </option>
-            </select>일
-            <br>
-
-            해시태그
-            <input type="text" placeholder="해시태그를 입력해주세요" name="hashTag"><br><br>
-
-            <button type="button" onclick="writeFeed();">스터디 등록</button>
-
-        </form>
-    </div>
-    </div>
+                <button type="button" onclick="writeFeed();">스터디 등록</button>
+        </div>
+    </form>
+</div>
+</tbody>
 </body>
 </html>

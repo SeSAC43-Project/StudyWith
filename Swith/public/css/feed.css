@@ -1,21 +1,73 @@
+@font-face {
+    font-family: 'GS_bold'; 
+    src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+}
+
+* {
+    font-family: "GS_bold";
+    /* margin: 0; */
+    /* padding: 0; */
+}
+
 html {
     background-color: #4686c2;
 }
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-form {
+
+/* form {
     background-color: white;
     border-radius: 30px;
+} */
+
+.feed_container, h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+	position: relative;
+	background: white;
+	border-radius: .4em;
+    width: 900px;
+    height: 900px;
+    text-align: center;
+}
+ul {
+    list-style: none;
 }
 
 .form_container {
-    width:500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-bottom-color: #ffffff;
+	border-top: 0;
+	border-right: 0;
+	margin-left: -10px;
+	margin-top: -20px;
+}
+
+
+.form-row {
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.name {
+    width: 188px;
+    color: #333;
+    font-size: 15px;
+    margin-top: 11px;
 }
