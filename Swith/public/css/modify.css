@@ -8,7 +8,7 @@
 }
 
 /* 전체 컨티이너 설정 */
-.container {
+.container{
     margin: auto;
     padding: 0px;
     width: 100%;
@@ -19,7 +19,7 @@
     position: relative;
 }
 
-.modify_backgroud {
+.modify_background {
     position: absolute;
     margin: auto;
     width: 100%;
@@ -39,13 +39,14 @@
 }
 
 .modify_logo {
-    padding-bottom: 50px;
+    position: relative;
+    padding-bottom: 440px;
 }
 
 .form_background {
     margin: auto;
     width: 640px;
-    height: 640px;
+    height: 700px;
     background-color: white;
     opacity: 0.7;
     display: flex;
@@ -63,3 +64,40 @@
     width: 400px;
 }
 
+.modify_card {
+    margin-top: -30rem;
+    display: inline-block;
+}
+
+.password_modify {
+    padding-inline: -10rem;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 30px;
+}
+
+.modify_form_user, .check_pw, .check_pwd, .modifyUser_1, .modifyUser_2 {
+    border: 0;
+    background-color: #4686C2;
+    width:300px;
+    height: 50px;
+    border-radius: 30px;
+    
+}
+input {
+    text-align: center;
+}
+input::-webkit-input-placeholder { color: white; text-align: center; opacity: 0.5;}
+input:focus {
+    outline: 3px solid #4686C2
+}
+
+.modifyUser_1, .modifyUser_2 {
+    background-color: #4686C2;
+    border:0;
+    border-radius: 30px;
+    width: 300px;
+    height:50px;
+}
+
+a:link { text-decoration:none; }
