@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>footer</title>
     <style>
+        @font-face {
+        font-family: 'GS_bold'; 
+        src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+        }
+        * {
+        font-family: "GS_bold";
+        }
         body {
             margin: 0;
             font-family: 'market Sans';
@@ -14,17 +21,22 @@
             width: 100%;
             background-color: rgb(241, 242, 244);
             text-align: center;
+            text-align: center;
+            padding: 10px;
+        }
+        #footer>a {
+            cursor: pointer;
         }
         .footer_logo {
             cursor: pointer;
         }
-        a {
+        /* a {
             cursor: pointer;
-        }
-        div {
+        } */
+        /* div {
             text-align: center;
             padding: 10px;
-        }
+        } */
         .copyright {
             margin-top: 5px;
         }
