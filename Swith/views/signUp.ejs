@@ -73,6 +73,19 @@
                 });
             }
 
+            function pwCheck() {
+                if(document.getElementById('pw').value !='' && document.getElementById('pwConfirm').value!=''){
+                    if(document.getElementById('pw').value==document.getElementById('pwConfirm').value){
+                        document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                        document.getElementById('check').style.color='rgb(54, 54, 255)';
+                    }
+                    else{
+                        document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                        document.getElementById('check').style.color='rgb(255, 89, 89)';
+                    }
+                }
+            }
+
             function signup() {
                 var form = document.getElementById("signup_form");
                 axios({
@@ -139,16 +152,17 @@
         
                                 <input type="text" name="email" placeholder="이메일" class="email"/><br><br>
 
-                                <input type="password" name="password" placeholder="비밀번호" class="pw" style="color:white"/><br><br>
-                                <input type="password" placeholder="비밀번호 확인" class="pwConfirm" style="color:white" />
+                                <input type="password" name="password" placeholder="비밀번호" onchange="pwCheck()" id="pw" style="color:white" /><br><br>
+                                <input type="password" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color:white" /><br>
+                                <span id="check"></span>
                                 
                                 <br><br><br>
         
                                 <span class="span_field">비밀번호 힌트 질문</span><br><br>
                                     <select name="hint" class="category_hint" style="color:rgb(200, 200, 200)">
-                                        <option value="어느 중학교 출신인가요?">어느 중학교 출신인가요?</option>
-                                        <option value="좌우명을 입력해주세요.">좌우명을 입력해주세요.</option>
-                                        <option value="학창시절에 좋아했던 과목은 무엇인가요?">학창시절에 좋아했던 과목은 무엇인가요?</option>
+                                        <option value="1">어느 중학교 출신인가요?</option>
+                                        <option value="2">좌우명을 입력해주세요.</option>
+                                        <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
                                     </select>
 
                                 <br><br>
@@ -203,6 +217,7 @@
                                     <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">회원가입</button>
 
                                     <br><br><br>
+                                    
 
                                     <span>이미 스윗이신가요?</span>&nbsp;
                                     <a href="javascript:void(0);" onclick="user_login(); return false;">로그인</a>&nbsp;
