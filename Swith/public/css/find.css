@@ -8,15 +8,16 @@
 }
 
 /* 전체 컨테이너 설정 */
-/* .container {
+.container{
     margin: auto;
     padding: 0px;
-    width:100%;
+    width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-} */
+    position: relative;
+}
 
 .find_card {
     margin: auto;
@@ -26,22 +27,26 @@
 }
 
 .find_background {
-    width:1280px;
+    position: absolute;
+    margin: auto;
+    width: 100%;
     z-index: 1;
-}
+}    
 
 /* 폼 내부 설정 */
 
 #find_password {
     position: absolute;
-    left:50vh;
-    top:20vh; 
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    left: 31.5rem;
     z-index: 3;
-    padding:10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
 }
 
 .login_logo {
-    margin-top: -70px;
+    margin-top: 10px;
     top: 10px;
     padding-bottom: 10px;
 }
@@ -53,12 +58,14 @@
     opacity: 0.7;
     position:absolute;
     display: block;
-    top:10vh;
-    left:35vh; 
+    /* top:10vh;
+    left:35vh;  */
+    justify-content: center;
     z-index:2;
 }
 
 .password_find {
+    /* justify-content: center; */
     margin: 30px 30px;
 }
 
@@ -80,7 +87,7 @@ input:focus {
 
 .hint {
     background-color: #4686C2;
-    width: 300;
+    width: 300px;
     height: 50px;
     border: 0;
     border-radius: 30px;
@@ -88,19 +95,6 @@ input:focus {
     text-align: center;
 }
 
-/* label[for="userid_Remember"]{
-position: relative;
-top: 1.5px;
-} */
-
-/* .remember {
-    padding-top: 20px;
-} */
-
-/* input[id="userid_Remember"] {
-    position:relative;
-    top:3px;
-} */
 
 .findUser, .modifyUser {
     background-color: #4686C2;
