@@ -7,15 +7,21 @@
   <title>StudyWITH</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
   <link rel="stylesheet" href="/public/css/main.css" />
+
+  <!-- swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+
   <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 
 </head>
 <body onload="slider()">
 
     <!-- 메인 첫번째 페이지 -->
-    <div clas="banner">
+    <div class="banner">
         <div class="slider">
             <img src="/public/main/studyGroup1.webp" alt="banner_img" id="slideImg">
         </div>
@@ -44,6 +50,30 @@
         </div>
     </div>
 
+    <!-- 메인 두번째 페이지 -->
+    <section class="notice">
+
+    <div class="promotion">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="/public/main/guide.png" alt="이용안내" />
+                    <a href="javascript:void(0)" class="detail_btn">자세히 보기</a>
+                </div>
+                <div class="swiper-slide">
+                    <img src="/public/main/chanllenge.png" alt="공부인증챌린지" />
+                    <a href="javascript:void(0)" class="detail_btn">자세히 보기</a>
+                </div>
+                <div class="swiper-slide">
+                    <img src="/public/main/method.png" alt="운영비법" />
+                    <a href="javascript:void(0)" class="detail_btn">자세히 보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </section>
+
     <script>
         var slideImg =document.getElementById("slideImg");
 
@@ -67,5 +97,7 @@
         }
 
     </script>
+
+    
 </body>
 </html>
