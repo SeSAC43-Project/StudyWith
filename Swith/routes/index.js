@@ -6,6 +6,7 @@ const login = require('../controller/LoginController');
 const signUp = require('../controller/SignUpController');
 const feed = require('../controller/FeedController');
 const detailedPost = require('../controller/DetailedPostController');
+const main = require('../controller/MainController');
 const multer = require('multer');
 const path = require('path');
 

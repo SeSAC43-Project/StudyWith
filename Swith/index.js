@@ -10,7 +10,6 @@ app.use(express.urlencoded({extended: true}));
 app.use( "/public", express.static('public')); 
 app.use( bodyParser.json() );
 
-
 /* 회원가입&로그인 경로 */
 const { UserRouter } = require('./routes');
 app.use('/user', UserRouter);
