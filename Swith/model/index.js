@@ -14,36 +14,17 @@ db.sequelize = sequelize;
 db.User = require("./User")(sequelize, Sequelize);
 db.Studygroup = require("./Studygroup")(sequelize, Sequelize);
 db.Studymember = require("./Studymember")(sequelize, Sequelize);
+db.Likes = require("./likes")(sequelize, Sequelize);
 
 /* foreign key설정 */
-db.Studygroup.hasMany(db.User, {
-    foreignKey: 'user_id',
-    allowNull: false,
-    constraints: true,
-    onDelete: 'cascade'
-})
-db.User.belongsTo(db.Studygroup, {
-    foreignKey: 'user_id'
-});
-
-db.Studymember.hasMany(db.User, {
-    foreignKey: 'user_id',
-    allowNull: false,
-    constraints: true,
-    onDelete: 'cascade'
-})
-db.User.belongsTo(db.Studymember, {
-    foreignKey: 'user_id'
-});
-
-db.Studymember.hasMany(db.Studygroup, {
-    foreignKey: 'study_id',
-    allowNull: false,
-    constraints: true,
-    onDelete: 'cascade'
-})
-db.Studygroup.belongsTo(db.Studymember, {
-    foreignKey: 'study_id'
-});
+// db.Studygroup.hasMany(db.User, {
+//     foreignKey: 'user_id',
+//     allowNull: false,
+//     constraints: true,
+//     onDelete: 'cascade'
+// })
+// db.User.belongsTo(db.Studygroup, {
+//     foreignKey: 'user_id'
+// });
 
 module.exports = db;

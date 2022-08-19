@@ -1,7 +1,7 @@
-const Studymember = (Sequelize, DataTypes) => {
+const Likes = (Sequelize, DataTypes) => {
     const model = Sequelize.define(
         // 모델 이름
-        'Studymember',
+        'Likes',
         // 컬럼 정의
         {
             user_id: {
@@ -18,7 +18,7 @@ const Studymember = (Sequelize, DataTypes) => {
             charset: "utf8", // 한국어 설정
             collate: "utf8_general_ci", // 한국어 설정
             timestamps: false, 
-            tableName: 'Studymember', 
+            tableName: 'Likes', 
             freezeTableName: true,
         }
     );
@@ -26,4 +26,4 @@ const Studymember = (Sequelize, DataTypes) => {
     return model;
 }
 
-module.exports = Studymember;
+module.exports = Likes;
