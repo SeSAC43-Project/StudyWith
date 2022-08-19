@@ -21,7 +21,7 @@ CREATE TABLE studygroup (
     head_id VARCHAR(20) NOT NULL,
     FOREIGN KEY (`head_id`) REFERENCES `user` (`user_id`),
     study_name VARCHAR(20) NOT NULL,
-    stuy_category VARCHAR(10) NOT NULL,
+    study_category VARCHAR(10) NOT NULL,
     study_form VARCHAR(45) NOT NULL,
     study_recruit VARCHAR(3) NOT NULL,
     study_address VARCHAR(50),
@@ -30,7 +30,7 @@ CREATE TABLE studygroup (
     start_period DATETIME NOT NULL,
     end_period DATETIME NOT NULL,
     study_regdate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    hasgtag MEDIUMTEXT,
+    hashtag MEDIUMTEXT,
     study_views INT DEFAULT 0
 );
 
