@@ -29,24 +29,56 @@
             //     });
             // }
 
-            function idCheck() {
-                var form = document.getElementById("signup_form");
+            // function idCheck() {
+            //     var form = document.getElementById("signup_form");
+            //     axios({
+            //         method: "post",
+            //         url: "http://localhost:8000/user/signup/isId",
+            //         data: {
+            //             user_id: form.id.value
+            //         }
+            //     }).then((req) => { 
+            //         return req.data;
+            //     }).then((data) => {
+            //         if (data.checkid == true) {
+            //             var button = document.getElementById("id-check"); 
+            //             button.innerHTML = "사용<br>가능";
+            //             // button.disabled = true;
+            //         } else {
+            //             var button = document.getElementById("id-check"); 
+            //             button.innerHTML = "불가능<br>다시확인";
+            //         }
+            //     });
+            // }
+
+            function checkID( obj ){
+                //프론트로 확인하는
+                if ( obj.value == "id2" ) {
+                        $("#register_text").css("color", "green");
+                        $("#register_text").text("사용할 수 있는 아이디입니다.");
+                        $( "button" ).removeAttr("disabled")
+                } else {
+                        $("#register_text").css("color", "red");
+                        $("#register_text").text("사용할 수 없는 아이디입니다.");
+                        $( "button" ).attr("disabled", "true");
+                }
                 axios({
                     method: "post",
-                    url: "http://localhost:8000/user/signup/isId",
+                    url: "http://localhost:8080/user/overlap",
                     data: {
-                        user_id: form.id.value
+                        id: obj.value,
                     }
-                }).then((req) => { 
-                    return req.data;
+                }).then((rep) => {
+                    return rep.data;
                 }).then((data) => {
-                    if (data.checkid == true) {
-                        var button = document.getElementById("id-check"); 
-                        button.innerHTML = "사용<br>가능";
-                        // button.disabled = true;
+                    if ( data ) {
+                        $("#login_text").css("color", "green");
+                        $("#login_text").text("사용할 수 있는 아이디입니다.");
+                        $( "button" ).removeAttr("disabled")
                     } else {
-                        var button = document.getElementById("id-check"); 
-                        button.innerHTML = "불가능<br>다시확인";
+                        $("#login_text").css("color", "red");
+                        $("#login_text").text("사용할 수 없는 아이디입니다.");
+                        $( "button" ).attr("disabled", "true");
                     }
                 });
             }
@@ -121,31 +153,37 @@
             <img src="/public/login/login_image.png" class="signup_background">
             <!-- <div class="siginup_main"> -->
                 
-                <!-- <form action="signup/upload" enctype="multipart/form-data" id="img_upload" method="post">
-                    <div class="profile">
-                        <label for="profileImg"><br><br>프로필+</label>
-                        <input type="file" id="profileImg" name="profileImg"/>
-                        <button>프로필 사용하기</button>
-                        <%if(locals.user_image){%>
-                            <img src="<%=user_image%>">
-                            <%} %>
-                        </div>
-                    </form> -->
-                    
-                    <!-- <div id="form_container"> -->
-                        <form id="signup_form">
-                            <div id="form_background"></div>
+                
+                <!-- <div id="form_container"> -->
+                    <form id="signup_form">
+                        <div id="form_background"></div>
+                        
+                        
+                        <div class="user_info">
+                            <img src="/public/login/logo.png" width="300px;" class="signup_logo"><br><br><br>
+
                             
-                            
-                            <div class="user_info">
-                                <img src="/public/login/logo.png" width="300px;" class="signup_logo"><br>
+                                <form action="signup/upload" enctype="multipart/form-data" id="img_upload" method="post">
+                                    <div class="profile">
+                                    <label for="profileImg"><br><br>프로필+</label>
+                                    <input type="file" id="profileImg" name="profileImg"/>
+                                    <button>프로필 사용하기</button>
+                                    <%if(locals.user_image){%>
+                                        <img src="<%=user_image%>">
+                                        <%} %>
+                                    </div>
+                                </form>
+
+                                <br><br>
 
                                 <span class="span_field">회원정보를 입력해주세요!</span><br><br>
                                 
                                 <!-- <div class="idField"> -->
-                                <input type="text" name="id" placeholder="아이디" class="userid" style="color:white" />
-                                <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button><br><br>
+                                <input type="text" name="id" placeholder="아이디" required onkeyup="checkID( this );" class="userid" style="color:white" />
+                                <!-- <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button><br><br> -->
                                 <!-- </div> -->
+
+                                <br><br>
         
                                 <input type="text" name="nickname" placeholder="닉네임" class="nickname" style="color:white" />
                                 <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button><br><br>
