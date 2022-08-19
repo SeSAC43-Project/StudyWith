@@ -1,5 +1,5 @@
 const models = require("../model");
-
+const fs = require("fs");
 /* 회원가입 화면 */
 exports.signUp_index = (req, res) => {
     res.render('signUp'); 
@@ -8,6 +8,12 @@ exports.signUp_index = (req, res) => {
 /* 회원가입 시, 프로필 이미지 저장 */
 exports.uploadProfile = (req, res) => {
     console.log("req.file", req.file);
+    console.log( req.body.name );
+    //fs.rm('/public/user/' + req.body.name + ".png");
+
+    if ( req.body.name != "" ){
+        // 넘어온 filename으로 파일 삭제
+    }
     res.json({
         success: true,
         user_image: req.file.path,
@@ -65,6 +71,6 @@ exports.post_user = (req, res) => {
 
     models.User.create( object )
     .then((result) => {
-        res.send({ id: result.id });
+        res.send({ result: result });
     })
 }
