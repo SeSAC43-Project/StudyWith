@@ -23,6 +23,11 @@ app.use('/user', UserRouter);
 const { FeedRouter } = require('./routes');
 app.use('/feed', FeedRouter);
 
+/* 메인페이지 관련 경로 */
+const { MainRouter } = require('./routes');
+app.use('/main', MainRouter);
+
+
 app.listen(port, ()=>{
     console.log( "Server Port : ", port );
 });

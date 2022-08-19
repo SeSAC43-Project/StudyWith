@@ -1,12 +1,4 @@
 const express = require('express'); 
-const UserRouter = express.Router();
-const FeedRouter = express.Router();
-const detailedPostRouter = express.Router();
-const login = require('../controller/LoginController');
-const signUp = require('../controller/SignUpController');
-const feed = require('../controller/FeedController');
-const detailedPost = require('../controller/DetailedPostController');
-const main = require('../controller/MainController');
 const multer = require('multer');
 const path = require('path');
 
@@ -25,6 +17,8 @@ const profileUpload = multer({
 });
 
 /* 로그인 관련 */
+const UserRouter = express.Router();
+const login = require('../controller/LoginController');
 UserRouter.get('/login', login.login_index); // 로그인 화면
 UserRouter.post('/login',login.post_login); // 로그인 실행
 UserRouter.get('/find',login.find_index); // 비밀번호 찾기 화면
@@ -33,6 +27,7 @@ UserRouter.post('/modify',login.post_modify); // 비밀번호 변경 화면
 UserRouter.post('/update', login.post_update); // 비밀번호 변경 실행
 
 /* 회원가입 관련 */
+const signUp = require('../controller/SignUpController');
 UserRouter.get('/signup', signUp.signUp_index); //회원가입 화면
 UserRouter.post('/signup', signUp.post_user); // 회원가입
 UserRouter.post('/signup/upload', profileUpload.single('profileImg'), signUp.uploadProfile); // 프로필 이미지 업로드
@@ -40,13 +35,19 @@ UserRouter.post('/signup/isId', signUp.isId); // 아이디 중복검사
 UserRouter.post('/signup/isName', signUp.isName); // 닉네임 중복검사
 
 /* 게시물 관련 */
+const FeedRouter = express.Router();
+const feed = require('../controller/FeedController');
+const detailedPost = require('../controller/DetailedPostController');
 FeedRouter.get('/write', feed.write_index); // 게시물 등록 index
+FeedRouter.get('/detailPost', detailedPost.detailedPost_index); //게시물 상세 조회 화면
 
-/* 게시물 상세 조회 관련 */
-detailedPostRouter.get('/detailPost', detailedPost.detailedPost_index); //게시물 상세 조회 화면
+/* 메인페이지 관련 */
+const MainRouter = express.Router();
+const main = require('../controller/MainController');
+MainRouter.get('/', main.main_index); // 메인페이지 화면
 
 module.exports = {
     UserRouter, 
     FeedRouter,
-    detailedPostRouter
+    MainRouter
 }
