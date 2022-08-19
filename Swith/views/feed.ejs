@@ -107,8 +107,13 @@
                 //     document.getElementById("sample6_extraAddress").value = '';
                 // }
 
-                document.getElementById("sample6_address").value = addr;
+                
+                var addrs = addr.split(" ");
+                var addrs_1 = addrs[0] + ' ' + addrs[1] + ' '+ addrs[2] + ' ';
+
+                document.getElementById("sample6_address").value = addrs_1;
                 document.getElementById("studyRecruit").focus();
+                
             }
         }).open();
     }
