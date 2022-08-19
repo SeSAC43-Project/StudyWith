@@ -19,7 +19,8 @@ exports.post_write = (req, res) => {
         start_period : req.body.start_period, 
         end_period : req.body.end_period, 
         study_regdate : Date.now(), 
-        hashtag : "해시태그", 
+        // hashtag : "해시태그",
+        hashtag: req.body.hashtag, 
         study_views : 0, 
     }; 
     Models.Studygroup.create( Obj )

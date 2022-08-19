@@ -16,8 +16,18 @@
 
     <script>
 
+        /* 게시물 등록 */
         function writeFeed() {
             var feed = document.getElementById("feed_info");
+            var hashtags = document.getElementById("enter_hashtag").innerHTML;
+            // console.log(hashtags); //#~#~ 형태
+            var hashtags2 = hashtags.split('#');
+            // console.log(hashtags2); // ['','토익','영어'] 형태 // 왜 index[0]에 ''가 생기는지 의문
+            var feed_hashtag = hashtags2.slice(1);
+            // console.log(feed_hashtag);
+            var feed_hashtags = feed_hashtag.toString();
+
+
 
             axios({
                 method:'post',
@@ -27,12 +37,13 @@
                     study_category : feed.studyCategory.value,
                     study_form : feed.studyForm.value,
                     study_recruit : feed.studyRecruit.value,
-                    study_address : "서울시 영등포구 문래동", // 주소 들어가게 수정 필요
+                    study_address : feed.sample6_address.value, // 주소 들어가게 수정 필요
                     study_image : uploadedFile, 
                     study_content : feed.studyContent.value,
                     start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
                     end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
-                    hashtag:feed.hashTag.value, // 해시태그가 input에 없어서 값이 안들어가서 수정필요
+                    // hashtag:feed.enter_hashtag.value, // 해시태그가 input에 없어서 값이 안들어가서 수정필요
+                    hashtag: feed_hashtags,
                 }
             })
             .then((req) => { return req.data })
@@ -41,16 +52,7 @@
             })
         }
 
-
-        // $(document).ready(function() {
-        //     $('input:radio[name=studyForm]').click(function(){
-        //         if($('input[name=studyForm]:checked').val() == '온라인') {
-        //             $('input:text[name=text]').attr('disabled',false);
-        //         }
-        //     })
-        // })
-
-
+        /* 주소입력창 온/오프시 입력가능/불가능 설정 */
         $(document).ready(function() {
             $('#offline').click(function(){
                 $('#search_address').attr('disabled',false);
@@ -64,18 +66,20 @@
             })
         });
     
-        
+        /* 해시태그 엔터시 추가되는 부분 */
         function show_hashtag(event) {
             const keyword = document.getElementById('enter_hashtag');
+            // console.log(keyword);
             const txt = document.getElementById('text_hashtag').value;
+            // console.log(txt);
             if (event.keyCode == 13) {
-                keyword.innerHTML += '#' + txt + ' ';
-                document.getElementById('text_hashtag').value = " ";
+                keyword.innerHTML += '#' + txt ;
+                document.getElementById('text_hashtag').value = "";
                 
             }
         }   
 
-
+    /* 다음 주소 api ('동/로/가'만 받아오는 것처럼 보이도록) */
     function searchForAddress() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -85,30 +89,8 @@
                     addr = data.roadAddress;
                 } else { 
                     addr = data.jibunAddress;
-                }
+                }               
 
-                // if(data.userSelectedType === 'R'){
-                //     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                //     if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                //         extraAddr += data.bname;
-                //     }
-                //     // 건물명이 있고, 공동주택일 경우 추가한다.
-                //     // if(data.buildingName !== '' && data.apartment === 'Y'){
-                //     //     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                //     // }
-                //     // // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                //     // if(extraAddr !== ''){
-                //     //     extraAddr = ' (' + extraAddr + ')';
-                //     // }
-                //     // 조합된 참고항목을 해당 필드에 넣는다.
-                //     // document.getElementById("sample6_extraAddress").value = extraAddr;
-                
-                // } 
-                // else {
-                //     document.getElementById("sample6_extraAddress").value = '';
-                // }
-
-                
                 var addrs = addr.split(" ");
                 var addrs_1 = addrs[0] + ' ' + addrs[1] + ' '+ addrs[2] + ' ';
 
@@ -119,7 +101,7 @@
         }).open();
     }
 
-    
+    /* 그룹이미지 업로드 부분 */
     var uploadedFile = '';
     function uploadFile(obj) {
         var formData = new FormData();
@@ -214,7 +196,7 @@
                         <p>
                             <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색">&nbsp;
                             <!-- <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 70px;"> &nbsp; -->
-                            <input type="text" id="sample6_address" placeholder="주소" readonly><br>
+                            <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" readonly><br>
                         </p>
                     </div>
                 </div>
@@ -291,7 +273,7 @@
                     <br>
                 <div class="form-row">
                     <div class="name">해시태그</div>
-                    <div class="value"><input type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요" name="hashTag" onkeypress="show_hashtag(event)"><p><sapn id="enter_hashtag"></sapn></p></div>
+                    <div class="value"><input type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요" name="hashTag" onkeypress="show_hashtag(event)"><p><sapn id="enter_hashtag" name="enter_hashtag"></sapn></p></div>
                 </div>
                 <br><br>
 
