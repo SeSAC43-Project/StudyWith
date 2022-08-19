@@ -5,32 +5,34 @@
 
 * {
     font-family: "GS_bold";
-    /* margin: 0; */
-    /* padding: 0; */
 }
 
 html {
     background-color: #4686c2;
 }
 
-/* form {
-    background-color: white;
-    border-radius: 30px;
-} */
+.whole_container {
+  box-sizing: border-box;
+}
 
 .feed_container, h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
+
 
 form {
 	position: relative;
 	background: white;
 	border-radius: .4em;
     width: 900px;
-    height: 900px;
+    height: 1200px;
+    /* height: auto; */
     text-align: center;
+    box-sizing: border-box;
+
 }
 ul {
     list-style: none;
@@ -40,6 +42,13 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* box-sizing: border-box; */
+    position: relative;
+}
+
+.context_container {
+  position: absolute;
+  /* padding-top: 10%; */
 }
 
 form:after {
@@ -64,11 +73,16 @@ form:after {
     align-items:center;
     padding: 10px;
     border-bottom: 1px solid #e5e5e5;
+    width: 100%;
+}
+
+.form-row:first-child {
+  padding-bottom:10%;
 }
 .name {
-    width: 188px;
+    width: 300px;
     color: #333;
-    font-size: 15px;
+    font-size: 20px;
     margin-top: 11px;
 }
 
@@ -80,11 +94,11 @@ form:after {
     z-index: 3;
     padding:10px 10px 10px 10px;
   }
-  
+
   .group label {
     width: 700px;
-    height: 30px;
-    border: 3px solid;
+    height: 100px;
+    border: 3px dashed;
     border-color: #4686C2;
     /* border-radius: 50px 50px 50px 50px; */
     position: absolute;
@@ -94,6 +108,7 @@ form:after {
     right: 0;
     margin: auto;
     text-align: center;
+    display: block;
   }
   .group label:hover{
     cursor:pointer;
@@ -103,16 +118,30 @@ form:after {
     background-color: #4686C2;
   }
   .group input[type="file"] {
-    position: absolute;
+    /* position: absolute;
     width: 1px;
     height: 1px;
     padding: 0;
     margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
-    border: 0;
+    border: 0; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   form input::file-selector-button {
     display: none;
+  }
+
+  .input_text {
+    background: transparent;
+    line-height: 30px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    font-size:15px;
+    padding:20px;
+    width: 100%;
+    text-align: center;
   }
