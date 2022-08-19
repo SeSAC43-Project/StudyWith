@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/public/css/signUp.css" />
         <!-- Axios -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
         <script>
             // function userProfile() {
@@ -108,11 +109,11 @@
             function pwCheck() {
                 if(document.getElementById('pw').value !='' && document.getElementById('pwConfirm').value!=''){
                     if(document.getElementById('pw').value==document.getElementById('pwConfirm').value){
-                        document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                        document.getElementById('check').innerHTML='비밀번호 일치🥰'
                         document.getElementById('check').style.color='rgb(54, 54, 255)';
                     }
                     else{
-                        document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                        document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다';
                         document.getElementById('check').style.color='rgb(255, 89, 89)';
                     }
                 }
@@ -165,12 +166,13 @@
                             
                                 <form action="signup/upload" enctype="multipart/form-data" id="img_upload" method="post">
                                     <div class="profile">
-                                    <label for="profileImg"><br><br>프로필+</label>
-                                    <input type="file" id="profileImg" name="profileImg"/>
-                                    <button>프로필 사용하기</button>
-                                    <%if(locals.user_image){%>
-                                        <img src="<%=user_image%>">
-                                        <%} %>
+                                        <label for="profileImg"><br><br>프로필+
+                                        <input type="file" id="profileImg" name="profileImg"/>
+                                        <button>프로필 사용하기</button>
+                                        <%if(locals.user_image){%>
+                                            <img src="<%=user_image%>">
+                                            <%} %>
+                                        </label>
                                     </div>
                                 </form>
 
@@ -180,13 +182,17 @@
                                 
                                 <!-- <div class="idField"> -->
                                 <input type="text" name="id" placeholder="아이디" required onkeyup="checkID( this );" class="userid" style="color:white" />
+                                <br>
+                                <span id="register_text"></span>
                                 <!-- <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button><br><br> -->
                                 <!-- </div> -->
 
                                 <br><br>
         
                                 <input type="text" name="nickname" placeholder="닉네임" class="nickname" style="color:white" />
-                                <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button><br><br>
+                                <!-- <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button><br><br> -->
+
+                                <br><br>
         
                                 <input type="text" name="email" placeholder="이메일" class="email"/><br><br>
 
