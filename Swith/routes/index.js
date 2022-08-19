@@ -46,6 +46,14 @@ const MainRouter = express.Router();
 const main = require('../controller/MainController');
 MainRouter.get('/', main.main_index); // 메인페이지 화면
 
+/* 로그인 확인 미들웨어 */
+function checkSession (req, res, next) {
+    if (req.session.user_id != null) next(); 
+    else {
+        res.redirect('/user/login');
+    }
+}
+
 module.exports = {
     UserRouter, 
     FeedRouter,
