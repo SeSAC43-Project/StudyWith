@@ -7,7 +7,7 @@ const Studygroup = (Sequelize, DataTypes) => {
             study_id: {
                 type: DataTypes.INTEGER, 
                 allowNull: false,
-                autoincrement: true, 
+                autoIncrement: true, 
                 primaryKey: true, 
             },
             head_id: {
@@ -53,7 +53,7 @@ const Studygroup = (Sequelize, DataTypes) => {
                 allowNull: false,
                 defaultValue: DataTypes.NOW,
             },
-            hasgtag: {
+            hashtag: {
                 type: DataTypes.TEXT,
                 allowNull: false, 
             },

@@ -38,7 +38,7 @@ UserRouter.post('/signup/isName', signUp.isName); // 닉네임 중복검사
 const FeedRouter = express.Router();
 const feed = require('../controller/FeedController');
 const detailedPost = require('../controller/DetailedPostController');
-FeedRouter.get('/write', feed.write_index); // 게시물 등록 화면
+FeedRouter.get('/write', checkSession, feed.write_index); // 게시물 등록 화면
 FeedRouter.post('/write', feed.post_write); // 게시물 등록 실행
 FeedRouter.post('/write/upload', profileUpload.single('studyImage'), feed.uploadProfile); // 게시물 등록 내 스터디 이미지 업로드 
 FeedRouter.get('/detailPost', detailedPost.detailedPost_index); //게시물 상세 조회 화면
@@ -50,12 +50,13 @@ MainRouter.get('/', main.main_index); // 메인페이지 화면
 
 /* 로그인 확인 미들웨어 */
 function checkSession (req, res, next) {
+    req.session.user_id = 'aa'
     if (req.session.user_id != null) next(); 
     else {
         res.redirect('/user/login');
     }
 }
-/* 게시물 등록 화면, 게시물 상세 조회화면 로그인 확인 추가 예정 */
+/* 게시물 상세 조회화면 로그인 확인 추가 예정 */
 
 module.exports = {
     UserRouter, 
