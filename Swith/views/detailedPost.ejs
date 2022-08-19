@@ -55,12 +55,14 @@
                         <% } %>
                     </div>
                     <br>
+                    <br>
                     <!-- 스터디 이미지(등록이미지)  -->
                     <div class="studyImage" style="color:white;"> 
                         <%if(locals.study_Image) {%>
                             <img src="<%=study_Image%>">
                         <%} %>
-                        <br> 
+                        <br>
+                        <br>
                         <!-- 스터디 이름 -->
                     <div>
                         <div class="studyName">
@@ -77,7 +79,8 @@
                         </div> -->
                     </div>
                     <br>
-                    <br>   
+                    <br>
+                    <br>
                     <div>
                         <span class="studyContent_text">스터디 소개글</span>
                         <div class="studyContent">
@@ -87,6 +90,8 @@
                         <% } %>
                     </div>        
                     </div>
+                    <br>
+                    <br>
                     <br>
                     <div>
                         <span class="userImage_text">스터디 현재멤버</span>
@@ -105,6 +110,8 @@
                         </div>     
                     </div>
                     <br>
+                    <br>
+                    <br>
                     <div>
                         <span class="studyForm_text">스터디 형태</span>
                         <div class="studyForm">
@@ -115,7 +122,8 @@
                         <!--  -->
                     </div>
                     <br>
-
+                    <br>
+                    <br>
                     <div>
                         <span class="studyAddress_text">스터디위치</span>
                     <div class="studyAddress">    
@@ -149,16 +157,16 @@
                     <br>
                     <button type="button" onclick="detailed()" class="detail" style="color:white">스터디 가입</button>
 
-                    <div>
+                    <!-- <div>
                         <div><button type="button" onclick="ture()" class="ture">YES</button></div>
                         <div><button type="button" onclick="back()" class="back">NO</button></div>
-                    </div>
+                    </div> -->
                     <br>
-                    
+                    <br>
                     <div>
                         <span>등록가능</span>
                         <span>마감</span>
-                        <button type="button" onclick="detailedPost_index()">목록</button>
+                        <button type="button" onclick="detailedPost_index()" class="list">목록</button>
                     </div>
                 </form>
             </div>
