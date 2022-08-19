@@ -25,7 +25,7 @@ app.use('/feed', FeedRouter);
 
 /* 메인페이지 관련 경로 */
 const { MainRouter } = require('./routes');
-app.use('/main', MainRouter);
+app.use('/swith', MainRouter);
 
 
 
