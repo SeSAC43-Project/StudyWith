@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
     <link rel="stylesheet" href="/public/css/feed.css">
 
     <script>
@@ -24,7 +26,7 @@
                     study_name : feed.studyName.value,
                     study_category : feed.studyCategory.value,
                     study_form : feed.studyForm.value,
-                    study_recrut : feed.studyRecrut.value,
+                    study_recruit : feed.studyRecruit.value,
                     study_image : feed.studyImage.value,
                     study_content : feed.studyContent.value,
                     start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
@@ -50,10 +52,14 @@
 
         $(document).ready(function() {
             $('#offline').click(function(){
-                $('input:text[name=text]').attr('disabled',false);
+                $('#search_address').attr('disabled',false);
+                $('#sample6_address').attr('disabled',false);
             })
             $('#online').click(function(){
-                $('input:text[name=text]').attr('disabled',true);
+                $('#search_address').attr('disabled',true);
+                $('#sample6_address').attr('disabled',true);
+                $('#sample6_address').val(' ');
+                
             })
         });
     
@@ -68,17 +74,45 @@
             }
         }   
 
-//         window.onload = function(){
-//     document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
-//         //카카오 지도 발생
-//         new daum.Postcode({
-//             oncomplete: function(data) { //선택시 입력값 세팅
-//                 document.getElementById("address_kakao").value = data.address; // 주소 넣기
-//                 document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
-//             }
-//         }).open();
-//     });
-// }
+
+    function searchForAddress() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = '';
+                var extraAddr = '';
+                if (data.userSelectedType === 'R') { 
+                    addr = data.roadAddress;
+                } else { 
+                    addr = data.jibunAddress;
+                }
+
+                // if(data.userSelectedType === 'R'){
+                //     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                //     if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                //         extraAddr += data.bname;
+                //     }
+                //     // 건물명이 있고, 공동주택일 경우 추가한다.
+                //     // if(data.buildingName !== '' && data.apartment === 'Y'){
+                //     //     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                //     // }
+                //     // // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                //     // if(extraAddr !== ''){
+                //     //     extraAddr = ' (' + extraAddr + ')';
+                //     // }
+                //     // 조합된 참고항목을 해당 필드에 넣는다.
+                //     // document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                // } 
+                // else {
+                //     document.getElementById("sample6_extraAddress").value = '';
+                // }
+
+                document.getElementById("sample6_address").value = addr;
+                document.getElementById("studyRecruit").focus();
+            }
+        }).open();
+    }
+
     
     var uploadedFile = '';
     function uploadFile(obj) {
@@ -113,7 +147,7 @@
                     //     <input type="file" id='groupImg' name="studyImage" onchange="uploadFile( this )">
                     // <img id = 'group_img'></label>
                     // </div>
-    
+
     
     </script>
 
@@ -138,7 +172,7 @@
                     <!-- 그룹 프로필 이미지  -->
                     <div class="group" id="group_img_upload">
                         <label for="groupImg">그룹이미지+</div>
-                        <input type="file" id='groupImg' name="studyImage" onchange="uploadFile( this )">
+                        <input type="file" id='groupImg' name="studyImage" onchange="uploadFile( this )" style="display:none;">
                     <img id = 'group_img'></label>
                     </div>
                 </div>
@@ -171,23 +205,28 @@
                         <label for="online">온라인</label>
                         <input type="radio" name="studyForm" id="offline" value="오프라인" required>
                         <label for="offline">오프라인</label>
-                    </div>
-                    <div style="width:200px;">
-                        <input type="text" name="text">
+                        <p>
+                            <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색">&nbsp;
+                            <!-- <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 70px;"> &nbsp; -->
+                            <input type="text" id="sample6_address" placeholder="주소" readonly><br>
+                        </p>
                     </div>
                 </div>
                     <br>
                 <div class="form-row">
                     <div class="name">모집인원</div>
                     <div class="value">
-                    <input type="text" placeholder="모집인원을 적어주세요" name="studyRecrut">명
+                    <input type="text" id="studyRecruit" name="studyRecruit" style="width: 30px;">명
                     </div>
                 </div>
                 <br>
                 <br>
                 <div class="form-row">
                     <div class="name">스터디 소개글</div>
-                    <div class="value"><input type="textarea" placeholder="스터디 소개글을 적어주세요." name="studyContent"></div>
+                    <div class="value">
+                        <!-- <input type="textarea" placeholder="스터디 소개글을 적어주세요." name="studyContent"> -->
+                        <textarea placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;"></textarea>
+                    </div>
                 </div>
                 <br>
                 <div class="form-row">
@@ -258,6 +297,5 @@
 </div>
 </div>
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>
