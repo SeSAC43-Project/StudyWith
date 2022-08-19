@@ -13,78 +13,49 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
         <script>
-            // function idCheck() {
-            //     var form = document.getElementById("signup_form");
-            //     axios({
-            //         method: "post",
-            //         url: "http://localhost:8000/user/signup/isId",
-            //         data: {
-            //             user_id: form.id.value
-            //         }
-            //     }).then((req) => { 
-            //         return req.data;
-            //     }).then((data) => {
-            //         if (data.checkid == true) {
-            //             var button = document.getElementById("id-check"); 
-            //             button.innerHTML = "사용<br>가능";
-            //             // button.disabled = true;
-            //         } else {
-            //             var button = document.getElementById("id-check"); 
-            //             button.innerHTML = "불가능<br>다시확인";
-            //         }
-            //     });
-            // }
-
+            var uploadedFile = "";
             function checkID( obj ){
-                //프론트로 확인하는
-                if ( obj.value == "id2" ) {
-                        $("#register_text").css("color", "green");
-                        $("#register_text").text("사용할 수 있는 아이디입니다.");
-                        $( "button" ).removeAttr("disabled")
-                } else {
-                        $("#register_text").css("color", "red");
-                        $("#register_text").text("사용할 수 없는 아이디입니다.");
-                        $( "button" ).attr("disabled", "true");
-                }
                 axios({
                     method: "post",
-                    url: "http://localhost:8080/user/overlap",
+                    url: "http://localhost:8000/user/signup/isId",
                     data: {
-                        id: obj.value,
+                        user_id: obj.value,
                     }
                 }).then((rep) => {
                     return rep.data;
                 }).then((data) => {
+                    console.log(data);
                     if ( data ) {
-                        $("#login_text").css("color", "green");
-                        $("#login_text").text("사용할 수 있는 아이디입니다.");
+                        $("#checkID_text").css("color", "green");
+                        $("#checkID_text").text("사용할 수 있는 아이디입니다.");
                         $( "button" ).removeAttr("disabled")
                     } else {
-                        $("#login_text").css("color", "red");
-                        $("#login_text").text("사용할 수 없는 아이디입니다.");
+                        $("#checkID_text").css("color", "red");
+                        $("#checkID_text").text("사용할 수 없는 아이디입니다.");
                         $( "button" ).attr("disabled", "true");
                     }
                 });
             }
 
-            function nicknameCheck() {
-                var form = document.getElementById("signup_form");
+            function checkNickname( obj ) {
                 axios({
                     method: "post",
                     url: "http://localhost:8000/user/signup/isName",
                     data: {
-                        user_name: form.nickname.value
+                        user_name: obj.value,
                     }
                 }).then((req) => { 
                     return req.data;
                 }).then((data) => {
-                    if (data.checkname == true) {
-                        var button = document.getElementById("nickname-check"); 
-                        button.innerHTML = "사용<br>가능";
-                        // button.disabled = true;   
+                    console.log(data);
+                    if ( data ) {
+                        $("#checkNickname_text").css("color", "green");
+                        $("#checkNickname_text").text("사용할 수 있는 닉네임입니다.");
+                        $( "button" ).removeAttr("disabled")
                     } else {
-                        var button = document.getElementById("nickname-check"); 
-                        button.innerHTML = "불가능<br>다시시도";
+                        $("#checkNickname_text").css("color", "red");
+                        $("#checkNickname_text").text("사용할 수 없는 닉네임입니다.");
+                        $( "button" ).attr("disabled", "true");
                     }
                 });
             }
@@ -114,6 +85,7 @@
                         hint: form.hint.value,
                         hint_answer: form.hintanswer.value,
                         user_email: form.email.value,
+                        user_image: uploadedFile,
                         category1: form.firstField.value,
                         category2: form.secondField.value,
                         category3: form.thirdField.value
@@ -121,7 +93,7 @@
                 })
                 .then((req) => { return req.data;})
                 .then((data) => {
-                    alert(data);
+                    alert("회원가입 완료");
                 })
             }
 
@@ -129,8 +101,6 @@
                 document.location.href="http://localhost:8000/user/login";
             }
 
-
-            var uploadedFile = "";
             function uploadFile( obj ){
                 var formData = new FormData();
                 formData.append("name", uploadedFile);
@@ -143,12 +113,9 @@
                 })
                 .then((req) => { return req.data;})
                 .then((data) => {
-                    // uploadedFile = data.filename;
-                    alert(data.user_image);
-                    //$( "#img_upload label" ).css("background-image", "/public/user/"+data.fileName);
+                    uploadedFile = data.fileName;
                     $("#uploadedProfile").css({"background-image":`url(/public/user/${data.fileName})`}); 
                     $("#uploadedProfile").css({"background-size":`70px 70px`}); 
-                    // $("#uploadedProfile").css("background-image", "/public/user/"+data.fileName);
                 })
             }
 
@@ -184,17 +151,14 @@
 
                                 <span class="span_field">회원정보를 입력해주세요!</span><br><br>
                                 
-                                <!-- <div class="idField"> -->
                                 <input type="text" name="id" placeholder="아이디" required onkeyup="checkID( this );" class="userid" style="color:white" />
                                 <br>
-                                <span id="register_text"></span>
-                                <!-- <button type="button" id="id-check" onclick="idCheck()">중복<br>확인</button><br><br> -->
-                                <!-- </div> -->
+                                <p id="checkID_text"></p>
 
                                 <br><br>
         
-                                <input type="text" name="nickname" placeholder="닉네임" class="nickname" style="color:white" />
-                                <!-- <button type="button" id="nickname-check" onclick="nicknameCheck()">중복<br>확인</button><br><br> -->
+                                <input type="text" name="nickname" placeholder="닉네임" required onkeyup="checkNickname( this );" class="nickname" style="color:white" />
+                                <p id="checkNickname_text"></p>
 
                                 <br><br>
         
