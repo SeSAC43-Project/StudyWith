@@ -54,6 +54,14 @@ INSERT INTO studygroup (head_id, study_name, study_category, study_form, study_r
 VALUES("aa", "swith", "IT", "온라인", "6",  "public/studygroup/12314","안녕하세요 swith입니다", '2022-08-16', '2022-12-30', "#공부#그룹#화이팅" );
 
 
+--게시물 상세 조회 테스트
+SELECT * from user inner join studygroup on studygroup.head_id=user.user_id  where user.user_id="정화" AND studygroup.study_id=4; -- 조장
+SELECT * from user inner join studymember on studymember.user_id=user.user_id  where user.user_id="정화" AND studymember.study_id=4; -- 멤버
+SELECT * FROM studygroup where study_id=3; -- 그룹 정보
+
+--전체 스터디 정보
+SELECT * from user inner join studymember on studymember.user_id = user.user_id inner join studygroup on studygroup.study_id = studymember.study_id;
+
 ----------------------------------------------------------
 --* Back 참고용
 --좋아요 수 카운트

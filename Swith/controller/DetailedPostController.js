@@ -1,18 +1,27 @@
-const { User, Studygroup } = require("../model");
 const models = require("../model");
 
 /* 게시물 상세 조회 화면 */
 exports.detailedPost_index = async (req, res) => {
-    //study_id 값으로 조회해서 게시물 정보 읽어오고,
-    //user_id 값으로 조회해서 멤버 가입되어 있는지 확인 (join)
 
-    //보내줘야 할 정보: studygroup, studymember join 결과
+    //그룹장인지 아닌지 검사
+    const [isHead_results, metadata] = await sequelize.query(`SELECT * from user inner join studygroup on studygroup.head_id=user.user_id where user.user_id='${req.query.user_id}' AND studygroup.study_id=${req.query.study_id};`);
 
-    var result = await models.User.create( object );
-    await res.send(result);
+    if (isHead_results == null ) { //그룹장이 아니면 멤버인지 아닌지 검사
+        const [isMember_results, metadata] = await equelize.query(`SELECT * from user inner join studymember on studymember.user_id=user.user_id where user.user_id='${req.query.user_id}' AND studymember.study_id=${req.query.study_id};`);
+        
+        await models.Studygroup.findOne({
+            where: {study_id : req.body.study_id}
+        }).then((result) => {
 
-    var result = await User.create({id: result.id});
-    await Studygroup.create();
+            if (isHead_results != null) { //조장이면
+                return res.send('detailedPost', {result: result, isMember: true, isHead: true})
+            } else if (isMember_results != null) { //멤버이면
+                return res.send('detailedPost', {result: result, isMember: true, isHead: false})
+            } else if (isMember_results == null) { //가입안한 사람이면
+                return res.send('detailedPost', {result: result, isMember: false, isHead: false})
+            }
+        });
+    }  
 }
 
 
@@ -27,7 +36,7 @@ exports.post_reggroup =  (req, res) => {
 
     models.Studygroup.create( object )
     .then((result) => {
-        res.send({ result: result });
+        res.send(result);
     })
 }
 

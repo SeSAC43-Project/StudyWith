@@ -9,15 +9,15 @@ exports.signUp_index = (req, res) => {
 exports.uploadProfile = (req, res) => {
     console.log("req.file", req.file);
     console.log( req.body.name );
-    //fs.rm('/public/user/' + req.body.name + ".png");
 
     if ( req.body.name != "" ){
         // 넘어온 filename으로 파일 삭제
+        //fs.rm('/public/user/' + req.body.name + ".png");
     }
     res.json({
         success: true,
-        user_image: req.file.path,
-        fileName: res.req.file.filename,
+        filepath: req.file.path,
+        fileName: req.file.filename,
     });
 }
 
@@ -63,7 +63,7 @@ exports.post_user = (req, res) => {
         hint_answer: req.body.hint_answer,
         user_name: req.body.user_name,
         user_email: req.body.user_email,
-        // user_image: req.body.user_image,
+        user_image: req.body.user_image,
         category1: req.body.category1,
         category2: req.body.category2,
         category3: req.body.category3,
@@ -71,6 +71,6 @@ exports.post_user = (req, res) => {
 
     models.User.create( object )
     .then((result) => {
-        res.send({ result: result });
+        res.send(result);
     })
 }
