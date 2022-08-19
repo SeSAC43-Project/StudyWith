@@ -35,7 +35,7 @@ exports.uploadProfile = (req, res) => {
     console.log( req.body.name ); 
     //fs.rm('/public/user/' + req.body.name + ".png");
 
-    if ( req.body.naem != '') {
+    if ( req.body.name != '') {
         // 넘어온 filename으로 파일 삭제
     }
     res.json({
