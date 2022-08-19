@@ -39,7 +39,53 @@
         }
 
 
+        // $(document).ready(function() {
+        //     $('input:radio[name=studyForm]').click(function(){
+        //         if($('input[name=studyForm]:checked').val() == '온라인') {
+        //             $('input:text[name=text]').attr('disabled',false);
+        //         }
+        //     })
+        // })
+
+
+        $(document).ready(function() {
+            $('#offline').click(function(){
+                $('input:text[name=text]').attr('disabled',false);
+            })
+            $('#online').click(function(){
+                $('input:text[name=text]').attr('disabled',true);
+            })
+        });
+    
+        
+        function show_hashtag(event) {
+            const keyword = document.getElementById('enter_hashtag');
+            const txt = document.getElementById('text_hashtag').value;
+            if (event.keyCode == 13) {
+                keyword.innerHTML += '#' + txt + ' ';
+                document.getElementById('text_hashtag').value = " ";
+                
+            }
+        }   
+
+//         window.onload = function(){
+//     document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+//         //카카오 지도 발생
+//         new daum.Postcode({
+//             oncomplete: function(data) { //선택시 입력값 세팅
+//                 document.getElementById("address_kakao").value = data.address; // 주소 넣기
+//                 document.querySelector("input[name=address_detail]").focus(); //상세입력 포커싱
+//             }
+//         }).open();
+//     });
+// }
+    
+    
+    
+    
+    
     </script>
+
 
 
 
@@ -50,12 +96,17 @@
 
     </nav>
 
-    <tbody>
+    <div>
     <h2>스터디 등록</h2>
     <br>
     <div class="feed_container">
     <form id="feed_info" class="form_container" enctype="multipart/form-data">
             <div class="context_container">
+                <div class="form-row">
+                    <div class="name">그룹이미지</div>
+                    <div class="value"><input type="file" name="studyImage"></div>
+                </div> 
+
                 <div class="form-row">
                     <div class="name">스터디명</div>
                     <div class="value">
@@ -85,6 +136,9 @@
                         <input type="radio" name="studyForm" id="offline" value="오프라인" required>
                         <label for="offline">오프라인</label>
                     </div>
+                    <div style="width:200px;">
+                        <input type="text" name="text">
+                    </div>
                 </div>
                     <br>
                 <div class="form-row">
@@ -94,10 +148,6 @@
                     </div>
                 </div>
                 <br>
-                <div class="form-row">
-                    <div class="name">그룹이미지</div>
-                    <div class="value"><input type="file" name="studyImage"></div>
-                </div>
                 <br>
                 <div class="form-row">
                     <div class="name">스터디 소개글</div>
@@ -160,7 +210,7 @@
                     <br>
                 <div class="form-row">
                     <div class="name">해시태그</div>
-                    <div class="value"><input type="text" placeholder="해시태그를 입력해주세요" name="hashTag"></div>
+                    <div class="value"><input type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요" name="hashTag" onkeypress="show_hashtag(event)"><p><sapn id="enter_hashtag"></sapn></p></div>
                 </div>
                 <br><br>
 
@@ -168,6 +218,8 @@
         </div>
     </form>
 </div>
-</tbody>
+</div>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 </html>
