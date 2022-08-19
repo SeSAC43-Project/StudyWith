@@ -17,7 +17,7 @@ exports.uploadProfile = (req, res) => {
     res.json({
         success: true,
         user_image: req.file.path,
-        //fileName: res.req.file.filename,
+        fileName: res.req.file.filename,
     });
 }
 
