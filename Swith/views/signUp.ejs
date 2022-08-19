@@ -13,23 +13,6 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
         <script>
-            // function userProfile() {
-            //     var form = document.getElementById("profile"); 
-            //     axios({
-            //         method: "post",
-            //         url: "http://localhost:8000/user/signup/upload",
-            //         headers: {
-            //             'Content-Type': 'multipart/form-data'
-            //         },
-            //     }).then((req) => { 
-            //         return req.data;
-            //     }).then((data) => {
-            //         if (data.success == true) {
-            //             console.log(data.user_image);
-            //         }
-            //     });
-            // }
-
             // function idCheck() {
             //     var form = document.getElementById("signup_form");
             //     axios({
@@ -146,6 +129,26 @@
                 document.location.href="http://localhost:8000/user/login";
             }
 
+
+            var uploadedFile = "";
+            function uploadFile( obj ){
+                var formData = new FormData();
+                formData.append("name", uploadedFile);
+                formData.append('profileImg', obj.files[0]);
+
+                axios({
+                    method:'post',
+                    url: "http://localhost:8000/user/signup/upload",
+                    data: formData,
+                })
+                .then((req) => { return req.data;})
+                .then((data) => {
+                    // uploadedFile = data.filename;
+                    alert(data.user_image);
+                    $( "#profile_img" ).attr("src", "/public/user/"+data.fileName);
+                })
+            }
+
         </script>
     </head>
 
@@ -163,18 +166,13 @@
                         <div class="user_info">
                             <img src="/public/login/logo.png" width="300px;" class="signup_logo"><br><br><br>
 
-                            
-                                <form action="signup/upload" enctype="multipart/form-data" id="img_upload" method="post">
-                                    <div class="profile">
-                                        <label for="profileImg"><br><br>프로필+
-                                        <input type="file" id="profileImg" name="profileImg"/>
-                                        <button>프로필 사용하기</button>
-                                        <%if(locals.user_image){%>
-                                            <img src="<%=user_image%>">
-                                            <%} %>
-                                        </label>
-                                    </div>
-                                </form>
+
+                                <div class="profile" id="img_upload">
+                                    <label for="profileImg"><br><br>프로필+
+                                    <input type="file" id="profileImg" name="profileImg" onchange="uploadFile( this )">
+                                    <img id="profile_img">
+                                    </label>
+                                </div>
 
                                 <br><br>
 
