@@ -111,7 +111,16 @@ span {
   text-align: center;
   width:400px;
 }
-/* 
+
+#img_upload {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  padding:10px 10px 10px 10px;
+}
+
 .profile label {
   width: 70px;
   height: 70px;
@@ -142,7 +151,7 @@ span {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-} */
+}
 
 .userid, .nickname, .email, #pw, #pwConfirm, .pwAnswer, .category_hint {
   border: 0;
