@@ -80,8 +80,39 @@
 //     });
 // }
     
+    var uploadedFile = '';
+    function uploadFile(obj) {
+        var formData = new FormData();
+        // 이미지를 동적폼 전송 가능하게 해주는 FormData 객체 생성
+        // FormData 객체는 window.FormData에 위치
+        formData.append('name', uploadedFile);
+        formData.append('studyImage', obj.files[0]);
+        console.log(uploadedFile);
+        console.log(obj.files[0]);
+        // append() 메소드로 key-value 값을 하나씩 추가
+        // 같은 key를 가진 값을 여러개 넣을 수 있음 ! (값은 문자열로 자동변환)
+
+        axios({
+            method: 'post', 
+            url: 'http://localhost:8000/feed/write/upload',
+            data: formData,  
+        })
+        .then((req) => {return req.data})
+        .then((data) => {
+            uploadedFile = data.fileName;
+            alert(data.study_image);
+            $('#group_img').attr('src', '/public/user/' + data.fileName);
+        })
+    }
+
     
-    
+
+                    // <!-- 그룹 프로필 이미지  -->
+                    // <div class="group" id="group_img_upload">
+                    //     <label for="groupImg">그룹이미지+</div>
+                    //     <input type="file" id='groupImg' name="studyImage" onchange="uploadFile( this )">
+                    // <img id = 'group_img'></label>
+                    // </div>
     
     
     </script>
@@ -104,6 +135,7 @@
             <div class="context_container">
                 <div class="form-row">
                     <div>
+                    <!-- 그룹 프로필 이미지  -->
                     <div class="group" id="group_img_upload">
                         <label for="groupImg">그룹이미지+</div>
                         <input type="file" id='groupImg' name="studyImage" onchange="uploadFile( this )">
