@@ -1,4 +1,5 @@
 const Models  = require('../model');
+const fs = require('fs').promises;
 
 // 게시물 등록 페이지 렌더링
 exports.write_index = (req, res) => {
@@ -31,16 +32,23 @@ exports.post_write = (req, res) => {
 
 // 게시물 등록시, 프로필 이미지 저장 
 exports.uploadProfile = (req, res) => {
-    console.log('스터디 이미지', req.file); 
-    console.log( req.body.name ); 
-    //fs.rm('/public/user/' + req.body.name + ".png");
-
+    console.log('req.file : ', req.file); 
+    console.log('req.body.name : ', req.body.name); 
+    
     if ( req.body.name != '') {
-        // 넘어온 filename으로 파일 삭제
+        // 넘어온 filename으로 이전 파일 삭제
+        // 그냥 띄워보기만 하는 이미지 무한 저장하는 것 방지
+        try{
+            fs.unlink('./public/user/' + req.body.name)
+        } catch(err) {
+            console.error('there was an error :', error.message)
+        }
     }
     res.json({
         success: true,
         study_image: req.file.path,
         fileName: req.file.filename,
-    });
+        name : req.file.name, // 이전 파일 이름
+    })
+    
 }
