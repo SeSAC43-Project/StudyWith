@@ -29,9 +29,9 @@ exports.isId = (req, res) => {
     .then((result) => {
         console.log(result)
         if (result == null) { // id가 없어서 가져온 데이터가 없으면
-            return res.send({checkid: true}); // 사용 가능
+            return res.send(true); // 사용 가능
         } else {
-            return res.send({checkid: false}); // 사용 불가능
+            return res.send(false); // 사용 불가능
         }
     })
 }
@@ -45,9 +45,9 @@ exports.isName = (req, res) => {
     .then((result) => {
         console.log(result)
         if (result == null) { // id가 없어서 가져온 데이터가 없으면
-            return res.send({checkname: true}); // 사용 가능
+            return res.send(true); // 사용 가능
         } else {
-            return res.send({checkname: false}); // 사용 불가능
+            return res.send(false); // 사용 불가능
         }
     })
 }
