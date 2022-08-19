@@ -28,7 +28,6 @@
             var feed_hashtags = feed_hashtag.toString();
 
 
-
             axios({
                 method:'post',
                 url:'http://localhost:8000/feed/write',
@@ -152,26 +151,26 @@
 
     </nav>
 
-    <div>
+    <div class="whole_container">
     <h2>스터디 등록</h2>
     <br>
     <div class="feed_container">
     <form id="feed_info" class="form_container" enctype="multipart/form-data">
             <div class="context_container">
+                
                 <div class="form-row">
                     <div>
                     <!-- 그룹 프로필 이미지  -->
                     <div class="group" id="group_img_upload">
-                        <label for="groupImg">그룹이미지+</div>
+                        <label for="groupImg">click in this area. select your group image.</div>
                         <input type="file" id='groupImg' name="studyImage" onchange="uploadFile( this )" style="display:none;">
                     <img id = 'group_img'></label>
                     </div>
                 </div>
-
                 <div class="form-row">
                     <div class="name">스터디명</div>
                     <div class="value">
-                    <input type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요" required></div>
+                    <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요" required></div>
                 </div>
                     <br>
                 <div class="form-row">
@@ -216,7 +215,7 @@
                     <div class="name">스터디 소개글</div>
                     <div class="value">
                         <!-- <input type="textarea" placeholder="스터디 소개글을 적어주세요." name="studyContent"> -->
-                        <textarea name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;"></textarea>
+                        <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;"></textarea>
                     </div>
                 </div>
                 <br>
@@ -276,14 +275,12 @@
                     <br>
                 <div class="form-row">
                     <div class="name">해시태그</div>
-                    <div class="value"><input type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요" name="hashTag" onkeypress="show_hashtag(event)"><p><sapn id="enter_hashtag" name="enter_hashtag"></sapn></p></div>
+                    <div class="value"><input class="input_text" type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요" name="hashTag" onkeypress="show_hashtag(event)"><p><sapn id="enter_hashtag" name="enter_hashtag"></sapn></p></div>
                 </div>
                 <br><br>
 
                 <button type="button" onclick="writeFeed();">스터디 등록</button>
-                </div>
             </div>
-        </div>
     </form>
 </div>
 </div>
