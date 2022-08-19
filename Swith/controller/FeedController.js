@@ -28,3 +28,19 @@ exports.post_write = (req, res) => {
         res.send({id: result.id});
     })
 }
+
+// 게시물 등록시, 프로필 이미지 저장 
+exports.uploadProfile = (req, res) => {
+    console.log('스터디 이미지', req.file); 
+    console.log( req.body.name ); 
+    //fs.rm('/public/user/' + req.body.name + ".png");
+
+    if ( req.body.naem != '') {
+        // 넘어온 filename으로 파일 삭제
+    }
+    res.json({
+        success: true,
+        study_image: req.file.path,
+        fileName: req.file.filename,
+    });
+}
