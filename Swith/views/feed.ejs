@@ -117,9 +117,12 @@
         axios({
             method: 'post', 
             url: 'http://localhost:8000/feed/write/upload',
-            data: formData,  
+            data: formData
         })
-        .then((req) => {return req.data})
+        .then((req) => {
+            console.log(req.data);
+            return req.data
+        })
         .then((data) => {
             uploadedFile = data.fileName;
             alert(data.study_image);
