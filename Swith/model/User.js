@@ -52,11 +52,25 @@ const User = (Sequelize, DataTypes) => {
         },
         // 모델의 옵션
         {
+            charset: "utf8", // 한국어 설정
+            collate: "utf8_general_ci", // 한국어 설정
             timestamps: false, 
             tableName: 'user', 
             freezeTableName: true,
         }
     );
+
+    /* foreign key 설정 */
+    User.associate = models => {
+        // 1:N 관계, studygroup의 head_id가 user의 user_id를 참조 하고 있다.
+        User.hasMany(models.Studygroup, {foreignKey: "head_id", sourceKey: 'user_id'});
+        // N:M 관계 
+        User.belongsToMany(models.Studygroup, { through: 'Studymember' });
+        // N:M 관계 
+        User.belongsToMany(models.Studygroup, { through: 'Likes' });
+    };
+
+    
 
     return model;
 }
