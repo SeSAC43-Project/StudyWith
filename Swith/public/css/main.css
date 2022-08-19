@@ -66,9 +66,39 @@
 .content h1 {
   font-size: 60px;
 }
-.content h3 {
+.content h2 {
+  font-size: 20px;
   width: 80%;
   margin: 20px auto 100px;
-  font-weight: 100;
+  font-weight: 300;
   line-height: 25px; 
+}
+.in-line{
+  width:350px;
+  height:40px;
+}
+input{
+  margin:0;
+}
+input[type="text"] {
+  width:70%;
+  height:100%;
+  border:none;
+  font-size:1em;
+  padding-left: 5px;
+  font-style: oblique;
+  display:inline;
+  outline:none;
+  box-sizing: border-box;
+  color:black;
+}
+.search_input {
+  width: 600px;
+  height: 40px;
+  text-align: center;
+}
+.search_button {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
 }

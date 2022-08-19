@@ -145,7 +145,10 @@
                 .then((data) => {
                     // uploadedFile = data.filename;
                     alert(data.user_image);
-                    $( "#profile_img" ).attr("src", "/public/user/"+data.fileName);
+                    //$( "#img_upload label" ).css("background-image", "/public/user/"+data.fileName);
+                    $("#uploadedProfile").css({"background-image":`url(/public/user/${data.fileName})`}); 
+                    $("#uploadedProfile").css({"background-size":`70px 70px`}); 
+                    // $("#uploadedProfile").css("background-image", "/public/user/"+data.fileName);
                 })
             }
 
@@ -162,19 +165,22 @@
                     <form id="signup_form">
                         <div id="form_background"></div>
                         
-                        
                         <div class="user_info">
-                            <img src="/public/login/logo.png" width="300px;" class="signup_logo"><br><br><br>
 
+                            <img src="/public/login/logo.png" width="300px;" class="signup_logo">
 
                                 <div class="profile" id="img_upload">
-                                    <label for="profileImg"><br><br>프로필+
+                                    <div id="uploadedProfile">
+                                        <input type="file" id="profileImg" style="display: none;" name="profileImg" onchange="uploadFile(this);">
+                                    </div>
+                                    <!-- <label for="profileImg"><br><br>프로필등록
                                     <input type="file" id="profileImg" name="profileImg" onchange="uploadFile( this )">
-                                    <img id="profile_img">
-                                    </label>
+                                    </label> -->
                                 </div>
+                                <br><br><br>
+                                <span>프로필 등록 📸</span>
 
-                                <br><br>
+                                <br><br><br>
 
                                 <span class="span_field">회원정보를 입력해주세요!</span><br><br>
                                 
@@ -273,5 +279,15 @@
                     </div>
             </div>
         </div>
+
+        <script>
+            $("#uploadedProfile").click(function(e){
+                e.preventDefault();
+                $("#profileImg").click();
+            });
+            $("input[type=file]").on("click", function(e){
+                 e.stopPropagation();
+            });
+        </script>
     </body>
 </html>
