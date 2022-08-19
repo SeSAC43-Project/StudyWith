@@ -12,12 +12,12 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body onload="slider()">
 
     <!-- 메인 첫번째 페이지 -->
     <div clas="banner">
         <div class="slider">
-            <img src="/public/main/main1.jpeg" alt="banner_img" id="slideImg">
+            <img src="/public/main/studyGroup1.webp" alt="banner_img" id="slideImg">
         </div>
         <div class="overlay">
             <div class="navbar">
@@ -32,16 +32,39 @@
             <div class="content">
                 <h1>FIND YOUR STUDYMATE</h1>
                 <h2>📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀</h3>
-
-                <div class="in-line">
-                    <input type="text" name="search" value="" class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:white" />
-                    <input type="button" name="search" class="search_button" value="🔍">
-                </div>
+                
+                <form class="search_form">
+                    <div class="in-line">
+                        <input type="text" name="search" class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black" />
+                        <input type="button" name="search" class="search_button" value="🔍" onclick="search()">
+                    </div>
+                    <!-- <button type="submit" class="search_button">🔍</button> -->
+                </form>
             </div>
         </div>
     </div>
 
     <script>
+        var slideImg =document.getElementById("slideImg");
+
+        var images = new Array(
+            "/public/main/studyGroup1.webp",
+            "/public/main/studyGroup2.webp",
+            "/public/main/studyGroup3.jpeg",
+            "/public/main/studyGroup4.jpeg"
+        );
+
+        var len = images.length;
+        var i = 0;
+
+        function slider(){
+            if(i > len-1 ){
+                i =0;
+            }
+            slideImg.src = images[i];
+            i++;
+            setTimeout('slider()',5000);
+        }
 
     </script>
 </body>
