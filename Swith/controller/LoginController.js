@@ -14,6 +14,7 @@ exports.post_login = (req, res) => {
 
         if (req.body.user_password == result.user_password) {
             req.session.user = req.body.user_id; 
+            console.log(req.session);
             res.send('login 성공!');
             return 
         }
