@@ -13,7 +13,7 @@ exports.post_login = (req, res) => {
         console.log('post login 실행 :', result); 
 
         if (req.body.user_password == result.user_password) {
-            req.session.user = req.body.user_id; 
+            req.session.user_id = req.body.user_id; 
             console.log(req.session);
             res.send('login 성공!');
             return 
