@@ -1,218 +1,232 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StudyWITH</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="public/css/main.css" />
+  <link rel="stylesheet" href="/public/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="/public/css/main.css" />
 
-  <!--Swiper-->
+  <!-- swiper -->
   <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
   <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
 
-  <!--ScrollMagic-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-  <!--Lodash-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js" integrity="sha512-90vH1Z83AJY9DmlWa8WkjkV79yfS2n2Oxhsi2dZbIv0nC4E6m5AbH8Nh156kkM7JePmqD6tcZsfad1ueoaovww==" crossorigin="anonymous"></script>
-
-  <script defer src="./js/youtube.js"></script>
-
-  <script defer src="./js/main.js"></script>
-  
-</head>
-<body>
-
-  <header>
-    <div class="inner">
-
-      <a href="/" class="logo">
-        <img src="/public/main/logo.png" alt="swithLogo" />
-      </a>
-
-      <div class="sub-menu">
-        <ul class="menu">
-          <li>
-            <a href="/signin"></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)"></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)"></a>
-          </li>
-          <li>
-            <a href="javascript:void(0)"></a>
-          </li>
-        </ul>
-        <div class="search">
-          <input type="text" />
-          <span class="material-icons"></span>
-        </div>
-      </div>
-
-    </div>
-
-    <!--BADGES-->
-    <!-- <div class="badges">
-      <div class="badge">
-        <img src="./images/badge1.jpg" alt="Badge" />
-      </div>
-      <div class="badge">
-        <img src="./images/badge2.jpg" alt="Badge" />
-      </div>
-    </div> -->
-  </header>
-
-
-  <!--VISUAL-->
-  <section class="visual">
-    <div class="inner">
-
-          <!-- 메인 첫번째 페이지 -->
-    <div class="banner">
-      <div class="slider">
-          <img src="/public/main/studyGroup1.webp" alt="banner_img" id="slideImg">
-      </div>
-      <div class="overlay">
-
-          <div class="content">
-              <h1>FIND YOUR STUDYMATE</h1>
-              <h2>📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀</h3>
-              
-              <form class="search_form">
-                  <div class="in-line">
-                      <input type="text" name="search" class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black" />
-                      <input type="button" name="search" class="search_button" value="🔍" onclick="search()">
-                  </div>
-                  <!-- <button type="submit" class="search_button">🔍</button> -->
-              </form>
-          </div>
-      </div>
-  </div>
-
-
-    </div>
-  </section>
 
   <script>
-    var slideImg =document.getElementById("slideImg");
 
-    var images = new Array(
-        "/Swith/public/main/studyGroup1.webp",
-        "/Swith/public/main/studyGroup2.webp",
-        "/Swith/public/main/studyGroup3.jpeg",
-        "/Swith/public/main/studyGroup4.jpeg"
-    );
-
-    var len = images.length;
-    var i = 0;
-
-    function slider(){
-        if(i > len-1 ){
-            i =0;
-        }
-        slideImg.src = images[i];
-        i++;
-        setTimeout('slider()',5000);
+    function goCategory() {
+        
     }
 
-</script>
+  </script>
+</head>
+<body onload="slider()">
 
-
-  <!--NOTICE-->
-  <section class="notice">
-
-    <!--NOTICE LINE-->
-    <div class="notice-line">
-      <div class="bg-left"></div>
-      <div class="bg-right"></div>
-      <div class="inner">
-
-        <div class="inner__left">
-          <h2>공지사항</h2>
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <a href="javascript:void(0)">스윗1</a>
-              </div>
-              <div class="swiper-slide">
-                <a href="javascript:void(0)">스윗2</a>
-              </div>
-              <div class="swiper-slide">
-                <a href="javascript:void(0)">스윗3</a>
-              </div>
-              <div class="swiper-slide">
-                <a href="javascript:void(0)">스윗4</a>
-              </div>
+    <!-- 메인 첫번째 페이지 -->
+    <div class="banner">
+        <div class="slider">
+            <img src="/public/main/studyGroup1.webp" alt="banner_img" id="slideImg">
+        </div>
+        <div class="overlay">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="/public/main/logo.png" alt="swithlogo" />
+                </div>
+                <div class="menu-icons">
+                    <img src="/public/main/user.svg" alt="loginlogo" />
+                </div>
             </div>
-          </div>
-          <a href="javascript:void(0)" class="notice-line__more">
-            <span class="material-icons">add_circle</span>
-          </a>
-        </div>
 
-        <div class="inner__right">
-          <h2>스윗GO</h2>
-          <div class="toggle-promotion open">
-            <div class="material-icons">upload</div>
-          </div>
+            <div class="content">
+                <h1>FIND YOUR STUDYMATE</h1>
+                <h2>📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀</h3>
+                
+                <form class="search_form">
+                    <div class="in-line">
+                        <input type="text" name="search" class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black" />
+                        <input type="button" name="search" class="search_button" value="🔍" onclick="search()">
+                    </div>
+                    <!-- <button type="submit" class="search_button">🔍</button> -->
+                </form>
+            </div>
         </div>
-
-      </div>
     </div>
 
-    <!--PROMOTION-->
-    <div class="promotion">
+    <!-- 메인 두번째 페이지 -->
+    <section class="body">
+        <div class="slide_container swiper">
+            <div class="slide_content">
+                <div class="card_wrapper slide-wrapper">
+                    <div class="card swiper-slide">
+                        <div class="image_content">
+                            <div class="card_image">
+                                <img src="/public/main/guide.png" alt="이용안내" class="card_img"/><br><br>
+                                <!-- <a href="javascript:void(0)" class="detail_btn">자세히 보기</a> -->
+                            </div>
+                        </div>
+                        <div class="card_content">
+                            <button class="button">자세히 보기</button>
+                        </div>
+                    </div>
+                    <!-- <div class="swiper-slide">
+                        <img src="/public/main/challenge.png" alt="공부인증챌린지" class="page2_Img" /><br><br>
+                        <a href="javascript:void(0)" class="detail_btn">자세히 보기</a>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/public/main/method.png" alt="운영비법" class="page2_Img" /><br><br>
+                        <a href="javascript:void(0)" class="detail_btn">자세히 보기</a>
+                    </div> -->
+                </div>
+            </div>
 
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="/public/main/guide.png" alt="dsaf" />
-            <a href="javascript:void(0)" class="btn">자세히 보기</a>
-          </div>
-          <div class="swiper-slide">
-            <img src="/public/main/method.png" alt="sdaf" />
-            <a href="javascript:void(0)" class="btn">자세히 보기</a>
-          </div>
-          <div class="swiper-slide">
-            <img src="/public/main/challenge.png" alt="asfd" />
-            <a href="javascript:void(0)" class="btn">자세히 보기</a>
-          </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+
         </div>
-      </div>
+    </section>
 
-      <div class="swiper-pagination"></div>
+   <!-- 메인 세번째 페이지 -->
+   <div id="category">
+        <div class="category_container">
+            <h1 class="sub-title">Category</h1>
+            <div class="category_list">
+                <div onclick="goCategory()">
+                    <h2>컴퓨터/IT</h2>
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+                <div>
+                    <h2>언어</h2>
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+                <div>
+                    <h2>자격증</h2>
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+                <div>
+                    <h2>인증</h2>
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+            </div>
 
-      <div class="swiper-prev">
-        <span class="material-icons">arrow_back</span>
-      </div>
-      <div class="swiper-next">
-        <span class="material-icons">arrow_forward</span>
-      </div>
+            <div class="category_list">
 
+                <div>
+                    <h2>취업/이직</h2>
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+                <div>
+                    <h2>공모전</h2>
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+                <div>
+                    <h2>취미</h2>
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+
+            </div>
+        </div>
+   </div>
+
+    <!-- <div class="category_container">
+        <h2 class="sub-title">Category</h2>
+        <div class="trending">
+            <div>
+                <img src="/public/main/challenge.png" alt="">
+                <h3>컴퓨터/IT</h3>
+            </div>
+            <div>
+                <img src="/public/main/challenge.png" alt="">
+                <h3>컴퓨터/IT</h3>
+            </div>
+            <div>
+                <img src="/public/main/challenge.png" alt="">
+                <h3>컴퓨터/IT</h3>
+            </div>
+            <div>
+                <img src="/public/main/challenge.png" alt="">
+                <h3>컴퓨터/IT</h3>
+            </div>
+        </div>
+    </div> -->
+
+   <!-- 메인 네번째 페이지 -->
+    <div class="container">
+        <div class="container_left">
+            <h2>PICK <br> YOUR <br> FAVORITE</h2>
+        </div>
+        <div class="container_right">
+            <h2>최신</h2>
+            <div class="posting">
+                <div  onclick="goCategory()">
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+                <div x>
+                    <p>개설된 모임</p>
+                </div>
+                <div >
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+            </div>
+
+            <h2>인기</h2>
+            <div class="posting">
+                <div  onclick="goCategory()">
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+                <div x>
+                    <p>개설된 모임</p>
+                </div>
+                <div >
+                    <p>개설된 모임</p>
+                    <a href="#"></a>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
 
+    <script>
+        var slideImg =document.getElementById("slideImg");
 
+        var images = new Array(
+            "/public/main/studyGroup1.webp",
+            "/public/main/studyGroup2.webp",
+            "/public/main/studyGroup3.jpeg",
+            "/public/main/studyGroup4.jpeg"
+        );
 
+        var len = images.length;
+        var i = 0;
 
-  <!--FOOTER-->
-  <footer>
-    <div class="inner">
+        function slider(){
+            if(i > len-1 ){
+                i =0;
+            }
+            slideImg.src = images[i];
+            i++;
+            setTimeout('slider()',5000);
+        }
 
-      
+    </script>
 
-    </div>
-  </footer>
-
-
-  <!--TO TOP BUTTON-->
-  <div id="to-top">
-    <div class="material-icons">arrow_upward</div>
-  </div>
-
+    <script src="/public/js/swiper-bundle.min.js"></script>
 </body>
 </html>
