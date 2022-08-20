@@ -7,6 +7,9 @@
   <title>StudyWITH</title>
 
   <link rel="stylesheet" href="public/css/main.css" />
+  <!-- axios, jquery -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
   <!--Swiper-->
   <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
@@ -18,10 +21,32 @@
   <!--Lodash-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js" integrity="sha512-90vH1Z83AJY9DmlWa8WkjkV79yfS2n2Oxhsi2dZbIv0nC4E6m5AbH8Nh156kkM7JePmqD6tcZsfad1ueoaovww==" crossorigin="anonymous"></script>
 
-  <script defer src="./js/youtube.js"></script>
+  <!-- <script defer src="./js/youtube.js"></script> -->
 
-  <script defer src="./js/main.js"></script>
-  
+  <!-- <script defer src="./js/main.js"></script> -->
+  <script>
+    function mainSearch() {
+        var form = document.getElementById('search_form');
+        var search = $("#search").val();
+        axios({
+            method: 'get', 
+            url: 'http://localhost:8000/swith/search', 
+            params : {
+                search : search
+            }
+        })
+        .then((req) => {return req.data;})
+        .then((data) => {
+            if (data == '') {
+                alert("검색어를 입력해주세요🤔 ");
+                return
+            }
+            console.log(data) // 검색해온 study 정보들 data로 받아옴
+        })
+    }
+    
+  </script>
+
 </head>
 <body>
 
@@ -84,10 +109,10 @@
               
               <form class="search_form">
                   <div class="in-line">
-                      <input type="text" name="search" class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black" />
-                      <input type="button" name="search" class="search_button" value="🔍" onclick="search()">
+                      <input type="text" name="search" id='search' class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black" />
+                      <input type="button" name="search_button" class="search_button" value="🔍" onclick="mainSearch()">
                   </div>
-                  <!-- <button type="submit" class="search_button">🔍</button> -->
+                  <!-- <button type="button" onclick="search()" class="search_button">🔍</button> -->
               </form>
           </div>
       </div>
