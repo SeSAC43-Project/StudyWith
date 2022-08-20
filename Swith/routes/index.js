@@ -41,7 +41,7 @@ const detailedPost = require('../controller/DetailedPostController');
 FeedRouter.get('/write', checkSession, feed.write_index); // 게시물 등록 화면
 FeedRouter.post('/write', feed.post_write); // 게시물 등록 실행
 FeedRouter.post('/write/upload', profileUpload.single('studyImage'), feed.uploadProfile); // 게시물 등록 내 스터디 이미지 업로드 
-FeedRouter.get('/detailPost', detailedPost.detailedPost_index); //게시물 상세 조회 화면
+FeedRouter.get('/detailedPost', detailedPost.detailedPost_index); //게시물 상세 조회 화면
 
 /* 메인페이지 관련 */
 const MainRouter = express.Router();
