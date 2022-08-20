@@ -56,9 +56,8 @@
                         <br>
                         <!-- 카테고리별 이미지 -->
                             <!-- <p>카테고리별 이미지</p> -->
-                            <!-- <%if(result.study_name) {%>
-                            <img src="<%=study_category%>"> -->
-                            <!-- <% } %>     -->
+                            <img src="/public/user/<%=result.study_category%>"> 
+
                         <div class="CategoryImage">
                             <img src="/public/user/user_default.JPG" width="1200" height="300" style="border-radius:15px;">
                         </div>
@@ -69,9 +68,7 @@
                     <!-- <div class="studyImage" style="color:white;">  -->
                         
                         <div class="studyImage">
-                            <!-- <%if(result.study_image) {%>     -->
-                            <!-- <img src="<%study_image%>"> -->
-                            <!-- <% } %> -->
+                            <img src="/public/user/<%=result.study_image%>"> 
                             <img src="/public/user/user_default.JPG" width="1000" height="300" style="border-radius:15px;">
                         </div>    
                         
@@ -80,9 +77,7 @@
                         <!-- 스터디 이름 -->
                     <div>
                         <!-- <div class="studyName"> -->
-                        <!-- <%if(result.study_name) {%>
-                            <p><%=study_name%></p>
-                        <% } %> -->
+                            <span><%=result.study_name%></span>
                             <p class="studyName">스터디 이름</p>
                                 <span class="studyName_txt">스터디 이름이 조회됩니다.</span>
                         </div>
@@ -101,9 +96,7 @@
                         <span class="studyContent_text">스터디 소개글</span>
                         <!-- <div class="studyContent"> -->
                         <!-- <hr class="dotted"> -->
-                        <!-- <%if(result.study_content) {%>
-                            <p><%=study_content%></p>
-                        <% } %> -->
+                        <span><%=result.study_content%></span>
                         <span class="studyContent">스터디 소개글이 조회됩니다.</span>
                     </div>        
                     </div>
@@ -115,15 +108,11 @@
 
                         <div class="userImage_box">
                             <div class="userImage">
-                                <%if(result.user_image) {%>
-                                    <img src="<%=user_image%>"> 
-                                <% } %>    
+                                <!-- <img src="/public/user/<%=result.user_image%>">     -->
                                     <!-- 스터디 멤버 이미지 -->
                             </div>        
-                                <%if(result.user_id) {%>
-                                    <p><%user_id%></p>
-                                <% } %>    
-                                    <!--닉네임  -->
+                            <!-- <span><%=result.user_id%></span>    --> 
+                                    <!-- 닉네임  -->
                         </div>     
                     </div>
                     <br>
@@ -132,9 +121,7 @@
                     <div>
                         <span class="studyForm_text">스터디 형태</span>
                         <div class="studyForm">
-                        <%if(result.study_form) { %>
-                            <span><%=study_form%></span>
-                        <% } %>
+                            <span><%=result.study_form%></span>
                         </div>  
                         <!--  -->
                     </div>
@@ -144,30 +131,22 @@
                     <div>
                         <span class="studyAddress_text">스터디위치</span>
                     <div class="studyAddress">    
-                        <% if(result.study_address) { %>
-                        <span><%=study_address%></span>
-                        <% } %>
+                        <span><%=result.study_address%>"></span>
                     </div>    
                     </div>
                     <br>
                     <div>
                         <span class="studyRecruit_text">모집인원</span>
                         <div cass="studyRecruit">
-                            <% if(result.study_recruit) { %>
-                                <span><%=study_recruit%></span>
-                            <% } %>
+                            <span><%=result.study_recruit%></span> 
                         </div>
                     </div>
                     <div>
                         <span class="period_text">스터디기간</span>
                         <div class="period_box">
-                        <% if(result.start_period) { %>
-                            <p>start_period</p>
-                        <% } %>    
+                            <span><%=result.start_period%></span>    
                         <!-- 시작일 -->
-                        <% if(result.end_period) { %>
-                            <p>end_period</p>
-                        <% } %>
+                        <span><%=result.end_period%></span>
                         <!-- 마감일 -->
                         </div>
                     </div>
