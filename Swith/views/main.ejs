@@ -1,103 +1,249 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudyWITH</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-  <link rel="stylesheet" href="/public/css/main.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- swiper -->
+  <title>Starbucks Coffee Korea</title>
+
+  <!--Open Graph-->
+  <!--http://ogp.me/-->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Starbucks" />
+  <meta property="og:title" content="Starbucks Coffee Korea" />
+  <meta property="og:description" content="스타벅스는 세계에서 가장 큰 다국적 커피 전문점으로, 64개국에서 총 23,187개의 매점을 운영하고 있습니다." />
+  <meta property="og:image" content="./images/starbucks_seo.jpg" />
+  <meta property="og:url" content="https://starbucks.co.kr" />
+
+  <!--Twitter Card-->
+  <!--https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started-->
+  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:site" content="Starbucks" />
+  <meta property="twitter:title" content="Starbucks Coffee Korea" />
+  <meta property="twitter:description" content="스타벅스는 세계에서 가장 큰 다국적 커피 전문점으로, 64개국에서 총 23,187개의 매점을 운영하고 있습니다." />
+  <meta property="twitter:image" content="./images/starbucks_seo.jpg" />
+  <meta property="twitter:url" content="https://starbucks.co.kr" />
+
+  <!--파비콘-->
+  <!--<link rel="shortcut icon" href="favicon.ico" />-->
+  <link rel="icon" href="./favicon.png" />
+  <!--브라우저 스타일 초기화-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
+  <!--Google Fonts - 나눔고딕-->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet" />
+  <!--Google Material Icons-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+  <link rel="stylesheet" href="public/css/main.css" />
+
+  <!--GSAP & ScrollToPlugin-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js" integrity="sha512-nTHzMQK7lwWt8nL4KF6DhwLHluv6dVq/hNnj2PBN0xMl2KaMm1PM02csx57mmToPAodHmPsipoERRNn4pG7f+Q==" crossorigin="anonymous"></script>
+  <!--Swiper-->
   <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
   <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+  <!--ScrollMagic-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+  <!--Lodash-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js" integrity="sha512-90vH1Z83AJY9DmlWa8WkjkV79yfS2n2Oxhsi2dZbIv0nC4E6m5AbH8Nh156kkM7JePmqD6tcZsfad1ueoaovww==" crossorigin="anonymous"></script>
 
-  <!-- Axios -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script defer src="./js/youtube.js"></script>
 
-
+  <script defer src="./js/main.js"></script>
+  
 </head>
-<body onload="slider()">
+<body>
 
-    <!-- 메인 첫번째 페이지 -->
+  <!--HEADER-->
+  <header>
+    <div class="inner">
+
+      <a href="/" class="logo">
+        <img src="/public/main/logo.png" alt="swithsdsdffsLog" />
+      </a>
+
+      <div class="sub-menu">
+        <ul class="menu">
+          <li>
+            <a href="/signin"></a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"></a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"></a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"></a>
+          </li>
+        </ul>
+        <div class="search">
+          <input type="text" />
+          <span class="material-icons"></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!--BADGES-->
+    <!-- <div class="badges">
+      <div class="badge">
+        <img src="./images/badge1.jpg" alt="Badge" />
+      </div>
+      <div class="badge">
+        <img src="./images/badge2.jpg" alt="Badge" />
+      </div>
+    </div> -->
+  </header>
+
+
+  <!--VISUAL-->
+  <section class="visual">
+    <div class="inner">
+
+          <!-- 메인 첫번째 페이지 -->
     <div class="banner">
-        <div class="slider">
-            <img src="/public/main/studyGroup1.webp" alt="banner_img" id="slideImg">
-        </div>
-        <div class="overlay">
-            <div class="navbar">
-                <div class="logo">
-                    <img src="/public/main/logo.png" alt="swithlogo" />
-                </div>
-                <div class="menu-icons">
-                    <img src="/public/main/user.svg" alt="loginlogo" />
-                </div>
-            </div>
+      <div class="slider">
+          <img src="/public/main/studyGroup1.webp" alt="banner_img" id="slideImg">
+      </div>
+      <div class="overlay">
 
-            <div class="content">
-                <h1>FIND YOUR STUDYMATE</h1>
-                <h2>📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀</h3>
-                
-                <form class="search_form">
-                    <div class="in-line">
-                        <input type="text" name="search" class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black" />
-                        <input type="button" name="search" class="search_button" value="🔍" onclick="search()">
-                    </div>
-                    <!-- <button type="submit" class="search_button">🔍</button> -->
-                </form>
-            </div>
-        </div>
+          <div class="content">
+              <h1>FIND YOUR STUDYMATE</h1>
+              <h2>📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀</h3>
+              
+              <form class="search_form">
+                  <div class="in-line">
+                      <input type="text" name="search" class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black" />
+                      <input type="button" name="search" class="search_button" value="🔍" onclick="search()">
+                  </div>
+                  <!-- <button type="submit" class="search_button">🔍</button> -->
+              </form>
+          </div>
+      </div>
+  </div>
+
+
     </div>
+  </section>
 
-    <!-- 메인 두번째 페이지 -->
-    <section class="notice">
+  <script>
+    var slideImg =document.getElementById("slideImg");
 
-    <div class="promotion">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="/public/main/guide.png" alt="이용안내" />
-                    <a href="javascript:void(0)" class="detail_btn">자세히 보기</a>
-                </div>
-                <div class="swiper-slide">
-                    <img src="/public/main/chanllenge.png" alt="공부인증챌린지" />
-                    <a href="javascript:void(0)" class="detail_btn">자세히 보기</a>
-                </div>
-                <div class="swiper-slide">
-                    <img src="/public/main/method.png" alt="운영비법" />
-                    <a href="javascript:void(0)" class="detail_btn">자세히 보기</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    var images = new Array(
+        "/Swith/public/main/studyGroup1.webp",
+        "/Swith/public/main/studyGroup2.webp",
+        "/Swith/public/main/studyGroup3.jpeg",
+        "/Swith/public/main/studyGroup4.jpeg"
+    );
 
-    </section>
+    var len = images.length;
+    var i = 0;
 
-    <script>
-        var slideImg =document.getElementById("slideImg");
-
-        var images = new Array(
-            "/public/main/studyGroup1.webp",
-            "/public/main/studyGroup2.webp",
-            "/public/main/studyGroup3.jpeg",
-            "/public/main/studyGroup4.jpeg"
-        );
-
-        var len = images.length;
-        var i = 0;
-
-        function slider(){
-            if(i > len-1 ){
-                i =0;
-            }
-            slideImg.src = images[i];
-            i++;
-            setTimeout('slider()',5000);
+    function slider(){
+        if(i > len-1 ){
+            i =0;
         }
+        slideImg.src = images[i];
+        i++;
+        setTimeout('slider()',5000);
+    }
 
-    </script>
+</script>
 
-    
+
+  <!--NOTICE-->
+  <section class="notice">
+
+    <!--NOTICE LINE-->
+    <div class="notice-line">
+      <div class="bg-left"></div>
+      <div class="bg-right"></div>
+      <div class="inner">
+
+        <div class="inner__left">
+          <h2>공지사항</h2>
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="javascript:void(0)">스윗1</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="javascript:void(0)">스윗2</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="javascript:void(0)">스윗3</a>
+              </div>
+              <div class="swiper-slide">
+                <a href="javascript:void(0)">스윗4</a>
+              </div>
+            </div>
+          </div>
+          <a href="javascript:void(0)" class="notice-line__more">
+            <span class="material-icons">add_circle</span>
+          </a>
+        </div>
+
+        <div class="inner__right">
+          <h2>스윗GO</h2>
+          <div class="toggle-promotion open">
+            <div class="material-icons">upload</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!--PROMOTION-->
+    <div class="promotion">
+
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="/public/main/guide.png" alt="dsaf" />
+            <a href="javascript:void(0)" class="btn">자세히 보기</a>
+          </div>
+          <div class="swiper-slide">
+            <img src="/public/main/method.png" alt="sdaf" />
+            <a href="javascript:void(0)" class="btn">자세히 보기</a>
+          </div>
+          <div class="swiper-slide">
+            <img src="/public/main/challenge.png" alt="asfd" />
+            <a href="javascript:void(0)" class="btn">자세히 보기</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-pagination"></div>
+
+      <div class="swiper-prev">
+        <span class="material-icons">arrow_back</span>
+      </div>
+      <div class="swiper-next">
+        <span class="material-icons">arrow_forward</span>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+  <!--FOOTER-->
+  <footer>
+    <div class="inner">
+
+      
+
+    </div>
+  </footer>
+
+
+  <!--TO TOP BUTTON-->
+  <div id="to-top">
+    <div class="material-icons">arrow_upward</div>
+  </div>
+
 </body>
 </html>
