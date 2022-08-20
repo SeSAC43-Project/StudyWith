@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const { Op } = require('sequelize');
 const config = require("../config/config.json")["development"];
 const db = {};
 const sequelize = new Sequelize(
@@ -10,6 +11,7 @@ const sequelize = new Sequelize(
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+db.Op = Op;
 
 db.User = require("./User")(sequelize, Sequelize);
 db.Studygroup = require("./Studygroup")(sequelize, Sequelize);

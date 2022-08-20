@@ -11,14 +11,14 @@ exports.post_login = (req, res) => {
         where: {user_id : req.body.user_id}
     }).then((result) => {
         console.log('post login 실행 :', result); 
-
+        
         if (req.body.user_password == result.user_password) {
             req.session.user_id = req.body.user_id; 
             console.log(req.session);
-            res.send('login 성공!');
+            res.send('True'); // 로그인 성공
             return 
         }
-        res.send('로그인 실패'); 
+        res.send('False'); // 로그인 실패 
     });
 }
 

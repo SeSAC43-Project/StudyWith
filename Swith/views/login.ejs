@@ -23,15 +23,14 @@
                 })
                 .then((req) => { return req.data;})
                 .then((data) => {                  
-                    alert(data);
-                    // if (data == true) {
-                    //     document.location.href="http://localhost:8000/";
-                    // }
-                    // else {
-                    //     console.log("로그인 실패!")
-                    //     // $(".warningLogin").html("아이디 또는 비밀번호를 확인해주세요.");
-                    //     // $(".warningLogin").css("color","red");
-                    // }
+                    if (data == 'True') {
+                        document.location.href="http://localhost:8000/swith";
+                    }
+                    else {
+                        console.log("로그인 실패!")
+                        $(".warningLogin").html("아이디 또는 비밀번호를 확인해주세요.");
+                        $(".warningLogin").css("color","red");
+                    }
                 })
             }
 
