@@ -65,6 +65,7 @@ FeedRouter.post('/detailedPost/join', detailedPost.post_joingroup); // 가입안
 const MainRouter = express.Router();
 const main = require('../controller/MainController');
 MainRouter.get('/', main.main_index); // 메인페이지 화면
+MainRouter.get('/search', main.main_serch); // 메인페이지 검색 기능
 
 
 /* 로그인 확인 미들웨어 */
