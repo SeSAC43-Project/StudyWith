@@ -33,9 +33,15 @@
                     }
                 })
             }
-            // function detailedPost_index() {
-                // 수정중
-            // } 
+            // 
+        //     function back() {
+            
+        // }
+
+        // YES 버튼을 누를 경우
+        function True() {
+            document.location.href="http://localhost:8000/user/detailedPost"; // mypage 주소 생성하면 변경
+        } 
     </script>
 </head>
 <body>
@@ -46,31 +52,39 @@
             <br>
             <div class="container">
                 <form id="deatailPost" name="deatailPost">
-                    <div class="CategoryImage" style="color:white;">
+                    <!-- <div class="CategoryImage" style="color:white;"> -->
                         <br>
                         <!-- 카테고리별 이미지 -->
-                            <p>카테고리별 이미지</p>
-                        <!-- <% if(locals.study_Category) { %>
-                            <img scr="<%=studyCategory%>">
-                        <% } %> -->
-                            <img scr="/public/user/user_default.JPG">
+                            <!-- <p>카테고리별 이미지</p> -->
+                            <!-- <%if(locals.study_Name) {%>
+                            <img src="<%=tudyCategory%>"> -->
+                            <!-- <% } %>     -->
+                        <div class="CategoryImage">
+                            <img src="/public/user/user_default.JPG" width="1200" height="300" style="border-radius:15px;">
+                        </div>
                     </div>
                     <br>
                     <br>
                     <!-- 스터디 이미지(등록이미지)  -->
-                    <div class="studyImage" style="color:white;"> 
-                        <% if(locals.study_Image) { %>
-                            <img src="<%=study_Image%>">
-                        <%} %>
+                    <!-- <div class="studyImage" style="color:white;">  -->
+                        
+                        <div class="studyImage">
+                            <!-- <%if(locals.study_Image) {%>     -->
+                            <!-- <img src="<%study_Image%>"> -->
+                            <!-- <% } %> -->
+                            <img src="/public/user/user_default.JPG" width="1000" height="300" style="border-radius:15px;">
+                        </div>    
+                        
                         <br>
                         <br>
                         <!-- 스터디 이름 -->
                     <div>
-                        <div class="studyName">
+                        <!-- <div class="studyName"> -->
                         <!-- <%if(locals.study_Name) {%>
                             <p><%=study_Name%></p>
                         <% } %> -->
-                            <p>스터디 이름</p>
+                            <p class="studyName">스터디 이름</p>
+                                <span class="studyName_txt">스터디 이름이 조회됩니다.</span>
                         </div>
                         <!-- <div>
                             <ul>
@@ -85,11 +99,12 @@
                     <br>
                     <div>
                         <span class="studyContent_text">스터디 소개글</span>
-                        <div class="studyContent">
+                        <!-- <div class="studyContent"> -->
                         <!-- <hr class="dotted"> -->
-                        <%if(locals.study_Content) {%>
+                        <!-- <%if(locals.study_Content) {%>
                             <p><%=study_Content%></p>
-                        <% } %>
+                        <% } %> -->
+                        <span class="studyContent">스터디 소개글이 조회됩니다.</span>
                     </div>        
                     </div>
                     <br>
@@ -101,12 +116,12 @@
                         <div class="userImage_box">
                             <div class="userImage">
                                 <%if(locals.user_Image) {%>
-                                     <img src="<%=user_image%>"> 
+                                    <img src="<%=user_image%>"> 
                                 <% } %>    
                                     <!-- 스터디 멤버 이미지 -->
                             </div>        
                                 <%if(locals.user_Id) {%>
-                                     <p><%user_Id%></p>
+                                    <p><%user_Id%></p>
                                 <% } %>    
                                     <!--닉네임  -->
                         </div>     
@@ -118,7 +133,7 @@
                         <span class="studyForm_text">스터디 형태</span>
                         <div class="studyForm">
                         <%if(locals.study_Form) { %>
-                             <span><%=study_Form%></span>
+                            <span><%=study_Form%></span>
                         <% } %>
                         </div>  
                         <!--  -->
@@ -159,16 +174,16 @@
                     <br>
                     <button type="button" onclick="detailed()" class="detail" style="color:white">스터디 가입</button>
 
-                    <!-- <div>
-                        <div><button type="button" onclick="ture()" class="ture">YES</button></div>
-                        <div><button type="button" onclick="back()" class="back">NO</button></div>
-                    </div> -->
+                    <div>
+                        <div id="ture" class="ture"></div>
+                        <div id="back" class="back"></div>
+                    </div>
                     <br>
                     <br>
                     <div>
                         <span>등록가능</span>
                         <span>마감</span>
-                        <button type="button" onclick="detailedPost_index()" class="list">목록</button>
+                        <button type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
                     </div>
                 </form>
             </div>

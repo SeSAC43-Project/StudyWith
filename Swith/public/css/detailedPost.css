@@ -10,7 +10,7 @@
 /* 전체 컨테이너 */
 .container {
     box-sizing: border-box;
-    margin-top: 20px;
+    margin-top: 40px;
     margin: auto;
     width: 1280px;
     padding: 0px;
@@ -23,19 +23,19 @@
 
 /* 카테고리별 이미지 */
 .CategoryImage {
-    background-color: #4686C2;
-    width: 1280px;
-    height: 200px;
+    /* background-color: #4686C2; */
     align-items: center;
     text-align: center;
     justify-content: center;
     border-radius: 15px;
-    margin-top: 10px;
+    margin-top: 50px;
+    z-index: 1;
+    opacity: 0.;
 }
 
  /* 스터디 이미지(등록이미지) */
 .studyImage {
-    background-color: #c7d7eb;
+    /* background-color: #c7d7eb; */
     color: #333;
     width: 1280px;
     height: 280px;
@@ -43,15 +43,16 @@
     text-align: center;
     justify-content: center;
     border-radius: 15px;
-    /* position: absolute; */
-    margin-top: -100px;
-    padding-left: -100px;
-    right: 37px;
+    position: absolute;
+    margin-top: -150px;
+    padding-left: 150px;
+    z-index: 2;
+    opacity: 0.7;
 }
 
 /* 스터디 명 */
 .studyName {
-    background-color: #e5eef8;
+    /* background-color: #e5eef8; */
     width: 1280px;
     height: 200px;
     align-items: center;
@@ -59,25 +60,35 @@
     justify-content: center;
     opacity: 8;
     border-radius: 15px;
-    margin-top:20rem;
+    margin-top:15rem;
+}
+
+.studyName_txt {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-left: 550px;
+    margin-top: -50px;
+    position: absolute;
 }
 
 /* 텍스트 문구  */ /* 수정중 */
 .studyContent_text, .userImage_text, .studyForm_text,
 .studyAddress_text, .period_text {
     color: #333;
-    padding-top: 10ch;
+    padding-top: 5ch;
     text-align: center;
     font-size: 30px;
-    margin-left: 10px;
+    margin-left: 100px;
     align-content: space-between;
+    margin-left: 100px;
 }
 
 /* 스터디 소개글 */
 .studyContent {
-    background-color: #e5eef8;
+    /* background-color: #e5eef8; */
     color: #333;
-    width: 1280px;
+    width: 1000px;
     height: 200px;
     align-items: center;
     text-align: center;
@@ -85,6 +96,16 @@
     border-radius: 15px;
     border:none;
     color:#fff;
+    position: absolute;
+    left: -90px;
+}
+.studyContent {
+    color: #333;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-left: 260px;
+    margin-top: 100px;
 }
 
 /* 스터디 멤버 이미지 */
@@ -108,7 +129,7 @@
 .studyForm {
     background-color: #e5eef8;
     color: #333;
-    width: 1080px;
+    width: 900px;
     height: 100px;
     display: inline-flex;
     align-items: center;
@@ -123,7 +144,7 @@
 .studyAddress {
     background-color: #e5eef8;
     color: #333;
-    width: 1080px;
+    width: 900px;
     height: 100px;
     display: inline-flex;
     align-items: center;
@@ -137,7 +158,7 @@
 .studyRecruit {
     background-color: #e5eef8;
     color: #333;
-    width: 1080px;
+    width: 900px;
     height: 100px;
     display: inline-flex;
     align-items: center;
@@ -152,7 +173,7 @@
 .period_box {
     background-color: #e5eef8;
     color: #333;
-    width: 1080px;
+    width: 900px;
     height: 100px;
     display: inline-flex;
     align-items: center;
@@ -170,7 +191,9 @@
     height: 60px;
     border-radius: 20px;
     border: 0;
-    margin-top: 80px
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
 }
 /* 수정중 */
 .ture, .back, .list{
@@ -181,7 +204,7 @@
     display: flexbox;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 50px;
     height: 50px;
 }
