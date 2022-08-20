@@ -20,7 +20,7 @@
                 method: 'post',
                 url: "http://localhost:8000/feed/detailedPost",
                 deta: {
-                    uesr_id : form.user_id.value,
+                    user_id : form.user_id.value,
                     study_id : form.study_id.value
                 }
             }).then((req) => {return req.data})
@@ -45,20 +45,21 @@
         <tbody>
             <br>
             <div class="container">
-                <form id="deatailPost" name="deatailPost" method="post" action="">
+                <form id="deatailPost" name="deatailPost">
                     <div class="CategoryImage" style="color:white;">
                         <br>
                         <!-- 카테고리별 이미지 -->
                             <p>카테고리별 이미지</p>
-                        <%if(locals.study_Category) { %>
+                        <!-- <% if(locals.study_Category) { %>
                             <img scr="<%=studyCategory%>">
-                        <% } %>
+                        <% } %> -->
+                            <img scr="/public/user/user_default.JPG">
                     </div>
                     <br>
                     <br>
                     <!-- 스터디 이미지(등록이미지)  -->
                     <div class="studyImage" style="color:white;"> 
-                        <%if(locals.study_Image) {%>
+                        <% if(locals.study_Image) { %>
                             <img src="<%=study_Image%>">
                         <%} %>
                         <br>
@@ -66,9 +67,10 @@
                         <!-- 스터디 이름 -->
                     <div>
                         <div class="studyName">
-                        <%if(locals.study_Name) {%>
+                        <!-- <%if(locals.study_Name) {%>
                             <p><%=study_Name%></p>
-                        <% } %>
+                        <% } %> -->
+                            <p>스터디 이름</p>
                         </div>
                         <!-- <div>
                             <ul>
@@ -99,12 +101,12 @@
                         <div class="userImage_box">
                             <div class="userImage">
                                 <%if(locals.user_Image) {%>
-                                    } <img src="<%=user_image%>"> 
+                                     <img src="<%=user_image%>"> 
                                 <% } %>    
                                     <!-- 스터디 멤버 이미지 -->
                             </div>        
                                 <%if(locals.user_Id) {%>
-                                    } <p><%user_Id%></p>
+                                     <p><%user_Id%></p>
                                 <% } %>    
                                     <!--닉네임  -->
                         </div>     
@@ -116,7 +118,7 @@
                         <span class="studyForm_text">스터디 형태</span>
                         <div class="studyForm">
                         <%if(locals.study_Form) { %>
-                            } <span><%=study_Form%></span>
+                             <span><%=study_Form%></span>
                         <% } %>
                         </div>  
                         <!--  -->
@@ -127,8 +129,8 @@
                     <div>
                         <span class="studyAddress_text">스터디위치</span>
                     <div class="studyAddress">    
-                        <%if(locals.study_Address) { %>
-                        } <span><%=study_Address%></span>
+                        <% if(locals.study_Address) { %>
+                        <span><%=study_Address%></span>
                         <% } %>
                     </div>    
                     </div>
@@ -137,7 +139,7 @@
                         <span class="studyRecruit_text">모집인원</span>
                         <div cass="studyRecruit">
                             <% if(locals.study_Recruit) { %>
-                                <span><%=tudy_Recruit%></span>
+                                <span><%=study_Recruit%></span>
                             <% } %>
                         </div>
                     </div>
@@ -148,11 +150,11 @@
                             <p>start_period</p>
                         <% } %>    
                         <!-- 시작일 -->
-                        <% if(logcals.end_period) {
+                        <% if(locals.end_period) { %>
                             <p>end_period</p>
                         <% } %>
                         <!-- 마감일 -->
-                        </</div>
+                        </div>
                     </div>
                     <br>
                     <button type="button" onclick="detailed()" class="detail" style="color:white">스터디 가입</button>
@@ -171,5 +173,5 @@
                 </form>
             </div>
         </tbody>
-</body>
+ </body>
 </html>
