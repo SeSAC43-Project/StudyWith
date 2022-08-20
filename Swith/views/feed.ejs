@@ -47,10 +47,17 @@
             })
             .then((req) => { return req.data })
             .then((data) => {
-                alert(data);
+                if (data == true) {
+                    document.location.href="/feed/detailedPost";
+                    // 지금 막 등록된 페이지로 이동해야하는데 흠..?
+                }
+                else {
+                    $('.warningDiv').innerHTML('빈칸을 모두 입력해주세요!');
+                    $('.warningDiv').css('color','red');
+                }
             })
         }
-
+        
         /* 주소입력창 온/오프시 입력가능/불가능 설정 */
         $(document).ready(function() {
             $('#offline').click(function(){
@@ -120,6 +127,7 @@
         })
         .then((req) => {
             console.log(req.data);
+            $('.groupImgLabel').css('display','none');
             return req.data
         })
         .then((data) => {
@@ -138,6 +146,16 @@
                     // <img id = 'group_img'></label>
                     // </div>
 
+
+    // 그룹이미지 id="group_img"에 src가 생기면 label은 사라져야함.
+    // 그리고 그룹이미지가 가운데 배열 되어야함.
+    // border는 정해져있지만 보이지 않게!
+
+    // if ( $('#group_img').attr('src') != '') {
+    //     //$('.groupImgLabel').css('display','none');
+    //     $('.group label').css('display','none');
+
+    // }
     
     </script>
 
@@ -162,22 +180,22 @@
                     <div>
                     <!-- 그룹 프로필 이미지  -->
                     <div class="group" id="group_img_upload">
-                        <label for="groupImg">click in this area. select your group image.</div>
+                        <label class="groupImgLabel" for="groupImg">click in this area. select your group image.</label>
                         <input type="file" id='groupImg' name="studyImage" onchange="uploadFile( this )" style="display:none;">
-                    <img id = 'group_img'></label>
+                        <img id = 'group_img'>
+                    </div>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="name">스터디명</div>
                     <div class="value">
-                    <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요" required></div>
+                    <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요." required></div>
                 </div>
-                    <br>
                 <div class="form-row">
                     <div class="name">카테고리 <br><span style="font-size: 0.7rem;">*카테고리를 선택해주세요.</span></div>
                     <div class="value">
                     <ul>
-                        <li><input type="radio" name="studyCategory" value="언어">언어</li>
+                        <li><input type="radio" name="studyCategory" value="언어" required>언어</li>
                         <li><input type="radio" name="studyCategory" value="자격증">자격증</li>
                         <li><input type="radio" name="studyCategory" value="취업">취업</li>
                         <li><input type="radio" name="studyCategory" value="IT">IT</li>
@@ -187,7 +205,6 @@
                     </ul>
                     </div>
                 </div>
-                    <br>
                 <div class="form-row">
                     <div class="name">스터디형태</div><br>
                     <div class="value">
@@ -196,48 +213,45 @@
                         <input type="radio" name="studyForm" id="offline" value="오프라인" required>
                         <label for="offline">오프라인</label>
                         <p>
-                            <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색">&nbsp;
+                            <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required>&nbsp;
                             <!-- <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 70px;"> &nbsp; -->
-                            <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" readonly><br>
+                            <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" style="width: 300px; height: 25px; text-align: center;"><br>
                         </p>
                     </div>
                 </div>
-                    <br>
                 <div class="form-row">
                     <div class="name">모집인원</div>
                     <div class="value">
-                    <input type="text" id="studyRecruit" name="studyRecruit" style="width: 30px;">명
+                    <input type="text" id="studyRecruit" name="studyRecruit" style="width: 40px;" required>명
                     </div>
                 </div>
-                <br>
-                <br>
                 <div class="form-row">
                     <div class="name">스터디 소개글</div>
                     <div class="value">
                         <!-- <input type="textarea" placeholder="스터디 소개글을 적어주세요." name="studyContent"> -->
-                        <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;"></textarea>
+                        <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;" required></textarea>
                     </div>
                 </div>
-                <br>
                 <div class="form-row">
-                    <div class="name">스터디 기간<br></div>
-                    <div class="value">
+                    <div class="name">스터디 기간</div>
+                    <ul>
+                    <li><div class="value">
                     시작일: <input type="hidden" name="start_period">
-                    <select id="start_year" name="start_year">
+                    <select id="start_year" name="start_year" required>
                         <option>
                             <%for(var i=2022; i<=2050; i++) {%>
                                 <option value="<%=i%>"><%=i%></option>
                             <%}%>
                         </option>
                     </select>년
-                    <select id="start_month" name="start_month">
+                    <select id="start_month" name="start_month" required>
                         <option>
                             <%for(var j=1; j<=12; j++) {%>
                                 <option value="<%=j%>"><%=j%></option>
                             <%}%>
                         </option>
                     </select>월
-                    <select id="start_day" name="start_day">
+                    <select id="start_day" name="start_day" required>
                         <option>
                             <%for(var k=1; k<=31; k++) {%>
                                 <option value="<%=k%>"><%=k%></option>
@@ -245,41 +259,44 @@
                         </option>
                     </select>일
                     </div>
-                    <br>
-                    <br>
+                    </li>
+
+                    <li>
                     <div class="value">
                     종료일: <input type="hidden" name="end_period">
-                    <select id="end_year" name="end_year">
+                    <select id="end_year" name="end_year" required>
                         <option>
                             <%for(var i=2022; i<=2050; i++) {%>
                                 <option value="<%=i%>"><%=i%></option>
                             <%}%>
                         </option>
                     </select>년
-                    <select id="end_month" name="end_month">
+                    <select id="end_month" name="end_month" required>
                         <option>
                             <%for(var j=1; j<=12; j++) {%>
                                 <option value="<%=j%>"><%=j%></option>
                             <%}%>
                         </option>
                     </select>월
-                    <select id="end_day" name="end_day">
+                    <select id="end_day" name="end_day" required>
                         <option>
                             <%for(var k=1; k<=31; k++) {%>
                                 <option value="<%=k%>"><%=k%></option>
                             <%}%>
                         </option>
                     </select>일
+                </li>
                 </div>
-                </div>
-                    <br>
-                <div class="form-row">
-                    <div class="name">해시태그</div>
-                    <div class="value"><input class="input_text" type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요" name="hashTag" onkeypress="show_hashtag(event)"><p><sapn id="enter_hashtag" name="enter_hashtag"></sapn></p></div>
-                </div>
-                <br><br>
+            </ul>
 
-                <button type="button" onclick="writeFeed();">스터디 등록</button>
+            <div class="form-row">
+                <div class="name">해시태그</div>
+                <div class="value"><input class="input_text" type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요" name="hashTag" onkeypress="show_hashtag(event)"><p><sapn id="enter_hashtag" name="enter_hashtag"></sapn></p></div>
+            </div>
+            <br><br>
+            <div class="warningDiv"></div>
+            <button class="writebutton" type="button" onclick="writeFeed();">스터디 등록</button>
+                </div>
             </div>
     </form>
 </div>
