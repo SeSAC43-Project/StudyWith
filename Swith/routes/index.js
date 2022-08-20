@@ -56,7 +56,7 @@ FeedRouter.get('/write', checkSession, feed.write_index); // 게시물 등록 �
 FeedRouter.post('/write', feed.post_write); // 게시물 등록 실행
 FeedRouter.post('/write/upload', groupProfileUpload.single('studyImage'), feed.uploadProfile); // 게시물 등록 내 스터디 이미지 업로드 
 FeedRouter.get('/detailedPost', detailedPost.detailedPost_index); //게시물 상세 조회 화면
-FeedRouter.gey('/detailedPost/edit', detailedPost.get_editgroup); // 그룹장: 게시물 수정 페이지 이동
+FeedRouter.get('/detailedPost/edit', detailedPost.get_editgroup); // 그룹장: 게시물 수정 페이지 이동
 FeedRouter.delete('/detailedPost/leave', detailedPost.delete_leavegroup); // 일반멤버: 탈퇴기능
 FeedRouter.post('/detailedPost/join', detailedPost.post_joingroup); // 가입안한사람: 가입기능
 
