@@ -24,7 +24,8 @@ CREATE TABLE studygroup (
     study_name VARCHAR(20) NOT NULL, -- 그룹 명
     study_category VARCHAR(10) NOT NULL, -- 그룹 카테고리 
     study_form VARCHAR(45) NOT NULL, -- 그룹 형식 (온라인, 오프라인)
-    study_recruit VARCHAR(3) NOT NULL, -- 그룹 모집 인원 수 
+    study_recruit VARCHAR(3) NOT NULL, -- 그룹 모집 인원 수
+    study_
     study_address VARCHAR(50), -- 오프라인일 경우 주소
     study_image VARCHAR(100) NOT NULL, -- 그룹 프로필 이미지
     study_content MEDIUMTEXT NOT NULL, -- 그룹 소개
@@ -57,8 +58,7 @@ CREATE TABLE likes (
 insert into user values('aa', '1234', '1', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'coding', '2022-08-16');
 
 --스터디 그룹 테스트
-INSERT INTO studygroup (head_id, study_name, study_category, study_form, study_recruit, study_image,study_content,start_period,end_period,hasgtag)
-VALUES("aa", "swith", "IT", "온라인", "6",  "public/studygroup/12314","안녕하세요 swith입니다", '2022-08-16', '2022-12-30', "#공부#그룹#화이팅" );
+INSERT INTO studygroup (head_id, study_name, study_category, study_form, study_address, study_recruit, study_image, study_content, start_period, end_period, hashtag) VALUES("aa", "swith", "IT", "오프라인", "서울시 영등포구 문래동","6", "123456789.jpg","안녕하세요 swith입니다", '2022-08-16', '2022-12-30', "#공부#그룹#화이팅" );
 
 
 --게시물 상세 조회 테스트

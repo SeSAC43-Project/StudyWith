@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 
-/* 프로필 이미지 업로드 */
+/* user 프로필 이미지 업로드 */
 const profileUpload = multer({
     storage: multer.diskStorage({
         destination(req, file, cb) {
@@ -10,7 +10,21 @@ const profileUpload = multer({
         },
         filename(req, file, cb) {
             const ext = path.extname(file.originalname);
-            cb(null,  Date.now() + ext ); // 파일이름: id+현재날짜.확장자
+            cb(null, Date.now() + ext ); // 파일이름: 현재날짜시간정보.확장자
+        },
+    }),
+    limits: { fileSize: 5*1024*1024 }, // filesize 제한: 5MB
+});
+
+/* group 이미지 업로드 */
+const groupProfileUpload = multer({
+    storage: multer.diskStorage({
+        destination(req, file, cb) {
+            cb(null, 'public/group/'); // 파일 저장위치: public/group/
+        },
+        filename(req, file, cb) {
+            const ext = path.extname(file.originalname);
+            cb(null, Date.now() + ext );
         },
     }),
     limits: { fileSize: 5*1024*1024 },
@@ -40,13 +54,18 @@ const feed = require('../controller/FeedController');
 const detailedPost = require('../controller/DetailedPostController');
 FeedRouter.get('/write', checkSession, feed.write_index); // 게시물 등록 화면
 FeedRouter.post('/write', feed.post_write); // 게시물 등록 실행
-FeedRouter.post('/write/upload', profileUpload.single('studyImage'), feed.uploadProfile); // 게시물 등록 내 스터디 이미지 업로드 
+FeedRouter.post('/write/upload', groupProfileUpload.single('studyImage'), feed.uploadProfile); // 게시물 등록 내 스터디 이미지 업로드 
 FeedRouter.get('/detailedPost', detailedPost.detailedPost_index); //게시물 상세 조회 화면
+FeedRouter.gey('/detailedPost/edit', detailedPost.get_editgroup); // 그룹장: 게시물 수정 페이지 이동
+FeedRouter.delete('/detailedPost/leave', detailedPost.delete_leavegroup); // 일반멤버: 탈퇴기능
+FeedRouter.post('/detailedPost/join', detailedPost.post_joingroup); // 가입안한사람: 가입기능
+
 
 /* 메인페이지 관련 */
 const MainRouter = express.Router();
 const main = require('../controller/MainController');
 MainRouter.get('/', main.main_index); // 메인페이지 화면
+
 
 /* 로그인 확인 미들웨어 */
 function checkSession (req, res, next) {
