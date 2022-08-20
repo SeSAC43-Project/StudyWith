@@ -24,7 +24,8 @@ CREATE TABLE studygroup (
     study_name VARCHAR(20) NOT NULL, -- 그룹 명
     study_category VARCHAR(10) NOT NULL, -- 그룹 카테고리 
     study_form VARCHAR(45) NOT NULL, -- 그룹 형식 (온라인, 오프라인)
-    study_recruit VARCHAR(3) NOT NULL, -- 그룹 모집 인원 수 
+    study_recruit VARCHAR(3) NOT NULL, -- 그룹 모집 인원 수
+    study_
     study_address VARCHAR(50), -- 오프라인일 경우 주소
     study_image VARCHAR(100) NOT NULL, -- 그룹 프로필 이미지
     study_content MEDIUMTEXT NOT NULL, -- 그룹 소개
