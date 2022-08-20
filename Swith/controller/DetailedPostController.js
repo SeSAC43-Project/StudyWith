@@ -4,32 +4,39 @@ const { sequelize } = require("../model/index");
 /* 게시물 상세 조회 화면 렌더링*/
 exports.detailedPost_index = async (req, res) => {
 
-    // 그룹장인지 아닌지 검사
-    const isHead_results= await sequelize.query(`SELECT * from user 
-        inner join studygroup on studygroup.head_id=user.user_id 
-        where user.user_id='${req.query.user_id}' AND studygroup.study_id=${req.query.study_id};`);
+    const headSql = `SELECT M.user_id, U.user_name, U.user_image, G.study_id, G.head_id, G.study_name, G.study_content, G.study_form, G.study_address, G.study_recruit, G.study_category, G.study_image, G.study_content, G.start_period, G.end_period, G.hashtag, G.study_views from user U 
+        inner join studygroup G on G.head_id = U.user_id 
+        inner join studymember M on M.study_id = G.study_id 
+        where U.user_id='${req.query.user_id}' AND G.study_id=${req.query.study_id};`;
 
-    if (isHead_results == null ) { // 그룹장이 아니면 멤버인지 아닌지 검사
-        const isMember_results = await sequelize.query(`SELECT * from user 
-            inner join studymember on studymember.user_id=user.user_id 
-            where user.user_id='${req.query.user_id}' AND studymember.study_id=${req.query.study_id};`);
-        
-        await models.Studygroup.findOne({
-            where: {study_id: req.query.study_id}
-        }).then((result) => {
-            if (isMember_results != null) { // 멤버이면
-                return res.render('detailedPost', {result: result, isMember: true, isHead: false})
-            } else { // 가입안한 사람이면
-                return res.render('detailedPost', {result: result, isMember: false, isHead: false})
-            }
-        });
+    // 그룹장인지 아닌지 검사
+    const [isHead_results, metadata] = await sequelize.query(headSql);
+
+    if ( isHead_results.length === 0 ) { // 그룹장이 아니면 멤버인지 아닌지 검사
+
+        const memberSql = `SELECT M.user_id, U.user_name, U.user_image, G.study_id, G.head_id, G.study_name, G.study_content, G.study_form, G.study_address, G.study_recruit, G.study_category, G.study_image, G.study_content, G.start_period, G.end_period, G.hashtag, G.study_views from user U 
+            inner join studymember M on M.user_id = U.user_id
+            inner join studygroup G on G.study_id = M.study_id 
+            where U.user_id='${req.query.user_id}' AND M.study_id=${req.query.study_id};`;
+
+        const [isMember_results, metadata1] = await sequelize.query(memberSql); //멤버인지 가입안한 사람인지 검사
+        console.log("isMember_results 값:", isMember_results)
+        const DataSql = `SELECT M.user_id, U.user_name, U.user_image, G.study_id, G.head_id, G.study_name, G.study_content, G.study_form, G.study_address, G.study_recruit, G.study_category, G.study_image, G.study_content, G.start_period, G.end_period, G.hashtag, G.study_views from user U 
+            inner join studymember M on M.user_id = U.user_id
+            inner join studygroup G on G.study_id = M.study_id 
+            where M.study_id=${req.query.study_id};`
+
+        const [results, metadata2] = await sequelize.query(DataSql); //보내줄 데이터
+
+        if (isMember_results.length === 0 ) { // 가입 안한 사람이면
+            return res.render('detailedPost', {result: results, isMember: false})
+        } else { // 멤버이면
+            return res.render('detailedPost', {result: results, isMember: true})
+        }
+
     } else { // 그룹장이면
-        await models.Studygroup.findOne({
-            where: {study_id: req.query.study_id}
-        }).then((result) => {
-            console.log("result:", result);
-            return res.render('detailedPost', {result: result, isMember: true, isHead: true})
-        });
+        console.log("isHead_results:", isHead_results);
+        return res.render('detailedPost', {result: isHead_results})
     }
 }
 
