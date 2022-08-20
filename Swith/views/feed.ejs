@@ -133,7 +133,7 @@
         .then((data) => {
             uploadedFile = data.fileName;
             alert(data.study_image);
-            $('#group_img').attr('src', '/public/user/' + data.fileName);
+            $('#group_img').attr('src', '/public/group/' + data.fileName);
         })
     }
    
