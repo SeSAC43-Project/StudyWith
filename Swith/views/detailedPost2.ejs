@@ -56,8 +56,8 @@
                         <br>
                         <!-- 카테고리별 이미지 -->
                             <!-- <p>카테고리별 이미지</p> -->
-                            <!-- <%if(locals.study_Name) {%>
-                            <img src="<%=tudyCategory%>"> -->
+                            <!-- <%if(result.study_name) {%>
+                            <img src="<%=study_category%>"> -->
                             <!-- <% } %>     -->
                         <div class="CategoryImage">
                             <img src="/public/user/user_default.JPG" width="1200" height="300" style="border-radius:15px;">
@@ -69,8 +69,8 @@
                     <!-- <div class="studyImage" style="color:white;">  -->
                         
                         <div class="studyImage">
-                            <!-- <%if(locals.study_Image) {%>     -->
-                            <!-- <img src="<%study_Image%>"> -->
+                            <!-- <%if(result.study_image) {%>     -->
+                            <!-- <img src="<%study_image%>"> -->
                             <!-- <% } %> -->
                             <img src="/public/user/user_default.JPG" width="1000" height="300" style="border-radius:15px;">
                         </div>    
@@ -80,8 +80,8 @@
                         <!-- 스터디 이름 -->
                     <div>
                         <!-- <div class="studyName"> -->
-                        <!-- <%if(locals.study_Name) {%>
-                            <p><%=study_Name%></p>
+                        <!-- <%if(result.study_name) {%>
+                            <p><%=study_name%></p>
                         <% } %> -->
                             <p class="studyName">스터디 이름</p>
                                 <span class="studyName_txt">스터디 이름이 조회됩니다.</span>
@@ -101,8 +101,8 @@
                         <span class="studyContent_text">스터디 소개글</span>
                         <!-- <div class="studyContent"> -->
                         <!-- <hr class="dotted"> -->
-                        <!-- <%if(locals.study_Content) {%>
-                            <p><%=study_Content%></p>
+                        <!-- <%if(result.study_content) {%>
+                            <p><%=study_content%></p>
                         <% } %> -->
                         <span class="studyContent">스터디 소개글이 조회됩니다.</span>
                     </div>        
@@ -115,13 +115,13 @@
 
                         <div class="userImage_box">
                             <div class="userImage">
-                                <%if(locals.user_Image) {%>
+                                <%if(result.user_image) {%>
                                     <img src="<%=user_image%>"> 
                                 <% } %>    
                                     <!-- 스터디 멤버 이미지 -->
                             </div>        
-                                <%if(locals.user_Id) {%>
-                                    <p><%user_Id%></p>
+                                <%if(result.user_id) {%>
+                                    <p><%user_id%></p>
                                 <% } %>    
                                     <!--닉네임  -->
                         </div>     
@@ -132,8 +132,8 @@
                     <div>
                         <span class="studyForm_text">스터디 형태</span>
                         <div class="studyForm">
-                        <%if(locals.study_Form) { %>
-                            <span><%=study_Form%></span>
+                        <%if(result.study_form) { %>
+                            <span><%=study_form%></span>
                         <% } %>
                         </div>  
                         <!--  -->
@@ -144,8 +144,8 @@
                     <div>
                         <span class="studyAddress_text">스터디위치</span>
                     <div class="studyAddress">    
-                        <% if(locals.study_Address) { %>
-                        <span><%=study_Address%></span>
+                        <% if(result.study_address) { %>
+                        <span><%=study_address%></span>
                         <% } %>
                     </div>    
                     </div>
@@ -153,19 +153,19 @@
                     <div>
                         <span class="studyRecruit_text">모집인원</span>
                         <div cass="studyRecruit">
-                            <% if(locals.study_Recruit) { %>
-                                <span><%=study_Recruit%></span>
+                            <% if(reault.study_recruit) { %>
+                                <span><%=study_recruit%></span>
                             <% } %>
                         </div>
                     </div>
                     <div>
                         <span class="period_text">스터디기간</span>
                         <div class="period_box">
-                        <% if(locals.start_period) { %>
+                        <% if(reault.start_period) { %>
                             <p>start_period</p>
                         <% } %>    
                         <!-- 시작일 -->
-                        <% if(locals.end_period) { %>
+                        <% if(reault.end_period) { %>
                             <p>end_period</p>
                         <% } %>
                         <!-- 마감일 -->
