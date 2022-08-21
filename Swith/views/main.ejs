@@ -43,7 +43,7 @@
     }
 
     function goCategory() {
-        
+        document.location.href='http://localhost:8000/swith/search';
     }
 
   </script>
@@ -70,11 +70,15 @@
                 <h2>📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀</h3>
                 
                 <form id="search_form" onsubmit="return false">
-                    <div class="in-line">
+                    <div class="search-line">
                         <input type="text" name="search" id='search' class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black">
                         <input type="button" name="search_button" class="search_button" value="🔍" onclick="mainSearch()">
                     </div>
                     <!-- <button type="submit" class="search_button">🔍</button> -->
+                    <!-- <div class="search">
+                        <div class="icon"></div>
+                        <div class="input"></div>
+                    </div> -->
                 </form>
             </div>
         </div>

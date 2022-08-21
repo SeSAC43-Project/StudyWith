@@ -1,0 +1,101 @@
+@font-face {
+  font-family: 'GS_bold'; 
+  src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+}
+
+* {
+  font-family: "GS_bold";
+}
+
+
+
+
+
+form:after {
+content: '';
+position: absolute;
+top: 0;
+left: 50%;
+width: 0;
+height: 0;
+border: 20px solid transparent;
+border-bottom-color: #ffffff;
+border-top: 0;
+border-right: 0;
+margin-left: -10px;
+margin-top: -20px;
+}
+
+
+.form-row {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-start;
+  align-items:center;
+  padding: 20px 0 20px 0;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+}
+
+.form-row:first-child {
+padding-bottom:10%;
+}
+.name {
+  width: 200px;
+  color: #333;
+  font-size: 20px;
+  margin-top: 11px;
+  flex-grow:1;
+}
+.value {
+flex-grow:9;
+padding:10px 0 10px 0;
+}
+
+form input::file-selector-button {
+  display: none;
+}
+
+.input_text {
+  background: transparent;
+  line-height: 30px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size:18px;
+  padding:20px;
+  width: 90%;
+  text-align: center;
+}
+
+
+/* 검색 결과 */
+h2 {
+  font-size: 30px;
+}
+
+.search_Result {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 30px;
+}
+.search_Result div img {
+  width: 100%;
+  border-radius: 10px;
+}
+.search_Result div {
+  position: relative;
+}
+.search_Result div span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: blue;
+  font-weight: 300px;
+  text-align: center;
+  font-size: 30px;
+}
+.search_Result div:hover {
+  transform: translateY(-10px);
+  cursor: pointer;
+}

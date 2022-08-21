@@ -123,7 +123,7 @@ input[type=button]{
   border-radius: 20px;
   border-color: #4686C2;
 }
-/* .search_button {
+.search_button {
   width: 40px;
   height: 40px;
   font-size: 20px;
@@ -132,6 +132,33 @@ input[type=button]{
   border-width: 1px;
   border-radius: 10px;
   border: none;
+}
+/* .search {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 60px;
+  transition: 0.5s;
+  box-shadow: 0 0 0 5px #4686C2;
+}
+.search .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.search .icon::before {
+  content: '';
+  position: absolute;
+  width: ;
 } */
 
 
