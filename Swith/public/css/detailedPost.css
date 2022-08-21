@@ -8,34 +8,46 @@
 }
 
 /* 전체 컨테이너 */
-.container {
+.wrap {
     box-sizing: border-box;
-    margin-top: 40px;
-    margin: auto;
-    width: 1280px;
+    /* margin-top: 40px; */
+    margin: 40px auto 0;
+    /* width: 1280px; */
     padding: 0px;
-    height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     position: relative;
+}
+
+.img_box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0 10px; */
 }
 
 /* 카테고리별 이미지 */
 .CategoryImage {
-    /* background-color: #4686C2; */
+    background-color: #4686C2;
     align-items: center;
     text-align: center;
     justify-content: center;
     border-radius: 15px;
     margin-top: 50px;
     z-index: 1;
-    opacity: 0.;
+    opacity: 0.5;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
 }
 
  /* 스터디 이미지(등록이미지) */
 .studyImage {
-    /* background-color: #c7d7eb; */
+    background-color: #c7d7eb;
     color: #333;
     width: 1280px;
     height: 280px;
@@ -43,11 +55,13 @@
     text-align: center;
     justify-content: center;
     border-radius: 15px;
-    position: absolute;
+    position: relative;
     margin-top: -150px;
-    padding-left: 150px;
+    display: flex;
+    /* padding-left: 150px; */
     z-index: 2;
     opacity: 0.7;
+    overflow: hidden;
 }
 
 /* 스터디 명 */
@@ -61,17 +75,41 @@
     justify-content: center;
     opacity: 8;
     border-radius: 15px;
-    margin-top:15rem;
-    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.studyName ul{
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.studyName ul li{
+    font-size: 16px;
+    color: #333;
+    margin-right: 20px;
 }
 
 .studyName_txt {
     align-items: center;
     text-align: center;
     justify-content: center;
-    margin-left: 670px;
-    margin-top: -80px;
-    position: absolute;
+    display: flex;
+}
+
+
+.section_box{
+    width: 1280px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 40px 100px; */
 }
 
 .studyContent_text {
@@ -79,46 +117,47 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    margin-left: 580px;
+    padding: 40px 100px;
+    display: flex;
+    /* margin-left: 580px;
     margin-top: -50px;
-    position: absolute;
+    position: absolute; */
 }
 
+
+
+.page_flexbox{
+    width: 100%;
+    display: flex;
+    /* padding: 0 20px; */
+    align-items: center;
+}
+.page_flexbox.column{
+    flex-direction: column;
+}
 /* 텍스트 문구  */ /* 수정중 */
-.studyhashtag_text ,.userImage_text, .studyForm_text,
-.studyAddress_text, .period_text {
+/* .studyhashtag_text ,.userImage_text, .studyForm_text,
+.studyAddress_text, .period_text { */
+.page_txt{
+    width: 300px;
+    flex: 0 0 auto;
     color: #333;
-    padding-top: 5ch;
-    text-align: center;
     font-size: 30px;
-    margin-left: 100px;
-    align-content: space-between;
-    margin-left: 100px;
+    padding-left: 100px;
+    /* margin-left: 100px; */
+}
+.page_infobox{
+    display: flex;
+    justify-content: center;
 }
 
 /* 스터디 소개글 */
 .studyContent {
     /* background-color: #e5eef8; */
     color: #333;
-    width: 1000px;
-    height: 200px;
-    align-items: center;
     text-align: center;
     justify-content: center;
-    /* border-radius: 15px; */
-    border:none;
-    color:#fff;
-    position: absolute;
-    left: -90px;
-}
-.studyContent {
-    color: #333;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    margin-left: 300px;
-    margin-top: 30px;
-    padding-bottom: 40px;
+    display: flex;
 }
 
 /* 해시태그 */
@@ -129,30 +168,34 @@
     justify-content: center;
     border-radius: 15px;
     border:none;
-    padding-left: 420px;
-    padding-top: -30px;
+    padding: 0 10px;
+    flex-direction: column;
 }
 
 /* 스터디 멤버 이미지 */
 .userImage_box {
     /* background-color: #e5eef8; */
-    
-    width: 400px;
-    height: 400px;
     align-items: center;
     text-align: center;
     justify-content: center;
-    border-radius: 15px;
-    border:none;
+    display: flex;
+    border: none;
     color:#fff;
-    display: block;
-    bottom: -20rem;
+    margin-top: 20px;
+    padding: 0 100px;
+    width: 100%;
     /*  */
 }
 
-/* .userImage {
-    수정중
-} */
+.userImage {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid black;
+    display: block;
+    overflow: hidden;
+    flex: 0 0 auto;
+}
 
 .studyForm {
     /* background-color: #e5eef8; */
@@ -219,14 +262,11 @@
     height: 60px;
     border-radius: 20px;
     border: 0;
-    margin-top: 40px;
     margin-bottom: 50px;
     align-items: center;
     justify-content: center;
     display: flex;
-    position: relative;
-    padding-bottom: 10px;
-    left: 18rem;
+    
 }
 /* 수정중 */
 .ture, .back, .list{
@@ -237,7 +277,36 @@
     display: flexbox;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    margin-bottom: 50px;
-    height: 50px;
+}
+
+.regi_btn_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    height: 72px;
+    margin: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 10 30px;
+}
+.regi_txt{
+    width: 50%;
+    height: 100%;
+    background-color: #ccc;
+    font-size: 20px;
+    color: #333;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 0 50px; */
+}
+.regi_btn{
+    width: 50%;
+    height: 100%;
+    background-color: #4686C2;
+    border: 0;
+    font-size: 20px;
+    /* padding: 0 10px; */
+    padding: 10 30px;
 }
