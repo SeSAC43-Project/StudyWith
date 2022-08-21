@@ -12,13 +12,19 @@ exports.uploadProfile = (req, res) => {
     console.log( req.body.name );
 
     if ( req.body.name != "" ){
-        // 넘어온 filename으로 파일 삭제
-        //fs.rm('/public/user/' + req.body.name + ".png");
+       // 넘어온 filename으로 이전 파일 삭제
+        // 그냥 띄워보기만 하는 이미지 무한 저장하는 것 방지
+        try{
+            fs.unlink('./public/group/' + req.body.name)
+        } catch(err) {
+            console.error('there was an error :', error.message)
+        }
     }
     res.json({
         success: true,
         filepath: req.file.path,
         fileName: req.file.filename,
+        name : req.file.name, // 이전 파일 이름
     });
 }
 
