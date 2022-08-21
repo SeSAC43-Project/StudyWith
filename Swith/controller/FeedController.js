@@ -27,8 +27,8 @@ exports.post_write = (req, res) => {
     Models.Studygroup.create( Obj )
     .then((result) => {
         console.log(result);
-        res.send("게시물 등록 완료!");
-        // res.send(true);
+        // res.send("게시물 등록 완료!");
+        res.send(true);
     })
 }
 

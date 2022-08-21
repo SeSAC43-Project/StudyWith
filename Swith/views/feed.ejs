@@ -20,12 +20,18 @@
         function writeFeed() {
             var feed = document.getElementById("feed_info");
             var hashtags = document.getElementById("enter_hashtag").innerHTML;
-            // console.log(hashtags); //#~#~ 형태
             var hashtags2 = hashtags.split('#');
-            // console.log(hashtags2); // ['','토익','영어'] 형태 // 왜 index[0]에 ''가 생기는지 의문
             var feed_hashtag = hashtags2.slice(1);
-            // console.log(feed_hashtag);
             var feed_hashtags = feed_hashtag.toString();
+
+            var result = feed.checkValidity();
+
+            if ( !result ) {
+                $('.warningDiv').html('빈칸을 모두 입력해주세요!');
+                $('.warningDiv').css('color','red');
+
+                return false;
+            }
 
 
             axios({
@@ -36,27 +42,29 @@
                     study_category : feed.studyCategory.value,
                     study_form : feed.studyForm.value,
                     study_recruit : feed.studyRecruit.value,
-                    study_address : feed.sample6_address.value, // 주소 들어가게 수정 필요
+                    study_address : feed.sample6_address.value, 
                     study_image : uploadedFile, 
                     study_content : feed.studyContent.value,
                     start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
                     end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
-                    // hashtag:feed.enter_hashtag.value, // 해시태그가 input에 없어서 값이 안들어가서 수정필요
                     hashtag: feed_hashtags,
                 }
             })
             .then((req) => { return req.data })
             .then((data) => {
                 if (data == true) {
-                    document.location.href="/feed/detailedPost";
+                    document.location.href="http://localhost:8000/swith";
                     // 지금 막 등록된 페이지로 이동해야하는데 흠..?
-                }
-                else {
-                    $('.warningDiv').innerHTML('빈칸을 모두 입력해주세요!');
-                    $('.warningDiv').css('color','red');
                 }
             })
         }
+
+        function cancelFeed() {
+            // document.location.href="/swith";   //메인으로 가기
+            history.go(-1); //이전페이지로 가기
+        }
+
+
         
         /* 주소입력창 온/오프시 입력가능/불가능 설정 */
         $(document).ready(function() {
@@ -77,9 +85,13 @@
             const keyword = document.getElementById('enter_hashtag');
             // console.log(keyword);
             const txt = document.getElementById('text_hashtag').value;
+
+            // let btn = "<button type='button' class='deleteHashtag' onclick='deleteTag();'>X</button>";
+            // $('#enter_hashtag').append(btn);   //이부분은 해시태그 삭제할 때 적용(미완)
+
             // console.log(txt);
             if (event.keyCode == 13) {
-                keyword.innerHTML += '#' + txt ;
+                keyword.innerHTML += '#' + txt;
                 document.getElementById('text_hashtag').value = "";
                 
             }
@@ -127,13 +139,16 @@
         })
         .then((req) => {
             console.log(req.data);
-            $('.groupImgLabel').css('display','none');
+            // $('#groupImgLabel').css('display','none');
             return req.data
         })
         .then((data) => {
             uploadedFile = data.fileName;
             alert(data.study_image);
-            $('#group_img').attr('src', '/public/group/' + data.fileName);
+            // $('#group_img').attr('src', '/public/group/' + data.fileName);
+            $("#group_img").css({"background-image":`url(/public/group/${data.fileName})`}); 
+            $("#group_img").css({"background-size":`700px 70px`});
+            
         })
     }
    
@@ -152,44 +167,49 @@
 
 </head>
 <body>
-
-    <nav>
-
-    </nav>
+    <div id="wrapper">
+        
 
     <div class="whole_container">
-    <h2>스터디 등록</h2>
+    <h2>스터디 등록📌</h2>
     <br>
     <div class="feed_container">
     <form id="feed_info" class="form_container" enctype="multipart/form-data">
             <div class="context_container">
                 
                 <div class="form-row">
-                    <div>
-                    <!-- 그룹 프로필 이미지  -->
                     <div class="group" id="group_img_upload">
-                        <label class="groupImgLabel" for="groupImg">click in this area. select your group image.</label>
-                        <input type="file" id='groupImg' name="studyImage" onchange="uploadFile( this )" style="display:none;">
-                        <img id = 'group_img'>
+                            <div id="group_img">
+                            <label class="groupImgLabel" for="groupImg">
+                                <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br>click!</label>
+                        </div>
                     </div>
-                    </div>
+
+
                 </div>
                 <div class="form-row">
-                    <div class="name">스터디명</div>
-                    <div class="value">
-                    <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요." required></div>
+                    <div class="name">스터디명&nbsp;&nbsp;&nbsp;</div>
+                    <div class="value"> 
+                    <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요." maxlength="20" required></div>
                 </div>
                 <div class="form-row">
                     <div class="name">카테고리 <br><span style="font-size: 0.7rem;">*카테고리를 선택해주세요.</span></div>
                     <div class="value">
                     <ul>
-                        <li><input type="radio" name="studyCategory" value="언어" required>언어</li>
-                        <li><input type="radio" name="studyCategory" value="자격증">자격증</li>
-                        <li><input type="radio" name="studyCategory" value="취업">취업</li>
-                        <li><input type="radio" name="studyCategory" value="IT">IT</li>
-                        <li><input type="radio" name="studyCategory" value="취미">취미</li>
-                        <li><input type="radio" name="studyCategory" value="인증">인증</li>
-                        <li><input type="radio" name="studyCategory" value="공모전">공모전</li>
+                        <li class="radio-btn"><input type="radio" id="category1" name="studyCategory" value="언어" required>
+                            <label for="category1">언어</label></li>
+                        <li class="radio-btn"><input type="radio" id="category2" name="studyCategory" value="자격증">
+                            <label for="category2">자격증</label></li>
+                        <li class="radio-btn"><input type="radio" id="category3" name="studyCategory" value="취업">
+                            <label for="category3">취업</label></li>
+                        <li class="radio-btn"><input type="radio" id="category4" name="studyCategory" value="IT">
+                            <label for="category4">IT</label></li>
+                        <li class="radio-btn"><input type="radio" id="category5" name="studyCategory" value="취미">
+                            <label for="category5">취미</label></li>
+                        <li class="radio-btn"><input type="radio" id="category6" name="studyCategory" value="인증">
+                            <label for="category6">인증</label></li>
+                        <li class="radio-btn"><input type="radio" id="category7" name="studyCategory" value="공모전">
+                            <label for="category7">공모전</label></li>
                     </ul>
                     </div>
                 </div>
@@ -208,21 +228,20 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="name">모집인원</div>
+                    <div class="name">모집인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                     <div class="value">
-                    <input type="text" id="studyRecruit" name="studyRecruit" style="width: 40px;" required>명
+                    <input type="text" id="studyRecruit" name="studyRecruit" style="width: 40px;" required>&nbsp;명
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="name">스터디 소개글</div>
                     <div class="value">
-                        <!-- <input type="textarea" placeholder="스터디 소개글을 적어주세요." name="studyContent"> -->
-                        <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;" required></textarea>
+                        <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;" maxlength="20" required></textarea>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="name">스터디 기간</div>
-                    <ul>
+                    <ul class="period">
                     <li><div class="value">
                     시작일: <input type="hidden" name="start_period">
                     <select id="start_year" name="start_year" required>
@@ -279,16 +298,35 @@
 
             <div class="form-row">
                 <div class="name">해시태그</div>
-                <div class="value"><input class="input_text" type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요" name="hashTag" onkeypress="show_hashtag(event)"><p><sapn id="enter_hashtag" name="enter_hashtag"></sapn></p></div>
+                <div class="value"><input class="input_text" type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요." name="hashTag" onkeypress="show_hashtag(event)">
+                    <p>
+                        <span id="enter_hashtag" name="enter_hashtag"></span>
+                    </p>
+                </div>
             </div>
             <br><br>
             <div class="warningDiv"></div>
+            <br><br>
+
             <button class="writebutton" type="button" onclick="writeFeed();">스터디 등록</button>
+            <button class="cancelebutton" type="button" onclick="cancelFeed();">취소/닫기</button>
                 </div>
             </div>
     </form>
 </div>
-</div>
 
+
+
+<footer>
+    <div id="footer" class="footer">
+    <div class="footer_logo">    
+        <img width="60" height="30" src="../public/login/logo.png" alt="footer_logo">
+        <a href="index.js"></a>
+    </div>
+    <br>
+    <p style="font-size:x-small;"class="copyright">Copyright 2022. Swith. All Rights Reserved.</p>
+    </div>
+</footer>
+</div>
 </body>
 </html>
