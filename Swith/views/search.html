@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyWITH</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/public/css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="../public/css/search.css" />
+
+  <!-- swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+  <script>
+
+    function mainSearch() {
+        var form = document.getElementById('search_form');
+        var search = $("#search").val();
+        axios({
+            method: 'get', 
+            url: 'http://localhost:8000/swith/search', 
+            params : {
+                search : search
+            }
+        })
+        .then((req) => {return req.data;})
+        .then((data) => {
+            if (data == '') {
+                alert("검색어를 입력해주세요🤔 ");
+                return
+            }
+            console.log(data) // 검색해온 study 정보들 data로 받아옴
+        })
+    }
+
+    function goCategory() {
+        document.location.href='http://localhost:8000/swith/search';
+    }
+
+  </script>
+</head>
+
+<body>
+    <section class="search_bar">
+        <form>
+        <div>
+            <div>
+                <span>스터디 이름 :</span>
+                <input type="text" name="search" id='search' class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black">
+                <span>모집인원 :</span>
+                <input type="radio" name="memberNum">2~3명
+                <input type="radio" name="memberNum">4~6명
+                <input type="radio" name="memberNum">7명이상
+
+                <br><br>
+                <div class="form-row">
+                    <div class="name">스터디 기간</div>
+                    <ul>
+                    <li><div class="value">
+                    시작일: <input type="hidden" name="start_period">
+                    <select id="start_year" name="start_year" required>
+                        <option>
+                            <%for(var i=2022; i<=2050; i++) {%>
+                                <option value="<%=i%>"><%=i%></option>
+                            <%}%>
+                        </option>
+                    </select>년
+                    <select id="start_month" name="start_month" required>
+                        <option>
+                            <%for(var j=1; j<=12; j++) {%>
+                                <option value="<%=j%>"><%=j%></option>
+                            <%}%>
+                        </option>
+                    </select>월
+                    <select id="start_day" name="start_day" required>
+                        <option>
+                            <%for(var k=1; k<=31; k++) {%>
+                                <option value="<%=k%>"><%=k%></option>
+                            <%}%>
+                        </option>
+                    </select>일
+                    </div>
+                    </li>
+
+                    <li>
+                    <div class="value">
+                    종료일: <input type="hidden" name="end_period">
+                    <select id="end_year" name="end_year" required>
+                        <option>
+                            <%for(var i=2022; i<=2050; i++) {%>
+                                <option value="<%=i%>"><%=i%></option>
+                            <%}%>
+                        </option>
+                    </select>년
+                    <select id="end_month" name="end_month" required>
+                        <option>
+                            <%for(var j=1; j<=12; j++) {%>
+                                <option value="<%=j%>"><%=j%></option>
+                            <%}%>
+                        </option>
+                    </select>월
+                    <select id="end_day" name="end_day" required>
+                        <option>
+                            <%for(var k=1; k<=31; k++) {%>
+                                <option value="<%=k%>"><%=k%></option>
+                            <%}%>
+                        </option>
+                    </select>일
+                    </li>
+                </div>
+            </ul>
+            </div>
+        </div>
+        </form>
+    </section>
+
+    <section>
+        <h2>" " 검색 결과입니다.</h2> <br><br>
+        <div class="search_Result">
+            <div>
+                <img src="../public/search/computer.jpeg" alt="">
+                <span>
+                    <h3>컴퓨터/IT</h3>
+                    <p>스터디기간</p>
+                </span>
+            </div>
+            <div>
+                <img src="../public/search/computer.jpeg" alt="">
+                <span>
+                    <h3>컴퓨터/IT</h3>
+                    <p>스터디기간</p>
+                </span>
+            </div>
+            <div>
+                <img src="../public/search/computer.jpeg" alt="">
+                <span>
+                    <h3>컴퓨터/IT</h3>
+                    <p>스터디기간</p>
+                </span>
+            </div>
+            <div>
+                <img src="../public/search/computer.jpeg" alt="">
+                <span>
+                    <h3>컴퓨터/IT</h3>
+                    <p>스터디기간</p>
+                </span>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
+
