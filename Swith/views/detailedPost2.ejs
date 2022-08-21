@@ -46,86 +46,84 @@
     <nav>
 
     </nav>
-        <tbody>
-            <br>
-            <div class="container">
-                <form id="deatailPost" name="deatailPost">
-                    <!-- <div class="CategoryImage" style="color:white;"> -->
-                        <br>
+    <tbody>
+        <div class="cont">
+            <form id="deatailPost" name="deatailPost">
+                <!-- <div class="CategoryImage" style="color:white;"> -->
+                <div class="img_box">
                         <!-- 카테고리별 이미지 -->
                         <div class="CategoryImage">
                             <!-- 카테고리별 임시 이미지 저장 밑에 path에 저장해서 사용하세요-->
-                            <img src="/public/categoty" width="1200" height="300" style="border-radius:15px;">
+                            <!-- <img src="/public/category" height="300" style="border-radius:15px;"> -->
                         </div>
-                    </div>
-                    <br>
-                    <br>
-                    <!-- 스터디 이미지(등록이미지)  -->
-                    <!-- <div class="studyImage" style="color:white;">  -->              
-                        <div class="studyImage">
-                            <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아요!-->
-                            <% if(locals.result[0]) { %>
+
+
+                        <!-- 스터디 이미지(등록이미지)  -->
+                        <!-- <div class="studyImage" style="color:white;">  -->              
+                        <div class="studyImage"> 
+                            <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
+                            <!-- <% if(locals.result[0]) { %>
                                 <img src="/public/user/<%= result[0].study_image%>" width="1000" height="300" style="border-radius:15px;">
                             <% } else { %>
                                 <img src="/public/user/<%= result.study_image%>" width="1000" height="300" style="border-radius:15px;">
-                            <% } %> 
-                        </div>    
-                        
-                        <br>
-                        <br>
-                        <!-- 스터디 이름 -->
-                    <div>
-                        <!-- <div class="studyName"> -->
-                            <p class="studyName">스터디 이름</p>
-                                <% if(locals.result[0]) { %>
+                            <% } %>  --> 
+                            <!-- 스터디 이름 -->
+                            <div class="studyName">
+                                <p class="studyName_2">
+                                <!-- <% if(locals.result[0]) { %> -->
                                     <span class="studyName_txt"><%= result[0].study_name %></span>
                                 <% } else { %>
                                     <span class="studyName_txt"><%= result.study_name %></span>
                                 <% } %>   
+                                </p>
+                                <!-- <ul>
+                                    <li>장소</li>
+                                    <li>모임시간</li>
+                                    <li>첫 모임일</li>
+                                </ul> -->
+                            </div>
                         </div>
-                        <!-- <div>
-                            <ul>
-                                <li>장소</li>
-                                <li>모임시간</li>
-                                <li>첫 모임일</li>
-                            </ul>
-                        </div> -->
-                    </div>
-                    <br>
-                    <br>
-                    <br>
+                </div>    
+            
+                <div class="section_box">
                     <div>
-                        <span class="studyContent_text">스터디 소개글</span>
+                        <h4 class="studyContent_text">스터디 소개글</h4>
                         <!-- <hr class="dotted"> -->
-                        <% if(locals.result[0]) { %>
-                            <span class="studyContent"><%= result[0].study_content %></span>
-                        <% } else { %>
-                            <span class="studyContent"><%= result.study_content %></span>
-                        <% } %> 
-                    </div>        
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <div>
-                        <span class="studyhashtag_text">해시태그</span>
-                        <% if(locals.result[0]) { %>
+                        <p>
+                            <!-- <% if(locals.result[0]) { %> -->
+                                <span class="studyContent"><%= result[0].study_content %></span>
+                            <!-- <% } else { %>
+                                <span class="studyContent"><%= result.study_content %></span>
+                            <% } %> -->
+                        </p>
+                        
+                    </div> 
+                    
+
+                    <div class="page_flexbox">
+                        <h6 class="page_txt">
+                            <span class="studyhashtag_text">해시태그</span>    
+                        </h6>
+
+                        <div class="page_infobox">
+                        <!-- <% if(locals.result[0]) { %> -->
                             <span class="hashTag"><%= result[0].hashtag %></span>
-                        <% } else { %>
+                        <!-- <% } else { %>
                             <span class="hashTag"><%= result.hashtagt %></span>
-                        <% } %> 
+                        <% } %>  -->
+                            <!-- <span class="hashTag">Qlfhfhd</span> -->
+                        </div>
+                        
                     </div>  
-                    <br>
-                    <br>
-                    <br>
+                    
+                    
                     <div>
-                        <span class="userImage_text">스터디 현재멤버</span>
+                        <span class="userImage_text page_txt">스터디 현재멤버</span>
 
                         <div class="userImage_box">
                             <div class="userImage">
                                 <!-- 스터디 멤버 이미지 -->
-                                <!-- for문 사용해서 user_name length만큼 반복하고, 사진이랑 이름 가져오기-->
+                                <!-- for문 사용해서 user의 length만큼 반복하면서 사진이랑 이름 가져오기-->
                                 <!-- css가 없어서 화면에서 안보이네요. 검사로 보면 데이터 잘 가져오는 것 같아요!-->
                                     <% if(locals.result[0]) { %>
                                         <% for(var i=0; i < result.length; i++) { %>
@@ -141,9 +139,8 @@
                             <% } %>
                         </div>     
                     </div>
-                    <br>
-                    <br>
-                    <br>
+                    
+                    
                     <div>
                         <span class="studyForm_text">스터디 형태</span>
                         <div class="studyForm">
@@ -155,20 +152,18 @@
                         </div>  
                         <!--  -->
                     </div>
-                    <br>
-                    <br>
-                    <br>
+
                     <div>
                         <span class="studyAddress_text">스터디위치</span>
-                    <div class="studyAddress">    
-                        <% if(locals.result[0]) { %>
-                            <span ><%= result[0].study_address %></span>
-                        <% } else { %>
-                            <span ><%= result.study_address %></span>
-                        <% } %>
-                    </div>    
+                        <div class="studyAddress">    
+                            <% if(locals.result[0]) { %>
+                                <span ><%= result[0].study_address %></span>
+                            <% } else { %>
+                                <span ><%= result.study_address %></span>
+                            <% } %>
+                        </div>    
                     </div>
-                    <br>
+                    
                     <div>
                         <span class="studyRecruit_text">모집인원</span>
                         <div cass="studyRecruit">
@@ -196,15 +191,14 @@
                             <% } %>
                         </div>
                     </div>
-                    <br>
+
                     <button type="button" onclick="detailed()" class="detail" style="color:white">탈퇴하기</button>
 
                     <div>
                         <div id="ture" class="ture"></div>
                         <div id="back" class="back"></div>
                     </div>
-                    <br>
-                    <br>
+                    
                     <div>
                         <span>등록가능</span>
                         <span>마감</span>
