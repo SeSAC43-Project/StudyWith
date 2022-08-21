@@ -7,12 +7,15 @@
     font-family: "GS_bold";
 }
 
-html {
+html,body {
     background-color: #4686c2;
+    margin: 0;
+    padding: 0;
 
 }
 body {
   height: 100%;
+  width: 100%;
 }
 .whole_container {
   box-sizing: border-box;
@@ -113,6 +116,43 @@ form:after {
     width:700px;
     height:100px;
   }
+
+   /* 온/오프 라디오 */
+
+  #on_off {
+    padding: 15px 10px;
+  }
+
+  #on_off input[type=radio] {
+    display: none;
+  }
+
+  #on_off input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 25px;
+    width: 90px;
+    border: 1px #4686C2;
+    border-radius: 3px;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:16px;
+    align-items: center;
+}
+
+#on_off input[type=radio]:checked+label{
+  background-color: #4686c2;
+  color: #fff;
+}
+
+#on_off input[type=radio]+label:hover {
+  color:#5aa5eb;
+}
+
+
+
+
 
   /* .group label {
     width: 700px;
@@ -336,10 +376,11 @@ form:after {
   width: 100%;
   background-color: rgb(241, 242, 244);
   text-align: center;
-  padding: 10px;
-  margin: auto;
+  /* padding: 10px;
+  margin: auto; */
 }
 footer {
+  width: 100%;
   position:relative;
   bottom:0;
   height:30px;
