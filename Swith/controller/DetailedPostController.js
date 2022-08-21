@@ -71,7 +71,7 @@ exports.get_editgroup =  (req, res) => {
 exports.delete_leavegroup =  (req, res) => {
 
     models.Studymember.destroy({ where: { 
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
         study_id: req.body.study_id } })
     .then((result) => {
         res.send("탈퇴완료");
@@ -82,7 +82,7 @@ exports.delete_leavegroup =  (req, res) => {
 exports.post_joingroup =  (req, res) => {
 
     let object = {
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
         study_id: req.body.study_id
     };
 

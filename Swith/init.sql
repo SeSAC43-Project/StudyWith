@@ -28,8 +28,8 @@ CREATE TABLE studygroup (
     study_address VARCHAR(50), -- 오프라인일 경우 주소
     study_image VARCHAR(100) NOT NULL, -- 그룹 프로필 이미지
     study_content MEDIUMTEXT NOT NULL, -- 그룹 소개
-    start_period DATETIME NOT NULL, -- 그룹 시작일
-    end_period DATETIME NOT NULL, -- 그룹 종료일 
+    start_period DATE NOT NULL, -- 그룹 시작일
+    end_period DATE NOT NULL, -- 그룹 종료일 
     study_regdate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 그룹 게시물 등록 날짜
     hashtag MEDIUMTEXT, -- 해시태그 (#으로 구분)
     study_views INT DEFAULT 0 -- 조회수

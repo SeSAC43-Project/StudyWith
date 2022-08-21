@@ -41,11 +41,11 @@ const Studygroup = (Sequelize, DataTypes) => {
                 allowNull: false,
             },
             start_period: {
-                type: DataTypes.DATE,
+                type: DataTypes.DATEONLY,
                 allowNull: false,
             },
             end_period: {
-                type: DataTypes.DATE,
+                type: DataTypes.DATEONLY,
                 allowNull: false,
             },
             study_regdate: {
