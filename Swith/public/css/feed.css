@@ -11,11 +11,14 @@ html {
     background-color: #4686c2;
 
 }
-
+body {
+  height: 100%;
+}
 .whole_container {
   box-sizing: border-box;
   position: relative;
   margin-top: 10%;
+  bottom:100px;
 }
 
 .feed_container, h2 {
@@ -34,8 +37,7 @@ form {
 	background: white;
 	border-radius: .4em;
     width: 900px;
-    height: 1200px;
-    /* height: auto; */
+    height: 1300px;
     text-align: center;
     box-sizing: border-box;
 
@@ -43,10 +45,11 @@ form {
 ul {
     list-style: none;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: space-between;
     align-items: center;
     padding-left: 0;
-    /* flex-direction: column; */
+    flex-wrap: wrap;
 }
 
 .form_container {
@@ -89,9 +92,6 @@ form:after {
     width: 100%;
 }
 
-.form-row:first-child {
-  padding-bottom:10%;
-}
 .name {
     width: 200px;
     color: #333;
@@ -114,12 +114,11 @@ form:after {
     height:100px;
   }
 
-  .group label {
+  /* .group label {
     width: 700px;
     height: 100px;
     border: 3px dashed;
     border-color: #4686C2;
-    /* border-radius: 50px 50px 50px 50px; */
     position: absolute;
     top: 0;
     bottom: 50%;
@@ -135,7 +134,7 @@ form:after {
   }
   .group label:active {
     background-color: #4686C2;
-  }
+  } */
   .group input[type="file"] {
     /* position: absolute;
     width: 1px;
@@ -185,10 +184,174 @@ form:after {
     font-size: 1.4rem;
   }
 
-  body {
-    font-family: "GS_bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  .cancelebutton {
+    background-color: lightgrey;
+    color:black;
+    width:250px;
+    height:50px;
+    border:0;
+    border-radius: 5px;
+    font-size: 1.4rem;
   }
+
+  .writebutton:hover, .cancelebutton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  /* body {
+    font-family: "GS_bold", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; 
+  } */
 
   input[type="button"], button:hover {
     cursor: pointer;
   }
+
+  input[type="radio"], label:hover {
+    cursor: pointer;
+    
+  }
+
+  .radio-btn {
+    width:70px;
+    height:40px;
+    border: 1px solid #4686C2;
+    border-radius:3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+  }
+
+  .radio-btn input[type=radio] {
+    display: none;
+  }
+
+  .radio_btn label {
+      border-radius: 10px;
+      margin: auto;
+      text-align: center;
+
+  }
+  .radio-btn input[type=radio]:checked + label {
+    background-color: #4686C2;
+    color:white;
+    width:70px;
+    height:40px;
+    border: 1px solid #4686C2;
+    border-radius:3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap;
+  }
+
+  .radio-btn label:hover {
+    color:#4686C2;
+  }
+
+.period {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 9;
+  
+}
+
+#start_year , #end_year {
+  width:100px;
+  height: 30px;
+  text-align: center;
+}
+
+#start_month , #end_month {
+  width:50px;
+  height: 30px;
+  text-align: center;
+}
+
+#start_day , #end_day {
+  width:50px;
+  height: 30px;
+  text-align: center;
+}
+
+/* 그룹이미지 */
+
+.group input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+#group_img_upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+#group_img {
+  width: 700px;
+  height: 70px;
+  border: 3px dashed;
+  border-color: #4686C2;
+  position: absolute;
+  margin: auto;
+  text-align: center;
+  top:-10px;
+}
+
+#group_img:hover{
+  cursor:pointer;
+  background-color: #4686C2;
+}
+#group_img:active {
+  background-color: #4686C2;
+} 
+
+/* 
+.deleteHashtag {
+  background:none;
+  color:red;
+  border: none;
+} */
+
+
+
+/* header */
+
+
+
+/* footer */
+#wrapper {
+    height: 100%;
+}
+#footer {
+  width: 100%;
+  background-color: rgb(241, 242, 244);
+  text-align: center;
+  padding: 10px;
+  margin: auto;
+}
+footer {
+  position:relative;
+  bottom:0;
+  height:30px;
+  transform: translateY(-100%);  
+
+}
+#footer>a {
+  cursor: pointer;
+}
+.footer_logo {
+  cursor: pointer;
+}
+.copyright {
+  margin-top: 5px;
+}
