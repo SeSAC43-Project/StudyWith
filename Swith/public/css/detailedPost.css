@@ -61,19 +61,20 @@
     opacity: 8;
     border-radius: 15px;
     margin-top:15rem;
+    margin-left: 60px;
 }
 
-.studyName_txt {
+.studyName_txt, .studyContent_text {
     align-items: center;
     text-align: center;
     justify-content: center;
-    margin-left: 550px;
+    margin-left: 670px;
     margin-top: -50px;
     position: absolute;
 }
 
 /* 텍스트 문구  */ /* 수정중 */
-.studyContent_text, .userImage_text, .studyForm_text,
+.studyhashtag_text ,.userImage_text, .studyForm_text,
 .studyAddress_text, .period_text {
     color: #333;
     padding-top: 5ch;
@@ -93,7 +94,7 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     border:none;
     color:#fff;
     position: absolute;
