@@ -22,20 +22,24 @@
 
   <script>
 
-    function search() {
+    function mainSearch() {
         var form = document.getElementById('search_form');
-        axios ({
-                method:'post',
-                url: "http://localhost:8000/swith",
-                data: {
-                     : form.search.value,
-                }
-                })
-                .then((req) => { return req.data;})
-                .then((data) => {                  
-                        document.location.href="http://localhost:8000/";
-                    }
-                )
+        var search = $("#search").val();
+        axios({
+            method: 'get', 
+            url: 'http://localhost:8000/swith/search', 
+            params : {
+                search : search
+            }
+        })
+        .then((req) => {return req.data;})
+        .then((data) => {
+            if (data == '') {
+                alert("검색어를 입력해주세요🤔 ");
+                return
+            }
+            console.log(data) // 검색해온 study 정보들 data로 받아옴
+        })
     }
 
     function goCategory() {
@@ -67,8 +71,8 @@
                 
                 <form id="search_form">
                     <div class="in-line">
-                        <input type="text" name="search" class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black" />
-                        <input type="button" class="search_button" value="🔍" onclick="search()">
+                        <input type="text" name="search" id='search' class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black" />
+                        <input type="button" name="search_button" class="search_button" value="🔍" onclick="mainSearch()">
                     </div>
                     <!-- <button type="submit" class="search_button">🔍</button> -->
                 </form>
