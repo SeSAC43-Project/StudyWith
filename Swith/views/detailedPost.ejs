@@ -96,6 +96,17 @@
                     <br>
                     <br>
                     <div>
+                        <span class="studyContent_text">해시태그</span>
+                        <% if(locals.result[0]) { %>
+                            <span class="hashTag"><%= result[0].hashtag %></span>
+                        <% } else { %>
+                            <span class="hashTag"><%= result.hashtagt %></span>
+                        <% } %> 
+                    </div>  
+                    <br>
+                    <br>
+                    <br>      
+                    <div>
                         <span class="userImage_text">스터디 현재멤버</span>
 
                         <div class="userImage_box">
