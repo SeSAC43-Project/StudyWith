@@ -198,7 +198,12 @@
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2); 
   /* transform: translateY(-10px); */
   cursor: pointer;
+  /* transform: scale(1.05); */
 }
+/* .user-text img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+} */
 .user-text a {
   display: block;
   font-size: 13px;
@@ -244,4 +249,104 @@
   100% {
     margin-top: 0px;
   }
+}
+
+/* ==========================================메인 세번째 페이지====================================== */
+
+.container_third {
+  width: 100%;
+  height: 100vh;
+  /* background: #2b323c; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  /* padding: 0 8%; */
+}
+.container_third h1 {
+  text-align: center;
+  padding-top: 10%;
+  margin-bottom: 60px;
+  font-weight: 600;
+  position: relative;
+}
+.container_third h1 span {
+  color: #f5d17c;
+}
+/* .container_third h1::after {
+  content: '';
+  background: #4686C2;
+  width: 100px;
+  height: 5px;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 30px;
+  padding: 50px;
+}
+.service {
+  text-align: center;
+  padding: 25px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+  transition: transform 0.5s background 0.5s;
+}
+.service i {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #57a8f5;
+}
+.service h2 {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.service:hover {
+  background: #57a8f5;
+  color: #fff;
+  transform: scale(1.05);
+}
+.service:hover i {
+  color: #fff;
+}
+
+/* ==========================================메인 네번째 페이지====================================== */
+.last_container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.last_row {
+  display: flex;
+  height: 88%;
+  align-items: center;
+  padding-right: 8%;
+}
+.pick {
+  flex-basis: 50%;
+  text-align: center;
+}
+.pick h1 {
+  color: #f5d17c;
+  font-size: 100px;
+}
+.feed {
+  width: 200px;
+  height: 200px;
+  /* display: inline-block; */
+  border-radius: 10px;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 10px 15px;
+  background-image: url(); 
+  /* 게시물 등록 이미지 데이터 받아 와야 함.. */
+  background-position: center;
+  background-size: cover;
+  background-color: #4686C2;
 }

@@ -7,6 +7,8 @@
   <title>Document</title>
 
   <link rel="stylesheet" href="../Swith/main.css">
+
+  <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
     
     <script>
         function mainSearch() {
@@ -27,6 +29,10 @@
                 }
                 console.log(data) // 검색해온 study 정보들 data로 받아옴
             })
+        }
+
+        function goCategory() {
+            document.location.href="http://localhost:8000/swith/search";
         }
     </script>
 
@@ -115,5 +121,106 @@
 
     
      <!-- ==========================================메인 세번째 페이지======================================  -->
+
+     <div class="container_third">
+        <h1>SWITH에는 &nbsp;<span class="auto-type">컴퓨터/IT</span>&nbsp;&nbsp;스터디그룹이 있어요 💁🏼‍♂️ </h1>
+        <div class="row">
+            <div class="service" onclick="goCategory()">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h2>컴퓨터/IT</h2>
+                <p>개설된 모임 : 개</p>   
+                <!-- 개설된 모임 개수 구하는 로직 짜야함... -->
+            </div>
+            <div class="service" onclick="goCategory()">
+                <i class="fa-solid fa-language"></i>
+                <h2>언어</h2>
+                <p>개설된 모임 : 개</p>
+            </div>
+            <div class="service" onclick="goCategory()">
+                <i class="fa-solid fa-award"></i>
+                <h2>자격증</h2>
+                <p>개설된 모임 : 개</p>
+            </div>
+            <div class="service" onclick="goCategory()">
+                <i class="fa-solid fa-bars-progress"></i>
+                <h2>인증</h2>
+                <p>개설된 모임 : 개</p>
+            </div>
+            <br><br>
+            <div class="service" onclick="goCategory()">
+                <i class="fa-solid fa-briefcase"></i>
+                <h2>취업/이직</h2>
+                <p>개설된 모임 : 개</p>
+            </div>
+            <div class="service" onclick="goCategory()">
+                <i class="fa-solid fa-trophy"></i>
+                <h2>공모전</h2>
+                <p>개설된 모임 : 개</p>
+            </div>
+            <div class="service" onclick="goCategory()">
+                <i class="fa-solid fa-bicycle"></i>
+                <h2>취미</h2>
+                <p>개설된 모임 : 개</p>
+            </div>
+        </div>
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+     <script>
+        var typed = new Typed(".auto-type", {
+            strings: ["언어" , "자격증", "인증", "취업/이직", "공모전", "취미"],
+            typeSpeed: 150,
+            backSpeed: 150,
+            loop: true
+        })
+     </script>
+
+     <!-- ==========================================메인 네번째 페이지======================================  -->
+     <div class="last_container">
+        <div class="last_row">
+            <div class="pick">
+                <h1>PICK YOUR FAVORITE</h1>
+            </div>
+            <div class="pick">
+                <div class="feed">
+                    <h5>스터디 제목</h5>
+                    <p>스터디 기간</p>
+                </div>
+            </div>
+            <div class="pick">
+                <div class="feed">
+                    <h5>스터디 제목</h5>
+                    <p>스터디 기간</p>
+                </div>
+            </div>
+            <div class="pick">
+                <div class="feed">
+                    <h5>스터디 제목</h5>
+                    <p>스터디 기간</p>
+                </div>
+            </div>
+            <br><br>
+            <div class="pick">
+                <div class="feed">
+                    <h5>스터디 제목</h5>
+                    <p>스터디 기간</p>
+                </div>
+            </div>
+            <div class="pick">
+                <div class="feed">
+                    <h5>스터디 제목</h5>
+                    <p>스터디 기간</p>
+                </div>
+            </div>
+            <div class="pick">
+                <div class="feed">
+                    <h5>스터디 제목</h5>
+                    <p>스터디 기간</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
