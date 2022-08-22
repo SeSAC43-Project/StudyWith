@@ -157,19 +157,19 @@
                         <div class = "category-title active" id = "all">
                             <li>전체</li>
                         </div>
-                        <div class = "category-title" id = "culture">
+                        <div class = "category-title" id = "computer">
                             <li>컴퓨터/IT</li>
                         </div>
-                        <div class = "category-title" id = "politics">
+                        <div class = "category-title" id = "language">
                             <li>언어</li>
                         </div>
-                        <div class = "category-title" id = "finance">
+                        <div class = "category-title" id = "certificate">
                             <li>자격증</li>
                         </div>
-                        <div class = "category-title" id = "business">
+                        <div class = "category-title" id = "confirm">
                             <li>인증</li>
                         </div>
-                        <div class = "category-title" id = "sports">
+                        <div class = "category-title" id = "work">
                             <li>취업/이직</li>
                         </div>
                     </ul>
@@ -177,16 +177,15 @@
 
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
 
-                <div class = "posts-collect">
-                    <div class = "posts-main-container">
+                <div class = "feed-collect">
+                    <div class = "feed-main-container">
                         <!-- single post -->
                         <div class = "all business">
                             <div class = "post-img">
                                 <img src = "/public/search/조회페이지(컴퓨터).jpeg" alt = "post">
-                                <span class = "category-name">컴퓨터/IT</span>
                             </div>
                             <div class = "post-content">
-                                <h2>스터디제목</h2>
+                                <h2><%=data[0].study_name %></h2>
                                 <p>모집인원</p>
                             </div>
                         </div>
@@ -195,10 +194,9 @@
                         <div class = "all business">
                             <div class = "post-img">
                                 <img src = "/public/search/조회페이지(컴퓨터).jpeg" alt = "post">
-                                <span class = "category-name">컴퓨터/IT</span>
                             </div>
                             <div class = "post-content">
-                                <h2>스터디제목</h2>
+                                <h2><%=data[0].study_name %></h2>
                                 <p>모집인원</p>
                             </div>
                         </div>
@@ -207,26 +205,14 @@
                         <div class = "all business">
                             <div class = "post-img">
                                 <img src = "/public/search/조회페이지(컴퓨터).jpeg" alt = "post">
-                                <span class = "category-name">컴퓨터/IT</span>
                             </div>
                             <div class = "post-content">
-                                <h2>스터디제목</h2>
+                                <h2><%=data[0].study_name %></h2>
                                 <p>모집인원</p>
                             </div>
                         </div>
                         <!-- end of single post -->
-                        <!-- single post -->
-                        <div class = "all business">
-                            <div class = "post-img">
-                                <img src = "/public/search/조회페이지(컴퓨터).jpeg" alt = "post">
-                                <span class = "category-name">컴퓨터/IT</span>
-                            </div>
-                            <div class = "post-content">
-                                <h2><%=data[0].study_name %> </h2>
-                                <p>모집인원 : </p>
-                            </div>
-                        </div>
-                        <!-- end of single post -->
+                        
                        
                     </div>
                 </div>

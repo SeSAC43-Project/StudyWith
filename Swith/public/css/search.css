@@ -82,17 +82,7 @@ form input::file-selector-button {
   margin: 0 auto;
   padding: 40px 0;
 }
-.main-container > h2{
-  text-align: center;
-  padding: 10px 0;
-  font-size: 32px;
-}
-.main-container > p{
-  font-weight: 300;
-  padding: 10px 0;
-  opacity: 0.7;
-  text-align: center;
-}
+
 .category-head{
   margin: 30px 0;
 }
@@ -106,9 +96,9 @@ form input::file-selector-button {
   flex: 0 0 calc(16.6667% - 10px);
   display: flex;
   justify-content:center;
-  background: #a8a8a8;
+  /* background: #a8a8a8; */
   padding: 12px;
-  color: #fff;
+  /* color: #fff; */
   margin: 5px;
   cursor: pointer;
   transition: all 0.4s ease;
@@ -125,12 +115,12 @@ form input::file-selector-button {
 
 /** single post **/
 
-.posts-main-container{
+.feed-main-container{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 40px;
 }
-.posts-main-container > div{
+.feed-main-container > div{
   box-shadow: 0px 8px 22px -12px rgba(0, 0, 0, 0.64);
 }
 .post-img{
@@ -145,22 +135,6 @@ form input::file-selector-button {
   color: #fff;
   padding: 4px 10px;
   border-radius: 2px;
-}
-
-.business .category-name{
-  background: #00a7ea;
-}
-.culture .category-name{
-  background: #f03250;
-}
-.politics .category-name{
-  background: #f0544f;
-}
-.finance .category-name{
-  background: #2c2a4a;
-}
-.sports .category-name{
-  background: #a1e44d;
 }
 
 
@@ -224,7 +198,7 @@ form input::file-selector-button {
 /***********/
 
 .active{
-  background: #f0544f;
+  background: #4686C2;
 }
 
 
