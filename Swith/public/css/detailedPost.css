@@ -163,6 +163,11 @@ form {
     padding:10px 0 10px 0;
 }
 
+/* 기간 간격 설정 */
+.period_box {
+    padding: 20px 20px;
+    word-spacing: 20px;
+}
 
 /* 탈퇴하기 버튼 */
 .detail {
