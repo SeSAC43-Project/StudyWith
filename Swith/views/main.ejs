@@ -17,25 +17,12 @@
 
   <script>
 
-    // function mainSearch() {
-    //     var form = document.getElementById('search_form');
-    //     var search = $("#search").val();
-    //     axios({
-    //         method: 'get', 
-    //         url: 'http://localhost:8000/swith/search', 
-    //         params : {
-    //             search : search
-    //         }
-    //     })
-    //     .then((req) => {return req.data;})
-    //     .then((data) => {
-    //         if (data == '') {
-    //             alert("검색어를 입력해주세요🤔 ");
-    //             return
-    //         }
-    //         console.log(data) // 검색해온 study 정보들 data로 받아옴
-    //     })
-    // }
+    function mainSearch() {
+        var form = document.getElementById('search_form');
+        var search = $("#search").val();
+        
+        form.submit();
+    }
 
     function goCategory() {
         document.location.href='http://localhost:8000/swith/search';
