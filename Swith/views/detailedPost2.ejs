@@ -63,6 +63,8 @@
                         <div class="img_box">
                             <!-- 카테고리별 이미지 -->
                             <div class="CategoryImage">
+                                <img src="/public/image/mainYour.png">
+                                <!-- <img src="/Swith/public/image/mainStudy.png"> -->
                                 <!-- 카테고리별 임시 이미지 저장 밑에 path에 저장해서 사용하세요-->
                                 <!-- <img src="/public/category" height="300" style="border-radius:15px;"> -->
                             </div>
@@ -70,7 +72,8 @@
 
                             <!-- 스터디 이미지(등록이미지)  -->
                             <!-- <div class="studyImage" style="color:white;">  -->              
-                            <div class="studyImage"> 
+                            <div class="studyImage">
+                                <img src="/public/image/mainStudy.png">
                                 <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
                                 <!-- <% if(locals.result[0]) { %>
                                     <img src="/public/user/<%= result[0].study_image%>" width="1000" height="300" style="border-radius:15px;">
@@ -113,17 +116,17 @@
                         <div class="section_box">
                             <div class="name">스터디 현재멤버</div>
                                 <div class="name name_image"> <% if(locals.result[0]) { %>
-                                    <% for(var i=0; i < result.length; i++) { %>
-                                        <img src="/public/user/<%= result[i].user_image%>" width="1000" height="300" style="border-radius:15px;">
+                                    <!-- <% for(var i=0; i < result.length; i++) { %>
+                                        <img src="/public/user/<%= result[i].user_image%>" style="border-radius:15px;">
                                             <% } %>
-                                    <% } %>
+                                    <% } %> -->
                                 </div>
-                                <br>
+                                
                                 <div class="result_txt">
                                 <!-- 닉네임  -->
                                 <% if(locals.result[0]) { %>
                                     <% for(var i=0; i < result.length; i++) { %>
-                                        <span><%= result[i].user_name %></span>
+                                        <p><%= result[i].user_name %></p>
                                     <% } %>
                                 <% } %>
                             </div>
@@ -172,7 +175,7 @@
                                         <% } else { %>
                                     <%= result.start_period %>
                                         <% } %>
-                                
+                                    ~ 
                                     <!-- 마감일 -->
                                     <% if(locals.result[0]) { %>
                                     <%= result[0].end_period %>

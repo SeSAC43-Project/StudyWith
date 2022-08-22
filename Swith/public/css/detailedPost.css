@@ -141,7 +141,6 @@ form {
     margin-top: 20px;
     padding-bottom: 20px;
 }
-
 .name_image {
     width: 120px;
     height: 120px;
@@ -155,7 +154,11 @@ form {
 .result_txt {
     padding: 0 40px;
     text-align: justify;
-
+    position: absolute;
+    float: left;
+    bottom: auto;
+    left: 30px;
+    /* top: 10px */
 }
 
 .value {
