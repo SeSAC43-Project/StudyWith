@@ -91,7 +91,7 @@
 
             // console.log(txt);
             if (event.keyCode == 13) {
-                keyword.innerHTML += '#' + txt;
+                keyword.innerHTML += "<span class='newHashtag'>" + '#' + txt + "</span>";
                 document.getElementById('text_hashtag').value = "";
                 
             }
@@ -169,7 +169,6 @@
 <body>
     <div id="wrapper">
         
-
     <div class="whole_container">
     <h2>스터디 등록📌</h2>
     <br>
