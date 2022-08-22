@@ -58,3 +58,7 @@ exports.post_update = (req, res) => {
     });
 }
 
+// 마이페이지 페이지 렌더링
+exports.mypage_index = (req, res) => {
+    res.render('mypage'); 
+}
