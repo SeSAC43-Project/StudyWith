@@ -6,19 +6,44 @@
 * {
     font-family: "GS_bold";
 }
-
+body {
+    width: 100%;
+    margin : auto;
+}
 /* 전체 컨테이너 */
 .wrap {
     box-sizing: border-box;
+    /* margin: 0 auto; */
     /* margin-top: 40px; */
-    margin: 40px auto 0;
+    /* margin: auto; */
     /* width: 1280px; */
-    padding: 0px;
+    /* padding: 0px; */
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    /* justify-content: center;
+    flex-direction: column; */
     position: relative;
+    padding-left: 150px;
+}
+
+#detailPost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+form {
+    width: 900px;
+    height: 1280px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.box {
+    position: absolute;
+    width: 80%;
 }
 
 .img_box{
@@ -102,92 +127,29 @@
     display: flex;
 }
 
-
-.section_box{
-    width: 1280px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* padding: 40px 100px; */
-}
-
-.studyContent_text {
-    font-size: 40px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    padding: 40px 100px;
-    display: flex;
-    /* margin-left: 580px;
-    margin-top: -50px;
-    position: absolute; */
-}
-
-
-
-.page_flexbox{
+/* 여기서부터 수정중 */
+.section_box {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    align-items:center;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid #e5e5e5;
     width: 100%;
-    display: flex;
-    /* padding: 0 20px; */
-    align-items: center;
-}
-.page_flexbox.column{
-    flex-direction: column;
-}
-/* 텍스트 문구  */ /* 수정중 */
-/* .studyhashtag_text ,.userImage_text, .studyForm_text,
-.studyAddress_text, .period_text { */
-.page_txt{
-    width: 300px;
-    flex: 0 0 auto;
-    color: #333;
-    font-size: 30px;
-    padding-left: 100px;
-    /* margin-left: 100px; */
-}
-.page_infobox{
-    display: flex;
-    justify-content: center;
+
 }
 
 /* 스터디 소개글 */
-.studyContent {
-    /* background-color: #e5eef8; */
+.name {
+    width: 200px;
     color: #333;
-    text-align: center;
-    justify-content: center;
-    display: flex;
+    font-size: 20px;
+    margin-top: 11px;
+    flex-grow:1;
+
 }
 
-/* 해시태그 */
-.hashTag {
-    display: inline-flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    border:none;
-    padding: 0 10px;
-    flex-direction: column;
-}
-
-/* 스터디 멤버 이미지 */
-.userImage_box {
-    /* background-color: #e5eef8; */
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    border: none;
-    color:#fff;
-    margin-top: 20px;
-    padding: 0 100px;
-    width: 100%;
-    /*  */
-}
-
-.userImage {
+.name_image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -197,65 +159,13 @@
     flex: 0 0 auto;
 }
 
-.studyForm {
-    /* background-color: #e5eef8; */
-    color: #333;
-    width: 900px;
-    height: 100px;
-    display: inline-flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    border:none;
-    /* color:#fff; */
-    padding-left: -100px;
+.value {
+    flex-grow:9;
+    padding:10px 0 10px 0;
 }
 
-.studyAddress {
-    /* background-color: #e5eef8; */
-    color: #333;
-    width: 900px;
-    height: 100px;
-    display: inline-flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    border:none;
-    /* color:#fff; */
-}
 
-.studyRecruit {
-    /* background-color: #e5eef8; */
-    color: #333;
-    width: 900px;
-    height: 100px;
-    display: inline-flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    border:none;
-    /* color:#fff; */
-    font-size: 20px;
-}
-
-.period_box {
-    /* background-color: #e5eef8; */
-    color: #333;
-    width: 1100px;
-    height: 100px;
-    display: inline-flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    border:none;
-    
-}
-
-/* 스터디 가입 */
+/* 탈퇴하기 버튼 */
 .detail {
     background-color: #4686C2;
     width: 800px;
@@ -266,9 +176,12 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    
+
+    /* position: relative;
+    left: 100px;
+    top: 20px */
 }
-/* 수정중 */
+
 .ture, .back, .list{
     background-color: #4686C2;
     border-radius: 10px;

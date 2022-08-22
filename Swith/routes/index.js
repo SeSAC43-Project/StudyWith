@@ -39,6 +39,7 @@ UserRouter.get('/find',login.find_index); // 비밀번호 찾기 화면
 UserRouter.post('/find',login.post_find); // 비밀번호 찾기 실행 
 UserRouter.post('/modify',login.post_modify); // 비밀번호 변경 화면
 UserRouter.post('/update', login.post_update); // 비밀번호 변경 실행
+UserRouter.get('/mypage', login.mypage_index); // 마이페이지 화면
 
 /* 회원가입 관련 */
 const signUp = require('../controller/SignUpController');
