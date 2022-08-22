@@ -47,16 +47,39 @@
         document.location.href='http://localhost:8000/swith/search';
     }
 
+    function studySearch {
+        var form = document.getElementById('studySearch_form');
+        var search = $("#search").val();
+
+        axios({
+            method: 'get', 
+            url: 'http://localhost:8000/swith/search', 
+            params : {
+                search : 
+            }
+        })
+        .then((req) => {return req.data;})
+        .then((data) => {
+            console.log(data)
+            for ( var i = 0; i < data.length; i++ ){
+                var html = "<div> 제목 : data.title <br><div> 내용 : data.content </div></div>";
+                $("#content").append(html);
+            }
+        })
+
+    }
+
   </script>
 </head>
 
 <body>
-    <section class="search_bar">
-        <form method="post">
+    <div class="search_bar">
+        <form id="studySearch_form" method="post">
         <div>
             <div>
                 <span>스터디 이름 :</span>
                 <input type="text" name="search" id='search' class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black">
+                &nbsp;&nbsp;
                 <span>모집인원 :</span>
                 <input type="radio" name="memberNum">2~3명
                 <input type="radio" name="memberNum">4~6명
@@ -65,7 +88,7 @@
                 <br><br>
                 <div class="form-row">
                     <div class="name">스터디 기간</div>
-                    <ul>
+                    <ul class="period">
                     <li><div class="value">
                     시작일: <input type="hidden" name="start_period">
                     <select id="start_year" name="start_year" required>
@@ -116,51 +139,66 @@
                             <%}%>
                         </option>
                     </select>일
-                    </li>
-                </div>
-            </ul>
+                </li>
+            </div>
+                <button class="search" name="search_button" style="font-size: 20px;" onclick="studySearch()">🔍</button>
             </div>
         </div>
         </form>
-    </section>
+    </div>
 
-    <section> 
+
         <!-- 게시물등록할 때 등록한 이미지 / 게시물 제목 / 스터디기간 받아와야 함... -->
-        <h2>"<%=search%> " 검색 결과입니다.</h2> <br><br>
-        <div class="search_Result">
-            <div>
-                <img src="../public/search/computer.jpeg" alt="">
-                <span>
-                    <h3>컴퓨터/IT</h3>
-                    <p>스터디기간</p>
-                </span>
+
+    <div class="category-container">
+        <div class=""> </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <form method="get" action="">
+            <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
+            <div class="search_Result">
+                <div>
+                    <img src="../public/search/computer.jpeg" alt="">
+                    <div>
+                        <h3><%=data[0].study_name %></h3>
+                        <p>스터디기간</p>
+                        <div><%=data[0].study_image %></div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <img src="../public/search/computer.jpeg" alt="">
-                <span>
-                    <h3>컴퓨터/IT</h3>
-                    <p>스터디기간</p>
-                </span>
-            </div>
-            <div>
-                <img src="../public/search/computer.jpeg" alt="">
-                <span>
-                    <h3>컴퓨터/IT</h3>
-                    <p>스터디기간</p>
-                </span>
-            </div>
-            <div>
-                <img src="../public/search/computer.jpeg" alt="">
-                <span>
-                    <h3>컴퓨터/IT</h3>
-                    <p>스터디기간</p>
-                </span>
-            </div>
-        </div>
-    </section>
+        </form>
+
+
+
+
+    <!-- <form method="get" action="">
+        <input type="text" name="study_id">
+    </form> -->
 
 
 </body>
-
+<script>
+    function showDetail( id ){
+        var form = new FormData();
+        form.append("study_id", id);
+        form.method = "get";
+        form.action="/d";
+        form.submit();
+    }
+</script>
 </html>
 
