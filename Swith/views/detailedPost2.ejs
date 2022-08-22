@@ -17,11 +17,12 @@
             // console.log('스터디 그룹에 탈퇴하시겠습니까?');
             const myModal = document.getElementById('myModal')
             const myInput = document.getElementById('myInput')
-
+            const button_value = document.get('modat_btn2');
+            
             myModal.addEventListener('shown.bs.modal', () => {
             myInput.focus()
             })
-                if (data == "") { // 탈퇴 신청을 누르면
+                if ( button_value == YES ) { // 탈퇴 신청을 누르면
                     True();
                 } else { // 취소를 누르면
                     back();
@@ -138,7 +139,7 @@
                                         <%= result.study_form %>
                                     <% } %>
                             </div>
-                        
+                        </div>
                         <div class="section_box">
                             <div class="name">스터디위치</div>
                             <div class="value"><% if(locals.result[0]) { %>
@@ -150,16 +151,7 @@
                         </div>
                         
                         <div class="section_box">
-                            <div class="name">모집인원</div><div class="">
-                                <!-- 닉네임  -->
-                                <div class="value">
-                                <% if(locals.result[0]) { %>
-                                    <% for(var i=0; i < result.length; i++) { %>
-                                        <span><%= result[i].user_name %></span>
-                                    <% } %>
-                                <% } %>
-                                </div>
-                            </div>
+                            <div class="name">모집인원</div>
 
                             <div class="value"><% if(locals.result[0]) { %>
                                 <%= result[0].study_recruit %>
@@ -171,7 +163,9 @@
 
                         <div class="section_box">
                             <div class="name">스터디기간</div>
-                            <div class="value"><% if(locals.result[0]) { %>
+                            <div class="value">
+                                <!-- 시작일 -->
+                                <% if(locals.result[0]) { %>
                                 <%= result[0].start_period %>
                                     <% } else { %>
                                 <%= result.start_period %>
