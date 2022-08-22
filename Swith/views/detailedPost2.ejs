@@ -31,15 +31,19 @@
                     method:'delete',
                     url: "http://localhost:8000/feed/detailedPost/leave",
                     data: {
-                        // user_id: ,
-                        // study_id: 
+                        user_id: form.user_id,value,
+                        study_id : form.study_id.value
                     }
                 })
                 .then((req) => { return req.data;})
                 .then((data) => {
                     alert("탈퇴되었습니다");
                 })
-        } 
+        }
+        // 목록 버튼을 누르면
+        function detailedPost_index() {
+                document.location.href="http://localhost:8000/swith";
+            }
     </script>
 </head>
 <body>
