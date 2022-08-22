@@ -67,6 +67,7 @@ const MainRouter = express.Router();
 const main = require('../controller/MainController');
 MainRouter.get('/', main.main_index); // 메인페이지 화면
 MainRouter.post('/search', main.main_search); // 메인페이지 검색 기능
+MainRouter.get('/search', main.search_detail); // 검색된 페이지에서 세부 내용으로 이동
 
 
 /* 로그인 확인 미들웨어 */
@@ -76,8 +77,8 @@ function checkSession (req, res, next) {
         res.redirect('/user/login');
     }
 }
-/* 게시물 상세 조회화면 로그인 확인 추가 예정 */
 
+/* 게시물 상세 조회화면 로그인 확인 추가 예정 */
 module.exports = {
     UserRouter, 
     FeedRouter,

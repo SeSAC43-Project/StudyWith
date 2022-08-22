@@ -27,6 +27,11 @@ exports.main_search = (req, res) => {
                     study_name : {
                         [Models.Op.like]: '%'+ req.body.search + '%'
                     }
+                }, 
+                {
+                    study_category : {
+                        [Models.Op.like]: '%'+ req.body.search + '%'
+                    }
                 }
             ]
         }
@@ -35,4 +40,9 @@ exports.main_search = (req, res) => {
         console.log(result);
         res.render('search', {data: result, search: req.body.search});
     })
+}
+
+// 검색된 페이지에서 세부 내용으로 이동
+exports.search_detail = (req, res) => {
+    res.send('바보');
 }
