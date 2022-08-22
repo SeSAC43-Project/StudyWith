@@ -47,9 +47,10 @@
         document.location.href='http://localhost:8000/swith/search';
     }
 
-    function studySearch {
+    function studySearch() {
         var form = document.getElementById('studySearch_form');
         var search = $("#search").val();
+
 
         axios({
             method: 'get', 

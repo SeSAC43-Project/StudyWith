@@ -119,18 +119,28 @@
     <!-- ==========================================메인 세번째 페이지======================================  -->
    <script>
         function goCategory() {
-                // var cate = document.getElementById("#category");
-
                 $('.category').on('click', function(obj) {
                     var target = obj.currentTarget; 
                     $('#ca_input').val($(obj.currentTarget).text());
                 })
+
+                // var form = document.getElementById("#category-form");
+                // var category = $('#ca_input').val();
+                // console.log(form); //null?
+                // form.category.value = category;
+                // form.submit();
+           
+                // console.log($('#ca_input').val());
+
+                var category = $('#ca_input').val();
 
                 axios({
                     method:'post',
                     url: "http://localhost:8000/swith/search",
                     data: {
                         study_category: form.category.value
+                        // 혹쉬... 
+                        // study_category : category;
                     }
                 })
                 .then((req) => { 
