@@ -4,9 +4,15 @@ const Studymember = (Sequelize, DataTypes) => {
         'Studymember',
         // 컬럼 정의
         {
+            member_id: {
+                type: DataTypes.INTEGER, 
+                allowNull: false,
+                autoIncrement: true, 
+                primaryKey: true,
+            },
             user_id: {
                 type: DataTypes.STRING(20), 
-                allowNull: false, 
+                allowNull: false
             },
             study_id: {
                 type: DataTypes.INTEGER,
