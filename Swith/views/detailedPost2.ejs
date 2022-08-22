@@ -112,18 +112,19 @@
                         
                         <div class="section_box">
                             <div class="name">스터디 현재멤버</div>
-                                <div class="name value name_image"> <% if(locals.result[0]) { %>
+                                <div class="name name_image"> <% if(locals.result[0]) { %>
                                     <% for(var i=0; i < result.length; i++) { %>
                                         <img src="/public/user/<%= result[i].user_image%>" width="1000" height="300" style="border-radius:15px;">
                                             <% } %>
                                     <% } %>
                                 </div>
-                            <div>
+                                <br>
+                                <div class="result_txt">
                                 <!-- 닉네임  -->
                                 <% if(locals.result[0]) { %>
                                     <% for(var i=0; i < result.length; i++) { %>
                                         <span><%= result[i].user_name %></span>
-                                    <% } %>        
+                                    <% } %>
                                 <% } %>
                             </div>
                         </div>
@@ -223,5 +224,5 @@
                 </form>
             </div>
         </tbody>
-    </body>
+</body>
 </html>
