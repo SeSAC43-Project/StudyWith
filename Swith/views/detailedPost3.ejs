@@ -61,6 +61,7 @@
                         <div class="img_box">
                             <!-- 카테고리별 이미지 -->
                             <div class="CategoryImage">
+                                <img src="/public/image/mainYour.png">
                                 <!-- 카테고리별 임시 이미지 저장 밑에 path에 저장해서 사용하세요-->
                                 <!-- <img src="/public/category" height="300" style="border-radius:15px;"> -->
                             </div>
@@ -68,7 +69,8 @@
 
                             <!-- 스터디 이미지(등록이미지)  -->
                             <!-- <div class="studyImage" style="color:white;">  -->              
-                            <div class="studyImage"> 
+                            <div class="studyImage">
+                                <img src="/public/image/mainYour.png">
                                 <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
                                 <!-- <% if(locals.result[0]) { %>
                                     <img src="/public/user/<%= result[0].study_image%>" width="1000" height="300" style="border-radius:15px;">
@@ -169,6 +171,7 @@
                                     <% } else { %>
                                 <%= result.start_period %>
                                     <% } %>
+                                ~    
                                 <!-- 마감일 -->
                                 <% if(locals.result[0]) { %>
                                 <%= result[0].end_period %>
