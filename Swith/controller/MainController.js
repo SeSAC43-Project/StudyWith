@@ -40,8 +40,6 @@ exports.main_search = (req, res) => {
         console.log(result);
         res.render('search', {data: result, search: req.body.search});
 
-        search 
-        data[0].study_id
     })
 }
 
