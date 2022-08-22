@@ -152,6 +152,12 @@ form {
     flex: 0 0 auto;
 }
 
+.result_txt {
+    padding: 0 40px;
+    text-align: justify;
+
+}
+
 .value {
     flex-grow:9;
     padding:10px 0 10px 0;
