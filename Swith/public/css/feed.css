@@ -25,12 +25,19 @@ body {
   position: relative;
   margin-top: 10%;
   bottom:100px;
+
+}
+
+#wrapper {
+  display: flex;
+    justify-content: center; 
+    align-items: center;
 }
 
 .feed_container, h2 {
-    /* display: flex; */
-    justify-content: center;
-    /*align-items: center; */
+    /* display: flex;
+    justify-content: center; 
+    align-items: center;*/ 
     position: relative;
 }
 
