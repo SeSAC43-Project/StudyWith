@@ -149,16 +149,19 @@ form {
     display: block;
     overflow: hidden;
     flex: 0 0 auto;
+    padding-top: 40px;
 }
 
 .result_txt {
     padding: 0 40px;
     text-align: justify;
-    position: absolute;
+    position: relative;
     float: left;
     bottom: auto;
-    left: 30px;
-    /* top: 10px */
+    left: -160px;
+    padding-top: 210px;
+    overflow: hidden;
+    text-align: center;
 }
 
 .value {
