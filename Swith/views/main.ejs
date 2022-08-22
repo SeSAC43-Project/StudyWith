@@ -23,32 +23,6 @@
         
         form.submit();
     }
-
-    function goCategory() {
-            var form = document.getElementById("category_form");
-
-            axios({
-                method:'post',
-                url: "http://localhost:8000/swith",
-                data: {
-                    study_category: form.computer.value,
-                    study_category: form.language.value,
-                    study_category: form.certifictate.value,
-                    study_category: form.confirm.value,
-                    study_category: form.work.value,
-                    study_category: form.contest.value,
-                    study_category: form.hobby.value
-                }
-            })
-            .then((req) => { return req.data;})
-            .then((data) => {
-                document.location.href="http://localhost:8000/swith/search"
-            })
-    }
-
-
-
-
   </script>
 </head>
 <body>
@@ -143,16 +117,54 @@
 
    
     <!-- ==========================================메인 세번째 페이지======================================  -->
+   <script>
+        function goCategory() {
+                var cate = document.getElementById("#category");
+
+                // axios({
+                //     method:'post',
+                //     url: "http://localhost:8000/swith/search",
+                //     data: {
+                //         study_category: 
+                //     }
+                // })
+                // .then((req) => { 
+                //     console.log(req);
+                //     return req.data;})
+                // .then((data) => {
+                //     document.location.href="http://localhost:8000/swith/search"
+                // })
+        }
+
+     
+        $('#category').on('click', function(obj) {
+            var target = obj.currentTarget; 
+            $('#ca_input').val($(obj.currentTarget).text());
+        })
+   </script> 
+
 
     <div class="container_third">
        <h1>SWITH에는 &nbsp;<span class="auto-type">컴퓨터/IT</span>&nbsp;&nbsp;스터디그룹이 있어요 💁🏼‍♂️ </h1>
        <div class="row">
 
-            <form id="category-form" method="post" action="http://localhost:8000/swith/search">
+            <form id="category-form" method="post" action="/swith/search">
+                <input name="category" id="ca_input">
+            </form>
+                <% var ca_list = ['컴퓨터/IT', '언어', '자격증', '인증', '취업/이직', '공모전', '취미']%> 
+                <% for (i=0; i <= 6; i++){ %> 
+                    <div class="service" onclick="goCategory()">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <div id="category" ><p><%=ca_list[i]%></p></div>
+                        <p>개설된 모임 : 개</p>   
+                    </div>
+                <% }%> 
 
-                <div class="service" onclick="goCategory()">
+                
+
+                <!-- <div class="service" onclick="goCategory()">
                     <i class="fa-solid fa-laptop-code"></i>
-                    <input type="hidden" name="computer">컴퓨터/IT
+                    <input type="hidden" id='computer' name="computer">컴퓨터/IT
                     <p>개설된 모임 : 개</p>   
                 </div>
                 <div class="service" onclick="goCategory()">
@@ -185,9 +197,9 @@
                     <i class="fa-solid fa-bicycle"></i>
                     <input type="hidden" name="hobby">취미
                     <p>개설된 모임 : 개</p>
-                </div>
+                </div> -->
 
-            </form>
+            <!-- </form> -->
        </div>
     </div>
 
