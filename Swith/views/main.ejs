@@ -119,7 +119,12 @@
     <!-- ==========================================메인 세번째 페이지======================================  -->
    <script>
         function goCategory() {
-                var cate = document.getElementById("#category");
+                // var cate = document.getElementById("#category");
+
+                $('.category').on('click', function(obj) {
+                    var target = obj.currentTarget; 
+                    $('#ca_input').val($(obj.currentTarget).text());
+                })
 
                 // axios({
                 //     method:'post',
@@ -136,11 +141,6 @@
                 // })
         }
 
-     
-        $('#category').on('click', function(obj) {
-            var target = obj.currentTarget; 
-            $('#ca_input').val($(obj.currentTarget).text());
-        })
    </script> 
 
 
@@ -155,7 +155,7 @@
                 <% for (i=0; i <= 6; i++){ %> 
                     <div class="service" onclick="goCategory()">
                         <i class="fa-solid fa-laptop-code"></i>
-                        <div id="category" ><p><%=ca_list[i]%></p></div>
+                        <div class="category" ><p><%=ca_list[i]%></p></div>
                         <p>개설된 모임 : 개</p>   
                     </div>
                 <% }%> 
