@@ -15,20 +15,20 @@
     <script>
         function detailed() {
             // console.log('스터디 그룹에 탈퇴하시겠습니까?');
-            const myModal = document.getElementById('myModal');
-            const myInput = document.getElementById('myInput');
+            const myModal = document.getElementById('exampleModalLabel');
             const button_value = document.get('modat_btn2');
             $('.modal-footer').on('click', (e) => {
                 console.log(e.result.value);
                 // myModal.addEventListener('shown.bs.modal', () => {
                 const result = myInput.focus();
-
+                
                 if ( button_value == YES ) { // 탈퇴 신청을 누르면
                     True();
                 } else { // 취소를 누르면
                     back();
                 }
-            
+            }
+        )}
         // YES 버튼을 누를 경우
         function True() {
             //delete 방식으로 보내주시면 됩니다.
@@ -199,7 +199,7 @@
                                 <div class="modal-body">
                                     정말로 탈퇴하시겠습니까?
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer" id="modat_btn2">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="color:ccc;">NO</button>
                                 <button type="button" class="btn btn-primary" style="color:4686C2;">YES</button>
                                 </div>
