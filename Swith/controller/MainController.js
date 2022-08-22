@@ -45,5 +45,5 @@ exports.main_search = (req, res) => {
 
 // 검색된 페이지에서 세부 내용으로 이동
 exports.search_detail = (req, res) => {
-    res.send(search);
+    res.send('search');
 }
