@@ -83,6 +83,6 @@ exports.post_joingroup =  (req, res) => {
 
     models.Studymember.create( object )
     .then((result) => {
-        res.render("가입완료");
+        res.send("가입완료");
     })
 }
