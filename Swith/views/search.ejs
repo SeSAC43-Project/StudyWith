@@ -149,26 +149,168 @@
 
 
         <!-- 게시물등록할 때 등록한 이미지 / 게시물 제목 / 스터디기간 받아와야 함... -->
+    <form method="get" action="">
+        <div class = "main-container">
+            <div class = "filter-container">
+                <div class = "category-head">
+                    <ul>
+                        <div class = "category-title active" id = "all">
+                            <li>전체</li>
+                        </div>
+                        <div class = "category-title" id = "culture">
+                            <li>컴퓨터/IT</li>
+                        </div>
+                        <div class = "category-title" id = "politics">
+                            <li>언어</li>
+                        </div>
+                        <div class = "category-title" id = "finance">
+                            <li>자격증</li>
+                        </div>
+                        <div class = "category-title" id = "business">
+                            <li>인증</li>
+                        </div>
+                        <div class = "category-title" id = "sports">
+                            <li>취업/이직</li>
+                        </div>
+                    </ul>
+                </div>
 
-    <div class="category-container">
-        <div class=""> </div>
-    </div>
+                <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
+
+                <div class = "posts-collect">
+                    <div class = "posts-main-container">
+                        <!-- single post -->
+                        <div class = "all business">
+                            <div class = "post-img">
+                                <img src = "/public/search/조회페이지(컴퓨터).jpeg" alt = "post">
+                                <span class = "category-name">컴퓨터/IT</span>
+                            </div>
+                            <div class = "post-content">
+                                <h2>스터디제목</h2>
+                                <p>모집인원</p>
+                            </div>
+                        </div>
+                        <!-- end of single post -->
+                        <!-- single post -->
+                        <div class = "all business">
+                            <div class = "post-img">
+                                <img src = "/public/search/조회페이지(컴퓨터).jpeg" alt = "post">
+                                <span class = "category-name">컴퓨터/IT</span>
+                            </div>
+                            <div class = "post-content">
+                                <h2>스터디제목</h2>
+                                <p>모집인원</p>
+                            </div>
+                        </div>
+                        <!-- end of single post -->
+                        <!-- single post -->
+                        <div class = "all business">
+                            <div class = "post-img">
+                                <img src = "/public/search/조회페이지(컴퓨터).jpeg" alt = "post">
+                                <span class = "category-name">컴퓨터/IT</span>
+                            </div>
+                            <div class = "post-content">
+                                <h2>스터디제목</h2>
+                                <p>모집인원</p>
+                            </div>
+                        </div>
+                        <!-- end of single post -->
+                        <!-- single post -->
+                        <div class = "all business">
+                            <div class = "post-img">
+                                <img src = "/public/search/조회페이지(컴퓨터).jpeg" alt = "post">
+                                <span class = "category-name">컴퓨터/IT</span>
+                            </div>
+                            <div class = "post-content">
+                                <h2><%=data[0].study_name %> </h2>
+                                <p>모집인원 : </p>
+                            </div>
+                        </div>
+                        <!-- end of single post -->
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+        <script>
+            const categoryTitle = document.querySelectorAll('.category-title');
+            const allCategoryPosts = document.querySelectorAll('.all');
+
+            for(let i = 0; i < categoryTitle.length; i++){
+                categoryTitle[i].addEventListener('click', filterPosts.bind(this, categoryTitle[i]));
+            }
+
+            function filterPosts(item){
+                changeActivePosition(item);
+                for(let i = 0; i < allCategoryPosts.length; i++){
+                    if(allCategoryPosts[i].classList.contains(item.attributes.id.value)){
+                        allCategoryPosts[i].style.display = "block";
+                    } else {
+                        allCategoryPosts[i].style.display = "none";
+                    }
+                }
+            }
+
+            function changeActivePosition(activeItem){
+                for(let i = 0; i < categoryTitle.length; i++){
+                    categoryTitle[i].classList.remove('active');
+                }
+                activeItem.classList.add('active');
+            };
+        </script>
+        
+
+
+    <!-- <div class="category-container">
+        <div class="category-head"> 
+            <ul>
+                <div class="category-title" id="all">
+                    <li>전체</li>
+                </div>
+                <div class="category-title" id="all">
+                    <li>컴퓨터/IT</li>
+                </div>
+                <div class="category-title" id="all">
+                    <li>언어</li>
+                </div>
+                <div class="category-title" id="all">
+                    <li>자격증</li>
+                </div>
+                <div class="category-title" id="all">
+                    <li>인증</li>
+                </div>
+                <div class="category-title" id="all">
+                    <li>취업/이직</li>
+                </div>
+                <div class="category-title" id="all">
+                    <li>공모전</li>
+                </div>
+                <div class="category-title" id="all">
+                    <li>취미</li>
+                </div>
+            </ul>
+        </div> -->
+
+        <!-- <div class="posts-collector">
+            <div class="posts-main-container">
+                <div class="post-img">
+                    <img src="/public/search/조회페이지(컴퓨터).jpeg" alt="feed">
+                    <span class="category-name">컴퓨터/IT</span>
+                </div>
+
+                <div class="post-content">
+                    <div class="post-content-top"></div>
+                </div>
+            </div>
+        </div> -->
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        <form method="get" action="">
+        <!-- <form method="get" action="">
             <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
             <div class="search_Result">
                 <div>
@@ -180,7 +322,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </form> -->
 
 
 
