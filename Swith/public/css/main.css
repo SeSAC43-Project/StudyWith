@@ -9,410 +9,344 @@
   font-family: "GS_bold";
 }
 
-
-
-/* ------------------------------------------ 메인 첫번째 페이지------------------------------------------ */
-
-.banner {
+/* ==========================================메인 첫번째 페이지====================================== */
+.slogun {
   width: 100%;
   height: 100vh;
+  background: #f3f7fe;
+  /* padding: 10px 3%; */
   position: relative;
-  overflow: hidden;
-}
-.slider {
-  width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-}
-#slideImg {
-  width: 100%;
-  height: 100%;
-  animation: zoom 20s linear infinite;
-}
-@keyframes zoom {
-  0% {
-    transform: scale(1);
-    transition: .10s;
-  }
-  /* 25% {
-    transform: scale(1.3);
-    transition: .10s;
-  }
-  50% {
-    transform: scale(1.5);
-    transition: .10s;
-  } */
-  100% {
-    transform: scale(1.7);
-    transition: .10s;
-  }
-}
-.overlay {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(234, 234, 234, 0.7), rgba(75, 75, 75, 0.7));
-  position: absolute;
-  top: 0;
-}
-.navbar {
-  width: 85%;
   display: flex;
   align-items: center;
-  margin: 35px auto;
+  justify-content: space-around;
 }
-.logo {
-  flex-basis: 15%;
-}
-.logo img{
-  width: 120px;
+.slogun h1 {
+  font-size: 45px;
+  position: relative;
+  z-index: 2;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px #000;
   cursor: pointer;
+  transition: transform 0.5s;
 }
-.menu-icons {
-  flex : 1;
-  align-items: center;
-  text-align: right;
-}
-.menu-icons img{
-  width: 20px;
-  margin-left: 40px;
+.slogun #studymate {
+  font-size: 45px;
+  position: relative;
+  z-index: 2;
+  /* -webkit-text-fill-color: transparent; */
+  -webkit-text-stroke: 2px #f5d17c;
   cursor: pointer;
+  transition: transform 0.5s;
 }
-.content {
-  width: 60%;
-  margin: 160px auto 0;
-  text-align: center;
-  color: #fff;
+.slogun h1:hover {
+  -webkit-text-fill-color: #000;
+  transform: translateY(-10px);
 }
-.content h1 {
-  -webkit-text-stroke: 1px #4686C2;
-  font-size: 60px;
+.slogun #studymate:hover {
+  -webkit-text-fill-color: #4686C2;
+  transform: translateY(-10px);
 }
-.content h2 {
-  -webkit-text-stroke: 1px #4686C2;
-  font-size: 20px;
-  width: 80%;
-  margin: 20px auto 100px;
-  font-weight: bold;
-  line-height: 25px; 
+
+.img-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 67%;
+  background-image: url(/public/image/mainFirst.png);
+  background-size: cover;
+  background-position: center;
 }
-input[type=button]{
-  width: 30px;
-  height:30px;
-  background-color: lightgray;
-  border:none;
-  background-color: white;
-  font-size:20px;
-  outline:none;
-  display:inline;
-  margin-left: -45px;
-  box-sizing: border-box;
-  border-width: 1px;
-  border-radius: 20px;
-  border-color: #4686C2;
+.slogun h1:nth-child(1):hover ~ .img-box {
+  background-image: url(/public/image/mainFind-002.png);
 }
-.search_button:hover{
-  cursor: pointer;
-  background-color: white;
+.slogun h1:nth-child(2):hover ~ .img-box {
+  background-image: url(/public/image/mainYour.png);
 }
-.search_input {
-  width: 600px;
-  height: 40px;
-  text-align: center;
-  border-width: 1px;
-  border-radius: 20px;
-  border-color: #4686C2;
+.slogun h1:nth-child(3):hover ~ .img-box {
+  background-image: url(/public/image/mainStudy.png);
 }
-.search_button {
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  background-color: white;
-  border-color: #4686C2;
-  border-width: 1px;
-  border-radius: 10px;
-  border: none;
-}
-/* .search {
+
+.mysearch {
   position: relative;
   width: 60px;
   height: 60px;
-  background-color: #fff;
+  background: #f3f7fe;
   border-radius: 60px;
   transition: 0.5s;
   box-shadow: 0 0 0 5px #4686C2;
+  overflow: hidden;
 }
-.search .icon {
+.mysearch.active {
+  width: 750px;
+}
+.mysearch .icon {
   position: absolute;
   top: 0;
   left: 0;
   width: 60px;
   height: 60px;
-  background-color: #fff;
+  background: #f3f7fe;
   border-radius: 60px;
   display: flex;
-  justify-content: center;
+  justify-content: center ;
   align-items: center;
-  z-index: 1000;
+  cursor: pointer;
 }
-.search .icon::before {
+.mysearch .icon::before {
   content: '';
   position: absolute;
-  width: ;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #4686C2;
+  border-radius: 50%;
+  transform: translate(-4px, -4px) rotate(315deg);
+}
+.mysearch .icon::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 12px;
+  background-color: #4686C2;
+  transform: translate(6px, 6px) rotate(315deg);
+}
+.mysearch .input {
+  position: relative;
+  width: 670px;
+  height: 60px;
+  left: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mysearch .input input {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 18px;
+}
+.clear {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  right: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .clear::before {
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 15px;
+  background: #999;
+  transform: rotate(45deg);
+}
+.clear::after {
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 15px;
+  background: #999;
+  transform: rotate(315deg);
 } */
 
+/* ==========================================메인 두번째 페이지====================================== */
 
-/* ------------------------------------------ 메인 두번째 페이지------------------------------------------ */
-.body {
+.container {
+  width: 100%;
   min-height: 100vh;
+  background: #f3f7fe;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: beige; */
-}
-.slide_container {
-  max-width: 1120px;
-  width: 100%;
-  /* background-color: grey; */
-  padding: 40px 0;
-  /* width: 100%;
-  height: 100%;
-  background-color: blue;
-  padding: 40px 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center; */
-}
-.card {
-  border-radius: 20px;
-  /* background-color: orange; */
-}
-.card_image {
-  position: relative;
-  width: 500px;
-  height: 400px;
-  border-radius: 20px;
-}
-.card_image .card_img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-}
-.image_content, .card_content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 14px;
-}
-.button {
-  border: none;
-  font-size: 16px;
-  color: #fff;
-  padding: 8px 16px;
-  background-color: #4686C2;
-  border-radius: 20px;
-  margin: 14px;
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-/* ------------------------------------------ 메인 세번째 페이지------------------------------------------ */
-#category {
-  width: 100%;
-  height: 80vh;
-  position: relative;
-  padding: 30px 0;
-  /* min-height: 80vh; */
-  /* display: flex; */
-  align-items: center;
-  justify-content: center;
-  /* background-color: blue; */
+.testimonial {
+  width: 90%;
+  /* max-width: 800px; */
   margin: auto;
 }
-.sub-title {
-  margin: 0 160px;
-  font-size: 50px;
-}
-.category_list {
-  width: 80%;
-  margin: 50px auto;
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 40px;
-  /* margin-top: 50px; */
-  align-items: center;
-  justify-content: center;
-}
-
-.category_list div {
-  background-color: #4686C2;
-  padding: 40px;
-  font-size: 13px;
-  font-weight: 300;
-  transition: background 0.5s, transform 0.5s;
-  border-width: 3px;
-  border-radius: 20px;
-  border-color: #4686C2;
-  text-align: center;
-}
-.category_list div h2 {
-  font-size: 30px;
-  font-weight: 500;
-  margin-bottom: 15px;
-}
-.category_list div:hover {
-  background-color: #fff;
-  transform: translateY(-10px);
-  cursor: pointer;
-}
-
-/* .trending {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 30px;
-  margin-bottom: 30px;
-  position: relative;
-}
-.trending div img{
+.testimonial-text {
+  /* background: #ff0058; */
+  color: #fff;
   width: 100%;
-  border-radius: 10px;
+  height: 500px;
+  position: relative;
+  /* box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2); */
 }
-.trending div h3{
+.user-text {
+  width: 80%;
+  text-align: center;
+  line-height: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
-  color: red;
-} */
-
-
-
-
-/* ------------------------------------------ 메인 네번째 페이지------------------------------------------ */
-.favorite {
-  min-height: 100vh;
-  /* display: flex; */
-  /* align-items: center;
-  justify-content: center; */
-  background-color: beige;
+  display: none;
 }
-.favorite .inner {
+.user-text img {
+  width: 800px;
   height: 400px;
-}
-.favorite .text-group {
-  position: absolute;
-  top: 110px;
-  right: 100px;
-}
-.container {
-  width: 100%;
-  height: 40vh;
-  margin: auto;
-  /* top: 50%; */
-  position: relative;
-
-}
-.container_left {
-    position: absolute;
-    /* width: 100px; */
-    /* height: 100px; */
-    /* background-color: red; */
-    animation-name: move;
-    animation-duration: 2s;
-    animation-iteration-count: 3;
-    animation-fill-mode: forwards;
-
-    width: 50%;
-    float: left;
-    box-sizing: border-box;
-    /* background:#ff0; */
-  }
-@keyframes move {
-  /* keyframe */
-  from {
-    left: -150px;
-  }
-  /* keyframe */
-  to {
-    left: 0px;
-  }
-}
-.container_right {
-  position: absolute;
-  /* width: 100px; */
-  /* height: 100px; */
-  animation-name: moves;
-  animation-duration: 2s;
-  animation-iteration-count: 3;
-  animation-fill-mode: forwards;
-
-  width: 50%;
-  float: right;
-  box-sizing: border-box;
-  /* background:red; */
-}
-@keyframes moves {
-  /* keyframe */
-  from {
-    right: -150px;
-  }
-  /* keyframe */
-  to {
-    right: 0px;
-  }
-}
-
-.container_left h2 {
-  font-size: 100px;
-  margin: 30% auto;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.container_right h2 {
-  font-size: 40px;
-  margin: 80px 0 40px 0;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-}
-
-.posting {
-  width: 80%;
-  /* margin: 50px auto; */
-  text-align: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-  grid-gap: 60px;
-  /* margin-top: 50px; */
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-}
-
-.posting div {
-  width: 100px;
-  height: 100px;
-  background-color: #4686C2;
-  padding: 40px;
-  font-size: 13px;
-  font-weight: 300;
-  transition: background 0.5s, transform 0.5s;
-  border-width: 3px;
   border-radius: 20px;
-  border-color: #4686C2;
-  text-align: center;
-  margin-left: 50%;
-  margin-bottom: 25px;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2); 
+  /* transform: translateY(-10px); */
+  cursor: pointer;
+  /* transform: scale(1.05); */
+}
+/* .user-text img:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+} */
+.user-text a {
+  display: block;
+  font-size: 13px;
+  /* margin-top: 70px; */
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration-line : none;
+  font-family: "GS_bold";
+  color: #f5d17c;
+  font-size: 20px;
+}
+.user-text h2 {
+  color: #f5d17c;
+}
+.testimonial-pic {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.catPic {
+  width: 70px;
+  height: 70px;
+  padding: 5px;
+  border-radius: 50%;
+  margin: 10px;
+  cursor: pointer;
 }
 
-.posting div:hover {
-  background-color: #fff;
-  transform: translateY(-10px);
+.user-text.active-text {
+  display: block;
+  animation: moveup 0.5s linear forwards;
+}
+.catPic.active-pic{
+  width: 70px;
+  border: 3px solid #ff0058;
+}
+
+@keyframes moveup {
+  0% {
+    margin-top: 25px;
+  }
+  100% {
+    margin-top: 0px;
+  }
+}
+
+/* ==========================================메인 세번째 페이지====================================== */
+
+.container_third {
+  width: 100%;
+  height: 100vh;
+  /* background: #2b323c; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  /* padding: 0 8%; */
+}
+.container_third h1 {
+  text-align: center;
+  padding-top: 10%;
+  margin-bottom: 60px;
+  font-weight: 600;
+  position: relative;
+}
+.container_third h1 span {
+  color: #f5d17c;
+}
+/* .container_third h1::after {
+  content: '';
+  background: #4686C2;
+  width: 100px;
+  height: 5px;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 30px;
+  padding: 50px;
+}
+.service {
+  text-align: center;
+  padding: 25px 10px;
+  border-radius: 10px;
+  font-size: 14px;
   cursor: pointer;
+  background: transparent;
+  transition: transform 0.5s background 0.5s;
+}
+.service i {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #57a8f5;
+}
+.service h2 {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.service:hover {
+  background: #57a8f5;
+  color: #fff;
+  transform: scale(1.05);
+}
+.service:hover i {
+  color: #fff;
+}
+
+/* ==========================================메인 네번째 페이지====================================== */
+.last_container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.last_row {
+  display: flex;
+  height: 88%;
+  align-items: center;
+  padding-right: 8%;
+}
+.pick {
+  flex-basis: 50%;
+  text-align: center;
+}
+.pick h1 {
+  color: #f5d17c;
+  font-size: 100px;
+}
+.feed {
+  width: 200px;
+  height: 200px;
+  /* display: inline-block; */
+  border-radius: 10px;
+  padding: 15px 25px;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 10px 15px;
+  background-image: url(); 
+  /* 게시물 등록 이미지 데이터 받아 와야 함.. */
+  background-position: center;
+  background-size: cover;
+  background-color: #4686C2;
 }
