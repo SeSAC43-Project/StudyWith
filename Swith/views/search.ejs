@@ -55,7 +55,7 @@
             method: 'get', 
             url: 'http://localhost:8000/swith/search', 
             params : {
-                search : 
+                search : search
             }
         })
         .then((req) => {return req.data;})
@@ -176,6 +176,20 @@
                 </div>
 
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
+                <ul>
+                    <% for(var i=0; i<data.length; i++) {%>
+                      <div class = "all business">
+                        <div class = "post-img">
+                            <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
+                            <span class = "category-name"><%=data[i].study_category%></span>
+                        </div>
+                        <div class = "post-content">
+                            <h2><%=data[i].study_name%></h2>
+                            <p><%=data[i].study_recruit%></p>
+                        </div>
+                    </div>
+                    <% } %>
+                </ul>
 
                 <div class = "posts-collect">
                     <div class = "posts-main-container">
