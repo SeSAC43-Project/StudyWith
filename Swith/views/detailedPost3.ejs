@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상세조회(스터디가입)</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/css/detailedPost.css">
+    <link rel="stylesheet" href="/public/css/detailedPost2.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -29,8 +29,7 @@
                     method:'post',
                     url: "http://localhost:8000/feed/detailedPost/join",
                     data: {
-                        // user_id: ,
-                        // study_id: 
+                        study_id : form.study_id.value
                     }
                 })
                 .then((req) => { return req.data;})
@@ -42,6 +41,12 @@
         function detailedPost_index() {
                 document.location.href="http://localhost:8000/swith";
             }
+
+        // 인원 마감이 되면 스터가입 버튼 비활성화
+        function detailed() {
+            const target = document.getElementById('study_result');
+                target.disabled = false;
+        }   
     </script>
 </head>
 <body>
