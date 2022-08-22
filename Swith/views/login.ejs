@@ -7,12 +7,34 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/public/css/login.css" />
+
+
+
+
         <script>
+
             function loginUser() {
                 var form = document.getElementById('login_form');
+                var result = form.checkValidity();
+
+                if ( !result ) {
+
+                    // //1. 경고메세지
+                    // $('.warningLogin').html('아이디,비밀번호를 모두 입력해주세요');
+                    // $('.warningLogin').css('color','red');
+
+                    //2. alert창
+                    swal('로그인 실패!','아이디와 비밀번호를 모두 입력해주세요.','warning');
+
+
+                return false;
+
+                }
+
                 axios ({
                     method:'post',
                     url: "http://localhost:8000/user/login",
@@ -59,8 +81,8 @@
                         <div class="login_info">
                         <img src="/public/login/logo.png" width="300px;" class="login_logo"><br>
                         <div class="warningLogin"></div><br>
-                            <input type="text" id="user" name="id" class="login_form_user" placeholder="아이디" style="color:white"><br><br>
-                            <input type="password" id="pw" name="password"  class="login_form_pw" placeholder="비밀번호" style="color:white">
+                            <input type="text" id="user" name="id" class="login_form_user" placeholder="아이디" style="color:white" required><br><br>
+                            <input type="password" id="pw" name="password"  class="login_form_pw" placeholder="비밀번호" style="color:white" required>
                             <br>
 
                             <div class="remember"><label for="userid_Remember" style="font-size: 0.7rem;"><input type="checkbox" id="userid_Remember" name="id_remember">&nbsp;아이디를 기억해줘!</label></div>
