@@ -126,19 +126,19 @@
                     $('#ca_input').val($(obj.currentTarget).text());
                 })
 
-                // axios({
-                //     method:'post',
-                //     url: "http://localhost:8000/swith/search",
-                //     data: {
-                //         study_category: 
-                //     }
-                // })
-                // .then((req) => { 
-                //     console.log(req);
-                //     return req.data;})
-                // .then((data) => {
-                //     document.location.href="http://localhost:8000/swith/search"
-                // })
+                axios({
+                    method:'post',
+                    url: "http://localhost:8000/swith/search",
+                    data: {
+                        study_category: form.category.value
+                    }
+                })
+                .then((req) => { 
+                    console.log(req);
+                    return req.data;})
+                .then((data) => {
+                    document.location.href="http://localhost:8000/swith/search"
+                })
         }
 
    </script> 
