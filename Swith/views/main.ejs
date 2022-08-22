@@ -40,15 +40,16 @@
        <h1 id="studymate">STUDYMATE.</h1>
        <div class="img-box"></div>
        
-       <form id="search_form" method="get" action="swith/search">
-            <div class="mysearch">
-                <div class="icon"></div>
-                <div class="input">
-                    <input type="text" placeholder="📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀" id="search" name="search">
-                    <span class="clear" name="search_button" onclick="mainSearch()" style="font-size: 20px;">🔍</span>
-                    <!-- <span class="clear" onclick="document.getElementById('mysearch').value = '' " style="font-size: 20px;">🔍</span> -->
-                </div>
-            </div>
+       <form id="search_form" method="post" action="/swith/search">
+       <div class="mysearch">
+           <div class="icon"></div>
+           <div class="input">
+               <input type="text" placeholder="📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀" id="search" name="search">
+               <button class="clear" name="search_button" style="font-size: 20px;">🔍</button>
+               <!-- <span class="clear" name="search_button" onclick="mainSearch()" style="font-size: 20px;">🔍</span> -->
+               <!-- <span class="clear" onclick="document.getElementById('mysearch').value = '' " style="font-size: 20px;">🔍</span> -->
+           </div>
+       </div>
        </form>
 
        <!-- <form id="search_form" onsubmit="return false">
