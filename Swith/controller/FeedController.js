@@ -52,5 +52,4 @@ exports.uploadProfile = (req, res) => {
         fileName: req.file.filename,
         name : req.file.name, // 이전 파일 이름
     })
-    
 }
