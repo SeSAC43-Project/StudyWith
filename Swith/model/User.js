@@ -63,7 +63,7 @@ const User = (Sequelize, DataTypes) => {
     /* foreign key 설정 */
     User.associate = models => {
         // 1:N 관계, studygroup의 head_id가 user의 user_id를 참조 하고 있다.
-        User.hasMany(models.Studygroup, {foreignKey: "head_id", sourceKey: 'user_id'});
+        User.hasMany(models.Studygroup, {foreignKey: "head_id", sourceKey: 'user_id', onDelete: 'cascade', onUpdate: 'cascade'});
         // N:M 관계 
         User.belongsToMany(models.Studygroup, { through: 'Studymember' });
         // N:M 관계 
