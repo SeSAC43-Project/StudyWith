@@ -21,16 +21,16 @@
                 method: 'patch',
                 url: "http://localhost:8000/feed/management",
                 data: {
-                    study_name : feed.studyName.value,
-                    study_category : feed.studyCategory.value,
-                    study_form : feed.studyForm.value,
-                    study_recruit : feed.studyRecruit.value,
-                    study_address : feed.sample6_address.value, 
+                    study_name : management.studyName.value,
+                    study_category : management.studyCategory.value,
+                    study_form : management.studyForm.value,
+                    study_recruit : management.studyRecruit.value,
+                    study_address : management.sample6_address.value, 
                     study_image : uploadedFile, 
-                    study_content : feed.studyContent.value,
-                    start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
-                    end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
-                    hashtag: feed_hashtags,
+                    study_content : management.studyContent.value,
+                    start_period : management.start_year.value + '-' + management.start_month.value + '-' + management.start_day.value,
+                    end_period : management.end_year.value + '-' + management.end_month.value + '-' + management.end_day.value,
+                    hashtag: management_hashtags,
                 }
             }).then((req) => {return req.data })
             .then((data) => {
@@ -71,23 +71,23 @@
                 method:'post',
                 url:'http://localhost:8000/feed/management',
                 data : {
-                    study_name : feed.studyName.value,
-                    study_category : feed.studyCategory.value,
-                    study_form : feed.studyForm.value,
-                    study_recruit : feed.studyRecruit.value,
-                    study_address : feed.sample6_address.value, 
+                    study_name : management.studyName.value,
+                    study_category : management.studyCategory.value,
+                    study_form : management.studyForm.value,
+                    study_recruit : management.studyRecruit.value,
+                    study_address : management.sample6_address.value, 
                     study_image : uploadedFile, 
-                    study_content : feed.studyContent.value,
-                    start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
-                    end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
-                    hashtag: feed_hashtags,
+                    study_content : management.studyContent.value,
+                    start_period : management.start_year.value + '-' + management.start_month.value + '-' + management.start_day.value,
+                    end_period : management.end_year.value + '-' + management.end_month.value + '-' + management.end_day.value,
+                    hashtag: management_hashtags,
                 }
             })
             .then((req) => { return req.data })
             .then((data) => {
                 if (data == true) {
                     document.location.href="http://localhost:8000/swith";
-                    // 수정 된 게시물 페이지로 이동. 현재는 메인페이지로 이동되게 표기
+                    // 수정 된 게시물 페이지로 이동. 현재는 메인페이지로 이동되게
                 }
             })
         }
