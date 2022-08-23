@@ -31,6 +31,11 @@ exports.main_search = (req, res) => {
                 }, 
                 {
                     study_category : {
+                        [Models.Op.like]: '%'+ req.body.search + '%'
+                    }
+                },
+                {
+                    study_category : {
                         [Models.Op.like]: '%'+ req.body.category + '%'
                     }
                 }
