@@ -15,7 +15,7 @@ exports.uploadProfile = (req, res) => {
        // 넘어온 filename으로 이전 파일 삭제
         // 그냥 띄워보기만 하는 이미지 무한 저장하는 것 방지
         try{
-            fs.unlink('./public/group/' + req.body.name)
+            fs.unlink('./public/user/' + req.body.name)
         } catch(err) {
             console.error('there was an error :', error.message)
         }
