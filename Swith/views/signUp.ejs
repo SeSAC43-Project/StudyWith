@@ -81,26 +81,27 @@
             /* 회원가입 버튼 클릭 시*/
             function signup() {
                 var form = document.getElementById("signup_form");
+
                 axios({
-                    method:'post',
-                    url: "http://localhost:8000/user/signup",
-                    data: {
-                        user_id: form.id.value,
-                        user_name: form.nickname.value,
-                        user_password: form.password.value,
-                        hint: form.hint.value,
-                        hint_answer: form.hintanswer.value,
-                        user_email: form.email.value,
-                        user_image: uploadedFile,
-                        category1: form.firstField.value,
-                        category2: form.secondField.value,
-                        category3: form.thirdField.value
+                method:'post',
+                url: "http://localhost:8000/user/signup",
+                data: {
+                    user_id: form.id.value,
+                    user_name: form.nickname.value,
+                    user_password: form.password.value,
+                    hint: form.hint.value,
+                    hint_answer: form.hintanswer.value,
+                    user_email: form.email.value,
+                    user_image: uploadedFile,
+                    category1: form.firstField.value,
+                    category2: form.secondField.value,
+                    category3: form.thirdField.value
                     }
                 })
                 .then((req) => { return req.data;})
                 .then((data) => {
                     alert("회원가입 완료");
-                })
+                })        
             }
 
             /* 로그인 버튼 클릭시 페이지 이동*/
@@ -232,12 +233,15 @@
                                             </select>
                                     <!-- </div> -->
         
-                                    <br><br><br><br>
+                                    <!-- <br><br><br><br> -->
+
+                                    <br><br>
+                                    <div class="warningDiv"></div>
+                                    <br><br>
         
                                     <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">회원가입</button>
-
-                                    <br><br><br>
                                     
+                                    <br><br><br>
 
                                     <span>이미 스윗이신가요?</span>&nbsp;
                                     <a href="javascript:void(0);" onclick="user_login(); return false;">로그인</a>&nbsp;

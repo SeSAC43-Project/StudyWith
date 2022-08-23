@@ -1,7 +1,7 @@
 const Studymember = (Sequelize, DataTypes) => {
     const model = Sequelize.define(
         // 모델 이름
-        'Studymember',
+        'studymember',
         // 컬럼 정의
         {
             member_id: {
@@ -24,7 +24,7 @@ const Studymember = (Sequelize, DataTypes) => {
             charset: "utf8", // 한국어 설정
             collate: "utf8_general_ci", // 한국어 설정
             timestamps: false, 
-            tableName: 'Studymember', 
+            tableName: 'studymember', 
             freezeTableName: true,
         }
     );

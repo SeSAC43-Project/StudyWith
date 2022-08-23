@@ -1,9 +1,15 @@
 const Likes = (Sequelize, DataTypes) => {
     const model = Sequelize.define(
         // 모델 이름
-        'Likes',
+        'likes',
         // 컬럼 정의
         {
+            likes_id: {
+                type: DataTypes.INTEGER, 
+                allowNull: false,
+                autoIncrement: true, 
+                primaryKey: true,
+            },
             user_id: {
                 type: DataTypes.STRING(20), 
                 allowNull: false, 
@@ -18,7 +24,7 @@ const Likes = (Sequelize, DataTypes) => {
             charset: "utf8", // 한국어 설정
             collate: "utf8_general_ci", // 한국어 설정
             timestamps: false, 
-            tableName: 'Likes', 
+            tableName: 'likes', 
             freezeTableName: true,
         }
     );
