@@ -130,7 +130,9 @@
                 <% for (i=0; i <= 6; i++){ %> 
                     <button class="service" id='service'>
                         <i class="fa-solid fa-laptop-code"></i>
-                        <div class="category" ><p><%=ca_list[i]%></p></div>
+                        <div class="category" >
+                            <p><%=ca_list[i]%></p>
+                        </div>
                         <p>개설된 모임 : 개</p>   
                     </button>
                     <% }%> 
@@ -144,8 +146,16 @@
         for (const send of sends) {
 
         send.addEventListener('click', function(obj) {
-            var target = obj.currentTarget; 
-            $('#ca_input').val($(obj.currentTarget).text());
+            var target = obj.currentTarget;  //[object HTMLButtonElement]
+            var target_value = $(target).children('.category').children('p').text(); 
+            //.category p .text() : 카테고리 전부가 나옴
+            //target에서 div class=category에서의 p의 텍스트
+            
+            // alert(target_value);
+
+            // $('#ca_input').val($(obj.currentTarget).text());
+            $('#ca_input').val(target_value);
+            
 
             var form = document.getElementById('category-form'); 
             form.action = 'http://localhost:8000/swith/search';
