@@ -150,92 +150,80 @@
 
 
         <!-- 게시물등록할 때 등록한 이미지 / 게시물 제목 / 스터디기간 받아와야 함... -->
-    <form method="get" action="">
+
+        
+
         <div class = "main-container">
             <div class = "filter-container">
                 <div class = "category-head">
-                    <ul>
-                        <div class = "category-title active" id = "all">
-                            <li>전체</li>
-                        </div>
-                        <div class = "category-title" id = "computer">
-                            <li>컴퓨터/IT</li>
-                        </div>
-                        <div class = "category-title" id = "language">
-                            <li>언어</li>
-                        </div>
-                        <div class = "category-title" id = "certificate">
-                            <li>자격증</li>
-                        </div>
-                        <div class = "category-title" id = "confirm">
-                            <li>인증</li>
-                        </div>
-                        <div class = "category-title" id = "work">
-                            <li>취업/이직</li>
-                        </div>
-                    </ul>
+                        <form id="category-form">
+                            <input type='hidden' name="category" id="ca_input">
+                            <% var ca_list = ['컴퓨터/IT', '언어', '자격증', '인증', '취업/이직', '공모전', '취미']%> 
+                            <% for (i=0; i <= 6; i++){ %> 
+                                <button class="category-title" id='category-title'>
+                                    <div class="category" >
+                                        <p><%=ca_list[i]%></p>
+                                    </div>
+                                </button>
+                                <% }%> 
+                        </form>
                 </div>
-            </form>
+
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
                 <ul>
                     <div class = "feed-collect">
                         <div class = "feed-main-container">
-                            <!-- 스터디 정보 폼태그 -->
-                            <form id="category-form">
-                                <% for(var i=0; i<data.length; i++) {%>
-                                    <button class="studys" id="studys">
-                                        <div class = "all business">
-                                            <div class = "post-img">
-                                                <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
-                                                <span class = "category-name"><%=data[i].study_category%></span>
-                                                <p><%=data[i].study_id %></p>
-                                            </div>
-                                            <div class = "post-content">
-                                                <h2><%=data[i].study_name%></h2>
-                                                <p><%=data[i].study_recruit%></p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                        <% } %>
-                                    </div>
-                            </form>
+                        <% for(var i=0; i<data.length; i++) {%>
+                        <div class = "all business">
+                            <div class = "post-img">
+                                <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
+                                <span class = "category-name"><%=data[i].study_category%></span>
+                            </div>
+                            <div class = "post-content">
+                                <h2><%=data[i].study_name%></h2>
+                                <p><%=data[i].study_recruit%></p>
+                            </div>
+                        </div>
+                        <% } %>
+                        </div>
                     </div>
                 </ul>
             </div>
         </div>
+
         <script>
-            // 상세페이지로 이동하기
-            var studys = document.getElementsByClassName('studys'); 
-
-            for (const study of studys) {
-                study.addEventListener('click', function(obj) {
-                    var study_site = obj.currentTarget; 
-                    var study_id = $(study_site).children('.post-img').children('p').text(); 
-                    console.log(study_id);
-                    
-                    axios ({
-                        method:'post', 
-                        url:'http://localhost:8000/swith/search/detailed', 
-                        data : {
-                            study_id : study_id
-                        }
-                    })
-                    .then((req) => {return req.data;})
-                    .then((data) => {
-                        document.location.href=`http://localhost:8000/feed/detailedPost?user_id=${data.user_id}&study_id=${data.study_id}`
-                    })
+            // var send = document.getElementById('service');
+    
+            var sends = document.getElementsByClassName('category-title');
+    
+            for (const send of sends) {
+    
+            send.addEventListener('click', function(obj) {
+                var target = obj.currentTarget;  //[object HTMLButtonElement]
+                var target_value = $(target).children('.category').children('p').text(); 
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8000/swith/search/',
+                    data : {
+                        category : target_value
+                    }
                 })
-            }
+                .then((req) => {console.log(req.data);})
+                .then((data) => {
+                    console.log(data)
+                    for ( var i = 0; i < data.length; i++ ){
+                        var html = "<div> data[i].study_category </div>";
+                        $("#study_category").append(html);
+                    }
+                })
+
+    
+            });  
+        }
+        </script> 
 
 
-
-
-
-
-
-
-
-
+        <script>
             const categoryTitle = document.querySelectorAll('.category-title');
             const allCategoryPosts = document.querySelectorAll('.all');
 
