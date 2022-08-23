@@ -5,7 +5,7 @@ exports.main_index = (req, res) => {
     res.render('main'); 
 }
 
-// 
+// 메인 페이지 검색 기능
 exports.main_search = (req, res) => {
     if (req.body.search == "") { // 검색어가 없는 경우
         res.send(''); 
