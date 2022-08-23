@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스터디관리</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/management.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+        // 등록 된 게시물 데이터 받아오기
+        function management_info() {
+            var form = document.getElementById("management_form");
+            axios({
+                method: 'patch',
+                url: "http://localhost:8000/feed/management",
+                data: {
+                    study_name : feed.studyName.value,
+                    study_category : feed.studyCategory.value,
+                    study_form : feed.studyForm.value,
+                    study_recruit : feed.studyRecruit.value,
+                    study_address : feed.sample6_address.value, 
+                    study_image : uploadedFile, 
+                    study_content : feed.studyContent.value,
+                    start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
+                    end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
+                    hashtag: feed_hashtags,
+                }
+            }).then((req) => {return req.data })
+            .then((data) => {
+                console.log( data );
+                var management = document.getElementById("management" + studyName);
+                var children = management.children;
+
+                $( children[1] ).text( form.study_name );
+                $( children[2] ).text( form.study_category );
+                $( children[3] ).text( form.study_form );
+                $( children[4] ).text( form.study_recruit );
+                $( children[5] ).text( form.study_address );
+                $( children[6] ).text( form.study_image );
+                $( children[7] ).text( form.study_content );
+                $( children[8] ).text( form.start_period );
+                $( children[9] ).text( form.end_period );
+                $( children[10] ).text( form.hashtag );
+                console.log( children );
+            })
+        }
+        // 게시물 수정
+        function editFeed() {
+            var feed = document.getElementById("edit_info");
+            var hashtags = document.getElementById("enter_hashtag").innerHTML;
+            var hashtags2 = hashtags.split('#');
+            var feed_hashtag = hashtags2.slice(1);
+            var feed_hashtags = feed_hashtag.toString();
+
+            var result = feed.checkValidity();
+
+            if ( !result ) {
+                $('.warningDiv').html('수정할 데이터를 모두 입력해주세요!');
+                $('.warningDiv').css('color','red');
+
+                return false;
+            }
+            axios({
+                method:'post',
+                url:'http://localhost:8000/feed/management',
+                data : {
+                    study_name : feed.studyName.value,
+                    study_category : feed.studyCategory.value,
+                    study_form : feed.studyForm.value,
+                    study_recruit : feed.studyRecruit.value,
+                    study_address : feed.sample6_address.value, 
+                    study_image : uploadedFile, 
+                    study_content : feed.studyContent.value,
+                    start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
+                    end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
+                    hashtag: feed_hashtags,
+                }
+            })
+            .then((req) => { return req.data })
+            .then((data) => {
+                if (data == true) {
+                    document.location.href="http://localhost:8000/swith";
+                    // 수정 된 게시물 페이지로 이동. 현재는 메인페이지로 이동되게 표기
+                }
+            })
+        }
+
+        function cancelFeed() {
+            history.go(-1);
+            // document.location.href="http://localhost:8000/swith";
+            // 취소 버튼을 누르면 이전 페이지로 가기
+        }
+
+        /* 해시태그 엔터시 추가되는 부분 */
+        function show_hashtag(event) {
+            const keyword = document.getElementById('enter_hashtag');
+            // console.log(keyword);
+            const txt = document.getElementById('text_hashtag').value;
+
+            // let btn = "<button type='button' class='deleteHashtag' onclick='deleteTag();'>X</button>";
+            // $('#enter_hashtag').append(btn);   //이부분은 해시태그 삭제할 때 적용(미완)
+
+            // console.log(txt);
+            if (event.keyCode == 13) {
+                keyword.innerHTML += "<span class='newHashtag'>" + '#' + txt + "</span>";
+                document.getElementById('text_hashtag').value = "";
+                
+            }
+        }    
+
+        /* 다음 주소 api ('동/로/가'만 받아오는 것처럼 보이도록) */
+    function searchForAddress() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = '';
+                var extraAddr = '';
+                if (data.userSelectedType === 'R') { 
+                    addr = data.roadAddress;
+                } else { 
+                    addr = data.jibunAddress;
+                }               
+
+                var addrs = addr.split(" ");
+                var addrs_1 = addrs[0] + ' ' + addrs[1] + ' '+ addrs[2] + ' ';
+
+                document.getElementById("sample6_address").value = addrs_1;
+                document.getElementById("studyRecruit").focus();
+                
+            }
+        }).open();
+    }
+
+    /* 그룹이미지 업로드 부분 */
+    var uploadedFile = '';
+    function uploadFile(obj) {
+        var formData = new FormData();
+        // 이미지를 동적폼 전송 가능하게 해주는 FormData 객체 생성
+        // FormData 객체는 window.FormData에 위치
+        formData.append('name', uploadedFile);
+        formData.append('studyImage', obj.files[0]);
+        console.log(uploadedFile);
+        console.log(obj.files[0]);
+        // append() 메소드로 key-value 값을 하나씩 추가
+        // 같은 key를 가진 값을 여러개 넣을 수 있음 ! (값은 문자열로 자동변환)
+
+        axios({
+            method: 'post', 
+            url: 'http://localhost:8000/feed/write/upload',
+            data: formData
+        })
+        .then((req) => {
+            console.log(req.data);
+            // $('#groupImgLabel').css('display','none');
+            return req.data
+        })
+        .then((data) => {
+            uploadedFile = data.fileName;
+            alert(data.study_image);
+            // $('#group_img').attr('src', '/public/group/' + data.fileName);
+            $("#group_img").css({"background-image":`url(/public/group/${data.fileName})`}); 
+            $("#group_img").css({"background-size":`700px 70px`});
+            
+        })
+    }
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        
+        <div class="whole_container">
+        <h2 style="text-align: center;">스터디 관리📌</h2>
+        <br>
+        <div class="management_container">
+        <form id="management_info" name="management_form" class="form_container" enctype="multipart/form-data">
+                <div class="context_container">
+                    
+                    <div class="form-row">
+                        <div class="group" id="group_img_upload">
+                                <div id="group_img">
+                                <label class="groupImgLabel" for="groupImg">
+                                    <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br>click!</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">스터디명&nbsp;&nbsp;&nbsp;</div>
+                        <div class="value"> 
+                        <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요." maxlength="20" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">카테고리 <br><span style="font-size: 0.7rem;">*카테고리를 선택해주세요.</span></div>
+                        <div class="value">
+                        <ul>
+                            <li class="radio-btn"><input type="radio" id="category1" name="studyCategory" value="언어" required>
+                                <label for="category1">언어</label></li>
+                            <li class="radio-btn"><input type="radio" id="category2" name="studyCategory" value="자격증">
+                                <label for="category2">자격증</label></li>
+                            <li class="radio-btn"><input type="radio" id="category3" name="studyCategory" value="취업">
+                                <label for="category3">취업</label></li>
+                            <li class="radio-btn"><input type="radio" id="category4" name="studyCategory" value="IT">
+                                <label for="category4">IT</label></li>
+                            <li class="radio-btn"><input type="radio" id="category5" name="studyCategory" value="취미">
+                                <label for="category5">취미</label></li>
+                            <li class="radio-btn"><input type="radio" id="category6" name="studyCategory" value="인증">
+                                <label for="category6">인증</label></li>
+                            <li class="radio-btn"><input type="radio" id="category7" name="studyCategory" value="공모전">
+                                <label for="category7">공모전</label></li>
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">스터디형태</div><br>
+                        <div class="value" id="on_off">
+                            <input type="radio" name="studyForm" id="online" value="온라인" required>
+                            <label for="online">온라인</label>
+                            <input type="radio" name="studyForm" id="offline" value="오프라인" required>
+                            <label for="offline">오프라인</label>
+                            <p>
+                                <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required>&nbsp;
+                                <!-- <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 70px;"> &nbsp; -->
+                                <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" style="width: 300px; height: 25px; text-align: center;"><br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">모집인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="value">
+                        <input type="text" id="studyRecruit" name="studyRecruit" style="width: 40px;" required>&nbsp;명
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">스터디 소개글</div>
+                        <div class="value">
+                            <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;" maxlength="20" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">스터디 기간</div>
+                        <ul class="period">
+                        <li><div class="value">
+                        시작일: <input type="hidden" name="start_period">
+                        <select id="start_year" name="start_year" required>
+                            <option>
+                                <%for(var i=2022; i<=2050; i++) {%>
+                                    <option value="<%=i%>"><%=i%></option>
+                                <%}%>
+                            </option>
+                        </select>년
+                        <select id="start_month" name="start_month" required>
+                            <option>
+                                <%for(var j=1; j<=12; j++) {%>
+                                    <option value="<%=j%>"><%=j%></option>
+                                <%}%>
+                            </option>
+                        </select>월
+                        <select id="start_day" name="start_day" required>
+                            <option>
+                                <%for(var k=1; k<=31; k++) {%>
+                                    <option value="<%=k%>"><%=k%></option>
+                                <%}%>
+                            </option>
+                        </select>일
+                        </div>
+                        </li>
+    
+                        <li>
+                        <div class="value">
+                        종료일: <input type="hidden" name="end_period">
+                        <select id="end_year" name="end_year" required>
+                            <option>
+                                <%for(var i=2022; i<=2050; i++) {%>
+                                    <option value="<%=i%>"><%=i%></option>
+                                <%}%>
+                            </option>
+                        </select>년
+                        <select id="end_month" name="end_month" required>
+                            <option>
+                                <%for(var j=1; j<=12; j++) {%>
+                                    <option value="<%=j%>"><%=j%></option>
+                                <%}%>
+                            </option>
+                        </select>월
+                        <select id="end_day" name="end_day" required>
+                            <option>
+                                <%for(var k=1; k<=31; k++) {%>
+                                    <option value="<%=k%>"><%=k%></option>
+                                <%}%>
+                            </option>
+                        </select>일
+                    </li>
+                    </div>
+                </ul>
+    
+                <div class="form-row">
+                    <div class="name">해시태그</div>
+                    <div class="value"><input class="input_text" type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요." name="hashTag" onkeypress="show_hashtag(event)">
+                        <p>
+                            <span id="enter_hashtag" name="enter_hashtag"></span>
+                        </p>
+                    </div>
+                </div>
+                <br><br>
+                <div class="warningDiv"></div>
+                <br><br>
+    
+                    <button class="cancelebutton" type="button" onclick="cancelFeed();">취소</button>
+                    <button class="writebutton" type="button" onclick="editFeed();">수정</button>
+                    <button class="writebutton" type="button" onclick="writePost();">확인</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+    
+    </div>
+    <footer>
+        <div id="footer" class="footer">
+        <div class="footer_logo">    
+            <img width="60" height="30" src="/public/login/logo.png" alt="footer_logo">
+            <a href="index.js"></a>
+        </div>
+        <br>
+        <p style="font-size:x-small;"class="copyright">Copyright 2022. Swith. All Rights Reserved.</p>
+        <br>
+        </div>
+    </footer>
+</body>
+</html>
