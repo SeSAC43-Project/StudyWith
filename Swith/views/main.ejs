@@ -137,16 +137,22 @@
                 </form>
                 
     <script>
-        var send = document.getElementById('service');
+        // var send = document.getElementById('service');
+
+        var sends = document.getElementsByClassName('service');
+
+        for (const send of sends) {
+
         send.addEventListener('click', function(obj) {
             var target = obj.currentTarget; 
             $('#ca_input').val($(obj.currentTarget).text());
 
             var form = document.getElementById('category-form'); 
-            form.aciton = 'http://localhost:8000/swith/search';
+            form.action = 'http://localhost:8000/swith/search';
             form.method = 'post'; 
             form.submit();
         });  
+    }
     </script> 
                     
                 
