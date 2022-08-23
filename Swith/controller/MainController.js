@@ -40,6 +40,10 @@ exports.main_search = (req, res) => {
     .then((result) => {
         console.log(result);
         res.render('search', {data: result, search: req.body.search, category: req.body.category});
-
     })
+}
+
+exports.search_detail = (req, res) => {
+    console.log('req.body.study_id', req.body.study_id); 
+    res.send({study_id: req.body.study_id, user_id: req.session.user_id});
 }
