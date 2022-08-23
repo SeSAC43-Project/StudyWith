@@ -137,7 +137,12 @@
                 </form>
                 
     <script>
-        var send = document.getElementById('service');
+        // var send = document.getElementById('service');
+
+        var sends = document.getElementsByClassName('service');
+
+        for (const send of sends) {
+
         send.addEventListener('click', function(obj) {
             var target = obj.currentTarget; 
             $('#ca_input').val($(obj.currentTarget).text());
@@ -147,6 +152,7 @@
             form.method = 'post'; 
             form.submit();
         });  
+    }
     </script> 
                     
                 
