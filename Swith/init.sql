@@ -1,4 +1,4 @@
-CREATE DATABASE swith; --DB 생성 
+CREATE DATABASE swith; -- DB 생성 
 
 USE swith; -- DB 사용
  
@@ -6,14 +6,14 @@ USE swith; -- DB 사용
 CREATE TABLE user (
 	user_id VARCHAR(20) NOT NULL PRIMARY KEY, -- 유저 id
     user_password VARCHAR(45) NOT NULL, -- 유저 비밀번호
-    hint VARCHAR(100) NOT NULL, -- 비밀번호 찾기 질문 (1, 2, 3, ..)
+    hint VARCHAR(10) NOT NULL, -- 비밀번호 찾기 질문 (1, 2, 3, ..)
     hint_answer VARCHAR(50) NOT NULL, -- 비밀번호 찾기 답
     user_name VARCHAR(20) NOT NULL, -- 유저 닉네임
     user_email VARCHAR(45) NOT NULL, -- 유저 이메일
-    user_image VARCHAR(100) NOT NULL, -- 유저 프로필 이미지
+    user_image VARCHAR(100) DEFAULT 'user_default.jpg', -- 유저 프로필 이미지
     category1 VARCHAR(20) NOT NULL, -- 관심 카테고리 1
     category2 VARCHAR(20) NOT NULL, -- 관심 카테고리 2
-    category3 VARCHAR(20) NOT NULL, -- 관심 카테고리 
+    category3 VARCHAR(20) NOT NULL, -- 관심 카테고리 3
     join_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP -- 유저 가입 날짜
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE studygroup (
     study_form VARCHAR(45) NOT NULL, -- 그룹 형식 (온라인, 오프라인)
     study_recruit VARCHAR(3) NOT NULL, -- 그룹 모집 인원 수
     study_address VARCHAR(50), -- 오프라인일 경우 주소
-    study_image VARCHAR(100) NOT NULL, -- 그룹 프로필 이미지
+    study_image VARCHAR(100) DEFAULT 'group_default.jpg', -- 그룹 프로필 이미지
     study_content MEDIUMTEXT NOT NULL, -- 그룹 소개
     start_period DATE NOT NULL, -- 그룹 시작일
     end_period DATE NOT NULL, -- 그룹 종료일 
@@ -36,6 +36,7 @@ CREATE TABLE studygroup (
 );
 
 CREATE TABLE studymember (
+    member_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- primary key 있어야해서 생성함
 	study_id INT NOT NULL, -- 스터디 그룹 id
     user_id VARCHAR(20) NOT NULL, -- 그룹장이 아닌 일반 멤버의 user_id
     FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
@@ -43,6 +44,7 @@ CREATE TABLE studymember (
 );
 
 CREATE TABLE likes (
+    likes_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, -- primary key 있어야해서 생성함
     user_id VARCHAR(20) NOT NULL, -- 좋아요 한 유저의 id
     study_id INT NOT NULL, -- 좋아요 한 스터디 그룹 id
     FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
@@ -59,11 +61,10 @@ insert into user values('aa', '1234', '1', 'swith', 'swith', 'swith@naver.com', 
 --스터디 그룹 테스트
 INSERT INTO studygroup (head_id, study_name, study_category, study_form, study_address, study_recruit, study_image, study_content, start_period, end_period, hashtag) VALUES("aa", "swith", "IT", "오프라인", "서울시 영등포구 문래동","6", "123456789.jpg","안녕하세요 swith입니다", '2022-08-16', '2022-12-30', "#공부#그룹#화이팅" );
 
-
---게시물 상세 조회 테스트
-SELECT * from user inner join studygroup on studygroup.head_id=user.user_id  where user.user_id="정화" AND studygroup.study_id=4; -- 조장
-SELECT * from user inner join studymember on studymember.user_id=user.user_id  where user.user_id="정화" AND studymember.study_id=4; -- 멤버
-SELECT * FROM studygroup where study_id=3; -- 그룹 정보
+-- 조회 test
+SELECT * FROM user;
+SELECT * FROM studygroup;
+SELECT * FROM studymember;
 
 --전체 스터디 정보
 SELECT * from user inner join studymember on studymember.user_id = user.user_id inner join studygroup on studygroup.study_id = studymember.study_id;

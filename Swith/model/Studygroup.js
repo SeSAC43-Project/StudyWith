@@ -34,10 +34,11 @@ const Studygroup = (Sequelize, DataTypes) => {
                 type: DataTypes.STRING(50), 
             },
             study_image: {
-                type: DataTypes.STRING(100), 
+                type: DataTypes.STRING(100),
+                defaultValue: 'group_default.jpg',
             },
             study_content: {
-                type: DataTypes.STRING(20),
+                type: DataTypes.TEXT,
                 allowNull: false,
             },
             start_period: {

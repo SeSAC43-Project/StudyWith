@@ -14,7 +14,7 @@ const User = (Sequelize, DataTypes) => {
                 allowNull: false, 
             },
             hint: {
-                type: DataTypes.STRING(100),
+                type: DataTypes.STRING(10),
                 allowNull: false, 
             },
             hint_answer: {
@@ -26,11 +26,12 @@ const User = (Sequelize, DataTypes) => {
                 allowNull: false, 
             },
             user_email: {
-                type: DataTypes.STRING(20),
+                type: DataTypes.STRING(45),
                 allowNull: false, 
             },
             user_image: {
                 type: DataTypes.STRING(100),
+                defaultValue: 'user_default.jpg',
             },
             category1: {
                 type: DataTypes.STRING(20),
@@ -70,7 +71,6 @@ const User = (Sequelize, DataTypes) => {
         User.belongsToMany(models.Studygroup, { through: 'Likes' });
     };
 
-    
 
     return model;
 }

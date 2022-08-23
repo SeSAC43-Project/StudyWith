@@ -8,6 +8,15 @@ exports.write_index = (req, res) => {
 
 // 게시물 등록  
 exports.post_write = (req, res) => {
+
+    let study_image = '';
+
+    if ( req.body.study_image == '') { // group 이미지가 없을 경우
+        study_image = 'group_default.jpg';
+    } else {
+        study_image = req.body.study_image;
+    }
+
     let Obj = {
         head_id : req.session.user_id,
         study_category : req.body.study_category, 
@@ -15,15 +24,13 @@ exports.post_write = (req, res) => {
         study_form : req.body.study_form, 
         study_recruit : req.body.study_recruit,
         study_address : req.body.study_address, 
-        study_image : req.body.study_image, 
+        study_image : study_image, 
         study_content : req.body.study_content, 
         start_period : req.body.start_period, 
         end_period : req.body.end_period, 
-        study_regdate : Date.now(), 
-        // hashtag : "해시태그",
         hashtag: req.body.hashtag, 
-        study_views : 0, 
     }; 
+    
     Models.Studygroup.create( Obj )
     .then((result) => {
         console.log(result);
