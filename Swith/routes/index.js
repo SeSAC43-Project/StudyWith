@@ -67,6 +67,7 @@ const MainRouter = express.Router();
 const main = require('../controller/MainController');
 MainRouter.get('/', main.main_index); // 메인페이지 화면
 MainRouter.post('/search', main.main_search); // 메인페이지 검색 기능
+MainRouter.post('/search', main.main_category); // 메인에서 카테고리 클릭시 세부내용으로 이동
 MainRouter.get('/search', main.search_detail); // 검색된 페이지에서 세부 내용으로 이동
 
 

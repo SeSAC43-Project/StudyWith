@@ -118,39 +118,16 @@
    
     <!-- ==========================================메인 세번째 페이지======================================  -->
    <script>
-        function goCategory() {
-                $('.category').on('click', function(obj) {
-                    var target = obj.currentTarget; 
-                    $('#ca_input').val($(obj.currentTarget).text());
-                })
+        var send = document.getElementById('send');
+        send.addEventListener('click', function(obj) {
+            var target = obj.currentTarget; 
+            $('#ca_input').val($(obj.currentTarget).text());
 
-                // var form = document.getElementById("#category-form");
-                // var category = $('#ca_input').val();
-                // console.log(form); //null?
-                // form.category.value = category;
-                // form.submit();
-           
-                // console.log($('#ca_input').val());
-
-                var category = $('#ca_input').val();
-
-                axios({
-                    method:'post',
-                    url: "http://localhost:8000/swith/search",
-                    data: {
-                        study_category: form.category.value
-                        // 혹쉬... 
-                        // study_category : category;
-                    }
-                })
-                .then((req) => { 
-                    console.log(req);
-                    return req.data;})
-                .then((data) => {
-                    document.location.href="http://localhost:8000/swith/search"
-                })
-        }
-
+            var form = document.getElementById('category-form'); 
+            form.aciton = 'http://localhost:8000/swith/search';
+            form.mothod = 'post'; 
+            form.submit();
+        });  
    </script> 
 
 
@@ -160,16 +137,16 @@
 
             <form id="category-form" method="post" action="/swith/search">
                 <input name="category" id="ca_input">
-            </form>
                 <% var ca_list = ['컴퓨터/IT', '언어', '자격증', '인증', '취업/이직', '공모전', '취미']%> 
                 <% for (i=0; i <= 6; i++){ %> 
-                    <div class="service" onclick="goCategory()">
+                    <button class="service">
                         <i class="fa-solid fa-laptop-code"></i>
                         <div class="category" ><p><%=ca_list[i]%></p></div>
                         <p>개설된 모임 : 개</p>   
-                    </div>
-                <% }%> 
-
+                    </button>
+                    <% }%> 
+                </form>
+                    
                 
 
                 <!-- <div class="service" onclick="goCategory()">
