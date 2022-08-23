@@ -81,14 +81,66 @@
                             <input type='hidden' name="category" id="ca_input">
                             <% var ca_list = ['컴퓨터/IT', '언어', '자격증', '인증', '취업/이직', '공모전', '취미']%> 
                             <% for (i=0; i <= 6; i++){ %> 
-                                <button class="category-title" id='category-title'>
+                                <button type="button" class="category-title" id='category-title[i]'>
                                     <div class="category" >
                                         <p><%=ca_list[i]%></p>
                                     </div>
                                 </button>
                                 <% }%> 
                         </form>
+                        <div id="study_category"></div>
                 </div>
+
+                <script>
+                    // 카테고리 정보 보내기 
+                    
+                    // var categorys = document.getElementsByClassName('category-title');
+
+                    var categorys = document.querySelectorAll('.category-title');
+                    
+                    
+                    for (const category of categorys) {     
+                        category.addEventListener('click', function(obj) {
+                            var car_site = obj.currentTarget;  //[object HTMLButtonElement]
+                            var car_value = $(car_site).children('.category').children('p').text(); 
+                            //var car_value = "컴퓨터/IT";
+                            console.log('targetcheck');
+                            console.log(car_site);
+                            console.log(car_value);                         
+                            // .find('.ca')
+                            axios({
+                                method: 'post',
+                                url: 'http://localhost:8000/swith/search/category',
+                                data : {
+                                    study_category : car_value
+                                }
+                            })
+                            .then((req) => {return req.data; })
+                            .then((data) => {
+                                if (data.flag == true) {
+                                    console.log(data),
+                                    console.log(data.data);
+                                }
+                                var html = "";
+                                html += "<div class='item-box'>";
+                                html += "<ul>";
+                                for ( var i = 0; i < data.data.length; i++ ){
+                                    html += "<li>";
+                                    html += "<div class='photo'>" + data.data[i].study_category + "</div>"; 
+                                    html += "<div class='info'>" + "<img src='/public/group/"+data.data[i].study_image + "'/></div>";
+                                    html += "</li>"
+
+                                    console.log(data.data[i].study_category)
+                                }
+                                html += "</ul></div>"
+                                $("#study_category").empty();
+                                $("#study_category").append(html);
+                            })
+        
+            
+                    });  
+                }
+                </script>
 
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
                 <ul>
@@ -98,7 +150,7 @@
                         <div class = "all business">
                             <div class = "post-img">
                                 <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
-                                <span class = "category-name"><%=data[i].study_category%></span>
+                                <span name="categoryName" class = "category-name"><%=data[i].study_category%></span>
                             </div>
                             <div class = "post-content">
                                 <h2><%=data[i].study_name%></h2>
@@ -112,35 +164,27 @@
             </div>
         </div>
 
-        <script>
-            // var send = document.getElementById('service');
-    
-            var sends = document.getElementsByClassName('category-title');
-    
-            for (const send of sends) {
-    
-            send.addEventListener('click', function(obj) {
-                var target = obj.currentTarget;  //[object HTMLButtonElement]
-                var target_value = $(target).children('.category').children('p').text(); 
-                axios({
-                    method: 'post',
-                    url: 'http://localhost:8000/swith/search/',
-                    data : {
-                        category : target_value
-                    }
-                })
-                .then((req) => {console.log(req.data);})
-                .then((data) => {
-                    console.log(data)
-                    for ( var i = 0; i < data.length; i++ ){
-                        var html = "<div> data[i].study_category </div>";
-                        $("#study_category").append(html);
-                    }
-                })
 
-    
-            });  
-        }
+        <!-- // function feedCategory() {
+        //     var cate = document.getElementById('category-form');
+        //     var send = $("ca_input").val();
+
+        //     axios({
+        //         method: 'post',
+        //         url: 'http://localhost:8000/swith/search/',
+        //         data: {
+        //             study_category : form.categoryName.value
+        //         }
+        //     })
+        //     .then((req) => {console.log(req.data);})
+        //     .then((data) => {
+        //         for ( var i = 0; i < data.length; i++ ){
+        //             var html = "<div> data[i].study_category </div>";
+        //             $("#study_category").append(html);
+        //         }
+        //     })
+        // } -->
+
         </script> 
       
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
@@ -150,7 +194,7 @@
                             <!-- 스터디 정보 폼태그 -->
                             <form id="category-form">
                                 <% for(var i=0; i<data.length; i++) {%>
-                                    <button class="studys" id="studys">
+                                    <button class="studys" id="studys" onclick="feedCategory()">
                                         <div class = "all business">
                                             <div class = "post-img">
                                                 <img src = "/public/group/<%=data[i].study_image %>" alt = "post">

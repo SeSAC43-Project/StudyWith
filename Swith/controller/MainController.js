@@ -47,3 +47,17 @@ exports.search_detail = (req, res) => {
     console.log('req.body.study_id', req.body.study_id); 
     res.send({study_id: req.body.study_id, user_id: req.session.user_id});
 }
+
+exports.search_category = (req, res) => {
+    Models.Studygroup.findAll({
+        where: {  
+            study_category : {
+                [Models.Op.like]:'%'+ req.body.study_category + '%'
+            }
+        }
+    })
+    .then((result) => {
+        console.log('여기가 카테고리 ', result);
+        res.send({data: result, flag: true});
+    })
+}
