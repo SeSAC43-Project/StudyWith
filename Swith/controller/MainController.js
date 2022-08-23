@@ -7,10 +7,10 @@ exports.main_index = (req, res) => {
 
 // 메인 페이지 검색 기능
 exports.main_search = (req, res) => {
-    if (req.body.search == "") { // 검색어가 없는 경우
-        res.send(''); 
-        return 
-    }
+    // if (req.body.search == "") { // 검색어가 없는 경우 전체 스터디 정보 보여주기
+    //     res.render('main'); 
+    //     return 
+    // }
     
     // 검색어가 있으면 검색 
     console.log('검색어 : ',req.body.search);
@@ -39,7 +39,7 @@ exports.main_search = (req, res) => {
     })
     .then((result) => {
         console.log(result);
-        res.render('search', {data: result, search: req.body.search});
+        res.render('search', {data: result, search: req.body.search, category: req.body.category});
 
     })
 }
