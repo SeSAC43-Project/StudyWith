@@ -30,7 +30,7 @@ exports.main_search = (req, res) => {
                 }, 
                 {
                     study_category : {
-                        [Models.Op.like]: '%'+ req.body.search + '%'
+                        [Models.Op.like]: '%'+ req.body.category + '%'
                     }
                 }
             ]
@@ -46,18 +46,4 @@ exports.main_search = (req, res) => {
 // 검색된 페이지에서 세부 내용으로 이동
 exports.search_detail = (req, res) => {
     res.render('search');
-}
-
-// 메인에서 카테고리 클릭시 세부내용으로 이동
-exports.main_category = (req, res) => {
-    console.log(req.body.category);
-    Models.Studygroup.findAll({
-        where: {
-            study_category : '%'+ req.body.search + '%'
-        }
-    })
-    .then((result) => {
-        console.log(result);
-        res.render('search', {data: result, category: req.body.category});
-    })
 }
