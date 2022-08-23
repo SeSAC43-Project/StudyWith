@@ -73,109 +73,77 @@
   </script>
 </head>
 
-<body>
-    <div class="search_bar">
-        <form id="studySearch_form" method="post">
-        <div>
-            <div>
-                <span>스터디 이름 :</span>
-                <input type="text" name="search" id='search' class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black">
-                &nbsp;&nbsp;
-                <span>모집인원 :</span>
-                <input type="radio" name="memberNum">2~3명
-                <input type="radio" name="memberNum">4~6명
-                <input type="radio" name="memberNum">7명이상
+<body></body>
 
-                <br><br>
-                <div class="form-row">
-                    <div class="name">스터디 기간</div>
-                    <ul class="period">
-                    <li><div class="value">
-                    시작일: <input type="hidden" name="start_period">
-                    <select id="start_year" name="start_year" required>
-                        <option>
-                            <%for(var i=2022; i<=2050; i++) {%>
-                                <option value="<%=i%>"><%=i%></option>
-                            <%}%>
-                        </option>
-                    </select>년
-                    <select id="start_month" name="start_month" required>
-                        <option>
-                            <%for(var j=1; j<=12; j++) {%>
-                                <option value="<%=j%>"><%=j%></option>
-                            <%}%>
-                        </option>
-                    </select>월
-                    <select id="start_day" name="start_day" required>
-                        <option>
-                            <%for(var k=1; k<=31; k++) {%>
-                                <option value="<%=k%>"><%=k%></option>
-                            <%}%>
-                        </option>
-                    </select>일
-                    </div>
-                    </li>
-
-                    <li>
-                    <div class="value">
-                    종료일: <input type="hidden" name="end_period">
-                    <select id="end_year" name="end_year" required>
-                        <option>
-                            <%for(var i=2022; i<=2050; i++) {%>
-                                <option value="<%=i%>"><%=i%></option>
-                            <%}%>
-                        </option>
-                    </select>년
-                    <select id="end_month" name="end_month" required>
-                        <option>
-                            <%for(var j=1; j<=12; j++) {%>
-                                <option value="<%=j%>"><%=j%></option>
-                            <%}%>
-                        </option>
-                    </select>월
-                    <select id="end_day" name="end_day" required>
-                        <option>
-                            <%for(var k=1; k<=31; k++) {%>
-                                <option value="<%=k%>"><%=k%></option>
-                            <%}%>
-                        </option>
-                    </select>일
-                </li>
-            </div>
-                <button class="search" name="search_button" style="font-size: 20px;" onclick="studySearch()">🔍</button>
-            </div>
-        </div>
-        </form>
-    </div>
-
-
-        <!-- 게시물등록할 때 등록한 이미지 / 게시물 제목 / 스터디기간 받아와야 함... -->
-    <form method="get" action="">
         <div class = "main-container">
             <div class = "filter-container">
                 <div class = "category-head">
-                    <ul>
-                        <div class = "category-title active" id = "all">
-                            <li>전체</li>
-                        </div>
-                        <div class = "category-title" id = "computer">
-                            <li>컴퓨터/IT</li>
-                        </div>
-                        <div class = "category-title" id = "language">
-                            <li>언어</li>
-                        </div>
-                        <div class = "category-title" id = "certificate">
-                            <li>자격증</li>
-                        </div>
-                        <div class = "category-title" id = "confirm">
-                            <li>인증</li>
-                        </div>
-                        <div class = "category-title" id = "work">
-                            <li>취업/이직</li>
-                        </div>
-                    </ul>
+                        <form id="category-form">
+                            <input type='hidden' name="category" id="ca_input">
+                            <% var ca_list = ['컴퓨터/IT', '언어', '자격증', '인증', '취업/이직', '공모전', '취미']%> 
+                            <% for (i=0; i <= 6; i++){ %> 
+                                <button class="category-title" id='category-title'>
+                                    <div class="category" >
+                                        <p><%=ca_list[i]%></p>
+                                    </div>
+                                </button>
+                                <% }%> 
+                        </form>
                 </div>
-            </form>
+
+                <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
+                <ul>
+                    <div class = "feed-collect">
+                        <div class = "feed-main-container">
+                        <% for(var i=0; i<data.length; i++) {%>
+                        <div class = "all business">
+                            <div class = "post-img">
+                                <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
+                                <span class = "category-name"><%=data[i].study_category%></span>
+                            </div>
+                            <div class = "post-content">
+                                <h2><%=data[i].study_name%></h2>
+                                <p><%=data[i].study_recruit%></p>
+                            </div>
+                        </div>
+                        <% } %>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+            // var send = document.getElementById('service');
+    
+            var sends = document.getElementsByClassName('category-title');
+    
+            for (const send of sends) {
+    
+            send.addEventListener('click', function(obj) {
+                var target = obj.currentTarget;  //[object HTMLButtonElement]
+                var target_value = $(target).children('.category').children('p').text(); 
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8000/swith/search/',
+                    data : {
+                        category : target_value
+                    }
+                })
+                .then((req) => {console.log(req.data);})
+                .then((data) => {
+                    console.log(data)
+                    for ( var i = 0; i < data.length; i++ ){
+                        var html = "<div> data[i].study_category </div>";
+                        $("#study_category").append(html);
+                    }
+                })
+
+    
+            });  
+        }
+        </script> 
+      
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
                 <ul>
                     <div class = "feed-collect">
@@ -310,19 +278,7 @@
 
 
 
-        <!-- <form method="get" action="">
-            <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
-            <div class="search_Result">
-                <div>
-                    <img src="../public/search/computer.jpeg" alt="">
-                    <div>
-                        <h3><%=data[0].study_name %></h3>
-                        <p>스터디기간</p>
-                        <div><%=data[0].study_image %></div>
-                    </div>
-                </div>
-            </div>
-        </form> -->
+
 
 
 
