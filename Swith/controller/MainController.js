@@ -13,7 +13,8 @@ exports.main_search = (req, res) => {
     }
     
     // 검색어가 있으면 검색 
-    console.log('요긴 컨트롤러',req.body.search);
+    console.log('검색어 : ',req.body.search);
+    console.log('카테고리 : ',req.body.search);
     
     Models.Studygroup.findAll({
         where: {
@@ -41,9 +42,4 @@ exports.main_search = (req, res) => {
         res.render('search', {data: result, search: req.body.search});
 
     })
-}
-
-// 검색된 페이지에서 세부 내용으로 이동
-exports.search_detail = (req, res) => {
-    res.render('search');
 }

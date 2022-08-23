@@ -117,35 +117,37 @@
 
    
     <!-- ==========================================메인 세번째 페이지======================================  -->
-   <script>
-        var send = document.getElementById('send');
-        send.addEventListener('click', function(obj) {
-            var target = obj.currentTarget; 
-            $('#ca_input').val($(obj.currentTarget).text());
-
-            var form = document.getElementById('category-form'); 
-            form.aciton = 'http://localhost:8000/swith/search';
-            form.mothod = 'post'; 
-            form.submit();
-        });  
-   </script> 
+  
 
 
     <div class="container_third">
        <h1>SWITH에는 &nbsp;<span class="auto-type">컴퓨터/IT</span>&nbsp;&nbsp;스터디그룹이 있어요 💁🏼‍♂️ </h1>
        <div class="row">
 
-            <form id="category-form" method="post" action="/swith/search">
+            <form id="category-form">
                 <input name="category" id="ca_input">
                 <% var ca_list = ['컴퓨터/IT', '언어', '자격증', '인증', '취업/이직', '공모전', '취미']%> 
                 <% for (i=0; i <= 6; i++){ %> 
-                    <button class="service">
+                    <button class="service" id='service'>
                         <i class="fa-solid fa-laptop-code"></i>
                         <div class="category" ><p><%=ca_list[i]%></p></div>
                         <p>개설된 모임 : 개</p>   
                     </button>
                     <% }%> 
                 </form>
+                
+    <script>
+        var send = document.getElementById('service');
+        send.addEventListener('click', function(obj) {
+            var target = obj.currentTarget; 
+            $('#ca_input').val($(obj.currentTarget).text());
+
+            var form = document.getElementById('category-form'); 
+            form.aciton = 'http://localhost:8000/swith/search';
+            form.method = 'post'; 
+            form.submit();
+        });  
+    </script> 
                     
                 
 
