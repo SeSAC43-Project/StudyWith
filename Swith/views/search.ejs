@@ -175,32 +175,67 @@
                         </div>
                     </ul>
                 </div>
-
+            </form>
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
                 <ul>
                     <div class = "feed-collect">
                         <div class = "feed-main-container">
-                        <% for(var i=0; i<data.length; i++) {%>
-                        <div class = "all business">
-                            <div class = "post-img">
-                                <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
-                                <span class = "category-name"><%=data[i].study_category%></span>
-                            </div>
-                            <div class = "post-content">
-                                <h2><%=data[i].study_name%></h2>
-                                <p><%=data[i].study_recruit%></p>
-                            </div>
-                        </div>
-                        <% } %>
-                        </div>
+                            <!-- 스터디 정보 폼태그 -->
+                            <form id="category-form">
+                                <% for(var i=0; i<data.length; i++) {%>
+                                    <button class="studys" id="studys">
+                                        <div class = "all business">
+                                            <div class = "post-img">
+                                                <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
+                                                <span class = "category-name"><%=data[i].study_category%></span>
+                                                <p><%=data[i].study_id %></p>
+                                            </div>
+                                            <div class = "post-content">
+                                                <h2><%=data[i].study_name%></h2>
+                                                <p><%=data[i].study_recruit%></p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                        <% } %>
+                                    </div>
+                            </form>
                     </div>
                 </ul>
             </div>
         </div>
-    </form>
-
-
         <script>
+            // 상세페이지로 이동하기
+            var studys = document.getElementsByClassName('studys'); 
+
+            for (const study of studys) {
+                study.addEventListener('click', function(obj) {
+                    var study_site = obj.currentTarget; 
+                    var study_id = $(study_site).children('.post-img').children('p').text(); 
+                    console.log(study_id);
+                    
+                    axios ({
+                        method:'post', 
+                        url:'http://localhost:8000/swith/search/detailed', 
+                        data : {
+                            study_id : study_id
+                        }
+                    })
+                    .then((req) => {return req.data;})
+                    .then((data) => {
+                        document.location.href=`http://localhost:8000/feed/detailedPost?user_id=${data.user_id}&study_id=${data.study_id}`
+                    })
+                })
+            }
+
+
+
+
+
+
+
+
+
+
             const categoryTitle = document.querySelectorAll('.category-title');
             const allCategoryPosts = document.querySelectorAll('.all');
 
