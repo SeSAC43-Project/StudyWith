@@ -73,85 +73,7 @@
   </script>
 </head>
 
-<body>
-    <div class="search_bar">
-        <form id="studySearch_form" method="post">
-        <div>
-            <div>
-                <span>스터디 이름 :</span>
-                <input type="text" name="search" id='search' class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black">
-                &nbsp;&nbsp;
-                <span>모집인원 :</span>
-                <input type="radio" name="memberNum">2~3명
-                <input type="radio" name="memberNum">4~6명
-                <input type="radio" name="memberNum">7명이상
-
-                <br><br>
-                <div class="form-row">
-                    <div class="name">스터디 기간</div>
-                    <ul class="period">
-                    <li><div class="value">
-                    시작일: <input type="hidden" name="start_period">
-                    <select id="start_year" name="start_year" required>
-                        <option>
-                            <%for(var i=2022; i<=2050; i++) {%>
-                                <option value="<%=i%>"><%=i%></option>
-                            <%}%>
-                        </option>
-                    </select>년
-                    <select id="start_month" name="start_month" required>
-                        <option>
-                            <%for(var j=1; j<=12; j++) {%>
-                                <option value="<%=j%>"><%=j%></option>
-                            <%}%>
-                        </option>
-                    </select>월
-                    <select id="start_day" name="start_day" required>
-                        <option>
-                            <%for(var k=1; k<=31; k++) {%>
-                                <option value="<%=k%>"><%=k%></option>
-                            <%}%>
-                        </option>
-                    </select>일
-                    </div>
-                    </li>
-
-                    <li>
-                    <div class="value">
-                    종료일: <input type="hidden" name="end_period">
-                    <select id="end_year" name="end_year" required>
-                        <option>
-                            <%for(var i=2022; i<=2050; i++) {%>
-                                <option value="<%=i%>"><%=i%></option>
-                            <%}%>
-                        </option>
-                    </select>년
-                    <select id="end_month" name="end_month" required>
-                        <option>
-                            <%for(var j=1; j<=12; j++) {%>
-                                <option value="<%=j%>"><%=j%></option>
-                            <%}%>
-                        </option>
-                    </select>월
-                    <select id="end_day" name="end_day" required>
-                        <option>
-                            <%for(var k=1; k<=31; k++) {%>
-                                <option value="<%=k%>"><%=k%></option>
-                            <%}%>
-                        </option>
-                    </select>일
-                </li>
-            </div>
-                <button class="search" name="search_button" style="font-size: 20px;" onclick="studySearch()">🔍</button>
-            </div>
-        </div>
-        </form>
-    </div>
-
-
-        <!-- 게시물등록할 때 등록한 이미지 / 게시물 제목 / 스터디기간 받아와야 함... -->
-
-        
+<body></body>
 
         <div class = "main-container">
             <div class = "filter-container">
@@ -298,19 +220,7 @@
 
 
 
-        <!-- <form method="get" action="">
-            <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
-            <div class="search_Result">
-                <div>
-                    <img src="../public/search/computer.jpeg" alt="">
-                    <div>
-                        <h3><%=data[0].study_name %></h3>
-                        <p>스터디기간</p>
-                        <div><%=data[0].study_image %></div>
-                    </div>
-                </div>
-            </div>
-        </form> -->
+
 
 
 
