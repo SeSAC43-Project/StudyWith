@@ -14,7 +14,7 @@ exports.main_search = (req, res) => {
     
     // 검색어가 있으면 검색 
     console.log('검색어 : ',req.body.search);
-    console.log('카테고리 : ',req.body.search);
+    console.log('카테고리 : ',req.body.category);
     
     Models.Studygroup.findAll({
         where: {
