@@ -191,10 +191,10 @@
                 <ul>
                     <div class = "feed-collect">
                         <div class = "feed-main-container">
-                            <!-- 스터디 정보 폼태그 -->
-                            <form id="category-form">
+                            <!-- 스터디 정보 게시물 보여주기 및 보내기-->
                                 <% for(var i=0; i<data.length; i++) {%>
-                                    <button class="studys" id="studys" onclick="feedCategory()">
+                                    <div class="studys">
+                                        <!--  id="studys" -->
                                         <div class = "all business">
                                             <div class = "post-img">
                                                 <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
@@ -203,10 +203,10 @@
                                             </div>
                                             <div class = "post-content">
                                                 <h2><%=data[i].study_name%></h2>
-                                                <p><%=data[i].study_recruit%></p>
+                                                <span><%=data[i].study_recruit%></span>
                                             </div>
                                         </div>
-                                    </button>
+                                    </div>
                                         <% } %>
                                     </div>
                             </form>
@@ -220,9 +220,8 @@
 
             for (const study of studys) {
                 study.addEventListener('click', function(obj) {
-                    var study_site = obj.currentTarget; 
-                    var study_id = $(study_site).children('.post-img').children('p').text(); 
-                    console.log(study_id);
+                    var study_site = obj.currentTarget;
+                    var study_id = $(study_site).children('div').children('div').children('p').text();
                     
                     axios ({
                         method:'post', 
@@ -233,18 +232,12 @@
                     })
                     .then((req) => {return req.data;})
                     .then((data) => {
+                        console.log(data.user_id); 
+                        console.log(data.study_id);
                         document.location.href=`http://localhost:8000/feed/detailedPost?user_id=${data.user_id}&study_id=${data.study_id}`
                     })
                 })
             }
-
-
-
-
-
-
-
-
 
 
             const categoryTitle = document.querySelectorAll('.category-title');
