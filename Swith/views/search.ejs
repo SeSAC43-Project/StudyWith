@@ -150,7 +150,7 @@
                             <!-- 스터디 정보 폼태그 -->
                             <form id="category-form">
                                 <% for(var i=0; i<data.length; i++) {%>
-                                    <button class="studys">
+                                    <div class="studys">
                                         <!--  id="studys" -->
                                         <div class = "all business">
                                             <div class = "post-img">
@@ -160,10 +160,10 @@
                                             </div>
                                             <div class = "post-content">
                                                 <h2><%=data[i].study_name%></h2>
-                                                <p><%=data[i].study_recruit%></p>
+                                                <span><%=data[i].study_recruit%></span>
                                             </div>
                                         </div>
-                                    </button>
+                                    </div>
                                         <% } %>
                                     </div>
                             </form>
@@ -178,21 +178,21 @@
             for (const study of studys) {
                 study.addEventListener('click', function(obj) {
                     var study_site = obj.currentTarget;
-                    // var study_id = document.querySelector(".studys > div > div.post-img > p").innerHTML;
-                    // var study_id = $(study_site)
+                    var study_id = $(study_site).children('div').children('div').children('p').text();
                     
-                    
-                    // axios ({
-                    //     method:'post', 
-                    //     url:'http://localhost:8000/swith/search/detailed', 
-                    //     data : {
-                    //         study_id : study_id
-                    //     }
-                    // })
-                    // .then((req) => {return req.data;})
-                    // .then((data) => {
-                    //     document.location.href=`http://localhost:8000/feed/detailedPost?user_id=${data.user_id}&study_id=${data.study_id}`
-                    // })
+                    axios ({
+                        method:'post', 
+                        url:'http://localhost:8000/swith/search/detailed', 
+                        data : {
+                            study_id : study_id
+                        }
+                    })
+                    .then((req) => {return req.data;})
+                    .then((data) => {
+                        console.log(data.user_id); 
+                        console.log(data.study_id);
+                        document.location.href=`http://localhost:8000/feed/detailedPost?user_id=${data.user_id}&study_id=${data.study_id}`
+                    })
                 })
             }
 
