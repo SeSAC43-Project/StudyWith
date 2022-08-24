@@ -73,11 +73,6 @@ a {
   transform: translateY(-100%);
 }
 
-/* .good {
-  display: flex;
-  padding: 20px 120px;
-  background: black;
-} */
 
 .modify-list {
   width: 1050px;
@@ -95,38 +90,58 @@ a {
   margin-top: 140px;
 }
 
-.nickname, .email, #pw, #pwConfirm {
-  border: 0;
-  background-color: #f3f7fe;
-  width:600px;
-  height: 30px;
-  border-radius: 30px;
-  text-align: center;
+.profile-box {
+  width: 250px;
+  height: 250px;
+  background: #fff;
+  border-radius: 20px;
+  /* margin-bottom: 30px; */
+  box-shadow: 0 10px 10px 10px rgba(115, 193, 255, 0.1);
+  padding: 20px;
+  position: relative;
+  margin: -130px auto auto -500px;
+  cursor: pointer;
+  background: transparent;
+  transition: transform 0.5s background 0.5s;
 }
-input {
-  text-align: center;
-}
-input::-webkit-input-placeholder { color: black; text-align: center; opacity: 0.5;}
-input:focus {
-    outline: 3px solid #4686C2
+.profile-box:hover {
+  background: #f5d17c;
+  transform: scale(1.05);
 }
 
-.category {
-  border-color: #4686C2;
-  width:300px;
-  height: 30px;
-  border-radius: 30px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
+.profile-box img {
+  width: 210px;
+  height: 100px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border-radius: 8px;
+  transition: .5s;
 }
-.signupBtn {
-  cursor:pointer;
-  background-color: #4686C2;
-  border:0;
-  border-radius: 20px;
-  width: 120px;
-  height:35px;
-  align-items: center;
-  justify-content: center;
+.profile-box img:hover {
+  height: 215px;
+}
+
+.studyName {
+  background: #4686C2;
+  margin: 110px auto 20px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.studyName h4 {
+  margin: 5px;
+  cursor: pointer;
+  padding: 5px;
+  color: #fff;
+}
+.studyName p {
+  text-align: center;
+  line-height: 14px;
+  color: #555;
+}
+.head {
+  position: absolute;
+  top: 30px;
+  left: 30px;
 }

@@ -42,7 +42,10 @@ UserRouter.get('/find',login.find_index); // 비밀번호 찾기 화면
 UserRouter.post('/find',login.post_find); // 비밀번호 찾기 실행 
 UserRouter.post('/modify',login.post_modify); // 비밀번호 변경 화면
 UserRouter.post('/update', login.post_update); // 비밀번호 변경 실행
-UserRouter.get('/mypage', login.mypage_index); // 마이페이지 화면
+UserRouter.get('/mypage', login.mypage_index); // 마이페이지 유저 화면
+UserRouter.post('/mypage', login.user_update); // 마이페이지 유저 정보 변경
+UserRouter.get('/mypage/likes', login.mypage_likes); // 마이페이지 찜목록 화면
+UserRouter.get('/mypage/studys', login.mypage_studys); // 마이페이지 마이 스터디 화면
 
 /* 회원가입 관련 */
 const signUp = require('../controller/SignUpController');
@@ -65,12 +68,11 @@ FeedRouter.get('/write', checkSession, feed.write_index); // 게시물 등록 �
 FeedRouter.post('/write', feed.post_write); // 게시물 등록 실행
 FeedRouter.post('/write/upload', groupProfileUpload.single('studyImage'), feed.uploadProfile); // 게시물 등록 내 스터디 이미지 업로드 
 FeedRouter.get('/detailedPost', detailedPost.detailedPost_index); //게시물 상세 조회 화면
-FeedRouter.get('/detailedPost/edit', detailedPost.get_editgroup); // 그룹장: 게시물 수정 페이지 이동
 FeedRouter.delete('/detailedPost/leave', detailedPost.delete_leavegroup); // 일반멤버: 탈퇴기능
 FeedRouter.post('/detailedPost/join', detailedPost.post_joingroup); // 가입안한사람: 가입기능
-FeedRouter.get('/management', management.get_management); // 게시물 수정 화면
-
-
+FeedRouter.get('/management', management.get_management); // 게시물 수정 화면 
+FeedRouter.patch('/management/edit', management.patch_management); // 게시물 수정 버튼
+FeedRouter.delete('/management/delete', management.delete_management); // 게시물 삭제 버튼
 
 /* 메인페이지 관련 */
 const MainRouter = express.Router();
@@ -78,6 +80,7 @@ const main = require('../controller/MainController');
 
 MainRouter.get('/', main.main_index); // 메인페이지 화면
 MainRouter.post('/search', main.main_search); // 메인페이지 검색 기능
+MainRouter.post('/search/likes', main.main_likes); // 메인페이지 좋아요 기능
 MainRouter.post('/search/category', main.search_category); // 메인페이지 검색 기능
 MainRouter.post('/search/detailed', main.search_detail); // 메인페이지에서 정보받기
 

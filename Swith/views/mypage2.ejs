@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+
+    <link rel="stylesheet" href="/public/css/mypage.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+
+    <script>
+        // 회원정보수정 / 참여중 / 찜목록 이동
+        function goModify() {
+            document.location.href="http://localhost:8000/user/mypage";
+        }
+        function goPart() {
+            document.location.href="http://localhost:8000/user/mypage/studys";
+        }
+        function goHeart() {
+            document.location.href="http://localhost:8000/user/mypage/likes";
+        }
+
+       
+
+</script>
+
+
+</head>
+<body>
+<div class="container">
+
+    <div class="mypage-head"> 😋 <%= data[0].user_name %> 님 환영합니다! 😋
+        <img class="head-img" src="/public/group/<%=data[0].user_image %>">
+    </div>
+
+    <div class="menu">
+        <div>
+            <i class="fa-solid fa-user">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+            </i>
+            <span><i class="fa-solid fa-user">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+            </i></span>
+        </div>
+        <div>
+            <i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+            </i>
+            <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+            </i></span>
+        </div>
+        <div>
+            <i class="fa-solid fa-heart">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+            </i>
+            <span><i class="fa-solid fa-heart">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+            </i></span>
+        </div>
+    </div>
+
+    <div class="modify-list">
+        <div class="user_info">
+
+          
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

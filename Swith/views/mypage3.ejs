@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+
+    <link rel="stylesheet" href="/public/css/mypage3.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+
+    <script>
+
+        function uploadFile( obj ){
+            var formData = new FormData();
+            formData.append("name", uploadedFile);
+            formData.append('profileImg', obj.files[0]);
+
+            axios({
+                method:'post',
+                url: "http://localhost:8000/user/signup/upload",
+                data: formData,
+            })
+            .then((req) => { return req.data;})
+            .then((data) => {
+                uploadedFile = data.fileName;
+                $("#uploadedProfile").css({"background-image":`url(/public/user/${data.fileName})`}); 
+                $("#uploadedProfile").css({"background-size":`70px 70px`}); 
+            })
+        }
+
+        /* 닉네임 중복 검사 */
+        function checkNickname( obj ) {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8000/user/signup/isName",
+                    data: {
+                        user_name: obj.value,
+                    }
+                }).then((req) => { 
+                    return req.data;
+                }).then((data) => {
+                    console.log(data);
+                    if ( data ) {
+                        $("#checkNickname_text").css("color", "green");
+                        $("#checkNickname_text").text("사용할 수 있는 닉네임입니다.");
+                        $( "button" ).removeAttr("disabled")
+                    } else {
+                        $("#checkNickname_text").css("color", "red");
+                        $("#checkNickname_text").text("사용할 수 없는 닉네임입니다.");
+                        $( "button" ).attr("disabled", "true");
+                    }
+                });
+            }
+
+    </script>
+
+</head>
+<body>
+    <div class="container">
+
+        <div class="mypage-head"> 😋 님 환영합니다! 😋
+            <img class="head-img" src="">
+        </div>
+
+        <div class="menu">
+            <div>
+                <i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+                </i>
+                <span><i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+                </i></span>
+            </div>
+            <div>
+                <i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+                </i>
+                <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+                </i></span>
+            </div>
+            <div>
+                <i class="fa-solid fa-heart">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+                </i>
+                <span><i class="fa-solid fa-heart">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+                </i></span>
+            </div>
+        </div>
+
+        <div class="modify-list">
+            <div class="user_info">
+                <!-- <% for(var i=0; i<HeadStudy.length; i++) {%>
+                <div>내가 조장인 스터디 <br><br>
+                    <div><%=HeadStudy[i].study_image%></div>
+                    <div><%=HeadStudy[i].study_name%></div>  
+                    <div><%=HeadStudy[i].study_recruit%></div>
+                </div>
+                <% } %>
+                <div>
+                    <% for(var i=0; i<memberStudy.length; i++) {%>
+                        <div>내가 조장인 스터디 <br><br>
+                            <div><%memberStudy[i].study_image%></div>
+                            <div><%=memberStudy[i].study_name%></div>  
+                            <div><%=memberStudy[i].study_recruit%></div>
+                        </div>
+                        <% } %>
+                </div> -->
+                <div class="head">내가 조장인 스터디</div>
+                <div class="feed-row">
+                    <div class="profile-box">
+                        <img src="/public/group/123456789.jpg" />
+                        <div class="studyName">
+                            <h4>스터디제목</h4>
+                        </div>
+                        <p>해시태그</p><br>
+                        <p>모집인원</p>
+                    </div>
+                </div>
+                
+
+
+            </div>
+        </div>
+        
+        <script>
+            // console.log(HeadStudy[0]);
+            // console.log(memberStudy);
+        </script>
+
+    </div>
+</body>
+</html>
