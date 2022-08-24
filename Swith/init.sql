@@ -53,7 +53,7 @@ CREATE TABLE likes (
 
 
 ----------------------------------------------------------
--- 테스트 코드
+--* 테스트 코드
 
 -- 로그인 테스트
 insert into user values('aa', '1234', '1', 'swith', 'swith', 'swith@naver.com', 'image', 'study', 'coding', 'coding', '2022-08-16');
@@ -66,8 +66,13 @@ SELECT * FROM user;
 SELECT * FROM studygroup;
 SELECT * FROM studymember;
 
---전체 스터디 정보
-SELECT * from user inner join studymember on studymember.user_id = user.user_id inner join studygroup on studygroup.study_id = studymember.study_id;
+-- 스터디 가입 테스트
+INSERT INTO studymember (study_id, user_id) VALUES (1, "aa");
+
+-- 삭제 테스트
+DELETE FROM user WHERE user_id='aa';
+
+
 
 ----------------------------------------------------------
 --* Back 참고용
