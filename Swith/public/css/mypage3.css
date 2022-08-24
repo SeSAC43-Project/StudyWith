@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'GS_bold'; 
+  src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+}
+
+* {
+  font-family: "GS_bold";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  height: 120vh;
+  width: 100%;
+  background: #f3f7fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mypage-head {
+  background-color: #fff;
+  width: 1050px;
+  height: 10vh;
+  position: absolute;
+  top: 10%;
+  display: flex;
+}
+
+.menu {
+  background: #fff;
+  display: flex;
+  box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: absolute;
+  top: 25%;
+}
+
+.menu div {
+  text-align:center;
+  padding: 20px;
+  width: 350px;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.menu div span {
+  position: absolute;
+  color: #4686C2;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  width: 350px;
+  left: 0;
+  top: 100%;
+  border-bottom: 5px solid #4686C2;
+}
+
+.menu div:hover {
+  transform: translateY(-100%);
+}
+
+/* .good {
+  display: flex;
+  padding: 20px 120px;
+  background: black;
+} */
+
+.modify-list {
+  width: 1050px;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* position: relative; */
+  background-color: #4686C2;
+  position: absolute;
+  top: 36%;
+
+}
