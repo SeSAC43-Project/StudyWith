@@ -187,7 +187,7 @@
         //     })
         // } -->
 
-      
+            <div class="searchSection">
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
                 <ul>
                     <div class = "feed-collect">
@@ -210,20 +210,25 @@
                                         <div class="likes">
                                             <!-- 빈하트 -->
                                             <p style="font-size:2rem;" class="heart far fa-heart"></p>
-                                            <!-- 채운하트 -->
-                                            
                                         </div>
-                                        
                                     </div>
-                                   
-                                        <% } %>
-                                    </div>
-                            </form>
+                                    <% } %>
+                        </div>
                     </div>
                 </ul>
             </div>
+            </div>
         </div>
         <script>
+
+            
+            $('.category-title').on('click',function() {
+                $('.searchSection').css('display','none');
+            })
+            
+
+
+
             // 좋아요 추가하기
                 var likes = document.querySelectorAll('.likes');
 
@@ -250,8 +255,8 @@
                                     if (data.isLikes == true) {
                                         $(target).children('.heart').removeClass('far fa-heart');
                                         $(target).children('.heart').addClass('fa-solid fa-heart');
-                                        
                                     }
+                                    
                                 })
                         })
                 }
@@ -269,8 +274,6 @@
                     
                     if(obj.target.getElementsByClassName != 'likes')
                         return;
-
-
 
                     axios ({
                         method:'post', 
