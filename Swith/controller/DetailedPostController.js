@@ -58,7 +58,7 @@ exports.delete_leavegroup =  (req, res) => {
         user_id: req.session.user_id,
         study_id: req.body.study_id } })
     .then((result) => {
-        res.send("탈퇴완료", result);
+        res.send("탈퇴완료");
     })
 }
 
@@ -72,6 +72,6 @@ exports.post_joingroup =  (req, res) => {
 
     models.Studymember.create( object )
     .then((result) => {
-        res.send("가입완료", result);
+        res.send("가입완료");
     })
 }

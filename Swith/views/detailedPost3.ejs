@@ -13,39 +13,31 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
-        function detailed() {
-            console.log('스터디 그룹에 가입하시겠습니까?');
-
-            if (data == "") { // 가입 신청을 누르면
-                True();
-            } else { // 취소를 누르면
-                back();
-            }
-        }
         // YES 버튼을 누를 경우
         function True() {
-            var form = document.getElementById("deatailPost");
+            var form = document.getElementById('study_id');
                 axios({
                     method:'post',
                     url: "http://localhost:8000/feed/detailedPost/join",
                     data: {
-                        study_id : form.study_id.value
+                        study_id : form.innerText
                     }
                 })
                 .then((req) => { return req.data;})
                 .then((data) => {
                     alert("가입되었습니다");
+                    document.location.href="http://localhost:8000/feed/detailedPost?study_id="+form.innerText;
                 })
         } 
         // 목록 버튼을 누르면
         function detailedPost_index() {
-                document.location.href="http://localhost:8000/swith";
-            }
+            document.location.href="http://localhost:8000/swith"; 
+        }
 
         // 인원 마감이 되면 스터가입 버튼 비활성화
         function detailed() {
             const target = document.getElementById('study_result');
-                target.disabled = false;
+            target.disabled = false;
         }   
     </script>
 </head>
@@ -58,6 +50,7 @@
                 <form id="deatailPost" name="deatailPost">
                     <!-- <div class="CategoryImage" style="color:white;"> -->
                     <div class="box">
+                        
                         <div class="img_box">
                             <!-- 카테고리별 이미지 -->
                             <div class="CategoryImage">
@@ -66,6 +59,8 @@
                                 <!-- <img src="/public/category" height="300" style="border-radius:15px;"> -->
                             </div>
 
+                            <!-- 스터디 아이디 -->
+                            <div id="study_id" style="display:none"><%=result[0].study_id %></div>
 
                             <!-- 스터디 이미지(등록이미지)  -->
                             <!-- <div class="studyImage" style="color:white;">  -->              
@@ -112,14 +107,17 @@
                         
                         <div class="section_box">
                             <div class="name">스터디 현재멤버</div>
-                                <div class="name name_image"> <% if(locals.result[0]) { %>
+                            
+                                <% if(locals.result[0]) { %>
                                     <% for(var i=0; i < result.length; i++) { %>
-                                        <img src="/public/user/<%= result[i].user_image%>" width="1000" height="300" style="border-radius:15px;">
-                                            <% } %>
+                                        <div class="name name_image"></div>
+                                            <img src="/public/user/<%= result[i].user_image%>" width="120" height="120">
+                                        </div>
                                     <% } %>
-                                </div>
-                                <br>
-                                <div class="result_txt">
+                                <% } %>
+                            
+                            <br>
+                            <div class="result_txt">
                                 <!-- 닉네임  -->
                                 <% if(locals.result[0]) { %>
                                     <% for(var i=0; i < result.length; i++) { %>
@@ -184,7 +182,7 @@
                         <!-- <button type="button" onclick="detailed()" class="detail" style="color:white">탈퇴하기</button> -->
     
                         <!-- Button trigger modal -->
-                        <button type="button" onclick="detailed()" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white">스터디가입</button>
+                        <button type="button" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white">스터디가입</button>
                         
                         <!-- 탈퇴 Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -199,7 +197,7 @@
                                 </div> -->
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-                                <button type="button" class="btn btn-primary">YES</button>
+                                <button type="button" id="modal_btn2" class="btn btn-primary">YES</button>
                                 </div>
                             </div>
                             </div>
@@ -225,5 +223,9 @@
                 </form>
             </div>
         </tbody>
+        <script>
+            var button = document.getElementById('modal_btn2');
+            button.addEventListener('click',  True);
+        </script>
 </body>
 </html>
