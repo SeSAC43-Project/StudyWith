@@ -60,99 +60,46 @@
 </head>
 <body>
 
-    <div class = "my-container">
-        <div class="my-head">닉네임</div>
-        <div class="container">
-                    <form id="signup_form">
+    <div class="container">
 
-                        <div class="user_info">
+        <div class="mypage-head"> 😋 <%= data[0].user_name %> 님 환영합니다! 😋
+            <img class="head-img" src="/public/group/<%=data[0].user_image %>">
+        </div>
 
-                                <div class="profile" id="img_upload">
-                                    <div id="uploadedProfile">
-                                        <input type="file" id="profileImg" style="display: none;" name="profileImg" onchange="uploadFile(this);">
-                                    </div>
-                                </div>
-
-                                <br><br><br>
-
-                                <input type="text" name="nickname" placeholder="닉네임" required onkeyup="checkNickname( this );" class="nickname" style="color:white" />
-                                <p id="checkNickname_text"></p>
-
-                                <br><br>
-        
-                                <input type="text" name="email" placeholder="이메일" class="email"/><br><br>
-
-                                <input type="password" name="password" placeholder="비밀번호" onchange="pwCheck()" id="pw" style="color:white" /><br><br>
-                                <input type="password" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color:white" /><br>
-                                <span id="check"></span>
-                                
-                                <br><br><br>
-        
-                                <span class="span_field">관심분야</span><br><br>
-                                    <!-- <div class="first">1순위 -->
-                                            <select name="firstField" class="category">
-                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                                <option value="언어">언어</option>
-                                                <option value="자격증">자격증</option>
-                                                <option value="인증">인증</option>
-                                                <option value="취업/이직">취업/이직</option>
-                                                <option value="공모전">공모전</option>
-                                                <option value="취미">취미</option>
-                                            </select>
-                                    <!-- </div> -->
-        
-                                    <br><br>
-        
-                                    <!-- <div class="second">2순위 -->
-                                            <select name="secondField" class="category">
-                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                                <option value="언어">언어</option>
-                                                <option value="자격증">자격증</option>
-                                                <option value="인증">인증</option>
-                                                <option value="취업/이직">취업/이직</option>
-                                                <option value="공모전">공모전</option>
-                                                <option value="취미">취미</option>
-                                            </select>
-                                    <!-- </div> -->
-        
-                                    <br><br>
-        
-                                    <!-- <div class="third">3순위 -->
-                                            <select name="thirdField" class="category">
-                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                                <option value="언어">언어</option>
-                                                <option value="자격증">자격증</option>
-                                                <option value="인증">인증</option>
-                                                <option value="취업/이직">취업/이직</option>
-                                                <option value="공모전">공모전</option>
-                                                <option value="취미">취미</option>
-                                            </select>
-                                    <!-- </div> -->
-        
-                                    <br><br>
-                                    <div class="warningDiv"></div>
-                                    <br><br>
-        
-                                    <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">수정완료</button>
-                                    
-                                </div>
-
-
-                            </div>
-                        </form>
-                    </div>
+        <div class="menu">
+            <div>
+                <i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goModify()">회원정보수정</buttton>
+                </i>
+                <span><i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goModify()">회원정보수정</buttton>
+                </i></span>
+            </div>
+            <div>
+                <i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goPart()">참여중</buttton>
+                </i>
+                <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goPart()">참여중</buttton>
+                </i></span>
+            </div>
+            <div>
+                <i class="fa-solid fa-heart">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goHeart()">찜목록</buttton>
+                </i>
+                <span><i class="fa-solid fa-heart">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goHeart()">찜목록</buttton>
+                </i></span>
             </div>
         </div>
 
-        <script>
-            $("#uploadedProfile").click(function(e){
-                e.preventDefault();
-                $("#profileImg").click();
-            });
-            $("input[type=file]").on("click", function(e){
-                 e.stopPropagation();
-            });
-        </script>
+        <div class="modify-list">
+            <div class="user_info">
+                
+                
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
