@@ -12,7 +12,7 @@ body {
 /* 전체 컨테이너 */
 .wrap {
     box-sizing: border-box;
-    width: 1000px;
+    width: 900px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +33,8 @@ form {
     height: 1280px;
     text-align: center;
     box-sizing: border-box;
-    margin-left: 0;
+    margin: 0 auto;
+
 }
 
 .box {
@@ -50,36 +51,39 @@ form {
     /* padding: 0 10px; */
 }
 
-/* 카테고리별 이미지 */
-.CategoryImage {
-    background-color: #4686C2;
+/* 카테고리 박스 */
+.Category_box {
     align-items: center;
     text-align: center;
     justify-content: center;
-    border-radius: 15px;
-    margin-top: 50px;
-    z-index: 1;
-    opacity: 0.5;
     width: 100%;
-    height: 350px;
+    height: 100px;
     overflow: hidden;
+}
+
+.Category_txt {
+    /* border: 1px solid black; */
+    width: 50px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+    padding-left: 4px;
+    text-align: center;
+    top: -270px
 }
 
  /* 스터디 이미지(등록이미지) */
 .studyImage {
     background-color: #c7d7eb;
     color: #333;
-    width: 1000px;
+    width: 900px;
     height: 280px;
     align-items: center;
     text-align: center;
     justify-content: center;
     border-radius: 15px;
     position: relative;
-    margin-top: -150px;
     display: flex;
-    z-index: 2;
-    opacity: 0.7;
     overflow: hidden;
 }
 
@@ -87,7 +91,7 @@ form {
 .studyName {
     /* background-color: #e5eef8; */
     font-size: 40px;
-    width: 1280px;
+    width: 1000px;
     height: 200px;
     align-items: center;
     text-align: center;
@@ -121,7 +125,6 @@ form {
     display: flex;
 }
 
-/* 여기서부터 수정중 */
 .section_box {
     display:flex;
     flex-wrap:wrap;
@@ -129,44 +132,86 @@ form {
     align-items:center;
     padding: 20px 0 20px 0;
     border-bottom: 1px solid #e5e5e5;
-    width: 100%;
-
+    width: 900px;
 }
 
-/* 스터디 소개글 */
+.section_box_name {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    align-items:center;
+    padding: 40px 0 40px 0;
+    border-bottom: 1px solid #e5e5e5;
+    width: 900px;
+}
+
+/* 전체 상세 콘텐츠 텍스트 */
 .name {
-    width: 200px;
+    width: 210px;
     color: #333;
-    font-size: 20px;
-    margin-top: 20px;
-    padding-bottom: 20px;
+    font-size: 21px;
+    margin-top: 30px;
+    padding-bottom: 30px;
 }
+
+.name_wrap {
+    width: 210px;
+    color: #333;
+    font-size: 21px;
+    margin-top: 70px;
+    padding-bottom: 70px;
+    display: contents;
+}
+
 .name_image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     border: 1px solid black;
-    display: block;
+    display: inline-flex;
     overflow: hidden;
-    flex: 0 0 auto;
-    padding-top: 40px;
+    /* flex: 0 0 auto; */
+    justify-content: center;
+    padding-top: 0;
+}
+
+.img {
+    padding-top: -50px;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
 }
 
 .result_txt {
-    padding: 0 40px;
-    text-align: justify;
-    position: relative;
-    float: left;
-    bottom: auto;
-    left: -160px;
-    padding-top: 210px;
+    padding: 0;
+    /* text-align: justify; */
+    /* position: relative; */
+    /* bottom: auto; */
+    /* left: 250px; */
+    /* padding-top: 110px; */
     overflow: hidden;
     text-align: center;
+    justify-content: space-between;
+    /* margin: 0 10px */
+    margin-top: 20px;
 }
 
 .value {
-    flex-grow:9;
+    flex-grow:10;
     padding:10px 0 10px 0;
+}
+
+.value_wrap {
+    display: flex;
+    justify-content: center;
+    flex-grow:10;
+    padding:10px 0 10px 0;
+    /* display: contents; */
+}
+
+.box_name_wrap {
+    margin: 0 10px;
 }
 
 /* 기간 간격 설정 */
@@ -178,7 +223,7 @@ form {
 /* 탈퇴하기 버튼 */
 .detail {
     background-color: #4686C2;
-    width: 800px;
+    width: 900px;
     height: 60px;
     border-radius: 20px;
     border: 0;
@@ -206,7 +251,7 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 600px;
+    width: 900px;
     height: 72px;
     margin: auto;
     border-radius: 20px;
@@ -231,5 +276,5 @@ form {
     border: 0;
     font-size: 20px;
     /* padding: 0 10px; */
-    padding: 10 30px;
+    padding: 20 30px;
 }
