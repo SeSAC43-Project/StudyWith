@@ -10,6 +10,8 @@
 
   <link rel="stylesheet" href="/public/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="/public/css/search.css" />
+  <script src="https://kit.fontawesome.com/cf7a6dd6e5.js" crossorigin="anonymous"></script>
+
 
   <!-- swiper -->
   <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
@@ -203,7 +205,12 @@
                                             <div class = "post-content">
                                                 <h2><%=data[i].study_name%></h2>
                                                 <span><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
-                                                
+                                                <div class="likes">
+                                                    <!-- 빈하트 -->
+                                                    <i style="font-size:2rem;" class="far fa-heart"></i>
+                                                    <!-- 채운하트 -->
+                                                    <!-- <i class="far-solid fa-heart"></i> -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -215,6 +222,35 @@
             </div>
         </div>
         <script>
+            // 좋아요 추가하기
+                var studys = document.getElementsByClassName('studys'); 
+                var likes = document.getElementsByClassName('likes');
+                for (const study of studys) {
+                    for (const like of likes) {
+                        like.addEventListener('click',function(obj) {
+                        var target = obj.currentTarget;
+                        var study_id = $(target).parent('div').parent('div').children('p').text();
+
+                        console.log(study_id);
+
+                    })
+
+                    axios({
+                        method:'post',
+                        url: 'http://localhost:8000/swith/search/like',
+                        data : {
+                            study_id : study_id,
+                                }
+                        })
+                        .then((req) => { console.log(req.data)});
+                    }
+
+                }
+
+
+
+
+
             // 상세페이지로 이동하기
             var studys = document.getElementsByClassName('studys'); 
 
