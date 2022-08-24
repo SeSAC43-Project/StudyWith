@@ -223,17 +223,18 @@
         </div>
         <script>
             // 좋아요 추가하기
-                var studys = document.getElementsByClassName('studys'); 
-                var likes = document.getElementsByClassName('likes');
-                for (const study of studys) {
+                var likes = document.querySelectorAll('.likes');
+
                     for (const like of likes) {
+                        
+                    likes.forEach((like) => {
                         like.addEventListener('click',function(obj) {
-                        var target = obj.currentTarget;
-                        var study_id = $(target).parent('div').parent('div').children('p').text();
-
-                        console.log(study_id);
-
+                            var target = obj.currentTarget;
+                            var study_id = $(target).parent('div').parent('div').children('div').children('p').text;
+                            // alert(study_id);
+                        })
                     })
+
 
                     axios({
                         method:'post',
@@ -242,11 +243,14 @@
                             study_id : study_id,
                                 }
                         })
-                        .then((req) => { console.log(req.data)});
+                        .then((req) => { return req.data;})
+                        .then((data) => {
+                            if (data == true) {
+                                // $('.likes').children('i').removeClass('.far fa-heart').addClass('.fa-solid fa-heart');
+                                console.log('되나?');
+                            }
+                        })
                     }
-
-                }
-
 
 
 
