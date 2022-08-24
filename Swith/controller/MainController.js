@@ -99,3 +99,16 @@ exports.search_category = async (req, res) => {
     //     res.send({data: result, flag: true});
     // })
 }
+
+// 메인페이지 좋아요 기능
+exports.main_likes = (req, res) => {
+    let object = {
+        study_id : req.body.study_id, 
+        user_id : req.session.user_id
+    }
+    Models.Likes.create( object )
+    .then((result) => {
+        console.log(result);
+        res.send({isLikes: true});
+    })
+}
