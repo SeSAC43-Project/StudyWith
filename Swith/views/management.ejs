@@ -185,14 +185,26 @@
                         <div class="group" id="group_img_upload">
                                 <div id="group_img">
                                 <label class="groupImgLabel" for="groupImg">
-                                    <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br>click!</label>
-                            </div>
+                                    <!-- <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br>click!</label> -->
+                                    <input type="file" id="groupImg" style="display: none" name="studyImage">
+                                        <% if(locals.result[0]) { %>
+                                        <img src="/public/user/<%= result[0].study_image%>" width="700" height="100" style="border-radius:15px;">
+                                        <% } else { %>
+                                            <img src="/public/user/<%= result.study_image%>" width="700" height="100" style="border-radius:15px;">
+                                        <% } %> 
+                                </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="name">스터디명&nbsp;&nbsp;&nbsp;</div>
                         <div class="value"> 
-                        <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요." maxlength="20" required></div>
+                        <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요." maxlength="20" required>
+                            <% if(locals.result[0]) { %>
+                            <span class="studyName_txt"><%= result[0].study_name %></span>
+                            <% } else { %>
+                                <span class="studyName_txt"><%= result.study_name %></span>
+                            <% } %>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="name">카테고리 <br><span style="font-size: 0.7rem;">*카테고리를 선택해주세요.</span></div>
