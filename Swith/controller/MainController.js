@@ -79,16 +79,23 @@ exports.search_detail = (req, res) => {
 }
 
 // search 페이지에서 카테고리마다 게시글 검색되도록 
-exports.search_category = (req, res) => {
-    Models.Studygroup.findAll({
-        where: {  
-            study_category : {
-                [Models.Op.like]:'%'+ req.body.study_category + '%'
-            }
-        }
-    })
-    .then((result) => {
-        console.log('여기가 카테고리 ', result);
-        res.send({data: result, flag: true});
-    })
+exports.search_category = async (req, res) => {
+    let sql = `
+    select studygroup.*, count(studymember.user_id) as num from studygroup left outer join studymember on studygroup.study_id = studymember.study_id where studygroup.study_category like '%${req.body.study_category}%' group by studygroup.study_id;`;
+
+    const result3 = await sequelize.query(sql);
+    
+    console.log('여기가 카테고리 ', result3);
+    await res.send({data: result3[0], flag:true});
+    // Models.Studygroup.findAll({
+    //     where: {  
+    //         study_category : {
+    //             [Models.Op.like]:'%'+ req.body.study_category + '%'
+    //         }
+    //     }
+    // })
+    // .then((result) => {
+    //     console.log('여기가 카테고리 ', result);
+    //     res.send({data: result, flag: true});
+    // })
 }
