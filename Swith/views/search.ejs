@@ -202,18 +202,20 @@
                                                 <span class = "category-name"><%=data[i].study_category%></span>
                                                 <p><%=data[i].study_id %></p>
                                             </div>
-                                            <div class = "post-content">
+                                            <div type="button" class = "post-content">
                                                 <h2><%=data[i].study_name%></h2>
                                                 <span><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
-                                                <div class="likes">
-                                                    <!-- 빈하트 -->
-                                                    <i style="font-size:2rem;" class="far fa-heart"></i>
-                                                    <!-- 채운하트 -->
-                                                    <!-- <i class="far-solid fa-heart"></i> -->
-                                                </div>
-                                            </div>
+                                            </div> 
                                         </div>
+                                        <button type="button" class="likes">
+                                            <!-- 빈하트 -->
+                                            <p style="font-size:2rem;" class="heart far fa-heart"></p>
+                                            <!-- 채운하트 -->
+                                            
+                                        </button>
+                                        
                                     </div>
+                                   
                                         <% } %>
                                     </div>
                             </form>
@@ -227,31 +229,35 @@
 
                     for (const like of likes) {
                         
-                    likes.forEach((like) => {
+                    // likes.forEach((like) => {
                         like.addEventListener('click',function(obj) {
                             var target = obj.currentTarget;
-                            var study_id = $(target).parent('div').parent('div').children('div').children('p').text;
+                            // var study_id = $(target).parent('div').parent('div').children('div').children('p').text();
+
+                            var study_id = $(target).siblings('div').children('div').children('p').text();
                             // alert(study_id);
-                        })
-                    })
 
+                            axios({
+                                method:'post',
+                                url: 'http://localhost:8000/swith/search/likes',
+                                data : {
+                                    study_id : study_id,
+                                        }
+                                })
+                                .then((req) => { return req.data;})
+                                .then((data) => {
+                                    // console.log('이건되나',data.isLikes); //{isLikes: true}
+                                    if (data.isLikes == true) {
+                                        
+                                        $('.heart').removeClass('far fa-heart');
+                                        $('.heart').addClass('fa-solid fa-heart');
+                                        
 
-                    axios({
-                        method:'post',
-                        url: 'http://localhost:8000/swith/search/like',
-                        data : {
-                            study_id : study_id,
-                                }
+                                        // console.log('되나?');
+                                    }
+                                })
                         })
-                        .then((req) => { return req.data;})
-                        .then((data) => {
-                            if (data == true) {
-                                // $('.likes').children('i').removeClass('.far fa-heart').addClass('.fa-solid fa-heart');
-                                console.log('되나?');
-                            }
-                        })
-                    }
-
+                }
 
 
 
@@ -262,7 +268,12 @@
                 study.addEventListener('click', function(obj) {
                     var study_site = obj.currentTarget;
                     var study_id = $(study_site).children('div').children('div').children('p').text();
-                    
+                    var target = document.getElementsByClassName(".likes");
+                    if(obj.target.tagname != 'button')
+                        return ;
+
+
+
                     axios ({
                         method:'post', 
                         url:'http://localhost:8000/swith/search/detailed', 
