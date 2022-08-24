@@ -108,7 +108,7 @@ exports.main_likes = (req, res) => {
     }
     Models.Likes.create( object )
     .then((result) => {
-        console.log(result);
+        console.log('결과는:',result);
         res.send({isLikes: true});
     })
 }

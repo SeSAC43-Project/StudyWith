@@ -245,10 +245,15 @@ h2 {
   cursor: pointer;
 }
 
+.likes {
+  z-index:999;
+}
+
 .likes:hover {
   cursor: pointer;
 }
 
 .fa-solid fa-heart {
   color:red;
+  font-size:2rem;
 }
