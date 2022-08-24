@@ -14,18 +14,81 @@
     <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
 
     <script>
+            // 회원정보수정 / 참여중 / 찜목록 이동
+            function goModify() {
+                document.location.href="http://localhost:8000/user/signup";
+            }
+            function goPart() {
+                document.location.href="http://localhost:8000/user/signup";
+            }
+            function goHeart() {
+                document.location.href="http://localhost:8000/user/signup";
+            }
 
-        function goModify() {
-            document.location.href="http://localhost:8000/user/signup";
-        }
+            // 닉네임 확인
+            function checkNickname( obj ) {
+                    axios({
+                        method: "post",
+                        url: "http://localhost:8000/user/signup/isName",
+                        data: {
+                            user_name: obj.value,
+                        }
+                    }).then((req) => { 
+                        return req.data;
+                    }).then((data) => {
+                        console.log(data);
+                        if ( data ) {
+                            $("#checkNickname_text").css("color", "green");
+                            $("#checkNickname_text").text("사용할 수 있는 닉네임입니다.");
+                            $( "button" ).removeAttr("disabled")
+                        } else {
+                            $("#checkNickname_text").css("color", "red");
+                            $("#checkNickname_text").text("사용할 수 없는 닉네임입니다.");
+                            $( "button" ).attr("disabled", "true");
+                        }
+                    });
+                }
 
-        function goPart() {
-            document.location.href="http://localhost:8000/user/signup";
-        }
+            /* 비밀번호 확인 */
+            function pwCheck() {
+                if(document.getElementById('pw').value !='' && document.getElementById('pwConfirm').value!=''){
+                    if(document.getElementById('pw').value==document.getElementById('pwConfirm').value){
+                        document.getElementById('check').innerHTML='비밀번호 일치🥰'
+                        document.getElementById('check').style.color='rgb(54, 54, 255)';
+                    }
+                    else{
+                        document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다';
+                        document.getElementById('check').style.color='rgb(255, 89, 89)';
+                    }
+                }
+            }
 
-        function goHeart() {
-            document.location.href="http://localhost:8000/user/signup";
-        }
+            // 회원정보 수정 
+            function info_modify() {
+                var form = document.getElementById('modify_info');
+                let nickname = $('#nickname').val();
+                let email = $('#email').val();
+                let pw = $('#pw').val();
+                let category1 = $('#category1').val();
+
+
+                axios({
+                    method:'post',
+                    url: "http://localhost:8000/user/update",
+                    data: {
+                        user_name : nickname,
+                        user_email : email,
+                        user_password : pw,
+                        category1: category1,
+                        category2: category2,
+                        category3: category3
+                    }
+                })
+                .then((req) => { return req.data;})
+                .then((data) => {
+                    alert(data);
+                });
+            }
 
 
     </script>
@@ -54,8 +117,6 @@
             </div>
         </div>
 
-        <div class="good"></div>
-
         <div class="modify-list">
             <div class="user_info">
 
@@ -67,66 +128,68 @@
 
                 <br><br><br>
 
-                <input type="text" name="nickname" placeholder="<%=data[0].user_id %>" required onkeyup="checkNickname( this );" class="nickname" style="color:white" />
-                <p id="checkNickname_text"></p>
+                <form id="modify_info">
 
-                <br><br>
-
-                <input type="text" name="email" placeholder="<%=data[0].user_email %>" class="email"/><br><br>
-
-                <input type="password" name="password" placeholder="<%=data[0].user_password %>" onchange="pwCheck()" id="pw" style="color:white" /><br><br>
-                <input type="password" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color:white" /><br>
-                <span id="check"></span>
-                
-                <br><br><br>
-
-                <span class="span_field">관심분야</span><br><br>
-                    <!-- <div class="first">1순위 -->
-                            <select name="firstField" class="category">
-                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                <option value="언어">언어</option>
-                                <option value="자격증">자격증</option>
-                                <option value="인증">인증</option>
-                                <option value="취업/이직">취업/이직</option>
-                                <option value="공모전">공모전</option>
-                                <option value="취미">취미</option>
-                            </select>
-                    <!-- </div> -->
+                    <input type="text" id="nickname" name="nickname" placeholder="닉네임 : <%=data[0].user_name %>" required onkeyup="checkNickname( this );" class="nickname" style="color: black" />
+                    <p id="checkNickname_text"></p>
 
                     <br><br>
 
-                    <!-- <div class="second">2순위 -->
-                            <select name="secondField" class="category">
-                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                <option value="언어">언어</option>
-                                <option value="자격증">자격증</option>
-                                <option value="인증">인증</option>
-                                <option value="취업/이직">취업/이직</option>
-                                <option value="공모전">공모전</option>
-                                <option value="취미">취미</option>
-                            </select>
-                    <!-- </div> -->
+                    <input type="text" id="email" name="email" placeholder="이메일 : <%=data[0].user_email %>" class="email" style="color: black" /><br><br>
 
-                    <br><br>
-
-                    <!-- <div class="third">3순위 -->
-                            <select name="thirdField" class="category">
-                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                <option value="언어">언어</option>
-                                <option value="자격증">자격증</option>
-                                <option value="인증">인증</option>
-                                <option value="취업/이직">취업/이직</option>
-                                <option value="공모전">공모전</option>
-                                <option value="취미">취미</option>
-                            </select>
-                    <!-- </div> -->
-
-                    <br><br>
-                    <div class="warningDiv"></div>
-                    <br><br>
-
-                    <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">수정완료</button>
+                    <input type="password" name="password" placeholder="비밀번호 : <%=data[0].user_password %>" onchange="pwCheck()" id="pw" style="color: black" /><br><br>
+                    <input type="password" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color: black" /><br>
+                    <span id="check"></span>
                     
+                    <br><br><br>
+
+                    <span class="span_field">관심분야</span><br><br>
+                        <!-- <div class="first">1순위 -->
+                                <select name="firstField" class="category" id="category1">
+                                    <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                    <option value="언어">언어</option>
+                                    <option value="자격증">자격증</option>
+                                    <option value="인증">인증</option>
+                                    <option value="취업/이직">취업/이직</option>
+                                    <option value="공모전">공모전</option>
+                                    <option value="취미">취미</option>
+                                </select>
+                        <!-- </div> -->
+
+                        <br><br>
+
+                        <!-- <div class="second">2순위 -->
+                                <select name="secondField" class="category" id="category2">
+                                    <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                    <option value="언어">언어</option>
+                                    <option value="자격증">자격증</option>
+                                    <option value="인증">인증</option>
+                                    <option value="취업/이직">취업/이직</option>
+                                    <option value="공모전">공모전</option>
+                                    <option value="취미">취미</option>
+                                </select>
+                        <!-- </div> -->
+
+                        <br><br>
+
+                        <!-- <div class="third">3순위 -->
+                                <select name="thirdField" class="category" id="category3">
+                                    <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                    <option value="언어">언어</option>
+                                    <option value="자격증">자격증</option>
+                                    <option value="인증">인증</option>
+                                    <option value="취업/이직">취업/이직</option>
+                                    <option value="공모전">공모전</option>
+                                    <option value="취미">취미</option>
+                                </select>
+                        <!-- </div> -->
+
+                        <br><br>
+                        <div class="warningDiv"></div>
+                        <br><br>
+
+                        <button type="button" class="signupBtn" style="color:#FFE19C" onclick="info_modify();">수정완료</button>
+                </form>
             </div>
         </div>
     </div>

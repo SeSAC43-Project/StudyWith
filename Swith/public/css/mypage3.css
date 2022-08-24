@@ -26,6 +26,10 @@
   position: absolute;
   top: 10%;
   display: flex;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .menu {
@@ -35,6 +39,7 @@
   overflow: hidden;
   position: absolute;
   top: 25%;
+  border-radius: 20px;
 }
 
 .menu div {
@@ -73,11 +78,50 @@
   width: 1050px;
   height: 70vh;
   display: flex;
+  border-radius: 20px;
+  border-color: #4686C2;
+  border-width: 3px;
   align-items: center;
   justify-content: center;
   /* position: relative; */
-  background-color: #4686C2;
+  background-color: #fff;
+  box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
   position: absolute;
-  top: 36%;
+  margin-top: 140px;
+}
 
+.nickname, .email, #pw, #pwConfirm {
+  border: 0;
+  background-color: #f3f7fe;
+  width:600px;
+  height: 30px;
+  border-radius: 30px;
+  text-align: center;
+}
+input {
+  text-align: center;
+}
+input::-webkit-input-placeholder { color: black; text-align: center; opacity: 0.5;}
+input:focus {
+    outline: 3px solid #4686C2
+}
+
+.category {
+  border-color: #4686C2;
+  width:300px;
+  height: 30px;
+  border-radius: 30px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.signupBtn {
+  cursor:pointer;
+  background-color: #4686C2;
+  border:0;
+  border-radius: 20px;
+  width: 120px;
+  height:35px;
+  align-items: center;
+  justify-content: center;
 }
