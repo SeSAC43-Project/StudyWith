@@ -24,13 +24,14 @@ exports.patch_management = (req, res) => {
         study_image: req.body.study_image,
         study_content: req.body.study_content,
         start_period: req.body.start_period,
-        end_period: req.body.end_period
+        end_period: req.body.end_period,
+        hasgtag: req.body.hasgtag
     }
 
     models.Studygroup.update( newObj, {
         where: { study_id: req.body.study_id }
     }).then((result) => {
-        res.send("success update", result);
+        res.send("success update");
     });
 }
 
@@ -40,6 +41,6 @@ exports.delete_management = (req, res) => {
     models.Studygroup.destroy({
         where: { study_id: req.body.study_id }
     }).then((result) => {
-        res.send("success delete", result);
+        res.send("success delete");
     });
 }
