@@ -11,95 +11,67 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+
     <script>
-
-        function uploadFile( obj ){
-            var formData = new FormData();
-            formData.append("name", uploadedFile);
-            formData.append('profileImg', obj.files[0]);
-
-            axios({
-                method:'post',
-                url: "http://localhost:8000/user/signup/upload",
-                data: formData,
-            })
-            .then((req) => { return req.data;})
-            .then((data) => {
-                uploadedFile = data.fileName;
-                $("#uploadedProfile").css({"background-image":`url(/public/user/${data.fileName})`}); 
-                $("#uploadedProfile").css({"background-size":`70px 70px`}); 
-            })
+        // 회원정보수정 / 참여중 / 찜목록 이동
+        function goModify() {
+            document.location.href="http://localhost:8000/user/mypage";
+        }
+        function goPart() {
+            document.location.href="http://localhost:8000/user/mypage/studys";
+        }
+        function goHeart() {
+            document.location.href="http://localhost:8000/user/mypage/likes";
         }
 
-        /* 닉네임 중복 검사 */
-        function checkNickname( obj ) {
-                axios({
-                    method: "post",
-                    url: "http://localhost:8000/user/signup/isName",
-                    data: {
-                        user_name: obj.value,
-                    }
-                }).then((req) => { 
-                    return req.data;
-                }).then((data) => {
-                    console.log(data);
-                    if ( data ) {
-                        $("#checkNickname_text").css("color", "green");
-                        $("#checkNickname_text").text("사용할 수 있는 닉네임입니다.");
-                        $( "button" ).removeAttr("disabled")
-                    } else {
-                        $("#checkNickname_text").css("color", "red");
-                        $("#checkNickname_text").text("사용할 수 없는 닉네임입니다.");
-                        $( "button" ).attr("disabled", "true");
-                    }
-                });
-            }
+       
 
-    </script>
+</script>
+
 
 </head>
 <body>
+<div class="container">
 
-    <div class="container">
+    <div class="mypage-head"> 😋 <%= data[0].user_name %> 님 환영합니다! 😋
+        <img class="head-img" src="/public/group/<%=data[0].user_image %>">
+    </div>
 
-        <div class="mypage-head"> 😋 <%= data[0].user_name %> 님 환영합니다! 😋
-            <img class="head-img" src="/public/group/<%=data[0].user_image %>">
+    <div class="menu">
+        <div>
+            <i class="fa-solid fa-user">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+            </i>
+            <span><i class="fa-solid fa-user">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+            </i></span>
         </div>
-
-        <div class="menu">
-            <div>
-                <i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <buttton type="button" onclick="goModify()">회원정보수정</buttton>
-                </i>
-                <span><i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <buttton type="button" onclick="goModify()">회원정보수정</buttton>
-                </i></span>
-            </div>
-            <div>
-                <i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <buttton type="button" onclick="goPart()">참여중</buttton>
-                </i>
-                <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <buttton type="button" onclick="goPart()">참여중</buttton>
-                </i></span>
-            </div>
-            <div>
-                <i class="fa-solid fa-heart">&nbsp;&nbsp;
-                    <buttton type="button" onclick="goHeart()">찜목록</buttton>
-                </i>
-                <span><i class="fa-solid fa-heart">&nbsp;&nbsp;
-                    <buttton type="button" onclick="goHeart()">찜목록</buttton>
-                </i></span>
-            </div>
+        <div>
+            <i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+            </i>
+            <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+            </i></span>
         </div>
-
-        <div class="modify-list">
-            <div class="user_info">
-                
-                
-            </div>
+        <div>
+            <i class="fa-solid fa-heart">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+            </i>
+            <span><i class="fa-solid fa-heart">&nbsp;&nbsp;
+                <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+            </i></span>
         </div>
     </div>
+
+    <div class="modify-list">
+        <div class="user_info">
+
+          
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
