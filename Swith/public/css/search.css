@@ -257,3 +257,8 @@ h2 {
   color:red;
   font-size:2rem;
 }
+
+.fa-heart:before {
+  color: red;
+  content: "\f004";
+}

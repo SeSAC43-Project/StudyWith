@@ -207,12 +207,12 @@
                                                 <span><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
                                             </div> 
                                         </div>
-                                        <button type="button" class="likes">
+                                        <div class="likes">
                                             <!-- 빈하트 -->
                                             <p style="font-size:2rem;" class="heart far fa-heart"></p>
                                             <!-- 채운하트 -->
                                             
-                                        </button>
+                                        </div>
                                         
                                     </div>
                                    
@@ -233,7 +233,7 @@
                         like.addEventListener('click',function(obj) {
                             var target = obj.currentTarget;
                             // var study_id = $(target).parent('div').parent('div').children('div').children('p').text();
-
+                            
                             var study_id = $(target).siblings('div').children('div').children('p').text();
                             // alert(study_id);
 
@@ -248,12 +248,9 @@
                                 .then((data) => {
                                     // console.log('이건되나',data.isLikes); //{isLikes: true}
                                     if (data.isLikes == true) {
+                                        $(target).children('.heart').removeClass('far fa-heart');
+                                        $(target).children('.heart').addClass('fa-solid fa-heart');
                                         
-                                        $('.heart').removeClass('far fa-heart');
-                                        $('.heart').addClass('fa-solid fa-heart');
-                                        
-
-                                        // console.log('되나?');
                                     }
                                 })
                         })
@@ -269,8 +266,9 @@
                     var study_site = obj.currentTarget;
                     var study_id = $(study_site).children('div').children('div').children('p').text();
                     var target = document.getElementsByClassName(".likes");
-                    if(obj.target.tagname != 'button')
-                        return ;
+                    
+                    if(obj.target.getElementsByClassName != 'likes')
+                        return;
 
 
 
