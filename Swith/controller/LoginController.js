@@ -97,7 +97,7 @@ exports.mypage_likes = async (req, res) => {
     `
     const result = await sequelize.query(sql); 
     console.log('찜 목록 정보 : ', result);
-    res.render('mypage2', {data: result}); 
+    res.render('mypage2', {data: result[0]}); 
 }
 
 // 마이페이지 마이 스터디 화면
@@ -130,6 +130,6 @@ exports.mypage_studys = async (req,res) => {
     }
     console.log(signStudy);
 
-    res.render('mypage3', {HeadStudy: HeadStudy, memberStudy: memberStudy, signStudy: signStudy}); 
+    res.render('mypage3', {HeadStudy: HeadStudy[0], memberStudy: memberStudy[0], signStudy: signStudy}); 
 }
 
