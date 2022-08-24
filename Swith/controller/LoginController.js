@@ -1,4 +1,5 @@
 const Models  = require('../model');
+const { sequelize } = require("../model/index"); 
 
 // 로그인 페이지 렌더링
 exports.login_index = (req, res) => {
@@ -59,6 +60,12 @@ exports.post_update = (req, res) => {
 }
 
 // 마이페이지 페이지 렌더링
-exports.mypage_index = (req, res) => {
-    res.render('mypage'); 
+exports.mypage_index = async (req, res) => {
+    // 보내줄 데이터 
+    const [result, metadata] = await sequelize.query(
+        `select * FROM user WHERE user_id = '${req.session.user_id}';`
+    )
+    console.log('result', result);
+    res.render('mypage', {data: result}); 
 }
+
