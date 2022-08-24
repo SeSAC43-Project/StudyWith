@@ -14,88 +14,48 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
-        // 등록 된 게시물 데이터 받아오기
-        function management_info() {
-            var form = document.getElementById("management_form");
-            axios({
-                method: 'patch',
-                url: "http://localhost:8000/feed/management",
-                data: {
-                    study_name : management.studyName.value,
-                    study_category : management.studyCategory.value,
-                    study_form : management.studyForm.value,
-                    study_recruit : management.studyRecruit.value,
-                    study_address : management.sample6_address.value, 
-                    study_image : uploadedFile, 
-                    study_content : management.studyContent.value,
-                    start_period : management.start_year.value + '-' + management.start_month.value + '-' + management.start_day.value,
-                    end_period : management.end_year.value + '-' + management.end_month.value + '-' + management.end_day.value,
-                    hashtag: management_hashtags,
-                }
-            }).then((req) => {return req.data })
-            .then((data) => {
-                console.log( data );
-                var management = document.getElementById("management" + studyName);
-                var children = management.children;
-
-                $( children[1] ).text( form.study_name );
-                $( children[2] ).text( form.study_category );
-                $( children[3] ).text( form.study_form );
-                $( children[4] ).text( form.study_recruit );
-                $( children[5] ).text( form.study_address );
-                $( children[6] ).text( form.study_image );
-                $( children[7] ).text( form.study_content );
-                $( children[8] ).text( form.start_period );
-                $( children[9] ).text( form.end_period );
-                $( children[10] ).text( form.hashtag );
-                console.log( children );
-            })
-        }
-        // 게시물 수정
+        // 게시물 수정하기 
         function editFeed() {
-            var feed = document.getElementById("edit_info");
-            var hashtags = document.getElementById("enter_hashtag").innerHTML;
-            var hashtags2 = hashtags.split('#');
-            var feed_hashtag = hashtags2.slice(1);
-            var feed_hashtags = feed_hashtag.toString();
+            var form = document.getElementById("management_info");
+            var id = document.getElementById("study_id");
 
-            var result = feed.checkValidity();
-
-            if ( !result ) {
-                $('.warningDiv').html('수정할 데이터를 모두 입력해주세요!');
-                $('.warningDiv').css('color','red');
-
-                return false;
-            }
             axios({
-                method:'post',
-                url:'http://localhost:8000/feed/management',
+                method:'patch',
+                url:'http://localhost:8000/feed/management/edit',
                 data : {
-                    study_name : management.studyName.value,
-                    study_category : management.studyCategory.value,
-                    study_form : management.studyForm.value,
-                    study_recruit : management.studyRecruit.value,
-                    study_address : management.sample6_address.value, 
+                    study_id: id.innerText,
+                    study_name : form.studyName.value,
+                    study_category : form.studyCategory.value,
+                    study_recruit : form.studyRecruit.value,
                     study_image : uploadedFile, 
-                    study_content : management.studyContent.value,
-                    start_period : management.start_year.value + '-' + management.start_month.value + '-' + management.start_day.value,
-                    end_period : management.end_year.value + '-' + management.end_month.value + '-' + management.end_day.value,
-                    hashtag: management_hashtags,
+                    study_content : form.studyContent.value,
+                    start_period : form.start_year.value + '-' + form.start_month.value + '-' + form.start_day.value,
+                    end_period : form.end_year.value + '-' + form.end_month.value + '-' + form.end_day.value,
+                    hashtag: form,
                 }
             })
-            .then((req) => { return req.data })
+            .then((req) => {return req.data;})
             .then((data) => {
-                if (data == true) {
-                    document.location.href="http://localhost:8000/swith";
-                    // 수정 된 게시물 페이지로 이동. 현재는 메인페이지로 이동되게
-                }
+                alert("수정 완료");
             })
+
         }
 
-        function cancelFeed() {
-            history.go(-1);
-            // document.location.href="http://localhost:8000/swith";
-            // 취소 버튼을 누르면 이전 페이지로 가기
+        // 게시물 삭제하기
+        function deleteFeed() {
+            var id = document.getElementById("study_id");
+
+            axios({
+                method:'delete',
+                url:'http://localhost:8000/feed/management/delete',
+                data : {
+                    study_id: id.innerText
+                }
+            })
+            .then((req) => {return req.data;})
+            .then((data) => {
+                alert("회원가입 완료");
+            })
         }
 
         /* 해시태그 엔터시 추가되는 부분 */
@@ -180,30 +140,25 @@
         <div class="management_container">
         <form id="management_info" name="management_form" class="form_container" enctype="multipart/form-data">
                 <div class="context_container">
-                    
+                    <!-- 스터디 아이디-->
+                    <div id="study_id" style="display:none"><%=result.study_id %></div>
+
                     <div class="form-row">
                         <div class="group" id="group_img_upload">
                                 <div id="group_img">
                                 <label class="groupImgLabel" for="groupImg">
                                     <!-- <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br>click!</label> -->
                                     <input type="file" id="groupImg" style="display: none" name="studyImage">
-                                        <% if(locals.result[0]) { %>
-                                        <img src="/public/user/<%= result[0].study_image%>" width="700" height="100" style="border-radius:15px;">
-                                        <% } else { %>
-                                            <img src="/public/user/<%= result.study_image%>" width="700" height="100" style="border-radius:15px;">
-                                        <% } %> 
+
+                                    <img src="/public/user/<%= result.study_image%>" width="700" height="100" style="border-radius:15px;">
+                    
                                 </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="name">스터디명&nbsp;&nbsp;&nbsp;</div>
                         <div class="value"> 
-                        <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요." maxlength="20" required>
-                            <% if(locals.result[0]) { %>
-                            <span class="studyName_txt"><%= result[0].study_name %></span>
-                            <% } else { %>
-                                <span class="studyName_txt"><%= result.study_name %></span>
-                            <% } %>
+                            <input class="input_text" type="text" name="studyName" value="<%= result.study_name%>" maxlength="20" required>
                         </div>
                     </div>
                     <div class="form-row">
@@ -230,32 +185,28 @@
                     <div class="form-row">
                         <div class="name">스터디형태</div><br>
                         <div class="value" id="on_off">
-                            <input type="radio" name="studyForm" id="online" value="온라인" required>
-                            <!-- <label for="online">온라인</label> -->
-                            <!-- <input type="radio" name="studyForm" id="offline" value="오프라인" required> -->
-                            <!-- <label for="offline">오프라인</label> -->
-                            <% if(locals.result[0]) { %>
-                                <%= result[0].study_form %>
-                                    <% } else { %>
-                                        <%= result.study_form %>
-                                    <% } %>
+                                <input type="radio" name="studyForm" id="online" value="온라인" checked readonly>
+                                <label for="online">온라인</label> -->
+                            
+                            <input type="radio" name="studyForm" id="offline" value="오프라인" readonly> -->
+                            <label for="offline">오프라인</label>
                             <p>
-                                <!-- <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required>&nbsp; -->
-                                <!-- <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 70px;"> &nbsp; -->
-                                <!-- <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" style="width: 300px; height: 25px; text-align: center;"><br> -->
+                                <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required>&nbsp;
+                                <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 70px;"> &nbsp;
+                                <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" style="width: 300px; height: 25px; text-align: center;"><br>
                             </p>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="name">모집인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                         <div class="value">
-                        <input type="text" id="studyRecruit" name="studyRecruit" style="width: 40px;" required>&nbsp;명
+                        <input type="text" id="studyRecruit" name="studyRecruit" value="<%= result.study_recruit%>" style="width: 40px;" required>&nbsp;명
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="name">스터디 소개글</div>
                         <div class="value">
-                            <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;" maxlength="20" required></textarea>
+                            <textarea class="input_text" name='studyContent' value="<%= result.study_content%>" style="border: 1px solid #000; border-radius: 5px;" maxlength="20" required></textarea>
                         </div>
                     </div>
                     <div class="form-row">
@@ -317,7 +268,7 @@
     
                 <div class="form-row">
                     <div class="name">해시태그</div>
-                    <div class="value"><input class="input_text" type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요." name="hashTag" onkeypress="show_hashtag(event)">
+                    <div class="value"><input class="input_text" type="text" id="text_hashtag"  name="hashTag" onkeypress="show_hashtag(event)">
                         <p>
                             <span id="enter_hashtag" name="enter_hashtag"></span>
                         </p>
@@ -327,9 +278,9 @@
                 <div class="warningDiv"></div>
                 <br><br>
     
-                    <button class="cancelebutton" type="button" onclick="cancelFeed();">취소</button>
-                    <button class="editbutton" type="button" onclick="editFeed();">수정</button>
-                    <button class="writebutton" type="button" onclick="writePost();">확인</button>
+                    <button class="cancelebutton" type="button" onclick="deleteFeed();">삭제하기</button>
+                    <button class="editbutton" type="button" onclick="editFeed();">수정하기</button>
+                    <button class="writebutton" type="button" onclick=";">목록</button>
                     </div>
                 </div>
         </form>
@@ -347,5 +298,8 @@
         <br>
         </div>
     </footer>
+    <script>
+
+    </script>
 </body>
 </html>
