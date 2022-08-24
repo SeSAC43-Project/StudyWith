@@ -248,3 +248,7 @@ h2 {
 .likes:hover {
   cursor: pointer;
 }
+
+.fa-solid fa-heart {
+  color:red;
+}
