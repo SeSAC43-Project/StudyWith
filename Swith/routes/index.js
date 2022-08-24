@@ -69,8 +69,8 @@ FeedRouter.get('/detailedPost/edit', detailedPost.get_editgroup); // 그룹장: 
 FeedRouter.delete('/detailedPost/leave', detailedPost.delete_leavegroup); // 일반멤버: 탈퇴기능
 FeedRouter.post('/detailedPost/join', detailedPost.post_joingroup); // 가입안한사람: 가입기능
 FeedRouter.get('/management', management.get_management); // 게시물 수정 화면
-
-
+FeedRouter.patch('/management/edit', management.patch_management); // 게시물 수정 버튼
+FeedRouter.delete('/management/delete', management.delete_management); // 게시물 삭제 버튼
 
 /* 메인페이지 관련 */
 const MainRouter = express.Router();
