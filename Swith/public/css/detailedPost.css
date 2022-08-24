@@ -63,7 +63,7 @@ form {
 
 .Category_txt {
     /* border: 1px solid black; */
-    width: 50px;
+    width: 70px;
     height: 30px;
     border-radius: 50%;
     position: relative;
@@ -176,10 +176,9 @@ form {
 }
 
 .img {
-    padding-top: -50px;
-    /* display: flex; */
+    /* padding-top: -50px; */
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     padding: 0 40px;
 }
 

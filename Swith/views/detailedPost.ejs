@@ -40,91 +40,111 @@
         <tbody>
             <div class="wrap">
                 <form id="deatailPost" name="deatailPost">
-                    <!-- <div class="CategoryImage" style="color:white;"> -->
-                    <div class="box">
-                        <div class="img_box">
-                            <!-- 카테고리별 이미지 -->
-                            <div class="CategoryImage">
-                                <img src="/public/image/mainYour.png">
-                                <!-- 카테고리별 임시 이미지 저장 밑에 path에 저장해서 사용하세요-->
-                                <!-- <img src="/public/category" height="300" style="border-radius:15px;"> -->
-                            </div>
+            <!-- <div class="CategoryImage" style="color:white;"> -->
+                <div class="box">
+                    <div class="img_box">   
+                        <div class="Category_box"></div>
+                    </div>
 
-
-                            <!-- 스터디 이미지(등록이미지)  -->
-                            <!-- <div class="studyImage" style="color:white;">  -->              
-                            <div class="studyImage">
-                                <img src="/public/image/mainYour.png">
-                                <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
-                                <!-- <% if(locals.result[0]) { %>
-                                    <img src="/public/user/<%= result[0].study_image%>" width="1000" height="300" style="border-radius:15px;">
-                                <% } else { %>
-                                    <img src="/public/user/<%= result.study_image%>" width="1000" height="300" style="border-radius:15px;">
-                                <% } %>  --> 
-                                <!-- 스터디 이름 -->
-                                <div class="studyName">
-                                    <p class="studyName_2">
-                                    <!-- <% if(locals.result[0]) { %> -->
-                                        <span class="studyName_txt"><%= result[0].study_name %></span>
-                                    <% } else { %>
-                                        <span class="studyName_txt"><%= result.study_name %></span>
-                                    <% } %>   
-                                    </p>
-                                    <!-- <ul>
-                                        <li>장소</li>
-                                        <li>모임시간</li>
-                                        <li>첫 모임일</li>
-                                    </ul> -->
-                                </div>
-                            </div>
-                        <!-- </div>     -->
-                
-                    <!-- <div class="section_box"> -->
-
-                        <div class="section_box">
-                            <div class="name">스터디 소개글</div>
-                            <div class="value"><%=result[0].study_content %>
-                            </div>
-                        </div>
-                        
-                        <div class="section_box">
-                            <div class="name">해시태그</div>
-                            <div class="value"><%=result[0].hashtag %>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="section_box">
-                            <div class="name">스터디 현재멤버</div>
-                                <div class="name name_image"> <% if(locals.result[0]) { %>
-                                    <% for(var i=0; i < result.length; i++) { %>
-                                        <img src="/public/user/<%= result[i].user_image%>" width="1000" height="300" style="border-radius:15px;">
-                                            <% } %>
-                                    <% } %>
-                                </div>
-                                <br>
-                                <div class="result_txt">
-                                <!-- 닉네임  -->
+                    <!-- 스터디 아이디 -->
+                    <div id="study_id" style="display:none"><%=result[0].study_id %></div>
+                    
+                        <!-- 스터디 이미지(등록이미지)  -->
+                        <!-- <div class="studyImage" style="color:white;">  -->              
+                        <div class="studyImage">
+                            <img src="/public/image/mainStudy.png">
+                            <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
+                            <% if(locals.result[0]) { %>
+                                <img src="/public/user/<%= result[0].study_image%>" width="1000" height="300" style="border-radius:15px;">
+                            <% } else { %>
+                                <img src="/public/user/<%= result.study_image%>" width="1000" height="300" style="border-radius:15px;">
+                            <% } %>  
+                            <!-- 스터디 이름 -->
+                            <div class="studyName">
+                                <p class="studyName_2">
                                 <% if(locals.result[0]) { %>
-                                    <% for(var i=0; i < result.length; i++) { %>
-                                        <span><%= result[i].user_name %></span>
-                                    <% } %>
-                                <% } %>
+                                    <span class="studyName_txt"><%= result[0].study_name %></span>
+                                <% } else { %>
+                                    <span class="studyName_txt"><%= result.study_name %></span>
+                                <% } %>   
+                                </p>
+                                <!-- <ul>
+                                    <li>장소</li>
+                                    <li>모임시간</li>
+                                    <li>첫 모임일</li>
+                                </ul> -->
                             </div>
-                        </div>
+                    </div>
 
-                        
-                        
-                        
-                        <div class="section_box">
-                            <div class="name">스터디 형태</div>
-                            <div class="value"><% if(locals.result[0]) { %>
-                                <%= result[0].study_form %>
-                                    <% } else { %>
-                                        <%= result.study_form %>
-                                    <% } %>
-                            </div>
+                    <!-- 카테고리 -->
+                        <div>
+                            <p class="Category_txt">
+                                <% if(locals.result[0]) { %>
+                                    <span><%= result[0].study_category %></span>
+                                <% } else { %>
+                                    <span><%= result.study_category %></span>
+                                <% } %>   
+                            </p>
                         </div>
+                    <!-- </div>     -->
+            
+                <!-- <div class="section_box"> -->
+
+                    <div class="section_box">
+                        <div class="name">스터디 소개글</div>
+                        <div class="value"><%=result[0].study_content %>
+                        </div>
+                    </div>
+                    
+                    <div class="section_box">
+                        <div class="name">해시태그</div>
+                        <div class="value"><%=result[0].hashtag %>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="section_box_name">
+                        <div class="name">스터디 현재멤버</div>
+                        <div class="value_wrap">
+                            <% if(locals.result[0]) { %>
+                                <% for(var i=0; i < result.length; i++) { %>
+                                    <div class="box_name_wrap">
+                                        <div class="img name_image">
+                                            <img src="/public/user/<%= result[i].user_image%>">
+                                        </div>
+                                        <div class="col">
+                                            <div class="col">
+                                                <p class="result_txt"><%= result[i].user_name %></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            <% } %>
+                            
+                                <!-- 닉네임  -->
+                                <!-- <% if(locals.result[0]) { %>
+                                    <% for(var i=0; i < result.length; i++) { %>
+                                        
+                                    <% } %>
+                                <% } %> -->
+                            
+                        </div> 
+                    </div>
+
+                    
+                    
+
+                    <div class="section_box">
+                        <div class="name">스터디 형태</div>
+                        <div class="value"><% if(locals.result[0]) { %>
+                            <%= result[0].study_form %>
+                                <% } else { %>
+                                    <%= result.study_form %>
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <% if(result[0].study_address != ' ') { %>  
                         <div class="section_box">
                             <div class="name">스터디위치</div>
                             <div class="value"><% if(locals.result[0]) { %>
@@ -134,28 +154,30 @@
                                 <% } %>
                             </div>
                         </div>
-                        
-                        <div class="section_box">
-                            <div class="name">모집인원</div>
+                    <% } %>
 
-                            <div class="value"><% if(locals.result[0]) { %>
-                                <%= result[0].study_recruit %>
-                                    <% } else { %>
-                                    <%= result.study_recruit %>
-                                <% } %>
-                            </div>
+                    <div class="section_box">
+                        <div class="name">모집인원</div>
+
+                        <div class="value"><% if(locals.result[0]) { %>
+                            <%= result[0].study_recruit %>
+                                <% } else { %>
+                                <%= result.study_recruit %>
+                            <% } %>
                         </div>
+                    </div>
 
-                        <div class="section_box">
-                            <div class="name">스터디기간</div>
-                            <div class="value">
+                    <div class="section_box">
+                        <div class="name">스터디기간</div>
+                        <div class="value">
+                            <div class="period_box">
                                 <!-- 시작일 -->
                                 <% if(locals.result[0]) { %>
                                 <%= result[0].start_period %>
                                     <% } else { %>
                                 <%= result.start_period %>
                                     <% } %>
-                                ~    
+                                ~ 
                                 <!-- 마감일 -->
                                 <% if(locals.result[0]) { %>
                                 <%= result[0].end_period %>
@@ -164,7 +186,9 @@
                                     <% } %>
                             </div>
                         </div>
-                        
+                    </div>
+                    <div class="Category_box"></div>
+
                         <button type="button" onclick="detailed()" class="detail" style="color:white">게시물 수정하기</button>
     
                         <!-- Button trigger modal -->
