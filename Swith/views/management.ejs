@@ -231,13 +231,18 @@
                         <div class="name">스터디형태</div><br>
                         <div class="value" id="on_off">
                             <input type="radio" name="studyForm" id="online" value="온라인" required>
-                            <label for="online">온라인</label>
-                            <input type="radio" name="studyForm" id="offline" value="오프라인" required>
-                            <label for="offline">오프라인</label>
+                            <!-- <label for="online">온라인</label> -->
+                            <!-- <input type="radio" name="studyForm" id="offline" value="오프라인" required> -->
+                            <!-- <label for="offline">오프라인</label> -->
+                            <% if(locals.result[0]) { %>
+                                <%= result[0].study_form %>
+                                    <% } else { %>
+                                        <%= result.study_form %>
+                                    <% } %>
                             <p>
-                                <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required>&nbsp;
+                                <!-- <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required>&nbsp; -->
                                 <!-- <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 70px;"> &nbsp; -->
-                                <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" style="width: 300px; height: 25px; text-align: center;"><br>
+                                <!-- <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" style="width: 300px; height: 25px; text-align: center;"><br> -->
                             </p>
                         </div>
                     </div>
