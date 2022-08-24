@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
 
-    <link rel="stylesheet" href="/public/css/mypage.css" />
+    <link rel="stylesheet" href="/public/css/mypage3.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
 
     <script>
 
@@ -59,101 +61,79 @@
 
 </head>
 <body>
+    <div class="container">
 
+        <div class="mypage-head"> 😋 님 환영합니다! 😋
+            <img class="head-img" src="">
+        </div>
 
-    <div class = "my-container">
-        <div class="my-head"><%=data.user_id %></div>
-        <div class="container">
-                    <form id="signup_form">
-
-                        <div class="user_info">
-
-                                <div class="profile" id="img_upload">
-                                    <div id="uploadedProfile">
-                                        <input type="file" id="profileImg" style="display: none;" name="profileImg" onchange="uploadFile(this);">
-                                    </div>
-                                </div>
-
-                                <br><br><br>
-
-                                <input type="text" name="nickname" placeholder="닉네임" required onkeyup="checkNickname( this );" class="nickname" style="color:white" />
-                                <p id="checkNickname_text"></p>
-
-                                <br><br>
-        
-                                <input type="text" name="email" placeholder="이메일" class="email"/><br><br>
-
-                                <input type="password" name="password" placeholder="비밀번호" onchange="pwCheck()" id="pw" style="color:white" /><br><br>
-                                <input type="password" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color:white" /><br>
-                                <span id="check"></span>
-                                
-                                <br><br><br>
-        
-                                <span class="span_field">관심분야</span><br><br>
-                                    <!-- <div class="first">1순위 -->
-                                            <select name="firstField" class="category">
-                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                                <option value="언어">언어</option>
-                                                <option value="자격증">자격증</option>
-                                                <option value="인증">인증</option>
-                                                <option value="취업/이직">취업/이직</option>
-                                                <option value="공모전">공모전</option>
-                                                <option value="취미">취미</option>
-                                            </select>
-                                    <!-- </div> -->
-        
-                                    <br><br>
-        
-                                    <!-- <div class="second">2순위 -->
-                                            <select name="secondField" class="category">
-                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                                <option value="언어">언어</option>
-                                                <option value="자격증">자격증</option>
-                                                <option value="인증">인증</option>
-                                                <option value="취업/이직">취업/이직</option>
-                                                <option value="공모전">공모전</option>
-                                                <option value="취미">취미</option>
-                                            </select>
-                                    <!-- </div> -->
-        
-                                    <br><br>
-        
-                                    <!-- <div class="third">3순위 -->
-                                            <select name="thirdField" class="category">
-                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                                <option value="언어">언어</option>
-                                                <option value="자격증">자격증</option>
-                                                <option value="인증">인증</option>
-                                                <option value="취업/이직">취업/이직</option>
-                                                <option value="공모전">공모전</option>
-                                                <option value="취미">취미</option>
-                                            </select>
-                                    <!-- </div> -->
-        
-                                    <br><br>
-                                    <div class="warningDiv"></div>
-                                    <br><br>
-        
-                                    <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">수정완료</button>
-                                    
-                                </div>
-
-
-                            </div>
-                        </form>
-                    </div>
+        <div class="menu">
+            <div>
+                <i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+                </i>
+                <span><i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+                </i></span>
+            </div>
+            <div>
+                <i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+                </i>
+                <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+                </i></span>
+            </div>
+            <div>
+                <i class="fa-solid fa-heart">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+                </i>
+                <span><i class="fa-solid fa-heart">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+                </i></span>
             </div>
         </div>
 
+        <div class="modify-list">
+            <div class="user_info">
+                <!-- <% for(var i=0; i<HeadStudy.length; i++) {%>
+                <div>내가 조장인 스터디 <br><br>
+                    <div><%=HeadStudy[i].study_image%></div>
+                    <div><%=HeadStudy[i].study_name%></div>  
+                    <div><%=HeadStudy[i].study_recruit%></div>
+                </div>
+                <% } %>
+                <div>
+                    <% for(var i=0; i<memberStudy.length; i++) {%>
+                        <div>내가 조장인 스터디 <br><br>
+                            <div><%memberStudy[i].study_image%></div>
+                            <div><%=memberStudy[i].study_name%></div>  
+                            <div><%=memberStudy[i].study_recruit%></div>
+                        </div>
+                        <% } %>
+                </div> -->
+                <div class="head">내가 조장인 스터디</div>
+                <div class="feed-row">
+                    <div class="profile-box">
+                        <img src="/public/group/123456789.jpg" />
+                        <div class="studyName">
+                            <h4>스터디제목</h4>
+                        </div>
+                        <p>해시태그</p><br>
+                        <p>모집인원</p>
+                    </div>
+                </div>
+                
+
+
+            </div>
+        </div>
+        
         <script>
-            $("#uploadedProfile").click(function(e){
-                e.preventDefault();
-                $("#profileImg").click();
-            });
-            $("input[type=file]").on("click", function(e){
-                 e.stopPropagation();
-            });
+            // console.log(HeadStudy[0]);
+            // console.log(memberStudy);
         </script>
 
+    </div>
 </body>
 </html>
