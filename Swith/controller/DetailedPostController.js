@@ -21,7 +21,7 @@ exports.detailedPost_index = async (req, res) => {
     // 일반가입멤버인지 아닌지 check
     var memCheck = await models.Studymember.findOne( {
         where: {
-            user_id: req.query.user_id,
+            user_id: req.session.user_id,
             study_id: req.query.study_id,
         }
     });
@@ -33,7 +33,7 @@ exports.detailedPost_index = async (req, res) => {
         // 조장인지 아닌지 check
         var headCheck = await models.Studygroup.findOne( {
             where: {
-                head_id: req.query.user_id,
+                head_id: req.session.user_id,
                 study_id: req.query.study_id,
             }
         });
