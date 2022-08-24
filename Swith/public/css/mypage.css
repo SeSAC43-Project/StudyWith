@@ -1,9 +1,283 @@
 @font-face {
     font-family: 'GS_bold'; 
     src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
-    }
-
-    * {
-        font-family: "GS_bold";
-    }
-
+  }
+  
+  * {
+    font-family: "GS_bold";
+  }
+  
+  span {
+    font-family: "GS_bold";
+  }
+  
+  .container {
+    /* margin: auto;
+    padding: 0px;
+    width:100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    top: 50%; */
+  
+    margin: auto;
+    padding: 0px;
+    width:100%;
+    height: 150vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+  
+  }
+  
+  .signup_main {
+    position: relative;
+  }
+  
+  .signup_background {
+    /* width:1280px;
+    z-index: 1; */
+    position: absolute;
+    margin: auto;
+    width:1280px;
+    /* width:100%; */
+    z-index: 1;
+  }
+  
+  #signup_form {
+    /* position: absolute;
+    left:50vh;
+    position: absolute;
+    left: 38%;
+    top:20vh; 
+    z-index: 3;
+    padding:10px 10px 10px 10px; */
+  
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    padding:10px 10px 10px 10px;
+  }
+  
+  #form_container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    top: 10%;
+  }
+  
+  .signup_logo {
+    padding-bottom: 50px;
+  }
+  
+  #form_background {
+    /* width : 640px;
+    height: 640px;
+    background-color: white;
+    opacity: 0.7;
+    position:absolute;
+    display: block;
+    top:10vh;
+    left:35vh; 
+    z-index:2; */
+  
+    margin:auto;
+    width : 640px;
+    height: 900px;
+    background-color: white;
+    opacity: 0.7;
+    position:absolute;
+    display:flex;
+    justify-content: center;
+    /* display: block; */
+    /* top:10vh;
+    left:35vh;  */
+    z-index:2;
+  }
+  
+  .user_info {
+    /* display: flex;
+    justify-content: center;
+    font-weight: bold; */
+  
+    position:absolute;
+    z-index: 3;
+    display: inline-block;
+    text-align: center;
+    width:400px;
+  }
+  
+  #img_upload {
+    /* position: absolute; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    padding:10px 10px 10px 10px;
+  }
+  
+  .profile #uploadedProfile {
+    width: 70px;
+    height: 70px;
+    border: 3px solid;
+    border-color: #4686C2;
+    border-radius: 50px 50px 50px 50px;
+    position: absolute;
+    top: 0;
+    bottom: 65%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+  }
+  .profile #uploadedProfile:hover{
+    cursor:pointer;
+    background-color: #4686C2;
+  }
+  .profile #uploadedProfile:active {
+    background-color: #4686C2;
+  }
+  .profile input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+  
+  .userid, .nickname, .email, #pw, #pwConfirm, .pwAnswer, .category_hint {
+    border: 0;
+    background-color: #4686C2;
+    width:300px;
+    height: 30px;
+    border-radius: 30px;
+    text-align: center;
+  }
+  
+  input {
+    text-align: center;
+  }
+  input::-webkit-input-placeholder { color: white; text-align: center; opacity: 0.5;}
+  input:focus {
+      outline: 3px solid #4686C2
+  }
+  
+  #id-check {
+    cursor:pointer;
+    background-color: #4686C2;
+    border:0;
+    border-radius: 20px;
+    color: whitesmoke;
+    text-align: center;
+    width: 50px;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    bottom: 52%;
+    left: 360px;
+    right: 0;
+    margin: auto;
+    font-size: 5px;
+  }
+  
+  #nickname-check {
+    cursor:pointer;
+    background-color: #4686C2;
+    border:0;
+    border-radius: 20px;
+    color: whitesmoke;
+    text-align: center;
+    width: 50px;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    bottom: 41%;
+    left: 360px;
+    right: 0;
+    margin: auto;
+    font-size: 5px;
+  }
+  
+  .span_field {
+    font-weight: bold;
+  }
+  
+  .first, .second, .third {
+    border: 0;
+    background-color: #4686C2;
+    border: 1px solid;
+    border-color: #4686C2;
+    text-align: center;
+    font-size: 10px;
+    line-height: 30px;
+    width: 50px;
+    height: 30px;
+    border-radius: 30px;
+    color: whitesmoke;
+  }
+  
+  .category {
+    /* margin: auto;
+    position: relative;
+    top: -30px;
+    bottom: 0px;
+    left: 60px;
+    right: 0;
+    border: 0;
+    background-color: white;
+    border: 1px solid;
+    border-color: #4686C2;
+    text-align: center;
+    font-size: 10px;
+    line-height: 30px;
+    width: 300px;
+    height: 30px;
+    border-radius: 30px; */
+    border-color: #4686C2;
+    width:300px;
+    height: 30px;
+    border-radius: 30px;
+    text-align: center;
+  }
+  
+  
+  .signupBtn {
+    cursor:pointer;
+    /* background-color: #4686C2;
+    border:0;
+    border-radius: 20px;
+    width: 120px;
+    height:35px;
+    position: absolute;
+    margin: auto;
+    left: 100px;
+    justify-content: center;
+    font-weight: bold; */
+  
+    background-color: #4686C2;
+    border:0;
+    border-radius: 20px;
+    width: 120px;
+    height:35px;
+  }
+  
+  .userLogin {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  a {
+    text-decoration-line : none;
+    font-family: "GS_bold";
+  }
+  
+  
