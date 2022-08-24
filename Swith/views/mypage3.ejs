@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+
+    <link rel="stylesheet" href="/public/css/mypage.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+
+        function uploadFile( obj ){
+            var formData = new FormData();
+            formData.append("name", uploadedFile);
+            formData.append('profileImg', obj.files[0]);
+
+            axios({
+                method:'post',
+                url: "http://localhost:8000/user/signup/upload",
+                data: formData,
+            })
+            .then((req) => { return req.data;})
+            .then((data) => {
+                uploadedFile = data.fileName;
+                $("#uploadedProfile").css({"background-image":`url(/public/user/${data.fileName})`}); 
+                $("#uploadedProfile").css({"background-size":`70px 70px`}); 
+            })
+        }
+
+        /* 닉네임 중복 검사 */
+        function checkNickname( obj ) {
+                axios({
+                    method: "post",
+                    url: "http://localhost:8000/user/signup/isName",
+                    data: {
+                        user_name: obj.value,
+                    }
+                }).then((req) => { 
+                    return req.data;
+                }).then((data) => {
+                    console.log(data);
+                    if ( data ) {
+                        $("#checkNickname_text").css("color", "green");
+                        $("#checkNickname_text").text("사용할 수 있는 닉네임입니다.");
+                        $( "button" ).removeAttr("disabled")
+                    } else {
+                        $("#checkNickname_text").css("color", "red");
+                        $("#checkNickname_text").text("사용할 수 없는 닉네임입니다.");
+                        $( "button" ).attr("disabled", "true");
+                    }
+                });
+            }
+
+    </script>
+
+</head>
+<body>
+
+
+    <div class = "my-container">
+        <div class="my-head"><%=data.user_id %></div>
+        <div class="container">
+                    <form id="signup_form">
+
+                        <div class="user_info">
+
+                                <div class="profile" id="img_upload">
+                                    <div id="uploadedProfile">
+                                        <input type="file" id="profileImg" style="display: none;" name="profileImg" onchange="uploadFile(this);">
+                                    </div>
+                                </div>
+
+                                <br><br><br>
+
+                                <input type="text" name="nickname" placeholder="닉네임" required onkeyup="checkNickname( this );" class="nickname" style="color:white" />
+                                <p id="checkNickname_text"></p>
+
+                                <br><br>
+        
+                                <input type="text" name="email" placeholder="이메일" class="email"/><br><br>
+
+                                <input type="password" name="password" placeholder="비밀번호" onchange="pwCheck()" id="pw" style="color:white" /><br><br>
+                                <input type="password" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color:white" /><br>
+                                <span id="check"></span>
+                                
+                                <br><br><br>
+        
+                                <span class="span_field">관심분야</span><br><br>
+                                    <!-- <div class="first">1순위 -->
+                                            <select name="firstField" class="category">
+                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                                <option value="언어">언어</option>
+                                                <option value="자격증">자격증</option>
+                                                <option value="인증">인증</option>
+                                                <option value="취업/이직">취업/이직</option>
+                                                <option value="공모전">공모전</option>
+                                                <option value="취미">취미</option>
+                                            </select>
+                                    <!-- </div> -->
+        
+                                    <br><br>
+        
+                                    <!-- <div class="second">2순위 -->
+                                            <select name="secondField" class="category">
+                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                                <option value="언어">언어</option>
+                                                <option value="자격증">자격증</option>
+                                                <option value="인증">인증</option>
+                                                <option value="취업/이직">취업/이직</option>
+                                                <option value="공모전">공모전</option>
+                                                <option value="취미">취미</option>
+                                            </select>
+                                    <!-- </div> -->
+        
+                                    <br><br>
+        
+                                    <!-- <div class="third">3순위 -->
+                                            <select name="thirdField" class="category">
+                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                                <option value="언어">언어</option>
+                                                <option value="자격증">자격증</option>
+                                                <option value="인증">인증</option>
+                                                <option value="취업/이직">취업/이직</option>
+                                                <option value="공모전">공모전</option>
+                                                <option value="취미">취미</option>
+                                            </select>
+                                    <!-- </div> -->
+        
+                                    <br><br>
+                                    <div class="warningDiv"></div>
+                                    <br><br>
+        
+                                    <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">수정완료</button>
+                                    
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+
+        <script>
+            $("#uploadedProfile").click(function(e){
+                e.preventDefault();
+                $("#profileImg").click();
+            });
+            $("input[type=file]").on("click", function(e){
+                 e.stopPropagation();
+            });
+        </script>
+
+</body>
+</html>
