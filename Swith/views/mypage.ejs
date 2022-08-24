@@ -16,13 +16,13 @@
     <script>
             // 회원정보수정 / 참여중 / 찜목록 이동
             function goModify() {
-                document.location.href="http://localhost:8000/user/signup";
+                document.location.href="http://localhost:8000/user/mypage";
             }
             function goPart() {
-                document.location.href="http://localhost:8000/user/signup";
+                document.location.href="http://localhost:8000/user/mypage/studys";
             }
             function goHeart() {
-                document.location.href="http://localhost:8000/user/signup";
+                document.location.href="http://localhost:8000/user/mypage/likes";
             }
 
             // 닉네임 확인 폼 작성
@@ -74,7 +74,7 @@
 
                 axios({
                     method:'post',
-                    url: "http://localhost:8000/user/update",
+                    url: "http://localhost:8000/mypage",
                     data: {
                         user_name : nickname,
                         user_email : email,
@@ -104,16 +104,28 @@
 
         <div class="menu">
             <div>
-                <i class="fa-solid fa-user" onclick="goModify()">&nbsp;&nbsp;회원정보수정</i>
-                <span><i class="fa-solid fa-user">&nbsp;&nbsp;회원정보수정</i></span>
+                <i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goModify()">회원정보수정</buttton>
+                </i>
+                <span><i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goModify()">회원정보수정</buttton>
+                </i></span>
             </div>
             <div>
-                <i class="fa-solid fa-podcast" onclick="goPart()">&nbsp;&nbsp;참여중</i>
-                <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;참여중</i></span>
+                <i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goPart()">참여중</buttton>
+                </i>
+                <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goPart()">참여중</buttton>
+                </i></span>
             </div>
             <div>
-                <i class="fa-solid fa-heart" onclick="goHeart()">&nbsp;&nbsp;찜목록</i>
-                <span><i class="fa-solid fa-heart">&nbsp;&nbsp;찜목록</i></span>
+                <i class="fa-solid fa-heart">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goHeart()">찜목록</buttton>
+                </i>
+                <span><i class="fa-solid fa-heart">&nbsp;&nbsp;
+                    <buttton type="button" onclick="goHeart()">찜목록</buttton>
+                </i></span>
             </div>
         </div>
 
