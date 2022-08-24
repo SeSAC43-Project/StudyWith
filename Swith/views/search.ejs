@@ -187,8 +187,6 @@
 
       
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
-                <h2><%=currentMember[1].study_id%></h2>
-                <h2><%=currentMember[2].cnt%></h2>
                 <ul>
                     <div class = "feed-collect">
                         <div class = "feed-main-container">
@@ -204,7 +202,8 @@
                                             </div>
                                             <div class = "post-content">
                                                 <h2><%=data[i].study_name%></h2>
-                                                <span><%=data[i].study_recruit%></span>
+                                                <span><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
+                                                
                                             </div>
                                         </div>
                                     </div>
