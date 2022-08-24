@@ -96,7 +96,7 @@ exports.mypage_likes = async (req, res) => {
     WHERE U.user_id = '${req.session.user_id}';
     `
     const result = await sequelize.query(sql); 
-    console.log('찜목록 정보 : ', result);
+    console.log('찜 목록 정보 : ', result);
     res.render('mypage2', {data: result}); 
 }
 
