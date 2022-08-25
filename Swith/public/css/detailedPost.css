@@ -87,6 +87,12 @@ form {
     overflow: hidden;
 }
 
+.group_img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+}
+
 /* 스터디 명 */
 .studyName {
     /* background-color: #e5eef8; */

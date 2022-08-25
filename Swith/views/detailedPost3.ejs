@@ -58,9 +58,9 @@
                                 <!-- <img src="/public/image/mainYour.png"> -->
                                 <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
                                 <% if(locals.result[0]) { %>
-                                    <img src="/public/user/<%= result[0].study_image%>" style="border-radius:15px;">
+                                    <img class="group_img" src="/public/group/<%= result[0].study_image%>" style="border-radius:15px;">
                                 <% } else { %>
-                                    <img src="/public/user/<%= result.study_image%>" style="border-radius:15px;">
+                                    <img class="group_img" src="/public/group/<%= result.study_image%>" style="border-radius:15px;">
                                 <% } %>
                                 <!-- 스터디 이름 -->
                                 <div class="studyName">
