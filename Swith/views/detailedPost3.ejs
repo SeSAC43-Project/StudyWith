@@ -55,13 +55,13 @@
                             <!-- 스터디 이미지(등록이미지)  -->
                             <!-- <div class="studyImage" style="color:white;">  -->              
                             <div class="studyImage">
-                                <img src="/public/image/mainYour.png">
+                                <!-- <img src="/public/image/mainYour.png"> -->
                                 <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
-                                <% if(locals.result[0]) { %> -->
-                                    <img src="/public/user/<%= result[0].study_image%>" width="1000" height="300" style="border-radius:15px;">
+                                <% if(locals.result[0]) { %>
+                                    <img src="/public/user/<%= result[0].study_image%>" style="border-radius:15px;">
                                 <% } else { %>
-                                    <img src="/public/user/<%= result.study_image%>" width="1000" height="300" style="border-radius:15px;">
-                                <% } %>  --> 
+                                    <img src="/public/user/<%= result.study_image%>" style="border-radius:15px;">
+                                <% } %>
                                 <!-- 스터디 이름 -->
                                 <div class="studyName">
                                     <p class="studyName_2">
@@ -133,9 +133,7 @@
                             </div> 
                         </div>
 
-                        
-                        
-                        
+
                         <div class="section_box">
                             <div class="name">스터디 형태</div>
                             <div class="value"><% if(locals.result[0]) { %>
@@ -172,22 +170,24 @@
                         <div class="section_box">
                             <div class="name">스터디기간</div>
                             <div class="value">
-                                <!-- 시작일 -->
-                                <% if(locals.result[0]) { %>
-                                <%= result[0].start_period %>
-                                    <% } else { %>
-                                <%= result.start_period %>
-                                    <% } %>
-                                ~    
-                                <!-- 마감일 -->
-                                <% if(locals.result[0]) { %>
-                                <%= result[0].end_period %>
-                                    <% } else { %>
-                                <%= result.end_period %>
-                                    <% } %>
+                                <div class="period_box">
+                                    <!-- 시작일 -->
+                                    <% if(locals.result[0]) { %>
+                                    <%= result[0].start_period %>
+                                        <% } else { %>
+                                    <%= result.start_period %>
+                                        <% } %>
+                                    ~    
+                                    <!-- 마감일 -->
+                                    <% if(locals.result[0]) { %>
+                                    <%= result[0].end_period %>
+                                        <% } else { %>
+                                    <%= result.end_period %>
+                                        <% } %>
+                                </div>
                             </div>
                         </div>
-                        
+                        <div class="Category_box"></div>
                         <!-- <button type="button" onclick="detailed()" class="detail" style="color:white">탈퇴하기</button> -->
     
                         <!-- Button trigger modal -->
@@ -219,7 +219,6 @@
                         </div>
 
                         
-    
                         <div class="regi_btn_wrap">
                             <div class="regi_txt">
                                 <% if (result.length < result[0].study_recruit) { %>
@@ -231,8 +230,10 @@
                             
                             <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
                         </div>
+
+                        <div class="Category_box"></div>
                     </div>
-                    
+
                 </div>   
                 </form>
             </div>

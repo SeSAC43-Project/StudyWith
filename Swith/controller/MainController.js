@@ -1,4 +1,3 @@
-const { sequelize, Studymember } = require("../model/index");
 const Models  = require('../model');
 
 // 메인 페이지 렌더링
@@ -24,7 +23,7 @@ exports.main_search = async (req, res) => {
             OR G.hashtag LIKE '%${req.body.search}%'
         GROUP BY G.study_id;`;
 
-    const result = await sequelize.query(sql);
+    const result = await Models.sequelize.query(sql);
     console.log('검색 결과 :', result);
     await res.render('search', {data: result[0], search: req.body.search, category: req.body.category});
     }
@@ -39,23 +38,16 @@ exports.search_detail = (req, res) => {
 // search 페이지에서 카테고리마다 게시글 검색되도록 
 exports.search_category = async (req, res) => {
     let sql = `
-    select studygroup.*, count(studymember.user_id) as num from studygroup left outer join studymember on studygroup.study_id = studymember.study_id where studygroup.study_category like '%${req.body.study_category}%' group by studygroup.study_id;`;
+    SELECT G.*, COUNT(M.user_id) AS num 
+    FROM studygroup AS G
+    LEFT OUTER JOIN studymember AS M ON G.study_id = M.study_id 
+    WHERE G.study_category LIKE '%${req.body.study_category}%'
+    GROUP BY G.study_id;`;
 
-    const result3 = await sequelize.query(sql);
+    const result = await Models.sequelize.query(sql);
     
-    console.log('여기가 카테고리 ', result3);
-    await res.send({data: result3[0], flag:true});
-    // Models.Studygroup.findAll({
-    //     where: {  
-    //         study_category : {
-    //             [Models.Op.like]:'%'+ req.body.study_category + '%'
-    //         }
-    //     }
-    // })
-    // .then((result) => {
-    //     console.log('여기가 카테고리 ', result);
-    //     res.send({data: result, flag: true});
-    // })
+    console.log('여기가 카테고리 ', result);
+    await res.send({data: result[0], flag:true});
 }
 
 // 메인페이지 좋아요 기능
@@ -66,7 +58,20 @@ exports.main_likes = (req, res) => {
     }
     Models.Likes.create( object )
     .then((result) => {
-        console.log('결과는:',result);
+        console.log('좋아요 결과는:',result);
         res.send({isLikes: true});
+    })
+}
+
+// 메인페이지 좋아요 취소 기능
+exports.likes_remove = (req, res) => {
+    Models.Likes.destroy({
+        where: {
+            user_id : req.session.user_id, 
+            study_id : req.body.study_id
+        }
+    }).then((result) => {
+        console.log('좋아요 삭제: ', result);
+        res.send({isDislikes: true});
     })
 }

@@ -70,11 +70,13 @@
                 let email = $('#email').val();
                 let pw = $('#pw').val();
                 let category1 = $('#category1').val();
+                let category2 = $('#category2').val();
+                let category3 = $('#category3').val();
 
 
                 axios({
                     method:'post',
-                    url: "http://localhost:8000/mypage",
+                    url: "http://localhost:8000/user/update",
                     data: {
                         user_name : nickname,
                         user_email : email,

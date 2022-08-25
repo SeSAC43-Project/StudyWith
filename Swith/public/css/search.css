@@ -93,6 +93,11 @@ form input::file-selector-button {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+#category-form {
+  display: flex;
+  width: 100vh;
+
+}
 .category-title{
   flex: 0 0 calc(16.6667% - 10px);
   display: flex;
@@ -124,6 +129,10 @@ form input::file-selector-button {
 .feed-main-container > div{
   box-shadow: 0px 8px 22px -12px rgba(0, 0, 0, 0.64);
 }
+
+/* :not(.likes) */
+
+
 .post-img{
   position: relative;
 }
@@ -245,10 +254,6 @@ h2 {
   cursor: pointer;
 }
 
-.likes {
-  z-index:999;
-}
-
 .likes:hover {
   cursor: pointer;
 }
@@ -262,3 +267,20 @@ h2 {
   color: red;
   content: "\f004";
 }
+
+.heartEffect {
+  animation-duration: 3s;
+  animation-name: heartBling;
+  animation-iteration-count: 1;
+
+}
+
+@keyframes heartBling
+{
+    0% { transform: scale( 1.3 ); }
+    33% { transform: scale( 0.9 ); }
+    66% { transform: scale( 1.3 ); }
+    100% { transform: scale( 1.0 ); }
+}
+
+/* 게시글 */

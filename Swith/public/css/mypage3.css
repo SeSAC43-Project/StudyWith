@@ -103,6 +103,8 @@ a {
   cursor: pointer;
   background: transparent;
   transition: transform 0.5s background 0.5s;
+  flex-wrap: wrap;
+
 }
 .profile-box:hover {
   background: #f5d17c;
@@ -120,6 +122,10 @@ a {
 }
 .profile-box img:hover {
   height: 215px;
+}
+
+.feed-row {
+  flex-wrap: wrap;
 }
 
 .studyName {

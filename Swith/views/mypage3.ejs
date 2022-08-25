@@ -96,42 +96,64 @@
 
         <div class="modify-list">
             <div class="user_info">
-                <% for(var i=0; i<HeadStudy.length; i++) {%>
-                <div>내가 조장인 스터디 <br><br>
-                    <div><%=HeadStudy[i].study_image%></div>
-                    <div><%=HeadStudy[i].study_name%></div>  
-                    <div><%=HeadStudy[i].study_recruit%></div>
-                </div>
-                <% } %>
-                <div>
-                    <% for(var i=0; i<memberStudy.length; i++) {%>
-                        <div>내가 조장인 스터디 <br><br>
-                            <div><%memberStudy[i].study_image%></div>
-                            <div><%=memberStudy[i].study_name%></div>  
-                            <div><%=memberStudy[i].study_recruit%></div>
+                <% if ( signStudy == true ) {%>
+                    <div class="head">내가 조장인 스터디</div>
+                        <% for(var i=0; i<HeadStudy.length; i++) {%>
+                            <div class="feed-row">
+                                <div class="profile-box">
+                                    <img src="/public/group/<%=HeadStudy[i].study_image%>" />
+                                    <div class="studyName">
+                                        <h4><%=HeadStudy[i].study_name%></h4>
+                                    </div>
+                                    <p><%=HeadStudy[i].hashtag%></p><br>
+                                    <p><%=HeadStudy[i].study_recruit%></p>
+                                    <span><%=HeadStudy[i].study_id%></span>
+                                </div>
+                            </div>
+                            <% } %>
+                            
+                    <div class="head">내가 팀원인 스터디</div>
+                        <% for(var i=0; i<memberStudy.length; i++) {%>
+                            <div class="feed-row">
+                                <div class="profile-box">
+                                    <img src="/public/group/<%=memberStudy[i].study_image%>" />
+                                    <div class="studyName">
+                                        <h4><%=memberStudy[i].study_name%></h4>
+                                    </div>
+                                    <p><%=memberStudy[i].hashtag%></p><br>
+                                    <p><%=memberStudy[i].study_recruit%></p>
+                                    <span><%=memberStudy[i].study_id%></span>
+                                </div>
+                            </div>
+                            <% } %>
+                <% } else {%>
+                    <div class="feed-row">
+                        <div class="profile-box">
+                            <div class="studyName">
+                                <h4></h4>
+                            </div>
+                            <p>가입된 스터디가 없습니다 😌 </p><br>
                         </div>
-                        <% } %>
-                </div>
-                <div class="head">내가 조장인 스터디</div>
-                <div class="feed-row">
-                    <div class="profile-box">
-                        <img src="/public/group/123456789.jpg" />
-                        <div class="studyName">
-                            <h4>스터디제목</h4>
-                        </div>
-                        <p>해시태그</p><br>
-                        <p>모집인원</p>
                     </div>
-                </div>
-                
-
-
+                    <% } %>
             </div>
         </div>
         
         <script>
-            // console.log(HeadStudy[0]);
-            // console.log(memberStudy);
+            // 상세페이지로 이동하기
+            var studys = document.getElementsByClassName('profile-box'); 
+
+            for (const study of studys) {
+                study.addEventListener('click', function(obj) {
+                    var study_site = obj.currentTarget;
+                    var study_id = $(study_site).children('span').text();
+                    goDetail(study_id);
+                })
+            }
+
+            function goDetail(study_id ) {        
+                document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${study_id}`
+            }
         </script>
 
     </div>

@@ -51,6 +51,11 @@ CREATE TABLE likes (
     FOREIGN KEY (`study_id`) REFERENCES `studygroup` (`study_id`)
 );
 
+-- table 삭제
+drop table likes; 
+drop table studymember; 
+drop table studygroup; 
+drop table user;
 
 ----------------------------------------------------------
 --* 테스트 코드

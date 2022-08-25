@@ -21,58 +21,6 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-
-
-  <script>
-
-    function mainSearch() {
-        var form = document.getElementById('search_form');
-        var search = $("#search").val();
-        axios({
-            method: 'get', 
-            url: 'http://localhost:8000/swith/search', 
-            params : {
-                search : search
-            }
-        })
-        .then((req) => {return req.data;})
-        .then((data) => {
-            if (data == '') {
-                alert("검색어를 입력해주세요🤔 ");
-                return
-            }
-            console.log(data) // 검색해온 study 정보들 data로 받아옴
-        })
-    }
-
-    function goCategory() {
-        document.location.href='http://localhost:8000/swith/search';
-    }
-
-    function studySearch() {
-        var form = document.getElementById('studySearch_form');
-        var search = $("#search").val();
-
-
-        axios({
-            method: 'get', 
-            url: 'http://localhost:8000/swith/search', 
-            params : {
-                search : search
-            }
-        })
-        .then((req) => {return req.data;})
-        .then((data) => {
-            console.log(data)
-            for ( var i = 0; i < data.length; i++ ){
-                var html = "<div> 제목 : data.title <br><div> 내용 : data.content </div></div>";
-                $("#content").append(html);
-            }
-        })
-
-    }
-
-  </script>
 </head>
 <body>
 
@@ -90,14 +38,18 @@
                                 </button>
                                 <% }%> 
                         </form>
-                        <div id="study_category"></div>
+                        <div class="cate_search_text"></div>
+                        <div class = "feed-collect">
+                            <div class = "feed-main-container" id="study_category">
+
+                            </div>
+                        </div>
                 </div>
 
-                <script>
+        <script>
                     // 카테고리 정보 보내기 
                     
                     // var categorys = document.getElementsByClassName('category-title');
-
                     var categorys = document.querySelectorAll('.category-title');
                     
                     
@@ -105,11 +57,8 @@
                         category.addEventListener('click', function(obj) {
                             var car_site = obj.currentTarget;  //[object HTMLButtonElement]
                             var car_value = $(car_site).children('.category').children('p').text(); 
-                            //var car_value = "컴퓨터/IT";
-                            console.log('targetcheck');
-                            console.log(car_site);
-                            console.log(car_value);                         
-                            // .find('.ca')
+                            
+
                             axios({
                                 method: 'post',
                                 url: 'http://localhost:8000/swith/search/category',
@@ -124,68 +73,39 @@
                                     console.log(data.data);
                                 }
                                 var html = "";
-                                html += "<div class='item-box'>";
-                                html += "<ul>";
+                                // html += "<div class='item-box'>";
+                                // html += "<ul>";
+                                // for ( var i = 0; i < data.data.length; i++ ){
+                                //     html += "<li>";
+                                //     html += "<div class='photo'>" + data.data[i].study_category + "</div>"; 
+                                //     html += "<div class='info'>" + "<img src='/public/group/"+data.data[i].study_image + "'/></div>";
+                                //     html += "</li>"
+
+                                //     console.log(data.data[i].study_category)
+                                // }
+                                // html += "</ul></div>"
                                 for ( var i = 0; i < data.data.length; i++ ){
-                                    html += "<li>";
-                                    html += "<div class='photo'>" + data.data[i].study_category + "</div>"; 
-                                    html += "<div class='info'>" + "<img src='/public/group/"+data.data[i].study_image + "'/></div>";
-                                    html += "</li>"
+                                    html += "<div class = 'studys'><div class = 'all-category' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>"
+                                    html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><h2>" + data.data[i].study_name + "</h2><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div></div><div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>";
 
                                     console.log(data.data[i].study_category)
                                 }
-                                html += "</ul></div>"
+                                html += "</div>"
                                 $("#study_category").empty();
                                 $("#study_category").append(html);
+                                $('.cate_search_text').html('<h2>"<%=category %>" 검색 결과입니다.</h2><br><br>');
                             })
         
             
                     });  
                 }
-                </script>
 
-                <!-- <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
-                <ul>
-                    <div class = "feed-collect">
-                        <div class = "feed-main-container">
-                        <% for(var i=0; i<data.length; i++) {%>
-                        <div class = "all business">
-                            <div class = "post-img">
-                                <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
-                                <span name="categoryName" class = "category-name"><%=data[i].study_category%></span>
-                            </div>
-                            <div class = "post-content">
-                                <h2><%=data[i].study_name%></h2>
-                                <p><%=data[i].study_recruit%></p>
-                            </div>
-                        </div>
-                        <% } %>
-                        </div>
-                    </div>
-                </ul>
-            </div>
-        </div>
- -->
 
-        <!-- // function feedCategory() {
-        //     var cate = document.getElementById('category-form');
-        //     var send = $("ca_input").val();
 
-        //     axios({
-        //         method: 'post',
-        //         url: 'http://localhost:8000/swith/search/',
-        //         data: {
-        //             study_category : form.categoryName.value
-        //         }
-        //     })
-        //     .then((req) => {console.log(req.data);})
-        //     .then((data) => {
-        //         for ( var i = 0; i < data.length; i++ ){
-        //             var html = "<div> data[i].study_category </div>";
-        //             $("#study_category").append(html);
-        //         }
-        //     })
-        // } -->
+                
+
+
+        </script>
 
             <div class="searchSection">
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
@@ -194,25 +114,26 @@
                         <div class = "feed-main-container">
                             <!-- 스터디 정보 게시물 보여주기 및 보내기-->
                                 <% for(var i=0; i<data.length; i++) {%>
-                                    <div class="studys">
-                                        <!--  id="studys" -->
-                                        <div class = "all business">
-                                            <div class = "post-img">
-                                                <img src = "/public/group/<%=data[i].study_image %>" alt = "post">
-                                                <span class = "category-name"><%=data[i].study_category%></span>
-                                                <p><%=data[i].study_id %></p>
+                                    
+                                        <div class="studys">
+                                            <!--  id="studys" -->
+                                            <div class = "all-business">
+                                                <div class = "post-img">
+                                                    <img width="200px;" height="200px;" src = "/public/group/<%=data[i].study_image %>" alt = "post">
+                                                    <span class = "category-name"><%=data[i].study_category%></span>
+                                                    <p><%=data[i].study_id %></p>
+                                                </div>
+                                                <div class = "post-content">
+                                                    <h2><%=data[i].study_name%></h2>
+                                                    <span><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
+                                                </div> 
                                             </div>
-                                            <div type="button" class = "post-content">
-                                                <h2><%=data[i].study_name%></h2>
-                                                <span><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
-                                            </div> 
+                                            <div class="likes">
+                                                <p style="font-size:2rem;" class="heart far fa-heart"></p>
+                                            </div>
                                         </div>
-                                        <div class="likes">
-                                            <!-- 빈하트 -->
-                                            <p style="font-size:2rem;" class="heart far fa-heart"></p>
-                                        </div>
-                                    </div>
                                     <% } %>
+                            </div>
                         </div>
                     </div>
                 </ul>
@@ -227,20 +148,19 @@
             })
             
 
+    //좋아요 버튼 / /취소 동시에 기능
 
-
-            // 좋아요 추가하기
-                var likes = document.querySelectorAll('.likes');
+            var likes = document.querySelectorAll('.likes');
 
                     for (const like of likes) {
                         
-                    // likes.forEach((like) => {
                         like.addEventListener('click',function(obj) {
                             var target = obj.currentTarget;
-                            // var study_id = $(target).parent('div').parent('div').children('div').children('p').text();
-                            
                             var study_id = $(target).siblings('div').children('div').children('p').text();
-                            // alert(study_id);
+                            
+
+
+                        if ( $(target).children('.heart').hasClass('far fa-heart')) {
 
                             axios({
                                 method:'post',
@@ -255,25 +175,48 @@
                                     if (data.isLikes == true) {
                                         $(target).children('.heart').removeClass('far fa-heart');
                                         $(target).children('.heart').addClass('fa-solid fa-heart');
+                                        $(target).children('.heart').addClass('heartEffect');
+                                        //나중에 혹시 좋아요 기능 제대로 안되면 effect 지우기
                                     }
                                     
                                 })
+                            }
+
+
+                        else {
+
+                            axios({
+                                method:'post',
+                                url: 'http://localhost:8000/swith/search/likes/remove',
+                                data : {
+                                    study_id : study_id,
+                                        }
+                                })
+                                .then((req) => { return req.data;})
+                                .then((data) => {
+                                    if (data.isDislikes == true) {
+                                        console.log('되나요..?');
+                                        $(target).children('.heart').removeClass('fa-solid fa-heart');
+                                        $(target).children('.heart').addClass('far fa-heart');
+                                    }
+                                })
+                            }
                         })
-                }
+                    }
+            
 
 
+            // 메인에서 검색, 카테고리 선택 후 상세페이지로 이동하기
+            var allBs = document.getElementsByClassName('all-business');
 
-            // 상세페이지로 이동하기
-            var studys = document.getElementsByClassName('studys'); 
-
-            for (const study of studys) {
-                study.addEventListener('click', function(obj) {
+            for (const allB of allBs) {
+                allB.addEventListener('click', function(obj) {
                     var study_site = obj.currentTarget;
-                    var study_id = $(study_site).children('div').children('div').children('p').text();
-                    var target = document.getElementsByClassName(".likes");
+                    var study_id = $(study_site).children('div').children('p').text();
                     
-                    if(obj.target.getElementsByClassName != 'likes')
-                        return;
+                    // var target = document.getElementsByClassName(".likes");
+                    // if(obj.target.getElementsByClassName != 'likes')
+                    //     return;
 
                     axios ({
                         method:'post', 
@@ -290,6 +233,8 @@
                     })
                 })
             }
+            
+
 
 
             const categoryTitle = document.querySelectorAll('.category-title');
@@ -316,65 +261,17 @@
                 }
                 activeItem.classList.add('active');
             };
+
+
+            // 서치페이지에서 카테고리 선택 후 상세페이지로 이동하기
+            function reply_click(clicked_id) {
+                goDetail(clicked_id);
+            }
+            function goDetail(cate_study_id) {
+                    document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${cate_study_id}`;
+            }
+
         </script>
-        
-
-
-    <!-- <div class="category-container">
-        <div class="category-head"> 
-            <ul>
-                <div class="category-title" id="all">
-                    <li>전체</li>
-                </div>
-                <div class="category-title" id="all">
-                    <li>컴퓨터/IT</li>
-                </div>
-                <div class="category-title" id="all">
-                    <li>언어</li>
-                </div>
-                <div class="category-title" id="all">
-                    <li>자격증</li>
-                </div>
-                <div class="category-title" id="all">
-                    <li>인증</li>
-                </div>
-                <div class="category-title" id="all">
-                    <li>취업/이직</li>
-                </div>
-                <div class="category-title" id="all">
-                    <li>공모전</li>
-                </div>
-                <div class="category-title" id="all">
-                    <li>취미</li>
-                </div>
-            </ul>
-        </div> -->
-
-        <!-- <div class="posts-collector">
-            <div class="posts-main-container">
-                <div class="post-img">
-                    <img src="/public/search/조회페이지(컴퓨터).jpeg" alt="feed">
-                    <span class="category-name">컴퓨터/IT</span>
-                </div>
-
-                <div class="post-content">
-                    <div class="post-content-top"></div>
-                </div>
-            </div>
-        </div> -->
-
-
-
-
-
-
-
-
-
-    <!-- <form method="get" action="">
-        <input type="text" name="study_id">
-    </form> -->
-
 
 </body>
 <script>
