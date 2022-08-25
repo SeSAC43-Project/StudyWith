@@ -11,13 +11,15 @@ exports.post_write = (req, res) => {
 
     let study_image = '';
 
-    if ( req.body.study_image == '') { // group 이미지가 없을 경우
+    if ( req.body.study_image == '') { 
+        // group 이미지가 없을 경우 기본이미지 지정
         study_image = 'group_default.jpg';
     } else {
         study_image = req.body.study_image;
     }
 
-    let Obj = {
+    // 게시물 등록 정보
+    let Obj = { 
         head_id : req.session.user_id,
         study_category : req.body.study_category, 
         study_name : req.body.study_name,
@@ -34,8 +36,7 @@ exports.post_write = (req, res) => {
     Models.Studygroup.create( Obj )
     .then((result) => {
         console.log(result);
-        // res.send("게시물 등록 완료!");
-        res.send(true);
+        res.send({isResult: true, result: result});
     })
 }
 
