@@ -107,21 +107,15 @@
             study.addEventListener('click', function(obj) {
                 var study_site = obj.currentTarget;
                 var study_id = $(study_site).children('span').text();
-
-                axios ({
-                    method:'post', 
-                    url:'http://localhost:8000/swith/search/detailed', 
-                    data : {
-                        study_id : study_id
-                    }
-                })
-                .then((req) => {return req.data;})
-                .then((data) => {
-                    document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${data.study_id}`
-                })
+                goDetail(study_id);
             })
         }
+
+
+    function goDetail(study_id) {        
+            document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${study_id}`
+    }
 </script>
 
 </body>
-</html>
+</html>s
