@@ -24,12 +24,18 @@ a {
   justify-content: center;
 }
 
+.info-field {
+  position: absolute;
+  top: 10%;
+  left: 22%;
+}
+
 .mypage-head {
   background-color: #fff;
   width: 1050px;
   height: 10vh;
   position: absolute;
-  top: 10%;
+  top: 5%;
   display: flex;
   border-radius: 20px;
   align-items: center;
@@ -43,7 +49,7 @@ a {
   box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
   overflow: hidden;
   position: absolute;
-  top: 25%;
+  top: 20%;
   border-radius: 20px;
 }
 
@@ -81,7 +87,7 @@ a {
 
 .modify-list {
   width: 1050px;
-  height: 70vh;
+  height: 90vh;
   display: flex;
   border-radius: 20px;
   border-color: #4686C2;
@@ -92,7 +98,18 @@ a {
   background-color: #fff;
   box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
   position: absolute;
-  margin-top: 140px;
+  margin-top: 15%;
+}
+
+.inte-field {
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 36%;
+}
+.span-field {
+  position: absolute;
+  left: 100px;
 }
 
 .nickname, .email, #pw, #pwConfirm {
@@ -127,6 +144,7 @@ input:focus {
   border-radius: 20px;
   width: 120px;
   height:35px;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  left: 27%;
+  
 }

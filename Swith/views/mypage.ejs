@@ -101,7 +101,6 @@
     <div class="container">
 
         <div class="mypage-head"> 😋 <%= data[0].user_name %> 님 환영합니다! 😋
-            <img class="head-img" src="/public/group/<%=data[0].user_image %>">
         </div>
 
         <div class="menu">
@@ -134,16 +133,9 @@
         <div class="modify-list">
             <div class="user_info">
 
-                <div class="profile" id="img_upload">
-                    <div id="uploadedProfile">
-                        <input type="file" id="profileImg" style="display: none;" name="profileImg" onchange="uploadFile(this);">
-                    </div>
-                </div>
-
-                <br><br><br>
-
                 <form id="modify_info">
 
+                    <div class="info-field">
                     <input type="text" id="nickname" name="nickname" placeholder="닉네임 : <%=data[0].user_name %>" required onkeyup="checkNickname( this );" class="nickname" style="color: black" />
                     <p id="checkNickname_text"></p>
 
@@ -154,10 +146,12 @@
                     <input type="password" name="password" placeholder="비밀번호 : <%=data[0].user_password %>" onchange="pwCheck()" id="pw" style="color: black" /><br><br>
                     <input type="password" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color: black" /><br>
                     <span id="check"></span>
+                    </div>
                     
                     <br><br><br>
 
                     <span class="span_field">관심분야</span><br><br>
+                    <div class="inte-field">
                         <!-- <div class="first">1순위 -->
                                 <select name="firstField" class="category" id="category1">
                                     <option value="컴퓨터/IT">컴퓨터/IT</option>
@@ -198,11 +192,14 @@
                                 </select>
                         <!-- </div> -->
 
-                        <br><br>
                         <div class="warningDiv"></div>
                         <br><br>
-
+                        
+                        
                         <button type="button" class="signupBtn" style="color:#FFE19C" onclick="info_modify();">수정완료</button>
+                    </div>
+
+                   
                 </form>
             </div>
         </div>

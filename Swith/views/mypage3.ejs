@@ -63,8 +63,7 @@
 <body>
     <div class="container">
 
-        <div class="mypage-head"> 😋 님 환영합니다! 😋
-            <img class="head-img" src="">
+        <div class="mypage-head"> 😋 SWITH에 오신걸 환영합니다! 😋
         </div>
 
         <div class="menu">
@@ -94,10 +93,12 @@
             </div>
         </div>
 
+        <br><br><br><br>
+
         <div class="modify-list">
             <div class="user_info">
                 <% if ( signStudy == true ) {%>
-                    <div class="head">내가 조장인 스터디</div>
+                    <div class="head">내가 조장인 스터디</div> <br>
                         <% for(var i=0; i<HeadStudy.length; i++) {%>
                             <div class="feed-row">
                                 <div class="profile-box">
@@ -111,8 +112,10 @@
                                 </div>
                             </div>
                             <% } %>
+
+                            <br>
                             
-                    <div class="head">내가 팀원인 스터디</div>
+                    <div class="second">내가 팀원인 스터디</div>
                         <% for(var i=0; i<memberStudy.length; i++) {%>
                             <div class="feed-row">
                                 <div class="profile-box">
@@ -155,6 +158,7 @@
                 document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${study_id}`
             }
         </script>
+        
 
     </div>
 </body>
