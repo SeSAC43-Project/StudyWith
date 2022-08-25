@@ -1,3 +1,5 @@
+const Models  = require('../model');
+
 // 마이페이지 유저 페이지
 exports.mypage_index = async (req, res) => {
     // 보내줄 유저 데이터 
