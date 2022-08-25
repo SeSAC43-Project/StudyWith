@@ -216,17 +216,14 @@
                             </div>
                             </div>
                         </div>
-
-                        <div>
-                            <div id="ture" class="ture"></div>
-                            <div id="back" class="back"></div>
-                        </div>
-                        
     
                         <div class="regi_btn_wrap">
                             <div class="regi_txt">
-                                <span>등록가능</span>
-                                <span>마감</span>
+                                <% if (result.length < result[0].study_recruit) { %>
+                                    <span>등록가능</span>
+                                <% } else { %>
+                                    <span>마감</span>
+                                <% } %>
                             </div>
                             
                             <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
