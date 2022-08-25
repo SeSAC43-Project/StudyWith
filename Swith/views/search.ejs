@@ -49,7 +49,6 @@
         <script>
                     // 카테고리 정보 보내기 
                     
-                    // var categorys = document.getElementsByClassName('category-title');
                     var categorys = document.querySelectorAll('.category-title');
                     
                     
@@ -73,17 +72,7 @@
                                     console.log(data.data);
                                 }
                                 var html = "";
-                                // html += "<div class='item-box'>";
-                                // html += "<ul>";
-                                // for ( var i = 0; i < data.data.length; i++ ){
-                                //     html += "<li>";
-                                //     html += "<div class='photo'>" + data.data[i].study_category + "</div>"; 
-                                //     html += "<div class='info'>" + "<img src='/public/group/"+data.data[i].study_image + "'/></div>";
-                                //     html += "</li>"
 
-                                //     console.log(data.data[i].study_category)
-                                // }
-                                // html += "</ul></div>"
                                 for ( var i = 0; i < data.data.length; i++ ){
                                     html += "<div class = 'studys'><div class = 'all-category' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>"
                                     html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><h2>" + data.data[i].study_name + "</h2><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div></div><div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>";
@@ -107,11 +96,12 @@
 
         </script>
 
-            <div class="searchSection">
-                <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
-                <ul>
-                    <div class = "feed-collect">
-                        <div class = "feed-main-container">
+                    <div class="resultText">
+                        <h2> 💡 "<%=search %> " 검색 결과입니다.</h2>
+                    </div>
+                    <div class="searchSection">
+                        <div class = "feed-collect">
+                            <div class = "feed-main-container">
                             <!-- 스터디 정보 게시물 보여주기 및 보내기-->
                                 <% for(var i=0; i<data.length; i++) {%>
                                     
@@ -119,13 +109,13 @@
                                             <!--  id="studys" -->
                                             <div class = "all-business">
                                                 <div class = "post-img">
-                                                    <img width="200px;" height="200px;" src = "/public/group/<%=data[i].study_image %>" alt = "post">
+                                                    <img width="200px;" height="200px;" src = "/public/group/<%=data[i].study_image %>" alt = "post"><figcaption>자세히보기</figcaption>
                                                     <span class = "category-name"><%=data[i].study_category%></span>
-                                                    <p><%=data[i].study_id %></p>
+                                                    <p style="display: none;"><%=data[i].study_id %></p>
                                                 </div>
                                                 <div class = "post-content">
                                                     <h2><%=data[i].study_name%></h2>
-                                                    <span><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
+                                                    <span><i class="fa-solid fa-user"></i><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
                                                 </div> 
                                             </div>
                                             <div class="likes">
@@ -136,15 +126,15 @@
                             </div>
                         </div>
                     </div>
-                </ul>
-            </div>
             </div>
         </div>
+        
         <script>
 
             
             $('.category-title').on('click',function() {
                 $('.searchSection').css('display','none');
+                $('.resultText').css('display','none');
             })
             
 
