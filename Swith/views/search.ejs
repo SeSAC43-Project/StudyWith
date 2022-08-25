@@ -80,19 +80,15 @@
                                     console.log(data.data[i].study_category)
                                 }
                                 html += "</div>"
+                                
                                 $("#study_category").empty();
                                 $("#study_category").append(html);
-                                $('.cate_search_text').html('<h2>"<%=category %>" 검색 결과입니다.</h2><br><br>');
+
                             })
         
             
                     });  
                 }
-
-
-
-                
-
 
         </script>
 
@@ -132,11 +128,28 @@
         <script>
 
             
-            $('.category-title').on('click',function() {
+            $('.category-title').on('click',function(e) {
+                var cate_target = e.target;
+
+                $('.resultText').html("<h2 class='cate_resultText'> 💡 " + '"' + $(cate_target).children('div').children('p').text() + '"'+" 검색 결과입니다.</h2>");
                 $('.searchSection').css('display','none');
-                $('.resultText').css('display','none');
+                // $('.resultText').css('display','none');
+                // $('.cate_search_text').html("<h2 class='cate_resultText'> 💡 " + '"' + $(cate_target).children('div').children('p').text() + '"'+" 검색 결과입니다.</h2>");
+                //타이틀 백그라운드를 눌러야지만 검색결과에 입력됨. 수정필요.
             })
             
+            // if ($('.resultText').css('display','none')) {
+            //     // $('.cate_resultText').css('display','block');
+            //     $('.cate_resultText').text(" ");
+
+            // }
+            // else if ($('.resultText').css('display','block')) {
+            //     // $('.cate_resultText').css('display','none');
+            //     $('.cate_resultText').text(" ");
+            // }
+            // else {
+            //     $('.resultText').children('h2').css('display','block');
+            // }
 
     //좋아요 버튼 / /취소 동시에 기능
 
