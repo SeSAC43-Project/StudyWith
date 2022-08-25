@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
 
-    <link rel="stylesheet" href="/public/css/mypage.css" />
+    <link rel="stylesheet" href="/public/css/mypage3.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -67,11 +67,61 @@
 
     <div class="modify-list">
         <div class="user_info">
+                <% if ( isLikes == true ) {%>
+                    <div class="head">내가 찜한 스터디</div>
+                        <% for(var i=0; i<data.length; i++) {%>
+                            <div class="feed-row">
+                                <div class="profile-box">
+                                    <img src="/public/group/<%=data[i].study_image%>" />
+                                    <div class="studyName">
+                                        <h4><%=data[i].study_name%></h4>
+                                    </div>
+                                    <p><%=data[i].hashtag%></p><br>
+                                    <p><%=data[i].study_recruit%></p><br>
+                                    <span><%=data[i].study_id%></span>
+                                </div>
+                            </div>
+                            <% } %>
+                <% } else {%>
+                    <div class="feed-row">
+                        <div class="profile-box">
+                            <div class="studyName">
+                                <h4></h4>
+                            </div>
+                            <p>가입된 스터디가 없습니다 😌 </p><br>
+                        </div>
+                    </div>
+                    <% } %>
+
 
           
         </div>
     </div>
 </div>
+
+<script>
+    // 상세페이지로 이동하기
+    var studys = document.getElementsByClassName('profile-box'); 
+
+        for (const study of studys) {
+            study.addEventListener('click', function(obj) {
+                var study_site = obj.currentTarget;
+                var study_id = $(study_site).children('span').text();
+
+                axios ({
+                    method:'post', 
+                    url:'http://localhost:8000/swith/search/detailed', 
+                    data : {
+                        study_id : study_id
+                    }
+                })
+                .then((req) => {return req.data;})
+                .then((data) => {
+                    document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${data.study_id}`
+                })
+            })
+        }
+</script>
 
 </body>
 </html>
