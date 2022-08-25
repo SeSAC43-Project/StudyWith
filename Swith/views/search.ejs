@@ -85,12 +85,9 @@
                                 // }
                                 // html += "</ul></div>"
                                 for ( var i = 0; i < data.data.length; i++ ){
-                                    // html += "<li>";
-                                    // html += "<li><div class='photo'>" + data.data[i].study_category + "</div>"; 
-                                    html += "<div class = 'studys'><div class = 'all-category'>"
+                                    html += "<div class = 'studys'><div class = 'all-category' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>"
                                     html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><h2>" + data.data[i].study_name + "</h2><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div></div><div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>";
-                                    // html += "</li>"
-                                    // html += '</div>'
+
                                     console.log(data.data[i].study_category)
                                 }
                                 html += "</div>"
@@ -267,20 +264,10 @@
 
 
             // 서치페이지에서 카테고리 선택 후 상세페이지로 이동하기
-                
-            var allCs = document.getElementsByClassName('all-category');
-                
-                for (const allC of allCs) {
-                    allC.addEventListener('click', function(obj) {
-                        var cate_study_site = obj.currentTarget;
-                        alert(study_site);
-                        var cate_study_id = $(cate_study_site).children('div').children('p').text();
-                        console.log(cate_study_id);
-
-                        goDetail(cate_study_id);
-                    })
-                }
-                function goDetail(cate_study_id ) {
+            function reply_click(clicked_id) {
+                goDetail(clicked_id);
+            }
+            function goDetail(cate_study_id) {
                     document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${cate_study_id}`;
             }
 
