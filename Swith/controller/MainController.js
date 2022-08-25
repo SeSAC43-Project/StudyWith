@@ -13,10 +13,13 @@ exports.main_search = async (req, res) => {
     console.log('검색어 : ',req.body.search);
     console.log('카테고리 : ',req.body.category);
 
-    let sql = `SELECT G.*, count(M.user_id) as num 
+    let sql = `
+    SELECT G.*, COUNT(M.user_id) AS num, COUNT(L.user_id) AS likes 
         FROM studygroup G
         LEFT OUTER JOIN studymember M
         ON G.study_id = M.study_id 
+        LEFT OUTER JOIN likes L 
+        ON L.study_id = G.study_id
         WHERE G.study_name LIKE '%${req.body.search}%' 
             OR G.study_category LIKE '%${req.body.search}%' 
             OR G.study_category LIKE '%${req.body.category}%' 
@@ -38,9 +41,10 @@ exports.search_detail = (req, res) => {
 // search 페이지에서 카테고리마다 게시글 검색되도록 
 exports.search_category = async (req, res) => {
     let sql = `
-    SELECT G.*, COUNT(M.user_id) AS num 
+    SELECT G.*, COUNT(M.user_id) AS num, COUNT(L.user_id) AS likes 
     FROM studygroup AS G
     LEFT OUTER JOIN studymember AS M ON G.study_id = M.study_id 
+    LEFT OUTER JOIN likes AS L ON G.study_id = L.study_id
     WHERE G.study_category LIKE '%${req.body.study_category}%'
     GROUP BY G.study_id;`;
 
