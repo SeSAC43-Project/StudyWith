@@ -62,3 +62,16 @@ exports.main_likes = (req, res) => {
         res.send({isLikes: true});
     })
 }
+
+// 메인페이지 좋아요 취소 기능
+exports.likes_remove = (req, res) => {
+    Models.Likes.destroy({
+        where: {
+            user_id : req.session.user_id, 
+            study_id : req.body.study_id
+        }
+    }).then((result) => {
+        console.log('좋아요 삭제: ', result);
+        res.send({isDislikes: true});
+    })
+}
