@@ -185,19 +185,19 @@
             })
             
 
+    //좋아요 버튼 / /취소 동시에 기능
 
-
-            // 좋아요 추가하기
-                var likes = document.querySelectorAll('.likes');
+            var likes = document.querySelectorAll('.likes');
 
                     for (const like of likes) {
                         
-                    // likes.forEach((like) => {
                         like.addEventListener('click',function(obj) {
                             var target = obj.currentTarget;
-                            
                             var study_id = $(target).siblings('div').children('div').children('p').text();
-                            // alert(study_id);
+                            
+
+
+                        if ( $('.heart').hasClass('far fa-heart')) {
 
                             axios({
                                 method:'post',
@@ -216,22 +216,10 @@
                                     }
                                     
                                 })
-                        })
-                }
+                            }
 
 
-
-            //좋아요 취소하기
-            var likes = document.querySelectorAll('.likes');
-
-                    for (const like of likes) {
-                        
-                    // likes.forEach((like) => {
-                        like.addEventListener('click',function(obj) {
-                            var target = obj.currentTarget;
-                            
-                            var study_id = $(target).siblings('div').children('div').children('p').text();
-                            // alert(study_id);
+                        else {
 
                             axios({
                                 method:'post',
@@ -243,15 +231,15 @@
                                 .then((req) => { return req.data;})
                                 .then((data) => {
                                     if (data.isDislikes == true) {
-                                        $(target).children('.heart').hasClass('far fa-heart');
-                                        $(target).children('.heart').remove('far fa-heart');
-                                        $(target).children('.heart').addClass('fa-solid fa-heart');
+                                        console.log('되나요..?');
+                                        $(target).children('.heart').removeClass('fa-solid fa-heart');
+                                        $(target).children('.heart').addClass('far fa-heart');
                                     }
-                                    
                                 })
+                            }
                         })
                 }
-
+            
 
 
             // 상세페이지로 이동하기
