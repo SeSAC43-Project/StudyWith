@@ -13,20 +13,24 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
+        // 게시물 수정 화면으로 이동
         function detailed() {
-            var detailedPost = document.getElementById("deatailPost");
-            //get 방식으로 해주시면 됩니다.
-            axois({
-                method: 'get',
-                url: "http://localhost:8000/feed/detailedPost/edit",
+            var form = document.getElementById('study_id');
+            
+            axios({
+                method:'get',
+                url: "http://localhost:8000/feed/management",
                 params: {
-                    study_id : form.study_id.value
+                    study_id : form.innerText
                 }
-            }).then((req) => {return req.data})
+            })
+            .then((req) => { return req.data;})
             .then((data) => {
-
+                document.location.href="http://localhost:8000/feed/management?study_id="+form.innerText;
+        
             })
         }
+
         // 목록 버튼을 누르면
         function detailedPost_index() {
                 document.location.href="http://localhost:8000/swith";
@@ -190,39 +194,15 @@
                     <div class="Category_box"></div>
 
                         <button type="button" onclick="detailed()" class="detail" style="color:white">게시물 수정하기</button>
-    
-                        <!-- Button trigger modal -->
-                        <!-- <button type="button" onclick="detailed()" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white">게시물 수정하기</button> -->
-                        
-                        <!-- 탈퇴 Modal -->
-                        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="취소"></button>
-                                </div> -->
-                                <!-- <div class="modal-body">
-                                    
-                                </div> -->
-                                <!-- <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-                                <button type="button" class="btn btn-primary">YES</button>
-                                </div>
-                            </div>
-                            </div>
-                        </div> -->
-
-                        <div>
-                            <div id="ture" class="ture"></div>
-                            <div id="back" class="back"></div>
-                        </div>
                         
     
                         <div class="regi_btn_wrap">
                             <div class="regi_txt">
-                                <span>등록가능</span>
-                                <span>마감</span>
+                                <% if (result.length < result[0].study_recruit) { %>
+                                    <span>등록가능</span>
+                                <% } else { %>
+                                    <span>마감</span>
+                                <% } %>
                             </div>
                             
                             <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>

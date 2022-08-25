@@ -34,11 +34,6 @@
             document.location.href="http://localhost:8000/swith"; 
         }
 
-        // 인원 마감이 되면 스터가입 버튼 비활성화
-        function detailed() {
-            const target = document.getElementById('study_result');
-            target.disabled = false;
-        }   
     </script>
 </head>
 <body>
@@ -195,9 +190,15 @@
                         <!-- <button type="button" onclick="detailed()" class="detail" style="color:white">탈퇴하기</button> -->
     
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white">스터디가입</button>
-                        
-                        <!-- 탈퇴 Modal -->
+                        <% if (result.length < result[0].study_recruit) { %>
+                            <button type="button" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white">스터디가입</button>
+                        <% } else { %>
+                            <button type="button" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white" disabled>스터디가입</button>
+                        <% } %>
+
+
+
+                        <!-- 가입 Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
@@ -216,16 +217,15 @@
                             </div>
                         </div>
 
-                        <div>
-                            <div id="ture" class="ture"></div>
-                            <div id="back" class="back"></div>
-                        </div>
                         
     
                         <div class="regi_btn_wrap">
                             <div class="regi_txt">
-                                <span>등록가능</span>
-                                <span>마감</span>
+                                <% if (result.length < result[0].study_recruit) { %>
+                                    <span>등록가능</span>
+                                <% } else { %>
+                                    <span>마감</span>
+                                <% } %>
                             </div>
                             
                             <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
