@@ -197,7 +197,7 @@
                             
 
 
-                        if ( $('.heart').hasClass('far fa-heart')) {
+                        if ( $(target).children('.heart').hasClass('far fa-heart')) {
 
                             axios({
                                 method:'post',
@@ -213,6 +213,7 @@
                                         $(target).children('.heart').removeClass('far fa-heart');
                                         $(target).children('.heart').addClass('fa-solid fa-heart');
                                         $(target).children('.heart').addClass('heartEffect');
+                                        //나중에 혹시 좋아요 기능 제대로 안되면 effect 지우기
                                     }
                                     
                                 })
@@ -238,7 +239,7 @@
                                 })
                             }
                         })
-                }
+                    }
             
 
 
