@@ -154,32 +154,57 @@ form {
     padding-bottom: 30px;
 }
 
+/* 스터디 현재 멤버 text*/
 .name_wrap {
+    display: inline;
     width: 210px;
     color: #333;
     font-size: 21px;
-    margin-top: 70px;
-    padding-bottom: 70px;
-    display: contents;
+    margin-top: 30px;
+    padding-bottom: 30px;
 }
 
+/* 멤버 사진 올리는 부분*/
+.user_name_box {
+    display: inline-flex;
+    width: 690px;
+    flex-wrap: wrap;
+}
+
+/* 각 멤버 정보*/
+.value_wrap {
+    display: iline-flex;
+    width: 170px;
+    padding:10px 10px 10px 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 멤버 이미지 */
 .name_image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     border: 1px solid black;
-    display: inline-flex;
+    display: block;
     overflow: hidden;
     /* flex: 0 0 auto; */
     justify-content: center;
-    padding-top: 0;
+    align-items: center;
 }
 
 .img {
-    /* padding-top: -50px; */
+    width: 120px;
+    height: 120px;
     justify-content: center;
-    /* align-items: center; */
-    padding: 0 40px;
+    align-items: center;
+}
+
+/* 멤버 닉네임*/
+.name_txt {
+    display: block;
+    width: 120px;
+    height: 30px;
 }
 
 .result_txt {
@@ -199,14 +224,6 @@ form {
 .value {
     flex-grow:10;
     padding:10px 0 10px 0;
-}
-
-.value_wrap {
-    display: flex;
-    justify-content: center;
-    flex-grow:10;
-    padding:10px 0 10px 0;
-    /* display: contents; */
 }
 
 .box_name_wrap {

@@ -104,35 +104,36 @@
                             </div>
                         </div>
                         
-                        <div class="section_box_name">
-                            <div class="name">스터디 현재멤버</div>
-                            <div class="value_wrap">
+                        <div class="section_box">
+                            <div class="name_wrap">스터디 현재멤버</div>
+                            <div class="user_name_box">
                                 <% if(locals.result[0]) { %>
                                     <% for(var i=0; i < result.length; i++) { %>
-                                        <div class="box_name_wrap">
-                                            <div class="img name_image">
-                                                <img src="/public/user/<%= result[i].user_image%>">
+                                        <% if (i == 0) { %>
+                                            <div class="value_wrap">
+                                                <div class="name_image">
+                                                    <img class="img" src="/public/user/<%= result[i].user_image%>">
+                                                </div>
+                                                <div class="name_txt">
+                                                    <p class="result_txt">👑<%= result[i].user_name %></p>
+                                                </div>
                                             </div>
-                                            <div class="col">
-                                                <div class="col">
+                                        <% } else { %>
+                                            <div class="value_wrap">
+                                                <div class="name_image">
+                                                    <img class="img" src="/public/user/<%= result[i].user_image%>">
+                                                </div>
+                                                <div class="name_txt">
                                                     <p class="result_txt"><%= result[i].user_name %></p>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <% } %>
                                     <% } %>
                                 <% } %>
-                                    
-                                        <!-- 닉네임  -->
-                                    <!-- <% if(locals.result[0]) { %>
-                                        <% for(var i=0; i < result.length; i++) { %>
-                                            
-                                        <% } %>
-                                    <% } %> -->
-                                
                             </div> 
                         </div>
 
-                        
+
                         <div class="section_box">
                             <div class="name">스터디 형태</div>
                             <div class="value"><% if(locals.result[0]) { %>
