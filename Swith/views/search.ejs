@@ -21,58 +21,6 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-
-
-  <script>
-
-    // function mainSearch() {
-    //     var form = document.getElementById('search_form');
-    //     var search = $("#search").val();
-    //     axios({
-    //         method: 'get', 
-    //         url: 'http://localhost:8000/swith/search', 
-    //         params : {
-    //             search : search
-    //         }
-    //     })
-    //     .then((req) => {return req.data;})
-    //     .then((data) => {
-    //         if (data == '') {
-    //             alert("검색어를 입력해주세요🤔 ");
-    //             return
-    //         }
-    //         console.log(data) // 검색해온 study 정보들 data로 받아옴
-    //     })
-    // }
-
-    // function goCategory() {
-    //     document.location.href='http://localhost:8000/swith/search';
-    // }
-
-    // function studySearch() {
-    //     var form = document.getElementById('studySearch_form');
-    //     var search = $("#search").val();
-
-
-    //     axios({
-    //         method: 'get', 
-    //         url: 'http://localhost:8000/swith/search', 
-    //         params : {
-    //             search : search
-    //         }
-    //     })
-    //     .then((req) => {return req.data;})
-    //     .then((data) => {
-    //         console.log(data)
-    //         for ( var i = 0; i < data.length; i++ ){
-    //             var html = "<div> 제목 : data.title <br><div> 내용 : data.content </div></div>";
-    //             $("#content").append(html);
-    //         }
-    //     })
-
-    // }
-
-  </script>
 </head>
 <body>
 
@@ -90,14 +38,18 @@
                                 </button>
                                 <% }%> 
                         </form>
-                        <div id="study_category"></div>
+                        <div class="cate_search_text"></div>
+                        <div class = "feed-collect">
+                            <div class = "feed-main-container" id="study_category">
+
+                            </div>
+                        </div>
                 </div>
 
-                <script>
+        <script>
                     // 카테고리 정보 보내기 
                     
                     // var categorys = document.getElementsByClassName('category-title');
-
                     var categorys = document.querySelectorAll('.category-title');
                     
                     
@@ -105,11 +57,8 @@
                         category.addEventListener('click', function(obj) {
                             var car_site = obj.currentTarget;  //[object HTMLButtonElement]
                             var car_value = $(car_site).children('.category').children('p').text(); 
-                            //var car_value = "컴퓨터/IT";
-                            console.log('targetcheck');
-                            console.log(car_site);
-                            console.log(car_value);                         
-                            // .find('.ca')
+                            
+
                             axios({
                                 method: 'post',
                                 url: 'http://localhost:8000/swith/search/category',
@@ -124,25 +73,42 @@
                                     console.log(data.data);
                                 }
                                 var html = "";
-                                html += "<div class='item-box'>";
-                                html += "<ul>";
-                                for ( var i = 0; i < data.data.length; i++ ){
-                                    html += "<li>";
-                                    html += "<div class='photo'>" + data.data[i].study_category + "</div>"; 
-                                    html += "<div class='info'>" + "<img src='/public/group/"+data.data[i].study_image + "'/></div>";
-                                    html += "</li>"
+                                // html += "<div class='item-box'>";
+                                // html += "<ul>";
+                                // for ( var i = 0; i < data.data.length; i++ ){
+                                //     html += "<li>";
+                                //     html += "<div class='photo'>" + data.data[i].study_category + "</div>"; 
+                                //     html += "<div class='info'>" + "<img src='/public/group/"+data.data[i].study_image + "'/></div>";
+                                //     html += "</li>"
 
+                                //     console.log(data.data[i].study_category)
+                                // }
+                                // html += "</ul></div>"
+                                for ( var i = 0; i < data.data.length; i++ ){
+                                    // html += "<li>";
+                                    // html += "<li><div class='photo'>" + data.data[i].study_category + "</div>"; 
+                                    html += "<div class = 'studys'><div class = 'all-category'>"
+                                    html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><h2>" + data.data[i].study_name + "</h2><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div></div><div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>";
+                                    // html += "</li>"
+                                    // html += '</div>'
                                     console.log(data.data[i].study_category)
                                 }
-                                html += "</ul></div>"
+                                html += "</div>"
                                 $("#study_category").empty();
                                 $("#study_category").append(html);
+                                $('.cate_search_text').html('<h2>"<%=category %>" 검색 결과입니다.</h2><br><br>');
                             })
         
             
                     });  
                 }
-    </script>
+
+
+
+                
+
+
+        </script>
 
             <div class="searchSection">
                 <h2>"<%=search %> " 검색 결과입니다.</h2> <br><br>
@@ -160,7 +126,7 @@
                                                     <span class = "category-name"><%=data[i].study_category%></span>
                                                     <p><%=data[i].study_id %></p>
                                                 </div>
-                                                <div type="button" class = "post-content">
+                                                <div class = "post-content">
                                                     <h2><%=data[i].study_name%></h2>
                                                     <span><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
                                                 </div> 
@@ -184,7 +150,7 @@
                 $('.searchSection').css('display','none');
             })
             
- 
+
     //좋아요 버튼 / /취소 동시에 기능
 
             var likes = document.querySelectorAll('.likes');
@@ -243,7 +209,7 @@
             
 
 
-            // 상세페이지로 이동하기
+            // 메인에서 검색, 카테고리 선택 후 상세페이지로 이동하기
             var allBs = document.getElementsByClassName('all-business');
 
             for (const allB of allBs) {
@@ -270,6 +236,8 @@
                     })
                 })
             }
+            
+
 
 
             const categoryTitle = document.querySelectorAll('.category-title');
@@ -296,6 +264,26 @@
                 }
                 activeItem.classList.add('active');
             };
+
+
+            // 서치페이지에서 카테고리 선택 후 상세페이지로 이동하기
+                
+            var allCs = document.getElementsByClassName('all-category');
+                
+                for (const allC of allCs) {
+                    allC.addEventListener('click', function(obj) {
+                        var cate_study_site = obj.currentTarget;
+                        alert(study_site);
+                        var cate_study_id = $(cate_study_site).children('div').children('p').text();
+                        console.log(cate_study_id);
+
+                        goDetail(cate_study_id);
+                    })
+                }
+                function goDetail(cate_study_id ) {
+                    document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${cate_study_id}`;
+            }
+
         </script>
 
 </body>
