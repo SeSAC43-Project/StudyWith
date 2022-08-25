@@ -43,7 +43,6 @@ exports.main_search = async (req, res) => {
         const result2 = await Models.sequelize.query(likesql);
         const likedata = result2[0];
         likeList[study_data[i].study_id] = likedata[0].likes; 
-        console.log('라이크데이터', likedata);
     }
 
     console.log(likeList);
