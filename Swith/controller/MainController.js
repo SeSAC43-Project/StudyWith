@@ -13,7 +13,7 @@ exports.main_search = async (req, res) => {
     console.log('검색어 : ',req.body.search);
     console.log('카테고리 : ',req.body.category);
 
-    let sql = `
+    let searchsql = `
     SELECT G.*, COUNT(M.user_id) AS num, COUNT(L.user_id) AS likes 
         FROM studygroup G
         LEFT OUTER JOIN studymember M
@@ -26,9 +26,29 @@ exports.main_search = async (req, res) => {
             OR G.hashtag LIKE '%${req.body.search}%'
         GROUP BY G.study_id;`;
 
-    const result = await Models.sequelize.query(sql);
+    const result = await Models.sequelize.query(searchsql);
     console.log('검색 결과 :', result);
-    await res.render('search', {data: result[0], search: req.body.search, category: req.body.category});
+
+    // 좋아요 정보 넣을 딕셔너리 생성
+    var likeList = {}
+    const study_data = result[0];
+
+    // 유저가 좋아요 했는 지 확인
+    for (let i=0; i < study_data.length; i++) {
+        let likesql = `
+        SELECT COUNT(*) AS likes
+        FROM likes 
+        WHERE user_id = '${req.session.user_id}' and study_id ='${study_data[i].study_id}';`
+        
+        const result2 = await Models.sequelize.query(likesql);
+        const likedata = result2[0];
+        likeList[study_data[i].study_id] = likedata[0].likes; 
+        console.log('라이크데이터', likedata);
+    }
+
+    console.log(likeList);
+
+    await res.render('search', {data: result[0], search: req.body.search, category: req.body.category, likeList: likeList});
     }
 
 
