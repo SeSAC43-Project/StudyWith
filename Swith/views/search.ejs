@@ -221,6 +221,39 @@
 
 
 
+            //좋아요 취소하기
+            var likes = document.querySelectorAll('.likes');
+
+                    for (const like of likes) {
+                        
+                    // likes.forEach((like) => {
+                        like.addEventListener('click',function(obj) {
+                            var target = obj.currentTarget;
+                            
+                            var study_id = $(target).siblings('div').children('div').children('p').text();
+                            // alert(study_id);
+
+                            axios({
+                                method:'post',
+                                url: 'http://localhost:8000/swith/search/likes/remove',
+                                data : {
+                                    study_id : study_id,
+                                        }
+                                })
+                                .then((req) => { return req.data;})
+                                .then((data) => {
+                                    if (data.isDislikes == true) {
+                                        $(target).children('.heart').hasClass('far fa-heart');
+                                        $(target).children('.heart').remove('far fa-heart');
+                                        $(target).children('.heart').addClass('fa-solid fa-heart');
+                                    }
+                                    
+                                })
+                        })
+                }
+
+
+
             // 상세페이지로 이동하기
             var allBs = document.getElementsByClassName('all-business');
 
