@@ -112,167 +112,182 @@
 </head>
 <body>
     <div id="wrapper">
-        
         <div class="whole_container">
-        <h2 style="text-align: center;">스터디 관리📌</h2>
-        <br>
-        <div class="management_container">
-        <form id="management_info" name="management_form" class="form_container" enctype="multipart/form-data">
-                <div class="context_container">
-                    <!-- 스터디 아이디-->
-                    <div id="study_id" style="display:none"><%=result.study_id %></div>
+            <h2 style="text-align: center;">스터디 관리📌</h2>
+            <br>
+            <div class="management_container">
+                <!-- form -->
+                <form id="management_info" name="management_form" class="form_container" enctype="multipart/form-data">
+                    <div class="context_container">
 
-                    <div class="form-row">
-                        <div class="group" id="group_img_upload">
-                                <div id="group_img">
-                                <label class="groupImgLabel" for="groupImg">
-                                    <!-- <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br>click!</label> -->
-                                    <input type="file" id="groupImg" style="display: none" name="studyImage">
+                        <!-- 스터디 아이디-->
+                        <div id="study_id" style="display:none"><%=result.study_id %></div>
 
-                                    <img src="/public/group/<%= result.study_image%>" width="700" height="100" style="border-radius:15px;">
-                    
+                        <!-- 스터디 이미지 업로드 -->
+                        <div class="form-row">
+                            <div class="group" id="group_img_upload">
+                                <div id="group_img" style="background-image: url(/public/group/<%=result.study_image%>); background-size: cover;" >
+                                    <label class="groupImgLabel" for="groupImg">
+                                        <input type="file" id="groupImg" style="display: none" name="studyImage" onchange="uploadFile(this);">
+                                    </label>
                                 </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="name">스터디명&nbsp;&nbsp;&nbsp;</div>
-                        <div class="value"> 
-                            <input class="input_text" type="text" name="studyName" value="<%= result.study_name%>" maxlength="20" required>
+
+
+                        <!-- 스터디 명 -->
+                        <div class="form-row">
+                            <div class="name">스터디명&nbsp;&nbsp;&nbsp;</div>
+                            <div class="value"> 
+                                <input class="input_text" type="text" name="studyName" value="<%= result.study_name%>" maxlength="20" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="name">카테고리 <br><span style="font-size: 0.7rem;">*카테고리를 선택해주세요.</span></div>
-                        <div class="value">
+
                         <!-- 스터디 카테고리 -->
-                        <div id="study_category" style="display:none"><%=result.study_category %></div>
-                        <ul>
-                            <li class="radio-btn"><input type="radio" id="category1" name="studyCategory" value="언어" required>
-                                <label for="category1">언어</label></li>
-                            <li class="radio-btn"><input  type="radio" id="category2" name="studyCategory" value="자격증">
-                                <label for="category2">자격증</label></li>
-                            <li class="radio-btn"><input type="radio" id="category3" name="studyCategory" value="취업">
-                                <label for="category3">취업</label></li>
-                            <li class="radio-btn"><input type="radio" id="category4" name="studyCategory" value="IT">
-                                <label for="category4">IT</label></li>
-                            <li class="radio-btn"><input type="radio" id="category5" name="studyCategory" value="취미">
-                                <label for="category5">취미</label></li>
-                            <li class="radio-btn"><input type="radio" id="category6" name="studyCategory" value="인증">
-                                <label for="category6">인증</label></li>
-                            <li class="radio-btn"><input type="radio" id="category7" name="studyCategory" value="공모전">
-                                <label for="category7">공모전</label></li>
-                        </ul>
+                        <div class="form-row">
+                            <div class="name">카테고리 <br><span style="font-size: 0.7rem;">*카테고리를 선택해주세요.</span></div>
+                            <div class="value">
+                                <div id="study_category" style="display:none"><%=result.study_category %></div>
+                                <ul>
+                                    <li class="radio-btn"><input type="radio" id="category1" name="studyCategory" value="언어" required>
+                                        <label for="category1">언어</label></li>
+                                    <li class="radio-btn"><input  type="radio" id="category2" name="studyCategory" value="자격증">
+                                        <label for="category2">자격증</label></li>
+                                    <li class="radio-btn"><input type="radio" id="category3" name="studyCategory" value="취업">
+                                        <label for="category3">취업</label></li>
+                                    <li class="radio-btn"><input type="radio" id="category4" name="studyCategory" value="IT">
+                                        <label for="category4">IT</label></li>
+                                    <li class="radio-btn"><input type="radio" id="category5" name="studyCategory" value="취미">
+                                        <label for="category5">취미</label></li>
+                                    <li class="radio-btn"><input type="radio" id="category6" name="studyCategory" value="인증">
+                                        <label for="category6">인증</label></li>
+                                    <li class="radio-btn"><input type="radio" id="category7" name="studyCategory" value="공모전">
+                                        <label for="category7">공모전</label></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="name">스터디형태</div><br>
-                        <div class="value" id="on_off">
-                            <% if ( result.study_form == "온라인") { %>
-                                <input type="radio" name="studyForm" id="online" value="온라인" checked disabled>
-                                <label for="online">온라인</label>
-                                <input type="radio" name="studyForm" id="offline" value="오프라인" disabled>
-                                <label for="offline">오프라인</label>
-                            <% } else {  %>
-                                <input type="radio" name="studyForm" id="online" value="온라인" disabled>
-                                <label for="online">온라인</label>
-                                <input type="radio" name="studyForm" id="offline" value="오프라인" checked disabled>
-                                <label for="offline">오프라인</label>
+
+                        <!-- 스터디 형태 -->
+                        <div class="form-row">
+                            <div class="name">스터디형태 <br><span style="font-size: 0.7rem;">*스터디형태는 수정할 수 없습니다.</span> </div><br>
+                            <div class="value" id="on_off">
+                                <% if ( result.study_form == "온라인") { %>
+                                    <input type="radio" name="studyForm" id="online" value="온라인" checked disabled>
+                                    <label for="online">온라인</label>
+                                    <input type="radio" name="studyForm" id="offline" value="오프라인" disabled>
+                                    <label for="offline">오프라인</label>
+                                <% } else {  %>
+                                    <input type="radio" name="studyForm" id="online" value="온라인" disabled>
+                                    <label for="online">온라인</label>
+                                    <input type="radio" name="studyForm" id="offline" value="오프라인" checked disabled>
+                                    <label for="offline">오프라인</label>
+                                    <p>
+                                        <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required disabled>&nbsp;
+                                        <input type="text" id="sample6_address" name="sample6_adderess" value="<%= result.study_address%>" style="width: 300px; height: 25px; text-align: center;" disabled><br>
+                                    </p>
+                                <% } %>
+                            </div>
+                        </div>
+
+                        <!-- 모집 인원 -->
+                        <div class="form-row">
+                            <div class="name">모집인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                            <div class="value">
+                            <input type="text" id="studyRecruit" name="studyRecruit" value="<%= result.study_recruit%>" style="width: 40px; text-align: center;" required>&nbsp;명
+                            </div>
+                        </div>
+
+                        <!-- 스터디 소개글 -->
+                        <div class="form-row">
+                            <div class="name">스터디 소개글</div>
+                            <div class="value">
+                                <textarea class="input_text" name='studyContent' style="border: 1px solid #000; border-radius: 5px;" maxlength="20" required><%= result.study_content%></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- 스터디 기간-->
+                        <div id="start_period" style="display:none"><%=result.start_period %></div>
+                        <div id="end_period" style="display:none"><%=result.end_period %></div>
+
+                        <div class="form-row">
+                            <div class="name">스터디 기간</div>
+                            <ul class="period">
+                                <li><div class="value">
+                                    시작일: <input type="hidden" name="start_period">
+                                    <select id="start_year" name="start_year" required>
+                                        <option>
+                                            <%for(var i=2022; i<=2050; i++) {%>
+                                                <option value="<%=i%>"><%=i%></option>
+                                            <%}%>
+                                        </option>
+                                    </select>년
+                                    <select id="start_month" name="start_month" required>
+                                        <option>
+                                            <%for(var j=1; j<=12; j++) {%>
+                                                <option value="<%=j%>"><%=j%></option>
+                                            <%}%>
+                                        </option>
+                                    </select>월
+                                    <select id="start_day" name="start_day" required>
+                                        <option>
+                                            <%for(var k=1; k<=31; k++) {%>
+                                                <option value="<%=k%>"><%=k%></option>
+                                            <%}%>
+                                        </option>
+                                    </select>일
+                                </div></li>
+
+                                <li><div class="value">
+                                    종료일: <input type="hidden" name="end_period">
+                                    <select id="end_year" name="end_year" required>
+                                        <option>
+                                            <%for(var i=2022; i<=2050; i++) {%>
+                                                <option value="<%=i%>"><%=i%></option>
+                                            <%}%>
+                                        </option>
+                                    </select>년
+                                    <select id="end_month" name="end_month" required>
+                                        <option>
+                                            <%for(var j=1; j<=12; j++) {%>
+                                                <option value="<%=j%>"><%=j%></option>
+                                            <%}%>
+                                        </option>
+                                    </select>월
+                                    <select id="end_day" name="end_day" required>
+                                        <option>
+                                            <%for(var k=1; k<=31; k++) {%>
+                                                <option value="<%=k%>"><%=k%></option>
+                                            <%}%>
+                                        </option>
+                                    </select>일
+                                </div></li>
+                            </ul>
+                        </div>
+                
+                        <!-- 해시태그 -->
+                        <div class="form-row">
+                            <div class="name">해시태그</div>
+                            <div class="value"><input class="input_text" type="text" id="text_hashtag" value="<%=result.hashtag%>" name="hashTag" onkeypress="show_hashtag(event)">
                                 <p>
-                                    <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required disabled>&nbsp;
-                                    <input type="text" id="sample6_address" name="sample6_adderess" value="<%= result.study_address%>" style="width: 300px; height: 25px; text-align: center;" disabled><br>
+                                    <span id="enter_hashtag" name="enter_hashtag"></span>
                                 </p>
-                            <% } %>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="name">모집인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                        <div class="value">
-                        <input type="text" id="studyRecruit" name="studyRecruit" value="<%= result.study_recruit%>" style="width: 40px; text-align: center;" required>&nbsp;명
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="name">스터디 소개글</div>
-                        <div class="value">
-                            <textarea class="input_text" name='studyContent' style="border: 1px solid #000; border-radius: 5px;" maxlength="20" required><%= result.study_content%></textarea>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="name">스터디 기간</div>
-                        <ul class="period">
-                        <li><div class="value">
-                        시작일: <input type="hidden" name="start_period">
-                        <select id="start_year" name="start_year" required>
-                            <option>
-                                <%for(var i=2022; i<=2050; i++) {%>
-                                    <option value="<%=i%>"><%=i%></option>
-                                <%}%>
-                            </option>
-                        </select>년
-                        <select id="start_month" name="start_month" required>
-                            <option>
-                                <%for(var j=1; j<=12; j++) {%>
-                                    <option value="<%=j%>"><%=j%></option>
-                                <%}%>
-                            </option>
-                        </select>월
-                        <select id="start_day" name="start_day" required>
-                            <option>
-                                <%for(var k=1; k<=31; k++) {%>
-                                    <option value="<%=k%>"><%=k%></option>
-                                <%}%>
-                            </option>
-                        </select>일
-                        </div>
-                        </li>
+
+                        <br><br>
+                        <div class="warningDiv"></div>
+                        <br><br>
     
-                        <li>
-                        <div class="value">
-                        종료일: <input type="hidden" name="end_period">
-                        <select id="end_year" name="end_year" required>
-                            <option>
-                                <%for(var i=2022; i<=2050; i++) {%>
-                                    <option value="<%=i%>"><%=i%></option>
-                                <%}%>
-                            </option>
-                        </select>년
-                        <select id="end_month" name="end_month" required>
-                            <option>
-                                <%for(var j=1; j<=12; j++) {%>
-                                    <option value="<%=j%>"><%=j%></option>
-                                <%}%>
-                            </option>
-                        </select>월
-                        <select id="end_day" name="end_day" required>
-                            <option>
-                                <%for(var k=1; k<=31; k++) {%>
-                                    <option value="<%=k%>"><%=k%></option>
-                                <%}%>
-                            </option>
-                        </select>일
-                    </li>
+                        <button class="cancelebutton" type="button" onclick="deleteFeed();">삭제하기</button>
+                        <button class="editbutton" type="button" onclick="editFeed();">수정하기</button>
+                        <button class="writebutton" type="button" onclick=";">목록</button>
                     </div>
-                </ul>
-    
-                <div class="form-row">
-                    <div class="name">해시태그</div>
-                    <div class="value"><input class="input_text" type="text" id="text_hashtag" value="<%=result.hashtag%>" name="hashTag" onkeypress="show_hashtag(event)">
-                        <p>
-                            <span id="enter_hashtag" name="enter_hashtag"></span>
-                        </p>
-                    </div>
-                </div>
-                <br><br>
-                <div class="warningDiv"></div>
-                <br><br>
-    
-                    <button class="cancelebutton" type="button" onclick="deleteFeed();">삭제하기</button>
-                    <button class="editbutton" type="button" onclick="editFeed();">수정하기</button>
-                    <button class="writebutton" type="button" onclick=";">목록</button>
-                    </div>
-                </div>
-        </form>
+                </form>
+            </div>
+        </div>
     </div>
-    
-    </div>
+
+    <!-- footer -->
     <footer>
         <div id="footer" class="footer">
         <div class="footer_logo">    
@@ -284,6 +299,8 @@
         <br>
         </div>
     </footer>
+
+
     <script>
         $(document).ready(function(){ 
             /* 스터디 카테고리 */
@@ -297,14 +314,29 @@
             }
 
             /* 스터디 시작일 */
-            // var start_year = document.getElementById('start_year');
-            var start_year = '${result.start_period}'
-            console.log('start_year:', start_year);
-            // if (category_btn[i].innerText == study_category.innerText) {
-            //         $("#category"+(i+1)).prop("checked",true);
-            //     }
+            var start_period = document.getElementById('start_period').innerText;
+            var start_list = start_period.split("-");
+
+            var start_year = parseInt(start_list[0]);
+            var start_month = parseInt(start_list[1]);
+            var start_day = parseInt(start_list[2]);
+
+            $("#start_year").val(start_year).prop("selected", true);
+            $("#start_month").val(start_month).prop("selected", true);
+            $("#start_day").val(start_day).prop("selected", true);
 
             /* 스터디 마감일 */
+            var end_period = document.getElementById('end_period').innerText;
+            var end_list = end_period.split("-");
+
+            var end_year = parseInt(end_list[0]);
+            var end_month = parseInt(end_list[1]);
+            var end_day = parseInt(end_list[2]);
+
+            $("#end_year").val(end_year).prop("selected", true);
+            $("#end_month").val(end_month).prop("selected", true);
+            $("#end_day").val(end_day).prop("selected", true);
+
         });
     </script>
 </body>
