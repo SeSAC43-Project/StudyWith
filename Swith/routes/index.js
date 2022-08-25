@@ -32,20 +32,24 @@ const groupProfileUpload = multer({
 });
 
 
-/* 로그인 관련 */
 const UserRouter = express.Router();
+/* 로그인 및 비밀 번호 찾기 관련 */
 const login = require('../controller/LoginController');
-
 UserRouter.get('/login', login.login_index); // 로그인 화면
 UserRouter.post('/login',login.post_login); // 로그인 실행
 UserRouter.get('/find',login.find_index); // 비밀번호 찾기 화면
 UserRouter.post('/find',login.post_find); // 비밀번호 찾기 실행 
 UserRouter.post('/modify',login.post_modify); // 비밀번호 변경 화면
 UserRouter.post('/update', login.post_update); // 비밀번호 변경 실행
-UserRouter.get('/mypage', login.mypage_index); // 마이페이지 유저 화면
-UserRouter.post('/mypage', login.user_update); // 마이페이지 유저 정보 변경
-UserRouter.get('/mypage/likes', login.mypage_likes); // 마이페이지 찜목록 화면
-UserRouter.get('/mypage/studys', login.mypage_studys); // 마이페이지 마이 스터디 화면
+
+
+/* 마이페이지 관련 */
+const mypage = require('../controller/MypageController');
+UserRouter.get('/mypage', mypage.mypage_index); // 마이페이지 유저 화면
+UserRouter.post('/mypage', mypage.user_update); // 마이페이지 유저 정보 변경
+UserRouter.get('/mypage/likes', mypage.mypage_likes); // 마이페이지 찜목록 화면
+UserRouter.get('/mypage/studys', mypage.mypage_studys); // 마이페이지 마이 스터디 화면
+
 
 /* 회원가입 관련 */
 const signUp = require('../controller/SignUpController');
@@ -74,10 +78,10 @@ FeedRouter.get('/management', management.get_management); // 게시물 수정 �
 FeedRouter.patch('/management/edit', management.patch_management); // 게시물 수정 버튼
 FeedRouter.delete('/management/delete', management.delete_management); // 게시물 삭제 버튼
 
+
 /* 메인페이지 관련 */
 const MainRouter = express.Router();
 const main = require('../controller/MainController');
-
 MainRouter.get('/', main.main_index); // 메인페이지 화면
 MainRouter.post('/search', main.main_search); // 메인페이지 검색 기능
 MainRouter.post('/search/likes', main.main_likes); // 메인페이지 좋아요 기능
