@@ -51,10 +51,11 @@
                 }
             })
             .then((req) => { return req.data })
-            .then((data) => {
-                if (data == true) {
-                    document.location.href="http://localhost:8000/swith";
-                    // 지금 막 등록된 페이지로 이동해야하는데 흠..?
+            .then((data) => { 
+                // console.log(data);
+                if (data.isResult == true) {
+                    document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${data.result.study_id}`;
+                    // 지금 막 등록된 페이지로 이동하도록 수정
                 }
             })
         }

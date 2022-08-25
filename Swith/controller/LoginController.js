@@ -1,5 +1,4 @@
 const Models  = require('../model');
-const { sequelize } = require("../model/index"); 
 
 // 로그인 페이지 렌더링
 exports.login_index = (req, res) => {
@@ -62,8 +61,8 @@ exports.post_update = (req, res) => {
 // 마이페이지 유저 페이지
 exports.mypage_index = async (req, res) => {
     // 보내줄 유저 데이터 
-    const [result, metadata] = await sequelize.query(
-        `select * FROM user WHERE user_id = '${req.session.user_id}';`
+    const [result, metadata] = await Models.sequelize.query(
+        `SELECT * FROM user WHERE user_id = '${req.session.user_id}';`
     )
     console.log('result', result);
     await res.render('mypage', {data: result}); 
@@ -89,13 +88,14 @@ exports.user_update = (req, res) => {
 // 마이페이지 찜목록 화면
 exports.mypage_likes = async (req, res) => {
     // 보내줄 좋아요 스터디 목록
-    let sql = `SELECT G.*, L.study_id as likesStudy
-	from user U
-    left outer join likes L on U.user_id = L.user_id
-    right outer join studygroup G on L.study_id = G.study_id
+    let sql = `
+    SELECT G.*, L.study_id AS likesStudy
+	FROM user AS U
+    LEFT OUTER JOIN likes AS L ON U.user_id = L.user_id
+    RIGHT OUTER JOIN studygroup AS G ON L.study_id = G.study_id
     WHERE U.user_id = '${req.session.user_id}';
     `
-    const result = await sequelize.query(sql); 
+    const result = await Models.sequelize.query(sql); 
     console.log('찜 목록 정보 : ', result);
     res.render('mypage2', {data: result[0]}); 
 }
@@ -105,22 +105,22 @@ exports.mypage_studys = async (req,res) => {
     // 보내줄 내가 가입한 스터디 정보 
     let sqlMember = `
     SELECT G.*
-	from user U
-    left outer join studymember M on U.user_id = M.user_id
-    right outer join studygroup G on M.study_id = G.study_id
+	FROM user AS U
+    LEFT OUTER JOIN studymember AS M ON U.user_id = M.user_id
+    RIGHT OUTER JOIN studygroup AS G ON M.study_id = G.study_id
     WHERE U.user_id = '${req.session.user_id}';`
 
-    const memberStudy = await sequelize.query(sqlMember);
+    const memberStudy = await Models.sequelize.query(sqlMember);
     console.log('내가 가입한 스터디 :', memberStudy);
 
     // 보내줄 내가 조장인 스터디 정보
     let sqlHead = `
     SELECT G.*
-	from user U
-    right outer join studygroup G on U.user_id = G.head_id
-    WHERE U.user_id = '${req.session.user_id}';
-    `
-    const HeadStudy = await sequelize.query(sqlHead);
+	FROM user AS U
+    RIGHT OUTER JOIN studygroup AS G ON U.user_id = G.head_id
+    WHERE U.user_id = '${req.session.user_id}';`
+
+    const HeadStudy = await Models.sequelize.query(sqlHead);
     console.log('내가 조장인 스터디 : ', HeadStudy);
 
     // 만약 가입한 스터디가 하나도 없다면? 
@@ -129,7 +129,6 @@ exports.mypage_studys = async (req,res) => {
         signStudy = false // 가입된 스터디가 없음
     }
     console.log(signStudy);
-
     await res.render('mypage3', {HeadStudy: HeadStudy[0], memberStudy: memberStudy[0], signStudy: signStudy}); 
 }
 
