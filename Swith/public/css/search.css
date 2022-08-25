@@ -93,6 +93,11 @@ form input::file-selector-button {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+#category-form {
+  display: flex;
+  width: 100vh;
+
+}
 .category-title{
   flex: 0 0 calc(16.6667% - 10px);
   display: flex;
