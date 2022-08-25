@@ -97,7 +97,13 @@ exports.mypage_likes = async (req, res) => {
     `
     const result = await Models.sequelize.query(sql); 
     console.log('찜 목록 정보 : ', result);
-    res.render('mypage2', {data: result[0]}); 
+
+    // 만약 찜한 스터디가 하나도 없다면? 
+    var isLikes = true // 찜한 스터디가 있음
+    if ( result[0].length == 0) {
+        isLikes = false // 가입된 스터디가 없음
+    }
+    res.render('mypage2', {data: result[0], isLikes: isLikes}); 
 }
 
 // 마이페이지 마이 스터디 화면
