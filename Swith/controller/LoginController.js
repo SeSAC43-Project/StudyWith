@@ -130,6 +130,6 @@ exports.mypage_studys = async (req,res) => {
     }
     console.log(signStudy);
 
-    res.render('mypage3', {HeadStudy: HeadStudy[0], memberStudy: memberStudy[0], signStudy: signStudy}); 
+    await res.render('mypage3', {HeadStudy: HeadStudy[0], memberStudy: memberStudy[0], signStudy: signStudy}); 
 }
 
