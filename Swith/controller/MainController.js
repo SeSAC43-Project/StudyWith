@@ -8,67 +8,25 @@ exports.main_index = (req, res) => {
 
 // 메인 페이지 검색 기능
 exports.main_search = async (req, res) => {
-    // if (req.body.search == "") { // 검색어가 없는 경우 전체 스터디 정보 보여주기
-    //     res.render('main'); 
-    //     return 
-    // }
+     // 검색어가 없는 경우 전체 스터디 정보 보여주기
     
     // 검색어가 있으면 검색 
     console.log('검색어 : ',req.body.search);
     console.log('카테고리 : ',req.body.category);
-    
-    // const result = await Models.Studygroup.findAll({
-    //         WHERE: {
-    //             [Models.Op.or] : [
-    //                 {
-    //                     hashtag : {
-    //                         [Models.Op.like]: '%'+ req.body.search + '%'
-    //                     }
-    //                 },
-    //                 {
-    //                     study_name : {
-    //                         [Models.Op.like]: '%'+ req.body.search + '%'
-    //                     }
-    //                 }, 
-    //                 {
-    //                     study_category : {
-    //                         [Models.Op.like]: '%'+ req.body.search + '%'
-    //                     }
-    //                 },
-    //                 {
-    //                     study_category : {
-    //                         [Models.Op.like]: '%'+ req.body.category + '%'
-    //                     }
-    //                 }
-    //             ]
-    //         }
-    //     });
 
-    // var currentMember = {}
-    // console.log(result.length);
-    // for (i=0; i<result.length; i++) {
-    //     const result2 = await sequelize.query(`
-    //         SELECT study_id, COUNT(*) AS cnt
-    //         FROM studymember
-    //         WHERE '${result[i].study_id}'
-    //         GROUP BY study_id `)
-        
-    //     currentMember[result[i].study_id] = result2;
-    //     }
+    let sql = `SELECT G.*, count(M.user_id) as num 
+        FROM studygroup G
+        LEFT OUTER JOIN studymember M
+        ON G.study_id = M.study_id 
+        WHERE G.study_name LIKE '%${req.body.search}%' 
+            OR G.study_category LIKE '%${req.body.search}%' 
+            OR G.study_category LIKE '%${req.body.category}%' 
+            OR G.hashtag LIKE '%${req.body.search}%'
+        GROUP BY G.study_id;`;
 
-    // console.log('현재멤버', currentMember);
-
-
-    let sql = `select studygroup.*, count(studymember.user_id) as num from studygroup left outer join studymember on studygroup.study_id = studymember.study_id where studygroup.study_name like '%${req.body.search}%' group by studygroup.study_id
-    UNION
-    select studygroup.*, count(studymember.user_id) as num from studygroup left outer join studymember on studygroup.study_id = studymember.study_id where studygroup.study_category like '%${req.body.search}%' group by studygroup.study_id
-    UNION
-    select studygroup.*, count(studymember.user_id) as num from studygroup left outer join studymember on studygroup.study_id = studymember.study_id where studygroup.study_category like '%${req.body.category}%' group by studygroup.study_id
-    UNION
-    select studygroup.*, count(studymember.user_id) as num from studygroup left outer join studymember on studygroup.study_id = studymember.study_id where studygroup.hashtag like '%${req.body.search}%' group by studygroup.study_id;`;
-
-    const result3 = await sequelize.query(sql);
-    await res.render('search', {data: result3[0], search: req.body.search, category: req.body.category});
+    const result = await sequelize.query(sql);
+    console.log('검색 결과 :', result);
+    await res.render('search', {data: result[0], search: req.body.search, category: req.body.category});
     }
 
 
