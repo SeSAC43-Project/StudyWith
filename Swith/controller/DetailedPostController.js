@@ -41,6 +41,7 @@ exports.detailedPost_index = async (req, res) => {
         console.log("headCheck:", headCheck);
 
         if( headCheck == null || headCheck == undefined) { // 가입X
+            console.log("가입x result:", result)
             return res.render('detailedPost3', {result: result});
         } else { // 조장이면
             return res.render('detailedPost', {result: result});
