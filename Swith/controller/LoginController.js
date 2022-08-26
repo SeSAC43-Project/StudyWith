@@ -2,7 +2,7 @@ const Models  = require('../model');
 
 // 로그인 페이지 렌더링
 exports.login_index = (req, res) => {
-    res.render('login'); 
+    res.render('login', {user_id: req.session.user_id}); 
 }
 
 // 로그인 시스템 구현 
