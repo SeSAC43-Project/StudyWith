@@ -24,6 +24,9 @@
             function goHeart() {
                 document.location.href="http://localhost:8000/user/mypage/likes";
             }
+            function goHome() {
+            document.location.href="http://localhost:8000/swith";
+            }
 
             // 닉네임 확인 폼 작성
             function checkNickname( obj ) {
@@ -101,10 +104,13 @@
     <div class="container">
 
         <div class="mypage-head"> 😋 <%= data[0].user_name %> 님 환영합니다! 😋
+            <button type="button" onclick="goHome()" class="homeBtn">
+                <i class="fa-solid fa-house"></i>
+            </button>
         </div>
 
         <div class="menu">
-            <div>
+            <div onclick="goModify()">
                 <i class="fa-solid fa-user">&nbsp;&nbsp;
                     <a href="http://localhost:8000/user/mypage">회원정보수정</a>
                 </i>
@@ -112,7 +118,7 @@
                     <a href="http://localhost:8000/user/mypage">회원정보수정</a>
                 </i></span>
             </div>
-            <div>
+            <div onclick="goPart()">
                 <i class="fa-solid fa-podcast">&nbsp;&nbsp;
                     <a href="http://localhost:8000/user/mypage/studys">참여중</a>
                 </i>
@@ -120,7 +126,7 @@
                     <a href="http://localhost:8000/user/mypage/studys">참여중</a>
                 </i></span>
             </div>
-            <div>
+            <div onclick="goHeart()">
                 <i class="fa-solid fa-heart">&nbsp;&nbsp;
                     <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
                 </i>
