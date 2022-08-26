@@ -14,6 +14,8 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+  <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+
 
   <script>
 
@@ -26,8 +28,28 @@
   </script>
 </head>
 <body>
+    <!-- ==========================================navbar========================================== -->
+    <header>
+        <a href="http://localhost:8000/swith" class="logo">
+            <img src="/public/main/logo.png" alt="logo" />
+        </a>
+        <ul>
+            <li><a href="">
+                <i class="fa-solid fa-cloud-plus">스터디 등록</i></a>
+            </li>
+            <li><a href="http://localhost:8000/user/login">
+                <i class="fa-solid fa-user">&nbsp;&nbsp;로그인</i></a>
+            </li>
+        </ul>
+    </header>
+    <script type="text/javascript">
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
+    </script>
     
-    <!-- ==========================================메인 두번째 페이지======================================  -->
+    <!-- ==========================================메인 첫번째 페이지======================================  -->
 
    <div class="slogun">
        <h1>FIND.</h1>
@@ -126,7 +148,7 @@
 
             <form id="category-form">
                 <input type='hidden' name="category" id="ca_input">
-                <% var ca_list = ['컴퓨터/IT', '언어', '자격증', '인증', '취업/이직', '공모전', '취미']%> 
+                <% var ca_list = ['IT', '언어', '자격증', '인증', '취업', '공모전', '취미']%> 
                 <% for (i=0; i <= 6; i++){ %> 
                     <button class="service" id='service'>
                         <i class="fa-solid fa-laptop-code"></i>
@@ -165,46 +187,6 @@
     }
     </script> 
                     
-                
-
-                <!-- <div class="service" onclick="goCategory()">
-                    <i class="fa-solid fa-laptop-code"></i>
-                    <input type="hidden" id='computer' name="computer">컴퓨터/IT
-                    <p>개설된 모임 : 개</p>   
-                </div>
-                <div class="service" onclick="goCategory()">
-                    <i class="fa-solid fa-language"></i>
-                    <input type="hidden" name="language">언어
-                    <p>개설된 모임 : 개</p>
-                </div>
-                <div class="service" onclick="goCategory()">
-                    <i class="fa-solid fa-award"></i>
-                    <input type="hidden" name="certifictate">자격증
-                    <p>개설된 모임 : 개</p>
-                </div>
-                <div class="service" onclick="goCategory()">
-                    <i class="fa-solid fa-bars-progress"></i>
-                    <input type="hidden" name="confirm">인증
-                    <p>개설된 모임 : 개</p>
-                </div>
-                <br><br>
-                <div class="service" onclick="goCategory()">
-                    <i class="fa-solid fa-briefcase"></i>
-                    <input type="hidden" name="work">취업/이직
-                    <p>개설된 모임 : 개</p>
-                </div>
-                <div class="service" onclick="goCategory()">
-                    <i class="fa-solid fa-trophy"></i>
-                    <input type="hidden" name="contest">공모전
-                    <p>개설된 모임 : 개</p>
-                </div>
-                <div class="service" onclick="goCategory()">
-                    <i class="fa-solid fa-bicycle"></i>
-                    <input type="hidden" name="hobby">취미
-                    <p>개설된 모임 : 개</p>
-                </div> -->
-
-            <!-- </form> -->
        </div>
     </div>
 
@@ -219,51 +201,6 @@
        })
     </script>
 
-    <!-- ==========================================메인 네번째 페이지======================================  -->
-    <div class="last_container">
-       <div class="last_row">
-           <div class="pick">
-               <h1>PICK YOUR FAVORITE</h1>
-           </div>
-           <div class="pick">
-               <div class="feed">
-                   <h5>스터디 제목</h5>
-                   <p>스터디 기간</p>
-               </div>
-           </div>
-           <div class="pick">
-               <div class="feed">
-                   <h5>스터디 제목</h5>
-                   <p>스터디 기간</p>
-               </div>
-           </div>
-           <div class="pick">
-               <div class="feed">
-                   <h5>스터디 제목</h5>
-                   <p>스터디 기간</p>
-               </div>
-           </div>
-           <br><br>
-           <div class="pick">
-               <div class="feed">
-                   <h5>스터디 제목</h5>
-                   <p>스터디 기간</p>
-               </div>
-           </div>
-           <div class="pick">
-               <div class="feed">
-                   <h5>스터디 제목</h5>
-                   <p>스터디 기간</p>
-               </div>
-           </div>
-           <div class="pick">
-               <div class="feed">
-                   <h5>스터디 제목</h5>
-                   <p>스터디 기간</p>
-               </div>
-           </div>
-       </div>
-   </div>
 
 </body>
 </html>
