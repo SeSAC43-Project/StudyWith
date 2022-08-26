@@ -1,14 +1,27 @@
 @font-face {
-  font-family: 'GS_bold'; 
-  src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+  font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
-* {
-  font-family: "GS_bold";
+body {
+  font-family: "GmarketSansMedium";
+}
+
+a {
+  font-family: "GmarketSansMedium";
+  color: #000000;
+}
+
+.span_login{
+  font-family: "GmarketSansMedium";
+  font-weight: bold;
+  color: #4686C2;
 }
 
 span {
-  font-family: "GS_bold";
+  font-family: "GmarketSansMedium";
 }
 
 .container {
@@ -72,7 +85,7 @@ span {
 }
 
 .signup_logo {
-  padding-bottom: 50px;
+  padding-bottom: 100px;
 }
 
 #form_background {
@@ -122,8 +135,8 @@ span {
 }
 
 .profile #uploadedProfile {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border: 3px solid;
   border-color: #4686C2;
   border-radius: 50px 50px 50px 50px;
@@ -152,6 +165,13 @@ span {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+.profile_span {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .userid, .nickname, .email, #pw, #pwConfirm, .pwAnswer, .category_hint {
   border: 0;
