@@ -113,50 +113,45 @@
         <br><br><br><br>
 
         <div class="modify-list">
+            <div class="head">내가 조장인 스터디</div>
             <div class="user_info">
                 <% if ( signStudy == true ) {%>
-                    <div class="head">내가 조장인 스터디</div> <br>
                         <% for(var i=0; i<HeadStudy.length; i++) {%>
-                            <div class="feed-row">
+                            <!-- <div class="feed-row"> -->
                                 <div class="profile-box">
                                     <img src="/public/group/<%=HeadStudy[i].study_image%>" />
                                     <div class="studyName">
                                         <h4><%=HeadStudy[i].study_name%></h4>
                                     </div>
                                     <p><%=HeadStudy[i].hashtag%></p><br>
-                                    <p><%=HeadStudy[i].study_recruit%></p>
+                                    <!-- <p><%=HeadStudy[i].study_recruit%></p> -->
                                     <span><%=HeadStudy[i].study_id%></span>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                             <% } %>
+            </div>
+                    
 
-                            <br>
+                            <br><br><br><br>
                             
                     <div class="second">내가 팀원인 스터디</div>
+                    <div class="user_info">
                         <% for(var i=0; i<memberStudy.length; i++) {%>
-                            <div class="feed-row">
                                 <div class="profile-box">
                                     <img src="/public/group/<%=memberStudy[i].study_image%>" />
                                     <div class="studyName">
                                         <h4><%=memberStudy[i].study_name%></h4>
                                     </div>
                                     <p><%=memberStudy[i].hashtag%></p><br>
-                                    <p><%=memberStudy[i].study_recruit%></p>
+                                    <!-- <p><%=memberStudy[i].study_recruit%></p> -->
                                     <span><%=memberStudy[i].study_id%></span>
                                 </div>
+                                
+                                <% } %>
                             </div>
-                            <% } %>
                 <% } else {%>
-                    <div class="feed-row">
-                        <div class="profile-box">
-                            <div class="studyName">
-                                <h4></h4>
-                            </div>
                             <p>가입된 스터디가 없습니다 😌 </p><br>
-                        </div>
-                    </div>
                     <% } %>
-            </div>
         </div>
         
         <script>
@@ -175,8 +170,5 @@
                 document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${study_id}`
             }
         </script>
-        
-
-    </div>
 </body>
 </html>

@@ -71,9 +71,9 @@
     </div>
 
     <div class="modify-list">
+        <div class="head">내가 찜한 스터디</div>
         <div class="user_info">
                 <% if ( isLikes == true ) {%>
-                    <div class="head">내가 찜한 스터디</div>
                         <% for(var i=0; i<data.length; i++) {%>
                             <div class="feed-row">
                                 <div class="profile-box">
@@ -82,7 +82,7 @@
                                         <h4><%=data[i].study_name%></h4>
                                     </div>
                                     <p><%=data[i].hashtag%></p><br>
-                                    <p><%=data[i].study_recruit%></p>
+                                    <!-- <p><%=data[i].study_recruit%></p> -->
                                     <span><%=data[i].study_id%></span>
                                 </div>
                             </div>
