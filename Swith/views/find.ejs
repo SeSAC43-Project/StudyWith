@@ -48,12 +48,12 @@
 
         // 엔터키 누르면 버튼 눌리게
         $(document).ready(function(){
-            var input = document.getElementById(e);
+            var keyup = document.getElementById(e);
 
             input.addEventListener("keyup", function (event){
                 if( event.keyCode === 13 ) {
                     event.preventDefault();
-                    document.getElementById("password_find").click();
+                    document.getElementById("find_enter").click();
                 }
             });
         })
