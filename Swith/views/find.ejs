@@ -58,6 +58,28 @@
             });
         })
 
+        /* 아이디 유무 검사 */
+        function checkID( obj ){
+                axios({
+                    method: "post",
+                    url: "http://localhost:8000/user/find/isId ",
+                    data: {
+                        user_id: obj.value,
+                    }})
+                    .then((rep) => {return rep.data;})
+                    .then((data) => {
+                    console.log(data);
+                    // data는 signupController에서 true, false 형식으로 보낸다.
+                    if ( data ) { // data가 true면 실행
+                        $("#checkID_text").css("color", "green");
+                        $("#checkID_text").text("존재하는 아이디 입니다.");
+                    } else { // data가 false면 실행
+                        $("#checkID_text").css("color", "red");
+                        $("#checkID_text").text("존재하지 않는 아이디입니다.");
+                    }
+                });
+            }
+
     </script>
     <style>
         .PopUp {
@@ -83,10 +105,11 @@
                 <form id="find_password"  method="post" action="/user/modify">
                     <img src="/public/login/logo.png" width="300px;" class="login_logo"><br>
                     <h1 class="password_find">비밀번호 찾기</h1>
-
-                <input type="text" id="id" name="user_id" class="find_password_user" placeholder="아이디" required style="color:white">
+                    
+                    <input type="text" id="id" name="user_id" class="find_password_user" placeholder="아이디" required style="color:white" onkeyup="checkID( this );">
+                    <br><p id="checkID_text"></p>
+                    
                 
-                <br><br>
                 <select name="hint" class="hint">
                     <option value="0">전체</option>
                     <option value="1">어느 중학교 출신인가요?</option>

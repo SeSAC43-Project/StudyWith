@@ -57,3 +57,20 @@ exports.post_update = (req, res) => {
         res.send('비밀번호 수정 성공!');
     });
 }
+
+// id 유무 검사 
+exports.find_isId = (req, res) => {
+    Models.User.findOne({
+        where: {user_id : req.body.user_id }
+    })
+    .then((result) => {
+        console.log('id 유무 검사 : ', result); 
+        if (result == null) { // id가 DB 존제하지 않는 경우(가입되지 않은 아이디)
+            console.log('아이디 없음')
+            return res.send(false); // 사용 불가
+        } else {
+            console.log('아이디 있음')
+            return res.send(true); // 사용 가능
+        }
+    })
+}
