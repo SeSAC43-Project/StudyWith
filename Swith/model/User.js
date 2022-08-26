@@ -22,7 +22,7 @@ const User = (Sequelize, DataTypes) => {
                 allowNull: false, 
             },
             user_name: {
-                type: DataTypes.STRING(20),
+                type: DataTypes.STRING(6),
                 allowNull: false, 
             },
             user_email: {
