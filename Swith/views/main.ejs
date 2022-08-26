@@ -153,9 +153,10 @@
             <form id="category-form">
                 <input type='hidden' name="category" id="ca_input">
                 <% var ca_list = ['IT', '언어', '자격증', '인증', '취업', '공모전', '취미']%> 
+                <% var ca_icon = ['fa-solid fa-laptop-code', 'fa-solid fa-language', 'fa-solid fa-graduation-cap', 'fa-solid fa-circle-check', 'fa-solid fa-user-tie', 'fa-solid fa-trophy', 'fa-solid fa-icons']%> 
                 <% for (i=0; i <= 6; i++){ %> 
                     <button class="service" id='service'>
-                        <i class="fa-solid fa-laptop-code"></i>
+                        <i class="<%=ca_icon[i]%>"></i>
                         <div class="category" >
                             <p><%=ca_list[i]%></p>
                         </div>
