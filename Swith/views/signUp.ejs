@@ -12,7 +12,9 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <!-- modal -->
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+        <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
 
         <script>
@@ -166,6 +168,15 @@
                     return false;
                 }
 
+                if (form.email.value != '' && !form.email.value.includes('@') ) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '올바른 이메일 형식이 아닙니다.',
+                        text: '45글자 이내',
+                    })
+                    return false;
+                }
+
                 if (form.checkPw.value == '') {
                     Swal.fire({
                         icon: 'warning',
@@ -187,20 +198,13 @@
                 if (form.hintanswer.value == '') {
                     Swal.fire({
                         icon: 'warning',
-                        title: '비밀번호 질문의 답을 입력해주세요!',
+                        title: '비밀번호 힌트 답을 입력해주세요',
                         text: '50글자 이내',
                     })
                     return false;
                 }
 
-                if ( !form.email.value.includes('@') ) {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: '올바른 이메일 형식이 아닙니다.',
-                        text: '45글자 이내',
-                    })
-                    return false;
-                }
+                return true;
             }
         </script>
     </head>
@@ -244,10 +248,10 @@
 
                                 <br><br>
         
-                                <input type="text" name="email" placeholder="이메일" class="email"/><br><br>
+                                <input type="text" name="email" placeholder="이메일" maxlength='45' class="email"/><br><br>
 
-                                <input type="password" name="password" placeholder="비밀번호" onchange="pwCheck()" id="pw" style="color:white" /><br><br>
-                                <input type="password" name ="checkPw" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color:white" /><br>
+                                <input type="password" name="password" placeholder="비밀번호" maxlength='45' onchange="pwCheck()" id="pw" style="color:white" /><br><br>
+                                <input type="password" name ="checkPw" placeholder="비밀번호 확인" maxlength='45' onchange="pwCheck()" id="pwConfirm" style="color:white" /><br>
                                 <span id="check"></span>
                                 
                                 <br><br><br>
@@ -261,7 +265,7 @@
 
                                 <br><br>
         
-                                <input type="text" name="hintanswer" placeholder="비밀번호 힌트 답" class="pwAnswer" style="color:white" />
+                                <input type="text" name="hintanswer" placeholder="비밀번호 힌트 답" class="pwAnswer" style="color:white" maxlength='50'/>
         
                                 <br><br><br>
         
