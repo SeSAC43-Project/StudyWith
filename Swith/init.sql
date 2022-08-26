@@ -8,7 +8,7 @@ CREATE TABLE user (
     user_password VARCHAR(45) NOT NULL, -- 유저 비밀번호
     hint VARCHAR(10) NOT NULL, -- 비밀번호 찾기 질문 (1, 2, 3, ..)
     hint_answer VARCHAR(50) NOT NULL, -- 비밀번호 찾기 답
-    user_name VARCHAR(7) NOT NULL, -- 유저 닉네임
+    user_name VARCHAR(6) NOT NULL, -- 유저 닉네임
     user_email VARCHAR(45) NOT NULL, -- 유저 이메일
     user_image VARCHAR(100) DEFAULT 'user_default.jpg', -- 유저 프로필 이미지
     category1 VARCHAR(20) NOT NULL, -- 관심 카테고리 1

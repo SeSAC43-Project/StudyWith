@@ -9,6 +9,10 @@ body {
   font-family: "GmarketSansMedium";
 }
 
+* {
+  font-family: "GmarketSansMedium";
+}
+
 a {
   font-family: "GmarketSansMedium";
   color: #000000;
@@ -38,7 +42,7 @@ span {
   margin: auto;
   padding: 0px;
   width:100%;
-  height: 150vh;
+  height: 160vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,7 +89,7 @@ span {
 }
 
 .signup_logo {
-  padding-bottom: 80px;
+  padding-bottom: 50px;
 }
 
 #form_background {
@@ -170,8 +174,15 @@ span {
   position: relative;
   justify-content: center;
   align-items: center;
+  top: 15px;
 }
 
+
+/* 아이디, 닉네임, 비밀번호 중복확인 alert*/
+#checkID_text, #checkNickname_text, #check{
+  position: relative;
+  top: 10px;
+}
 
 .userid, .nickname, .email, #pw, #pwConfirm, .pwAnswer, .category_hint {
   border: 0;
@@ -228,6 +239,8 @@ input:focus {
 
 .span_field {
   font-weight: bold;
+  position: relative;
+  top: 10px;
 }
 
 .first, .second, .third {
@@ -281,12 +294,13 @@ input:focus {
   left: 100px;
   justify-content: center;
   font-weight: bold; */
-
+  font-family: "GmarketSansMedium";
   background-color: #4686C2;
   border:0;
   border-radius: 20px;
   width: 120px;
   height:35px;
+  font-weight: bold;
 }
 
 .userLogin {
