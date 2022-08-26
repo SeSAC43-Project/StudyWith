@@ -334,6 +334,7 @@ form input::file-selector-button {
   /* background-color: #4686C2; */
 }
 #group_img:active {
+  cursor:pointer;
   /* background-color: #4686C2; */
 } 
 
@@ -393,21 +394,20 @@ footer {
   height: 60px;
   margin: auto;
   border-radius: 20px;
-  overflow: hidden;
+  /* overflow-y: hidden; */
+  overflow-block: hidden;
   padding: 10 30px;
 }
 
 /* 삭제버튼 */
-.regi_txt{
+.regi_btn2 {
   width: 50%;
   height: 100%;
   background-color: #FFE19C;
   font-weight: bold;
-  color: #333;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
   font-size: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 /* 수정버튼 */
@@ -416,7 +416,8 @@ footer {
   height: 100%;
   background-color: #4D6275;
   font-weight: bold;
-  font-size: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 /* 목록버튼 */
