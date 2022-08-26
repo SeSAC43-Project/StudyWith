@@ -112,11 +112,14 @@
                                                 <div class = "post-content">
                                                     <h2><%=data[i].study_name%></h2>
                                                     <span><i class="fa-solid fa-user"></i><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
-                                                    <sapn><%=likeList[i]%></sapn> 
                                                 </div> 
                                             </div>
                                             <div class="likes">
-                                                <p style="font-size:2rem;" class="heart far fa-heart"></p>
+                                                <% if (likeList[i] == '0') { %>
+                                                    <p style="font-size:2rem;" class="heart far fa-heart"></p>
+                                                <% } else { %>
+                                                    <p style="font-size:2rem;" class="heart fa-solid fa-heart"></p>
+                                                <% } %> 
                                             </div>
                                         </div>
                                     <% } %>
@@ -238,7 +241,6 @@
                 })
             }
             
-
 
 
             const categoryTitle = document.querySelectorAll('.category-title');
