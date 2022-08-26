@@ -1,12 +1,13 @@
 @font-face {
-    font-family: 'GS_bold'; 
-    src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
-}
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
 
-* {
-    font-family: "GS_bold";
+  * {
+    font-family: "GmarketSansMedium";
 }
-
 /* 전체 컨티이너 설정 */
 .container{
     margin: auto;
