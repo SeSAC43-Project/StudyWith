@@ -14,6 +14,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,7 +38,7 @@ header .logo {
 header img {
   position: relative;
   width: 110px;
-  height: 60px;
+  height: 50px;
   transition: 0.6s;
 }
 header img:hover {
@@ -47,14 +48,14 @@ header img:hover {
 header ul {
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
+  margin-right: 160px;
 }
 header ul li {
   position: relative;
   list-style: none;
   padding: 40px 10px;
-  right: 150px;
 }
 header ul li a {
   position: relative;
@@ -63,6 +64,7 @@ header ul li a {
   color: #000;
   font-weight: bold;
   transition: 0.6s;
+  font-size: 13px;
 }
 header ul li a:hover {
   cursor: pointer;
@@ -414,4 +416,45 @@ header.sticky ul li a {
   background-position: center;
   background-size: cover;
   background-color: #4686C2;
+}
+
+/* ==========================================footer====================================== */
+.sticky-footer {
+  position: sticky;
+  /* top: 100%; */
+  height: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: #f3f7fe;
+}
+.sticky-footer ul {
+  margin-top: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 0;
+  text-align: center;
+}
+.sticky-footer ul li a {
+  color: #000;
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.sticky-footer ul li {
+  display: inline-block;
+  padding: 0 15px;
+}
+
+.sticky-footer ul li a:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.sticky-footer p {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #000;
 }
