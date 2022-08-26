@@ -48,9 +48,9 @@
 
         // 엔터키 누르면 버튼 눌리게
         $(document).ready(function(){
-            var keyup = document.getElementById(e);
+            var input = document.getElementById("#find_password");
 
-            input.addEventListener("keyup", function (event){
+            input.addEventListener("keydown", function (event){
                 if( event.keyCode === 13 ) {
                     event.preventDefault();
                     document.getElementById("find_enter").click();
@@ -58,11 +58,6 @@
             });
         })
 
-        // function find_enter() {
-        //     if ( window.event.keyCode === 13 ) {
-
-        //     }
-        // }
 
         /* 아이디 유무 검사 */
         function checkID( obj ){
