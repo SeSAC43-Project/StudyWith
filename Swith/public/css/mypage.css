@@ -1,11 +1,13 @@
 /* 정보 */
 @font-face {
-  font-family: 'GS_bold'; 
-  src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
-  font-family: "GS_bold";
+  font-family: "GmarketSansMedium";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,7 +18,7 @@ a {
 }
 
 .container {
-  height: 120vh;
+  height: 150vh;
   width: 100%;
   background: #f3f7fe;
   display: flex;
@@ -112,7 +114,7 @@ a {
   background-color: #fff;
   box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
   position: absolute;
-  margin-top: 15%;
+  margin-top: 0;
 }
 
 .inte-field {
