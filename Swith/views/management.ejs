@@ -110,6 +110,11 @@
                 
             })
         }
+
+        // 목록 버튼을 누르면
+        function list() {
+            document.location.href="http://localhost:8000/swith"; 
+        }
     </script>
 </head>
 <body>
@@ -283,12 +288,12 @@
 
 
                         <div class="regi_btn_wrap">
-                            <button class="cancelebutton regi_txt" type="button" onclick="deleteFeed();">삭제하기</button>
+                            <button class="cancelebutton regi_btn2" type="button" onclick="deleteFeed();">삭제하기</button>
                             <button class="editbutton regi_btn" type="button" onclick="editFeed();">수정하기</button>     
                         </div>
 
                         <div class="Category_box"></div>
-                        <button class="writebutton" type="button" onclick=";">목록</button>
+                        <button class="writebutton" type="button" onclick="list();">목록</button>
                         
                     </div>
                 </form>
