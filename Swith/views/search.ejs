@@ -54,27 +54,72 @@
                 <div class = "category-head">
                         <form id="category-form">
                             <input type='hidden' name="category" id="ca_input">
-                            <% var ca_list = ['컴퓨터/IT', '언어', '자격증', '인증', '취업/이직', '공모전', '취미']%> 
+                            <% var ca_list = ['IT', '언어', '자격증', '인증', '취업', '공모전', '취미']%> 
                             <% for (i=0; i <= 6; i++){ %> 
                                 <button type="button" class="category-title" id='category-title[i]'>
                                     <div class="category" >
-                                        <p><%=ca_list[i]%></p>
+                                        <p width="160px;"><%=ca_list[i]%></p>
                                     </div>
                                 </button>
                                 <% }%> 
                         </form>
-                        <div class="cate_search_text"></div>
-                        <div class = "feed-collect">
-                            <div class = "feed-main-container" id="study_category">
-
-                            </div>
-                        </div>
                 </div>
 
+                <div class="resultText">
+                    <h2> 💡 "<%=search %> " 검색 결과입니다.</h2>
+                </div>
+                <div class="searchSection">
+                    <div class = "feed-collect">
+                        <div class = "feed-main-container">
+                            <!-- 스터디 정보 게시물 보여주기 및 보내기-->
+                            <% for(var i=0; i<data.length; i++) {%>
+                                    
+                                <div class="studys searchPostSection">
+                                    <!--  id="studys" -->
+                                    <div class = "all-business">
+                                        <div class = "post-img">
+                                            <img width="200px;" height="200px;" src = "/public/group/<%=data[i].study_image %>" alt = "post"><figcaption>자세히보기</figcaption>
+                                            <span class = "category-name"><%=data[i].study_category%></span>
+                                            <p style="display: none;"><%=data[i].study_id %></p>
+                                        </div>
+                                        <div class = "post-content">
+                                            <span><%=data[i].study_name%></span>
+                                            <span><i class="fa-solid fa-user"></i><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
+                                            <p><%=data[i].study_content%></p>
+                                        </div> 
+                                    </div>
+                                    <div class="likes">
+                                        <% if (likeList[i] == '0') { %>
+                                            <p style="font-size:2rem;" class="heart far fa-heart"></p>
+                                        <% } else { %>
+                                            <p style="font-size:2rem;" class="heart fa-solid fa-heart"></p>
+                                        <% } %> 
+                                    </div>
+                                </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        
         <script>
-                    // 카테고리 정보 보내기 
+
+
+    // 검색 결과 부분
+    $('.category').children('p').on('click',function(e) {
+            var cate_target = e.target;
+
+            $('.resultText').html("<h2 class='cate_resultText'> 💡 " + '"' + $(cate_target).text() + '"'+" 검색 결과입니다.</h2>");
+            // $('.searchPostSection').css('display','none');
+            // $('.categoryPostSection').css('display','block');
+            })
+
+
+
+    // 카테고리 정보 보내기 
                     
-                    var categorys = document.querySelectorAll('.category-title');
+    var categorys = document.querySelectorAll('.category-title');
                     
                     
                     for (const category of categorys) {     
@@ -95,19 +140,26 @@
                                 if (data.flag == true) {
                                     console.log(data),
                                     console.log(data.data);
+                                    console.log(data.likeList);
                                 }
                                 var html = "";
 
                                 for ( var i = 0; i < data.data.length; i++ ){
-                                    html += "<div class = 'studys'><div class = 'all-category' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>"
-                                    html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><h2>" + data.data[i].study_name + "</h2><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div></div><div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>";
+                                    html += "<div class = 'studys categoryPostSection'><div class = 'all-category' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>"
+                                    html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><h2>" + data.data[i].study_name + "</h2><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div></div>";
 
-                                    console.log(data.data[i].study_category)
+                                if ( data.likeList[i] == '0') {
+                                    html += "<div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>"; 
+                                } else { 
+                                    html += "<div class='likes'><p style='font-size:2rem;' class='heart fa-solid fa-heart'></p></div></div>";
                                 }
-                                html += "</div>"
+
+
                                 
-                                $("#study_category").empty();
-                                $("#study_category").append(html);
+                                }
+
+                                $(".feed-main-container").empty();
+                                $(".feed-main-container").append(html);
 
                             })
         
@@ -115,72 +167,8 @@
                     });  
                 }
 
-        </script>
 
-                    <div class="resultText">
-                        <h2> 💡 "<%=search %> " 검색 결과입니다.</h2>
-                    </div>
-                    <div class="searchSection">
-                        <div class = "feed-collect">
-                            <div class = "feed-main-container">
-                            <!-- 스터디 정보 게시물 보여주기 및 보내기-->
-                                <% for(var i=0; i<data.length; i++) {%>
-                                    
-                                        <div class="studys">
-                                            <!--  id="studys" -->
-                                            <div class = "all-business">
-                                                <div class = "post-img">
-                                                    <img width="200px;" height="200px;" src = "/public/group/<%=data[i].study_image %>" alt = "post"><figcaption>자세히보기</figcaption>
-                                                    <span class = "category-name"><%=data[i].study_category%></span>
-                                                    <p style="display: none;"><%=data[i].study_id %></p>
-                                                </div>
-                                                <div class = "post-content">
-                                                    <h2><%=data[i].study_name%></h2>
-                                                    <span><i class="fa-solid fa-user"></i><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
-                                                </div> 
-                                            </div>
-                                            <div class="likes">
-                                                <% if (likeList[i] == '0') { %>
-                                                    <p style="font-size:2rem;" class="heart far fa-heart"></p>
-                                                <% } else { %>
-                                                    <p style="font-size:2rem;" class="heart fa-solid fa-heart"></p>
-                                                <% } %> 
-                                            </div>
-                                        </div>
-                                    <% } %>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-        
-        <script>
-
-            
-            $('.category-title').on('click',function(e) {
-                var cate_target = e.target;
-
-                $('.resultText').html("<h2 class='cate_resultText'> 💡 " + '"' + $(cate_target).children('div').children('p').text() + '"'+" 검색 결과입니다.</h2>");
-                $('.searchSection').css('display','none');
-                // $('.resultText').css('display','none');
-                // $('.cate_search_text').html("<h2 class='cate_resultText'> 💡 " + '"' + $(cate_target).children('div').children('p').text() + '"'+" 검색 결과입니다.</h2>");
-                //타이틀 백그라운드를 눌러야지만 검색결과에 입력됨. 수정필요.
-            })
-            
-            // if ($('.resultText').css('display','none')) {
-            //     // $('.cate_resultText').css('display','block');
-            //     $('.cate_resultText').text(" ");
-
-            // }
-            // else if ($('.resultText').css('display','block')) {
-            //     // $('.cate_resultText').css('display','none');
-            //     $('.cate_resultText').text(" ");
-            // }
-            // else {
-            //     $('.resultText').children('h2').css('display','block');
-            // }
-
-    //좋아요 버튼 / /취소 동시에 기능
+    //좋아요 버튼,취소 동시에 기능
 
             var likes = document.querySelectorAll('.likes');
 
@@ -188,7 +176,7 @@
                         
                         like.addEventListener('click',function(obj) {
                             var target = obj.currentTarget;
-                            var study_id = $(target).siblings('div').children('div').children('p').text();
+                            var study_id = $(target).siblings('div').children('div:first').children('p').text();
                             
 
 
@@ -208,7 +196,6 @@
                                         $(target).children('.heart').removeClass('far fa-heart');
                                         $(target).children('.heart').addClass('fa-solid fa-heart');
                                         $(target).children('.heart').addClass('heartEffect');
-                                        //나중에 혹시 좋아요 기능 제대로 안되면 effect 지우기
                                     }
                                     
                                 })
