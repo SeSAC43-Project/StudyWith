@@ -1,14 +1,21 @@
 @font-face {
-    font-family: 'GS_bold'; 
-    src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
-    font-family: "GS_bold";
+    font-family: "GmarketSansMedium";
 }
 body {
     width: 100%;
 }
+
+.name {
+    font-weight:bold;
+}
+
 /* 전체 컨테이너 */
 .wrap {
     box-sizing: border-box;
@@ -57,7 +64,7 @@ form {
     text-align: center;
     justify-content: center;
     width: 100%;
-    height: 100px;
+    height: 90px;
     overflow: hidden;
 }
 
@@ -97,7 +104,7 @@ form {
 .studyName {
     /* background-color: #e5eef8; */
     font-size: 40px;
-    width: 1000px;
+    width: 900px;
     height: 200px;
     align-items: center;
     text-align: center;
@@ -121,6 +128,7 @@ form {
 .studyName ul li{
     font-size: 16px;
     color: #333;
+    /* color: white; */
     margin-right: 20px;
 }
 
@@ -129,6 +137,7 @@ form {
     text-align: center;
     justify-content: center;
     display: flex;
+    /* color: white; */
 }
 
 .section_box {
@@ -166,6 +175,7 @@ form {
     width: 210px;
     color: #333;
     font-size: 21px;
+    font-weight:bold;
     margin-top: 30px;
     padding-bottom: 30px;
 }
@@ -242,22 +252,7 @@ form {
     word-spacing: 20px;
 }
 
-/* 탈퇴하기 버튼 */
-.detail {
-    background-color: #4686C2;
-    width: 900px;
-    height: 60px;
-    border-radius: 20px;
-    border: 0;
-    margin-bottom: 50px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
 
-    /* position: relative;
-    left: 100px;
-    top: 20px */
-}
 
 .ture, .back, .list{
     background-color: #4686C2;
@@ -274,29 +269,80 @@ form {
     align-items: center;
     justify-content: center;
     width: 900px;
-    height: 72px;
+    height: 60px;
     margin: auto;
     border-radius: 20px;
     overflow: hidden;
     padding: 10 30px;
 }
+
+/* 탈퇴하기, 수정하기, 가입하기 버튼 */
+.detail {
+    background-color: #4D6275 ;
+    width: 900px;
+    height: 60px;
+    border-radius: 20px;
+    border: 0;
+    font-weight: bold;
+    margin-bottom: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    /* position: relative;
+    left: 100px;
+    top: 20px */
+}
+
+.detail:hover {
+    background-color: #2A5175;
+    width: 900px;
+    height: 60px;
+    border-radius: 20px;
+    border: 0;
+    font-weight: bold;
+    margin-bottom: 50px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    /* position: relative;
+    left: 100px;
+    top: 20px */
+}
+
+
+/* 모집중 모집마감 버튼 */ 
 .regi_txt{
     width: 50%;
     height: 100%;
     background-color: #ccc;
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-weight: bold;
     color: #333;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     /* padding: 0 50px; */
 }
+
+/* 목록버튼 */
 .regi_btn{
     width: 50%;
     height: 100%;
-    background-color: #4686C2;
+    background-color: #4D6275;
     border: 0;
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-weight: bold;
+    /* padding: 0 10px; */
+    padding: 20 30px;
+}
+
+.regi_btn:hover {
+    width: 50%;
+    height: 100%;
+    background-color: #2A5175;
+    border: 0;
+    font-weight: bold;
     /* padding: 0 10px; */
     padding: 20 30px;
 }
