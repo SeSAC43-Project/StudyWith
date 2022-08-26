@@ -240,6 +240,10 @@ header.sticky ul li a {
   /* max-width: 800px; */
   margin: auto;
 }
+.testimonial-text h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
 .testimonial-text {
   /* background: #ff0058; */
   color: #fff;
@@ -331,9 +335,10 @@ header.sticky ul li a {
 }
 .container_third h1 {
   text-align: center;
-  padding-top: 10%;
+  padding-top: 70px;
   margin-bottom: 60px;
-  font-weight: 600;
+  font-weight: 900;
+  font-size: 30px;
   position: relative;
 }
 .container_third h1 span {
@@ -350,19 +355,32 @@ header.sticky ul li a {
   transform: translateX(-50%);
 } */
 .row {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 30px;
-  padding: 50px;
+  grid-gap: 50px;
+  padding: 50px; */
+  flex-wrap: wrap;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 1200px;
+  height: 500px;
+  position: absolute;
+  /* margin: auto; */
+  text-align: center;
+  margin: auto auto auto 110px;
 }
 .service {
   text-align: center;
   padding: 25px 10px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 14px;
   cursor: pointer;
   background: transparent;
   transition: transform 0.5s background 0.5s;
+  width: 200px;
+  height: 200px;
+  margin: 20px;
 }
 .service i {
   font-size: 40px;
@@ -380,6 +398,10 @@ header.sticky ul li a {
 }
 .service:hover i {
   color: #fff;
+}
+
+.category p {
+  font-size: 20px;
 }
 
 /* ==========================================메인 네번째 페이지====================================== */
