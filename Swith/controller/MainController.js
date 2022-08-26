@@ -29,8 +29,8 @@ exports.main_search = async (req, res) => {
     const result = await Models.sequelize.query(searchsql);
     console.log('검색 결과 :', result);
 
-    // 좋아요 정보 넣을 딕셔너리 생성
-    var likeList = {}
+    // 좋아요 정보 넣을 리스트 생성
+    var likeList = []
     const study_data = result[0];
 
     // 유저가 좋아요 했는 지 확인
@@ -42,7 +42,7 @@ exports.main_search = async (req, res) => {
         
         const result2 = await Models.sequelize.query(likesql);
         const likedata = result2[0];
-        likeList[study_data[i].study_id] = likedata[0].likes; 
+        likeList.push(likedata[0].likes);
     }
 
     console.log(likeList);
@@ -59,7 +59,7 @@ exports.search_detail = (req, res) => {
 
 // search 페이지에서 카테고리마다 게시글 검색되도록 
 exports.search_category = async (req, res) => {
-    let sql = `
+    let categorySql = `
     SELECT G.*, COUNT(M.user_id) AS num, COUNT(L.user_id) AS likes 
     FROM studygroup AS G
     LEFT OUTER JOIN studymember AS M ON G.study_id = M.study_id 
@@ -67,10 +67,28 @@ exports.search_category = async (req, res) => {
     WHERE G.study_category LIKE '%${req.body.study_category}%'
     GROUP BY G.study_id;`;
 
-    const result = await Models.sequelize.query(sql);
-    
+    const result = await Models.sequelize.query(categorySql);
     console.log('여기가 카테고리 ', result);
-    await res.send({data: result[0], flag:true});
+
+    // 좋아요 정보 넣을 리스트 생성
+    var likeList = []
+    const cate_data = result[0];
+
+    // 유저가 좋아요 했는 지 확인
+    for (let i=0; i < cate_data.length; i++) {
+        let likesql = `
+        SELECT COUNT(*) AS likes
+        FROM likes 
+        WHERE user_id = '${req.session.user_id}' and study_id ='${cate_data[i].study_id}';`
+        
+        const result2 = await Models.sequelize.query(likesql);
+        const likedata = result2[0];
+        likeList.push(likedata[0].likes);
+    }
+
+    console.log(likeList);
+
+    await res.send({data: result[0], flag:true, likeList: likeList});
 }
 
 // 메인페이지 좋아요 기능
