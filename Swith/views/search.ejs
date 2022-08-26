@@ -10,6 +10,8 @@
 
   <link rel="stylesheet" href="/public/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="/public/css/search.css" />
+  <link rel="stylesheet" href="/public/css/navbar.css" />
+  <link rel="stylesheet" href="/public/css/footer.css" />
   <script src="https://kit.fontawesome.com/cf7a6dd6e5.js" crossorigin="anonymous"></script>
 
 
@@ -23,6 +25,29 @@
 
 </head>
 <body>
+    <header>
+        <a href="http://localhost:8000/swith" class="logo">
+            <img src="/public/main/logo.png" alt="logo" />
+        </a>
+        <ul>
+            <li><a href="http://localhost:8000/feed/write">
+                <i class="fa-solid fa-folder-plus">&nbsp;&nbsp;스터디 등록</i></a>
+            </li>
+            <li><a href="http://localhost:8000/user/login">
+                <i class="fa-solid fa-user">&nbsp;&nbsp;로그인</i></a>
+            </li>
+            <li><a href="http://localhost:8000/user/mypage">
+                <i class="fa-solid fa-heart">&nbsp;&nbsp;마이페이지</i></a>
+            </li>
+        </ul>
+    </header>
+    <script type="text/javascript">
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
+    </script>
+
 
         <div class = "main-container">
             <div class = "filter-container">
@@ -276,6 +301,16 @@
             }
 
         </script>
+
+        <!-- ==========================================footer========================================== -->
+    <footer class="sticky-footer">
+        <ul>
+            <li><a href="http://localhost:8000/swith">Home</a></li>
+            <li><a href="">Feed</a></li>
+            <li><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56">About us</a></li>
+        </ul>
+        <p> © Copyright 2022. Swith. All Rights Reserved.</p>
+    </footer>
 
 </body>
 <script>

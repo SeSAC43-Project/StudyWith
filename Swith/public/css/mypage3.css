@@ -97,17 +97,17 @@ a {
 .modify-list {
   width: 1050px;
   height: 90vh;
-  display: flex;
+  /* display: flex; */
   border-radius: 20px;
   border-color: #4686C2;
   border-width: 3px;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   /* position: relative; */
   background-color: #fff;
   box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
-  position: absolute;
-  margin-top: 15%;
+  /* position: absolute; */
+  /* margin-top: 15%; */
   flex-wrap: wrap;
 
 }
@@ -121,11 +121,11 @@ a {
   box-shadow: 0 10px 10px 10px rgba(115, 193, 255, 0.1);
   padding: 20px;
   position: relative;
-  margin: auto;
+  /* margin: auto; */
   cursor: pointer;
   background: transparent;
   transition: transform 0.5s background 0.5s;
-  right: 150%;
+  /* right: 150%; */
   
 
 }
@@ -148,9 +148,9 @@ a {
 }
 
 .feed-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 30px;
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+  /* grid-gap: 30px; */
 }
 
 .studyName {
