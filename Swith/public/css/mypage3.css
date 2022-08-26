@@ -1,11 +1,13 @@
 /* 정보 */
 @font-face {
-  font-family: 'GS_bold'; 
-  src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
-  font-family: "GS_bold";
+  font-family: "GmarketSansMedium";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,7 +18,7 @@ a {
 }
 
 .container {
-  height: 120vh;
+  height: 250vh;
   width: 100%;
   background: #f3f7fe;
   display: flex;
@@ -25,10 +27,11 @@ a {
 }
 
 .user_info {
-  /* flex-wrap: wrap; */
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 30px;
+  grid-gap: 30px; */
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .mypage-head {
@@ -36,7 +39,7 @@ a {
   width: 1050px;
   height: 10vh;
   position: absolute;
-  top: 5%;
+  top: 40px;
   display: flex;
   border-radius: 20px;
   align-items: center;
@@ -63,7 +66,7 @@ a {
   box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
   overflow: hidden;
   position: absolute;
-  top: 20%;
+  top: 150px;
   border-radius: 20px;
 }
 
@@ -96,37 +99,30 @@ a {
 
 .modify-list {
   width: 1050px;
-  height: 90vh;
-  /* display: flex; */
+  height: 200vh;
   border-radius: 20px;
   border-color: #4686C2;
   border-width: 3px;
-  /* align-items: center;
-  justify-content: center; */
-  /* position: relative; */
   background-color: #fff;
   box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
-  /* position: absolute; */
-  /* margin-top: 15%; */
-  flex-wrap: wrap;
-
+  position: absolute;
+  top: 220px;
 }
+
 
 .profile-box {
   width: 250px;
   height: 250px;
   background: #fff;
   border-radius: 20px;
-  /* margin-bottom: 30px; */
   box-shadow: 0 10px 10px 10px rgba(115, 193, 255, 0.1);
   padding: 20px;
   position: relative;
-  /* margin: auto; */
   cursor: pointer;
   background: transparent;
   transition: transform 0.5s background 0.5s;
-  /* right: 150%; */
-  
+  margin : 30px;
+  left: 55px;
 
 }
 .profile-box:hover {
@@ -143,14 +139,13 @@ a {
   border-radius: 8px;
   transition: .5s;
 }
-.profile-box img:hover {
+/* .profile-box img:hover {
   height: 215px;
-}
+} */
 
 .feed-row {
-  /* display: grid; */
-  /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-  /* grid-gap: 30px; */
+  /* flex-wrap: wrap;
+  display: flex; */
 }
 
 .studyName {
@@ -172,12 +167,8 @@ a {
   color: #555;
 }
 .head {
-  position: absolute;
-  top: 30px;
-  left: 30px;
+  margin: 50px auto 20px 50px;
 }
 .second {
-  position: absolute;
-  top: 350px;
-  left: 30px;
+  margin: auto auto 20px 50px;
 }
