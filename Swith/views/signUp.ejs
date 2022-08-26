@@ -168,6 +168,15 @@
                     return false;
                 }
 
+                if (form.email.value != '' && !form.email.value.includes('@') ) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '올바른 이메일 형식이 아닙니다.',
+                        text: '45글자 이내',
+                    })
+                    return false;
+                }
+
                 if (form.checkPw.value == '') {
                     Swal.fire({
                         icon: 'warning',
@@ -189,20 +198,13 @@
                 if (form.hintanswer.value == '') {
                     Swal.fire({
                         icon: 'warning',
-                        title: '비밀번호 질문의 답을 입력해주세요!',
+                        title: '비밀번호 힌트 답을 입력해주세요',
                         text: '50글자 이내',
                     })
                     return false;
                 }
 
-                if ( !form.email.value.includes('@') ) {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: '올바른 이메일 형식이 아닙니다.',
-                        text: '45글자 이내',
-                    })
-                    return false;
-                }
+                return true;
             }
         </script>
     </head>
