@@ -163,9 +163,9 @@
                             <div class="name">모집인원</div>
 
                             <div class="value"><% if(locals.result[0]) { %>
-                                <%= result[0].study_recruit %>
+                                <%= result[0].study_recruit %>명
                                     <% } else { %>
-                                    <%= result.study_recruit %>
+                                    <%= result.study_recruit %>명
                                 <% } %>
                             </div>
                         </div>
@@ -215,16 +215,12 @@
                             </div>
                             </div>
                         </div>
+
     
                         <div class="regi_btn_wrap">
                             <div class="regi_txt">
-                                <% if (result.length < result[0].study_recruit) { %>
-                                    <span>등록가능</span>
-                                <% } else { %>
-                                    <span>마감</span>
-                                <% } %>
+                                    <span>가입중</span>
                             </div>
-                            
                             <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
                         </div>
 

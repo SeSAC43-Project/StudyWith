@@ -102,7 +102,9 @@
             .then((data) => {
                 uploadedFile = data.fileName;
                 alert(data.study_image);
-                // $('#group_img').attr('src', '/public/group/' + data.fileName);
+                
+                $("label").remove("#label_img");
+
                 $("#group_img").css({"background-image":`url(/public/group/${data.fileName})`}); 
                 $("#group_img").css({"background-size":`700px 70px`});
                 
@@ -126,7 +128,7 @@
                         <!-- 스터디 이미지 업로드 -->
                         <div class="form-row">
                             <div class="group" id="group_img_upload">
-                                <div id="group_img" style="background-image: url(/public/group/<%=result.study_image%>); background-size: cover;" >
+                                <div id="group_img" style="background-image:url(/public/group/<%=result.study_img%>); background-size:700px 70px; ">
                                     <label class="groupImgLabel" for="groupImg">
                                         <input type="file" id="groupImg" style="display: none" name="studyImage" onchange="uploadFile(this);">
                                     </label>
@@ -134,6 +136,7 @@
                             </div>
                         </div>
 
+                        <div class="Category_box"></div>
 
                         <!-- 스터디 명 -->
                         <div class="form-row">
@@ -277,10 +280,16 @@
                         <br><br>
                         <div class="warningDiv"></div>
                         <br><br>
-    
-                        <button class="cancelebutton" type="button" onclick="deleteFeed();">삭제하기</button>
-                        <button class="editbutton" type="button" onclick="editFeed();">수정하기</button>
+
+
+                        <div class="regi_btn_wrap">
+                            <button class="cancelebutton regi_txt" type="button" onclick="deleteFeed();">삭제하기</button>
+                            <button class="editbutton regi_btn" type="button" onclick="editFeed();">수정하기</button>     
+                        </div>
+
+                        <div class="Category_box"></div>
                         <button class="writebutton" type="button" onclick=";">목록</button>
+                        
                     </div>
                 </form>
             </div>

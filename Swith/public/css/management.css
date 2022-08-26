@@ -1,21 +1,28 @@
 @font-face {
-    font-family: 'GS_bold'; 
-    src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
-    font-family: "GS_bold";
+    font-family: "GmarketSansMedium";
 }
 
 html,body {
     margin: 0;
     padding: 0;
-    background-color: #4686c2;
+    background-color: #ffffff;
     margin: 0;
 }
+
 body{
     height: 100%;
     width: 100%;
+}
+
+.name {
+  font-weight:bold;
 }
 
 .whole_container {
@@ -179,7 +186,6 @@ form input::file-selector-button {
   width:250px;
   height:50px;
   border:0;
-  border-radius: 5px;
   font-size: 1.4rem;
 }
 
@@ -189,7 +195,6 @@ form input::file-selector-button {
   width:250px;
   height:50px;
   border:0;
-  border-radius: 5px;
   font-size: 1.4rem;
 }
 
@@ -199,22 +204,14 @@ form input::file-selector-button {
   width:250px;
   height:50px;
   border:0;
-  border-radius: 5px;
   font-size: 1.4rem;
 }
 
 .writebutton:hover, .cancelebutton:hover, .editbutton:hover {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
 }
 
- 
-/* input[type="button"], button:hover {
-  cursor: pointer;
-} */
-
-/* input[type="radio"], label:hover {
-  cursor: pointer;
-} */
   
   /* 온/오프 설정 */
   .radio-btn {
@@ -383,4 +380,60 @@ footer {
 
 .newHashtag:hover {
   color:#4686C2;
+}
+
+
+
+/* 삭제하기 & 수정하기 */
+.regi_btn_wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 720px;
+  height: 60px;
+  margin: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 10 30px;
+}
+
+/* 삭제버튼 */
+.regi_txt{
+  width: 50%;
+  height: 100%;
+  background-color: #FFE19C;
+  font-weight: bold;
+  color: #333;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+/* 수정버튼 */
+.regi_btn{
+  width: 50%;
+  height: 100%;
+  background-color: #4D6275;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* 목록버튼 */
+.writebutton {
+  width: 720px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #4D6275;
+  font-weight: bold;
+}
+
+/* 여백용 박스 */
+.Category_box {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
 }
