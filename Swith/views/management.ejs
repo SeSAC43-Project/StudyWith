@@ -20,6 +20,14 @@
             var form = document.getElementById("management_info");
             var id = document.getElementById("study_id");
 
+            var startDate = new Date($('#start_year').val()+'-'+ $('#start_month').val()+'-'+  $('#start_day').val());
+            var endDate = new Date($('#end_year').val()+'-'+  $('#end_month').val()+'-'+  $('#end_day').val());
+
+            if (startDate >= endDate) {
+                swal('Error!','스터디 기간을 확인해주세요.','warning');
+                return;
+            }
+
             axios({
                 method:'patch',
                 url:'http://localhost:8000/feed/management/edit',

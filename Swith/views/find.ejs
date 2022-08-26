@@ -46,17 +46,23 @@
             $('#find_button').html("<button class='modifyUser' style='color:white'>비밀번호 변경</button>");
         }
 
-        // 엔터키 누르면 버튼 눌리게 (작업중)
+        // 엔터키 누르면 버튼 눌리게
         $(document).ready(function(){
-            var input = document.getElementById("id");
+            var keyup = document.getElementById(e);
 
             input.addEventListener("keyup", function (event){
-                if( event.keyCode == 13 ) {
+                if( event.keyCode === 13 ) {
                     event.preventDefault();
-                    document.getElementById("find_button").click();
+                    document.getElementById("find_enter").click();
                 }
             });
         })
+
+        // function find_enter() {
+        //     if ( window.event.keyCode === 13 ) {
+
+        //     }
+        // }
 
         /* 아이디 유무 검사 */
         function checkID( obj ){
@@ -119,9 +125,9 @@
                 <div id="PopUp" class="PopUp"></div>
                 <div id="button_site" class="button_site">
                   <br><br>
-                  <input type="text" name="hint_answer" class="hint_answer" placeholder="답변을 입력해주세요." required style="color:white"> 
+                  <input type="text" name="hint_answer" class="hint_answer" placeholder="답변을 입력해주세요." required style="color:white">
                   <br><br>
-                  <button href="javascript:enter_find();" type="button" id='find_button' class="findUser" onclick="password_find()" style="color:white" onkeyup="find_enter()">비밀번호 찾기</button>
+                  <button href="javascript:enter_find();" type="button" id='find_button' class="findUser" onclick="password_find()" style="color:white" onkeyup="find_enter();">비밀번호 찾기</button>
                 </div>
                 </form>
             </div>    
