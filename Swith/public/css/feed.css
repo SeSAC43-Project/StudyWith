@@ -1,16 +1,18 @@
 @font-face {
-    font-family: 'GS_bold'; 
-    src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
-    font-family: "GS_bold";
+    font-family: "GmarketSansMedium";
 }
 
 html,body {
     margin: 0;
     padding: 0;
-    background-color: #4686c2;
+    background-color: #fff;
     margin: 0;
     padding: 0;
 
@@ -34,6 +36,9 @@ body {
     align-items: center;
 }
 
+.feed_container {
+  margin-top: 50px;
+}
 .feed_container, h2 {
     /* display: flex;
     justify-content: center; 
@@ -49,7 +54,7 @@ form {
 	position: relative;
 	background: white;
 	border-radius: .4em;
-    width: 900px;
+    width:1200px;
     height: 1300px;
     text-align: center;
     box-sizing: border-box;
@@ -60,16 +65,16 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* box-sizing: border-box; */
   position: relative;
+  margin-left: 50px;
 }
 
 .context_container {
 position: absolute;
-/* padding-top: 10%; */
-width: 80%;
+width: 100%;
+top: 5%;
 }
-
+/* 말풍선 모양
 form:after {
 	content: '';
 	position: absolute;
@@ -83,7 +88,7 @@ form:after {
 	border-right: 0;
 	margin-left: -10px;
 	margin-top: -20px;
-}
+} */
 
 
 .form-row {
@@ -93,7 +98,13 @@ form:after {
     align-items:center;
     padding: 20px 0 20px 0;
     border-bottom: 1px solid #e5e5e5;
-    width: 100%;
+    width: 90%;
+    position: relative;
+}
+.form-row:first-child {
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }
 
 .name {
@@ -102,6 +113,7 @@ form:after {
     font-size: 20px;
     margin-top: 11px;
     flex-grow:1;
+    font-weight: bold;
 }
 .value {
   flex-grow:9;
@@ -114,7 +126,7 @@ ul {
   list-style: none;
   display: flex;
   /* justify-content: center; */
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding-left: 0;
   flex-wrap: wrap;
@@ -155,7 +167,7 @@ ul {
 }
 
 /* 그룹이미지 설정 */
-
+/* 
     #group_img_upload {
     position: absolute;
     display: flex;
@@ -165,7 +177,7 @@ ul {
     padding:10px 10px 10px 10px;
     width:700px;
     height:100px;
-  }
+  } */
 
   /* .group label {
     width: 700px;
@@ -191,14 +203,6 @@ ul {
 
 
   .group input[type="file"] {
-    /* position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -346,25 +350,28 @@ ul {
 }
 
 #group_img_upload {
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 3; */
+  position:absolute;
+  top: 0px;
 }
 
 .groupImgLabel {
   display: inline-block;
-  width: 700px;
-  height: 70px;
+  width: 500px;
+  height: 300px;
 }
 
 #group_img {
-  width: 700px;
-  height: 70px;
+  width: 500px;
+  height: 300px;
   border: 3px dashed;
   border-color: #4686C2;
-  position: absolute;
-  margin: auto;
+  /* position: absolute; */
+  position: relative;
+  /* margin: auto; */
   text-align: center;
   top:-10px;
 }

@@ -151,18 +151,13 @@
             alert(data.study_image);
             // $('#group_img').attr('src', '/public/group/' + data.fileName);
             $("#group_img").css({"background-image":`url(/public/group/${data.fileName})`}); 
-            $("#group_img").css({"background-size":`700px 70px`});
+            $("#group_img").css({"background-size":`500px 300px`});
+            $('#group_img').css('border','none');
+            $('.groupImgLabel > p').css('opacity','0');
             
         })
     }
 
-
-                    // <!-- 그룹 프로필 이미지  -->
-                    // <div class="group" id="group_img_upload">
-                    //     <label for="groupImg">그룹이미지+</div>
-                    //     <input type="file" id='groupImg' name="studyImage" onchange="uploadFile( this )">
-                    // <img id = 'group_img'></label>
-                    // </div>
 
     </script>
 
@@ -204,11 +199,11 @@
     <form id="feed_info" class="form_container" enctype="multipart/form-data">
             <div class="context_container">
                 
-                <div class="form-row">
+                <div class="form-row" style="height: 300px;">
                     <div class="group" id="group_img_upload">
                             <div id="group_img">
                             <label class="groupImgLabel" for="groupImg">
-                                <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br>click!</label>
+                                <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br><p>그룹이미지를 선택해주세요!</p></label>
                         </div>
                     </div>
 
