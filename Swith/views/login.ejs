@@ -28,56 +28,6 @@
             })
         </script>
 
-        <script>
-
-            function loginUser() {
-                var form = document.getElementById('login_form');
-                var result = form.checkValidity();
-
-                if ( !result ) {
-
-                    // //1. 경고메세지
-                    // $('.warningLogin').html('아이디,비밀번호를 모두 입력해주세요');
-                    // $('.warningLogin').css('color','red');
-
-                    //2. alert창
-                    swal('로그인 실패!','아이디와 비밀번호를 모두 입력해주세요.','warning');
-
-
-                return false;
-
-                }
-
-                axios ({
-                    method:'post',
-                    url: "http://localhost:8000/user/login",
-                    data: {
-                        user_id : form.id.value,
-                        user_password : form.password.value,
-                    }
-                })
-                .then((req) => { return req.data;})
-                .then((data) => {                  
-                    if (data == 'True') {
-                        document.location.href="http://localhost:8000/swith";
-                    }
-                    else {
-                        console.log("로그인 실패!")
-                        $(".warningLogin").html("아이디 또는 비밀번호를 확인해주세요.");
-                        $(".warningLogin").css("color","red");
-                    }
-                })
-            }
-
-            function register() {
-                document.location.href="http://localhost:8000/user/signup";
-            }
-
-            function findPw() {
-                document.location.href="http://localhost:8000/user/find";
-            }
-
-        </script>
     
     </head>
     <body>
@@ -127,7 +77,74 @@
                     </form>
                 <!-- </div> -->
                 </div>
+
+                <script>
+
+
+                    //  엔터키 - 로그인
+                    $('#pw').keypress(function(e) {
+                        if (e.keyCode === 13 ) {
+                            loginUser();
+                        }
+                    });
+        
+                    // 로그인하기
+                    function loginUser() {
+                        var form = document.getElementById('login_form');
+                        var result = form.checkValidity();
+        
+                        if ( !result ) {
+        
+                            // //1. 경고메세지
+                            // $('.warningLogin').html('아이디,비밀번호를 모두 입력해주세요');
+                            // $('.warningLogin').css('color','red');
+        
+                            //2. alert창
+                            swal('로그인 실패!','아이디와 비밀번호를 모두 입력해주세요.','warning');
+        
+        
+                        return false;
+        
+                        }
+        
+                        axios ({
+                            method:'post',
+                            url: "http://localhost:8000/user/login",
+                            data: {
+                                user_id : form.id.value,
+                                user_password : form.password.value,
+                            }
+                        })
+                        .then((req) => { return req.data;})
+                        .then((data) => {                  
+                            if (data == 'True') {
+                                document.location.href="http://localhost:8000/swith";
+                            }
+                            else {
+                                console.log("로그인 실패!")
+                                $(".warningLogin").html("아이디 또는 비밀번호를 확인해주세요.");
+                                $(".warningLogin").css("color","red");
+                            }
+                        })
+                    }
+        
+                    function register() {
+                        document.location.href="http://localhost:8000/user/signup";
+                    }
+        
+                    function findPw() {
+                        document.location.href="http://localhost:8000/user/find";
+                    }
+        
+                </script>
+
+
+
+
+
+
         <script>
+
             function idRemember() {
                 // 아이디를 기억해줘 누르면 쿠키 생성 및 날짜 지정
                 var date = new Date();
