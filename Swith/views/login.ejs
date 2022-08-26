@@ -13,7 +13,20 @@
         <link rel="stylesheet" href="/public/css/login.css" />
 
 
+        <script>
+            // 아이디를 기억해줘 확인 절차 시행
+            $(window).on('load', function() {
+                var cookieArr = document.cookie.split("; ");
+                // 아이디 기억하기 쿠키가 존재하면 아이디 띄워주기! 
+                if (cookieArr.includes('id=remember')) {
+                    var id_input = document.getElementById('user');
+                    var user_id = document.getElementById('user_id').innerText;
+                    id_input.value = user_id;
 
+                    $("#userid_Remember").prop('checked', true);
+                }
+            })
+        </script>
 
         <script>
 
@@ -73,7 +86,7 @@
     
         </nav>
         </thead>
-
+            <div id="user_id" style="display:none"><%=user_id %></div>
             <div class="container">
                 <img src="/public/login/login_image.png" class="login_background">
                     <form id="login_form">
@@ -85,7 +98,7 @@
                             <input type="password" id="pw" name="password"  class="login_form_pw" placeholder="비밀번호" style="color:white" required>
                             <br>
 
-                            <div class="remember"><label for="userid_Remember" style="font-size: 0.7rem;"><input type="checkbox" id="userid_Remember" name="id_remember">&nbsp;아이디를 기억해줘!</label></div>
+                            <div class="remember"><label for="userid_Remember" style="font-size: 0.7rem;"><input type="checkbox" id="userid_Remember" name="id_remember" onclick="idRemember()">&nbsp;아이디를 기억해줘!</label></div>
 
                             <br>
 
@@ -112,6 +125,15 @@
                     </form>
                 <!-- </div> -->
                 </div>
+        <script>
+            function idRemember() {
+                // 아이디를 기억해줘 누르면 쿠키 생성 및 날짜 지정
+                var date = new Date();
+                date.setDate(date.getDate() + 30); 
+                var afterMonth = date.toGMTString();
 
+                document.cookie = `id=remember; expires=${afterMonth}`;
+            }
+        </script>
     </body>
 </html>
