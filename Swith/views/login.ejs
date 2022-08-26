@@ -86,7 +86,9 @@
     
         </nav>
         </thead>
-            <div id="user_id" style="display:none"><%=user_id %></div>
+            <% if(locals.user_id) { %>
+                <div id="user_id" style="display:none"><%=user_id %></div>
+            <% } %>
             <div class="container">
                 <img src="/public/login/login_image.png" class="login_background">
                     <form id="login_form">
