@@ -12,7 +12,6 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <!-- modal -->
-        <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
         <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
@@ -178,15 +177,6 @@
                     Swal.fire({
                         icon: 'warning',
                         title: '올바른 이메일 형식이 아닙니다.',
-                        text: '45글자 이내',
-                    })
-                    return false;
-                }
-
-                if (form.checkPw.value == '') {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: '비밀번호 확인해주세요!',
                         text: '45글자 이내',
                     })
                     return false;
