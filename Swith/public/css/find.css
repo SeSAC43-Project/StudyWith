@@ -65,7 +65,7 @@
 
 .form_background {
     width : 640px;
-    height: 640px;
+    height: 740px;
     background-color: white;
     opacity: 0.7;
     position:absolute;
@@ -118,7 +118,7 @@ select > option {
     color: white;
     text-align: center;
     position: relative;
-    bottom: -5px;
+    bottom: -10px;
 }
 
 
@@ -129,19 +129,19 @@ select > option {
     width: 300px;
     height:50px;
     position: relative;
-    bottom: 30px;
+    bottom: 20px;
 }
 
 .modifyUser {
     position: relative;
-    bottom: 10px;
+    bottom: 0px;
 }
 
 a:link { text-decoration:none; }
 
 .button_site {
     position: absolute;
-    top: 345px;
+    top: 360px;
 }
 
 #checkID_text {
@@ -156,5 +156,5 @@ a:link { text-decoration:none; }
     height:50px;
     border-radius: 30px;
     position: absolute;
-    bottom: -150px;
+    bottom: -180px;
 }
