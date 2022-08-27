@@ -50,6 +50,13 @@
     margin-top: -100px;
 }
 
+.find_box {
+    
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
 .login_logo {
     margin-top: 10px;
     top: 10px;
@@ -75,12 +82,14 @@
     margin: 25px 25px;
 }
 
-.find_password_user, .hint_answer {
+.find_password_user, .hint_answer, .hint {
     border: 0;
     background-color: #4686C2;
     width: 300px;
     height: 50px;
     border-radius: 30px;
+    position: relative;
+    bottom: 20px;
 }
 
 input {
@@ -91,6 +100,15 @@ input:focus {
     outline: 3px solid #4686C2
 }
 
+option {
+    font-size: 20px;
+}
+
+select > option {
+    width: 20px;
+    height: 20px;
+}
+
 .hint {
     background-color: #4686C2;
     width: 300px;
@@ -99,6 +117,8 @@ input:focus {
     border-radius: 30px;
     color: white;
     text-align: center;
+    position: relative;
+    bottom: 10px;
 }
 
 
@@ -108,6 +128,8 @@ input:focus {
     border-radius: 30px;
     width: 300px;
     height:50px;
+    position: relative;
+    bottom: 30px;
 }
 
 a:link { text-decoration:none; }
@@ -119,4 +141,14 @@ a:link { text-decoration:none; }
 
 #checkID_text {
     text-align : center;
+}
+
+.login_back {
+    background-color: #4686C2;
+    border:0;
+    width: 300px;
+    height:50px;
+    border-radius: 30px;
+    position: absolute;
+    bottom: -140px;
 }

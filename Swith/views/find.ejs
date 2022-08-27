@@ -35,7 +35,7 @@
                     }
                 });
 
-                // 엔터키 눌리면 버튼 눌ㅣㅔ
+                // 엔터키 눌리면 버튼 눌리기
                 var form = document.getElementById("id");
 
                     form.addEventListener("keyup", function (event) {
@@ -78,6 +78,10 @@
                 });
             }
 
+            // 로그안 창으로 돌아가기
+            function back() {
+                document.location.href="http://localhost:8000/user/login"; 
+            }
     </script>
     <style>
         .PopUp {
@@ -101,26 +105,29 @@
             <div class="find_card">
                 <!-- 폼 -->
                 <form id="find_password"  method="post" action="/user/modify">
-                    <img src="/public/login/logo.png" width="300px;" class="login_logo"><br>
-                    <h1 class="password_find">비밀번호 찾기</h1>
+                    <div class="find_box">
+                        <img src="/public/login/logo.png" width="300px;" class="login_logo"><br>
+                        <h1 class="password_find">비밀번호 찾기</h1>
+                        
+                        <input type="text" id="id" name="user_id" class="find_password_user" placeholder="아이디" required style="color:white" onkeyup="checkID( this );">
+                        <br><p id="checkID_text"></p>
+                        
                     
-                    <input type="text" id="id" name="user_id" class="find_password_user" placeholder="아이디" required style="color:white" onkeyup="checkID( this );">
-                    <br><p id="checkID_text"></p>
-                    
-                
-                <select name="hint" class="hint">
-                    <option value="0">전체</option>
-                    <option value="1">어느 중학교 출신인가요?</option>
-                    <option value="2">좌우명을 입력해주세요.</option>
-                    <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
-                </select>
-                <div id="PopUp" class="PopUp"></div>
-                <div id="button_site" class="button_site">
-                  <br><br>
-                  <input type="text" id="hint_answer" name="hint_answer" class="hint_answer" placeholder="답변을 입력해주세요." required style="color:white">
-                  <br><br>
-                  <button href="javascript:enter_find();" type="button" id='find_button' class="findUser" onclick="password_find()" style="color:white">비밀번호 찾기</button>
-                </div>
+                        <select name="hint" class="hint" style="width:300px;height:50px;">
+                            <option value="0">전체</option>
+                            <option value="1">어느 중학교 출신인가요?</option>
+                            <option value="2">좌우명을 입력해주세요.</option>
+                            <option value="3">학창시절에 좋아했던 과목은 무엇인가요?</option>
+                        </select>
+                        <div id="PopUp" class="PopUp"></div>
+                        <div id="button_site" class="button_site">
+                        <br><br>
+                        <input type="text" id="hint_answer" name="hint_answer" class="hint_answer" placeholder="답변을 입력해주세요." required style="color:white">
+                        <br><br>
+                        <button href="javascript:enter_find();" type="button" id='find_button' class="findUser" onclick="password_find()" style="color:white">비밀번호 찾기</button>
+                        </div>
+                        <button type="button" id="login_back" class="login_back" onclick="back()" style="color:white;">로그인 화면으로가기</button>
+                    </div>
                 </form>
             </div>    
             </div>    
