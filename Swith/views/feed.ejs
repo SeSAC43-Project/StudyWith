@@ -167,7 +167,6 @@
         })
         .then((data) => {
             uploadedFile = data.fileName;
-            alert(data.study_image);
             // $('#group_img').attr('src', '/public/group/' + data.fileName);
             $("#group_img").css({"background-image":`url(/public/group/${data.fileName})`}); 
             $("#group_img").css({"background-size":`500px 300px`});
