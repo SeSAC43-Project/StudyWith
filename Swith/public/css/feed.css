@@ -116,6 +116,7 @@ body {
 
 h2 {
   font-size: xx-large;
+  padding-top : 5vw;
 }
 
 form {
@@ -134,7 +135,6 @@ form {
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-left: 50px;
 }
 
 .context_container {
@@ -166,7 +166,7 @@ form:after {
     align-items:center;
     padding: 20px 0 20px 0;
     border-bottom: 1px solid #e5e5e5;
-    width: 90%;
+    /* width: 90%; */
     position: relative;
 }
 .form-row:first-child {
