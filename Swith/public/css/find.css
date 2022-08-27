@@ -118,7 +118,7 @@ select > option {
     color: white;
     text-align: center;
     position: relative;
-    bottom: 10px;
+    bottom: -5px;
 }
 
 
@@ -134,7 +134,7 @@ select > option {
 
 .modifyUser {
     position: relative;
-    bottom: 0px;
+    bottom: 10px;
 }
 
 a:link { text-decoration:none; }
@@ -146,6 +146,7 @@ a:link { text-decoration:none; }
 
 #checkID_text {
     text-align : center;
+    margin-top: -15px;
 }
 
 .login_back {
@@ -155,5 +156,5 @@ a:link { text-decoration:none; }
     height:50px;
     border-radius: 30px;
     position: absolute;
-    bottom: -140px;
+    bottom: -150px;
 }
