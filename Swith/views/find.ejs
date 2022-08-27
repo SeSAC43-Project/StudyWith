@@ -68,26 +68,33 @@
                 });
             }
 
-            // 엔터키 눌리면 버튼 눌리기
-                var form = document.getElementById("hint_answer");
+        // 엔터키 눌리면 버튼 눌리기
+            // var form = document.getElementById("hint_answer");
 
-                    form.addEventListener("keyup", function (event) {
-                    if (event.keyCode === 13) {
-                        event.preventDefault();
-                        document.getElementById("password_find").click();
-                    }
-                });
+            //     form.addEventListener("keyup", function (event) {
+            //     if (event.keyCode === 13) {
+            //         event.preventDefault();
+            //         document.getElementById("password_find").click();
+            //     }
+            // });
                 
-        // $('#hint_answer').keypress(function(e){
+        // $('#id').keyup(function(e){
         //     if ( e.keyCode === 13 ) {
-        //         password_find();
+        //         enter_find();
+        //         return;
         //     }
         // });
 
-            // 로그안 창으로 돌아가기
-            function back() {
-                document.location.href="http://localhost:8000/user/login"; 
+        function enter_findd() {
+            if ( e.keyCode === 13 ) {
+                password_find();
             }
+        }
+
+        // 로그안 창으로 돌아가기
+        function back() {
+            document.location.href="http://localhost:8000/user/login"; 
+        }
     </script>
     <style>
         .PopUp {
