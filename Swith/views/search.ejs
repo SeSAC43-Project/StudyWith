@@ -103,195 +103,6 @@
                     </div>
             </div>
         </div>
-        
-<script>
-
-
-    // 검색 결과 부분
-    $('.category').children('p').on('click',function(e) {
-            var cate_target = e.target;
-
-            $('.resultText').html("<h2 class='cate_resultText'> 💡 " + '"' + $(cate_target).text() + '"'+" 검색 결과입니다.</h2>");
-            // $('.searchPostSection').css('display','none');
-            // $('.categoryPostSection').css('display','block');
-            })
-
-
-
-    // 카테고리 정보 보내기 
-                    
-    var categorys = document.querySelectorAll('.category-title');
-                    
-                    
-                    for (const category of categorys) {     
-                        category.addEventListener('click', function(obj) {
-                            var car_site = obj.currentTarget;  //[object HTMLButtonElement]
-                            var car_value = $(car_site).children('.category').children('p').text(); 
-                            
-
-                            axios({
-                                method: 'post',
-                                url: 'http://localhost:8000/swith/search/category',
-                                data : {
-                                    study_category : car_value
-                                }
-                            })
-                            .then((req) => {return req.data; })
-                            .then((data) => {
-                                if (data.flag == true) {
-                                    console.log(data),
-                                    console.log(data.data);
-                                    console.log(data.likeList);
-                                }
-                                var html = "";
-
-                                for ( var i = 0; i < data.data.length; i++ ){
-                                    html += "<div class = 'studys categoryPostSection'><div class = 'all-category' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>"
-                                    html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><sapn>" + data.data[i].study_name + "</sapn><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span><p>"+ data.data[i].study_content +"</p></div></div>";
-
-                                if ( data.likeList[i] == '0') {
-                                    html += "<div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>"; 
-                                } else { 
-                                    html += "<div class='likes'><p style='font-size:2rem;' class='heart fa-solid fa-heart'></p></div></div>";
-                                }
-
-
-                                
-                                }
-
-                                $(".feed-main-container").empty();
-                                $(".feed-main-container").append(html);
-
-                            })
-        
-            
-                    });  
-                }
-
-
-    //좋아요 버튼,취소 동시에 기능
-
-            var likes = document.querySelectorAll('.likes');
-
-                    for (const like of likes) {
-                        
-                        like.addEventListener('click',function(obj) {
-                            var target = obj.currentTarget;
-                            var study_id = $(target).siblings('div').children('div:first').children('p').text();
-                            
-
-
-                        if ( $(target).children('.heart').hasClass('far fa-heart')) {
-
-                            axios({
-                                method:'post',
-                                url: 'http://localhost:8000/swith/search/likes',
-                                data : {
-                                    study_id : study_id,
-                                        }
-                                })
-                                .then((req) => { return req.data;})
-                                .then((data) => {
-                                    // console.log('이건되나',data.isLikes); //{isLikes: true}
-                                    if (data.isLikes == true) {
-                                        $(target).children('.heart').removeClass('far fa-heart');
-                                        $(target).children('.heart').addClass('fa-solid fa-heart');
-                                        $(target).children('.heart').addClass('heartEffect');
-                                    }
-                                    
-                                })
-                            }
-
-
-                        else {
-
-                            axios({
-                                method:'post',
-                                url: 'http://localhost:8000/swith/search/likes/remove',
-                                data : {
-                                    study_id : study_id,
-                                        }
-                                })
-                                .then((req) => { return req.data;})
-                                .then((data) => {
-                                    if (data.isDislikes == true) {
-                                        console.log('되나요..?');
-                                        $(target).children('.heart').removeClass('fa-solid fa-heart');
-                                        $(target).children('.heart').addClass('far fa-heart');
-                                    }
-                                })
-                            }
-                        })
-                    }
-            
-
-
-    // 메인에서 검색, 카테고리 선택 후 상세페이지로 이동하기
-            var allBs = document.getElementsByClassName('all-business');
-
-            for (const allB of allBs) {
-                allB.addEventListener('click', function(obj) {
-                    var study_site = obj.currentTarget;
-                    var study_id = $(study_site).children('div').children('p').text();
-                    
-                    // var target = document.getElementsByClassName(".likes");
-                    // if(obj.target.getElementsByClassName != 'likes')
-                    //     return;
-
-                    axios ({
-                        method:'post', 
-                        url:'http://localhost:8000/swith/search/detailed', 
-                        data : {
-                            study_id : study_id
-                        }
-                    })
-                    .then((req) => {return req.data;})
-                    .then((data) => {
-                        console.log(data.user_id); 
-                        console.log(data.study_id);
-                        document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${data.study_id}`
-                    })
-                })
-            }
-            
-
-
-            const categoryTitle = document.querySelectorAll('.category-title');
-            const allCategoryPosts = document.querySelectorAll('.all');
-
-            for(let i = 0; i < categoryTitle.length; i++){
-                categoryTitle[i].addEventListener('click', filterPosts.bind(this, categoryTitle[i]));
-            }
-
-            function filterPosts(item){
-                changeActivePosition(item);
-                for(let i = 0; i < allCategoryPosts.length; i++){
-                    if(allCategoryPosts[i].classList.contains(item.attributes.id.value)){
-                        allCategoryPosts[i].style.display = "block";
-                    } else {
-                        allCategoryPosts[i].style.display = "none";
-                    }
-                }
-            }
-
-            function changeActivePosition(activeItem){
-                for(let i = 0; i < categoryTitle.length; i++){
-                    categoryTitle[i].classList.remove('active');
-                }
-                activeItem.classList.add('active');
-            };
-
-
-    // 서치페이지에서 카테고리 선택 후 상세페이지로 이동하기
-            function reply_click(clicked_id) {
-                goDetail(clicked_id);
-            }
-            function goDetail(cate_study_id) {
-                    document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${cate_study_id}`;
-            }
-
-        </script>
-
         <!-- ==========================================footer========================================== -->
     <footer class="sticky-footer">
         <ul>
@@ -310,6 +121,184 @@
         form.method = "get";
         form.action="/d";
         form.submit();
+    }
+
+    // 검색 결과 부분
+    $('.category').children('p').on('click',function(e) {
+        var cate_target = e.target;
+
+        $('.resultText').html("<h2 class='cate_resultText'> 💡 " + '"' + $(cate_target).text() + '"'+" 검색 결과입니다.</h2>");
+        // $('.searchPostSection').css('display','none');
+        // $('.categoryPostSection').css('display','block');
+        })
+
+
+
+    // 카테고리 정보 보내기          
+    var categorys = document.querySelectorAll('.category-title');
+        for (const category of categorys) {     
+            category.addEventListener('click', function(obj) {
+                var car_site = obj.currentTarget;  //[object HTMLButtonElement]
+                var car_value = $(car_site).children('.category').children('p').text(); 
+                
+
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8000/swith/search/category',
+                    data : {
+                        study_category : car_value
+                    }
+                })
+                .then((req) => {return req.data; })
+                .then((data) => {
+                    if (data.flag == true) {
+                        console.log(data),
+                        console.log(data.data);
+                        console.log(data.likeList);
+                    }
+                    var html = "";
+
+                    for ( var i = 0; i < data.data.length; i++ ){
+                        html += "<div class = 'studys categoryPostSection'><div class = 'all-category' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>"
+                        html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><sapn>" + data.data[i].study_name + "</sapn><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span><p>"+ data.data[i].study_content +"</p></div></div>";
+
+                    if ( data.likeList[i] == '0') {
+                        html += "<div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>"; 
+                    } else { 
+                        html += "<div class='likes'><p style='font-size:2rem;' class='heart fa-solid fa-heart'></p></div></div>";
+                    }
+
+
+                    
+                    }
+
+                    $(".feed-main-container").empty();
+                    $(".feed-main-container").append(html);
+
+                })
+
+        });  
+    }
+
+
+    //좋아요 버튼,취소 동시에 기능
+    var likes = document.querySelectorAll('.likes');
+
+            for (const like of likes) {
+                
+                like.addEventListener('click',function(obj) {
+                    var target = obj.currentTarget;
+                    var study_id = $(target).siblings('div').children('div:first').children('p').text();
+                    
+
+
+                if ( $(target).children('.heart').hasClass('far fa-heart')) {
+
+                    axios({
+                        method:'post',
+                        url: 'http://localhost:8000/swith/search/likes',
+                        data : {
+                            study_id : study_id,
+                                }
+                        })
+                        .then((req) => { return req.data;})
+                        .then((data) => {
+                            // console.log('이건되나',data.isLikes); //{isLikes: true}
+                            if (data.isLikes == true) {
+                                $(target).children('.heart').removeClass('far fa-heart');
+                                $(target).children('.heart').addClass('fa-solid fa-heart');
+                                $(target).children('.heart').addClass('heartEffect');
+                            }
+                            
+                        })
+                    }
+
+
+                else {
+
+                    axios({
+                        method:'post',
+                        url: 'http://localhost:8000/swith/search/likes/remove',
+                        data : {
+                            study_id : study_id,
+                                }
+                        })
+                        .then((req) => { return req.data;})
+                        .then((data) => {
+                            if (data.isDislikes == true) {
+                                console.log('되나요..?');
+                                $(target).children('.heart').removeClass('fa-solid fa-heart');
+                                $(target).children('.heart').addClass('far fa-heart');
+                            }
+                        })
+                    }
+                })
+            }
+            
+
+
+    // 메인에서 검색, 카테고리 선택 후 상세페이지로 이동하기
+    var allBs = document.getElementsByClassName('all-business');
+
+    for (const allB of allBs) {
+        allB.addEventListener('click', function(obj) {
+            var study_site = obj.currentTarget;
+            var study_id = $(study_site).children('div').children('p').text();
+            
+            // var target = document.getElementsByClassName(".likes");
+            // if(obj.target.getElementsByClassName != 'likes')
+            //     return;
+
+            axios ({
+                method:'post', 
+                url:'http://localhost:8000/swith/search/detailed', 
+                data : {
+                    study_id : study_id
+                }
+            })
+            .then((req) => {return req.data;})
+            .then((data) => {
+                console.log(data.user_id); 
+                console.log(data.study_id);
+                document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${data.study_id}`
+            })
+        })
+    }
+            
+
+
+    const categoryTitle = document.querySelectorAll('.category-title');
+    const allCategoryPosts = document.querySelectorAll('.all');
+
+    for(let i = 0; i < categoryTitle.length; i++){
+        categoryTitle[i].addEventListener('click', filterPosts.bind(this, categoryTitle[i]));
+    }
+
+    function filterPosts(item){
+        changeActivePosition(item);
+        for(let i = 0; i < allCategoryPosts.length; i++){
+            if(allCategoryPosts[i].classList.contains(item.attributes.id.value)){
+                allCategoryPosts[i].style.display = "block";
+            } else {
+                allCategoryPosts[i].style.display = "none";
+            }
+        }
+    }
+
+    function changeActivePosition(activeItem){
+        for(let i = 0; i < categoryTitle.length; i++){
+            categoryTitle[i].classList.remove('active');
+        }
+        activeItem.classList.add('active');
+    };
+
+
+    // 서치페이지에서 카테고리 선택 후 상세페이지로 이동하기
+    function reply_click(clicked_id) {
+        goDetail(clicked_id);
+    }
+    function goDetail(cate_study_id) {
+            document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${cate_study_id}`;
     }
 </script>
 </html>
