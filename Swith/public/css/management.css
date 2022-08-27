@@ -52,10 +52,11 @@ form {
   position: relative;
   background: white;
   border-radius: .4em;
-  width: 1200px;
+  width: 1100px;
   height: 1300px;
   text-align: center;
   box-sizing: border-box;
+  margin: auto;
 }
   
 .management_container {
@@ -112,11 +113,13 @@ h2 {
     border-bottom: 1px solid #e5e5e5;
     width: 90%;
     position: relative;
+    left: 40px;
 }
 .form-row:first-child {
   display: flex;
   text-align: center;
   justify-content: center;
+  align-items: center;
 }
 
 .name {
@@ -171,7 +174,7 @@ ul {
 
 #on_off input[type=radio]:checked+label{
   background-color: 4686c2;
-  color: #fff;
+  color: #5aa5eb;
 }
 
 #on_off input[type=radio]+label:hover {
@@ -354,7 +357,7 @@ form input::file-selector-button {
   /* margin: auto; */
   text-align: center;
   top:-10px;
-  left: 200px;
+  left: 150px;
 }
 
 #group_img:hover{

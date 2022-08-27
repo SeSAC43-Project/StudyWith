@@ -100,7 +100,7 @@
         /* 그룹이미지 업로드 부분 */
         var uploadedFile = '';
         function uploadFile(obj) {
-            var formData = new FormData();
+             var formData = new FormData();
             // 이미지를 동적폼 전송 가능하게 해주는 FormData 객체 생성
             // FormData 객체는 window.FormData에 위치
             formData.append('name', uploadedFile);
@@ -109,10 +109,9 @@
             console.log(obj.files[0]);
             // append() 메소드로 key-value 값을 하나씩 추가
             // 같은 key를 가진 값을 여러개 넣을 수 있음 ! (값은 문자열로 자동변환)
-
             axios({
                 method: 'post', 
-                url: 'http://localhost:8000/feed/managemen/upload',
+                url: 'http://localhost:8000/feed/management/upload',
                 data: formData
             })
             .then((req) => {
@@ -128,10 +127,9 @@
                 $("#group_img").css({"background-size":`500px 300px`});
                 $('#group_img').css('border','none');
                 $('.groupImgLabel > p').css('opacity','0');
-                
+
             })
         }
-
 
         /* 데이터 유효성 검사 alert */
         function checkData () {

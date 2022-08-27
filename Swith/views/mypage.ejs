@@ -142,15 +142,15 @@
                 <form id="modify_info">
 
                     <div class="info-field">
-                    <input type="text" id="nickname" name="nickname" placeholder="닉네임 : <%=data[0].user_name %>" required onkeyup="checkNickname( this );" class="nickname" style="color: black" />
+                    <input type="text" id="nickname" name="nickname" value="<%=data[0].user_name %>" required onkeyup="checkNickname( this );" class="nickname" style="color: black" />
                     <p id="checkNickname_text"></p>
 
                     <br><br>
 
-                    <input type="text" id="email" name="email" placeholder="이메일 : <%=data[0].user_email %>" class="email" style="color: black" /><br><br>
+                    <input type="text" id="email" name="email" value="<%=data[0].user_email %>" class="email" style="color: black" /><br><br>
 
-                    <input type="password" name="password" placeholder="비밀번호" onchange="pwCheck()" id="pw" style="color: black" /><br><br>
-                    <input type="password" placeholder="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color: black" /><br>
+                    <input type="password" name="password" value="비밀번호" onchange="pwCheck()" id="pw" style="color: black" /><br><br>
+                    <input type="password" value="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color: black" /><br>
                     <span id="check"></span>
                     </div>
                     
