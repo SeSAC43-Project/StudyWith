@@ -141,17 +141,30 @@
 
                 <form id="modify_info">
 
+                    
                     <div class="info-field">
-                    <input type="text" id="nickname" name="nickname" value="<%=data[0].user_name %>" required onkeyup="checkNickname( this );" class="nickname" style="color: black" />
-                    <p id="checkNickname_text"></p>
+                        <div class="name-div">닉네임 : &nbsp;&nbsp;</div>
+                            <div class="input-div">
+                            <input type="text" id="nickname" name="nickname" value="<%=data[0].user_name %>" required onkeyup="checkNickname( this );" class="nickname" style="color: black" />
+                            <p id="checkNickname_text"></p>
+                            </div>
+                        
 
-                    <br><br>
+                    <br><br><br>
 
-                    <input type="text" id="email" name="email" value="<%=data[0].user_email %>" class="email" style="color: black" /><br><br>
-
-                    <input type="password" name="password" value="비밀번호" onchange="pwCheck()" id="pw" style="color: black" /><br><br>
-                    <input type="password" value="비밀번호 확인" onchange="pwCheck()" id="pwConfirm" style="color: black" /><br>
-                    <span id="check"></span>
+                        <div class="name-div">이메일 : &nbsp;&nbsp;</div>
+                            <div class="input-div">
+                            <input type="text" id="email" name="email" value="<%=data[0].user_email %>" class="email" style="color: black" /><br><br>
+                            </div>
+                        <div class="name-div">비밀번호 : &nbsp;&nbsp;</div>
+                            <div class="input-div">
+                            <input type="password" name="password" onchange="pwCheck()" id="pw" style="color: black" /><br><br>
+                            </div>
+                        <div class="name-div">비밀번호 확인 : &nbsp;&nbsp;</div>
+                            <div class="input-div">
+                            <input type="password" onchange="pwCheck()" id="pwConfirm" style="color: black" /><br>
+                            <span id="check"></span>
+                            </div>
                     </div>
                     
                     <br><br><br>
