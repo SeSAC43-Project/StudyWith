@@ -5,53 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>스터디관리</title>
-
-
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-    <!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
-    
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- sweetalert -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <!-- CSS -->
     <link rel="stylesheet" href="/public/css/management.css">
 
     <script>
-        // 게시물 수정하기 
+        /* 게시물 수정하기 */
         function editFeed() {
             var form = document.getElementById("management_info");
             var id = document.getElementById("study_id");
 
-            var startDate = new Date($('#start_year').val()+'-'+ $('#start_month').val()+'-'+  $('#start_day').val());
-            var endDate = new Date($('#end_year').val()+'-'+  $('#end_month').val()+'-'+  $('#end_day').val());
+            var flag = checkData(); //데이터 유효성 검사
 
-            if (startDate >= endDate) {
-                swal('Error!','스터디 기간을 확인해주세요.','warning');
-                return;
+            if (flag == true) { //유효성 검사 통과하면 Patch
+                axios({
+                    method:'patch',
+                    url:'http://localhost:8000/feed/management/edit',
+                    data : {
+                        study_id: id.innerText,
+                        study_name : form.studyName.value,
+                        study_category : form.studyCategory.value,
+                        study_recruit : form.studyRecruit.value,
+                        study_image : uploadedFile, 
+                        study_content : form.studyContent.value,
+                        start_period : form.start_year.value + '-' + form.start_month.value + '-' + form.start_day.value,
+                        end_period : form.end_year.value + '-' + form.end_month.value + '-' + form.end_day.value,
+                        hashtag: form,
+                    }
+                })
+                .then((req) => {return req.data;})
+                .then((data) => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: '수정되었습니다.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
             }
-
-            axios({
-                method:'patch',
-                url:'http://localhost:8000/feed/management/edit',
-                data : {
-                    study_id: id.innerText,
-                    study_name : form.studyName.value,
-                    study_category : form.studyCategory.value,
-                    study_recruit : form.studyRecruit.value,
-                    study_image : uploadedFile, 
-                    study_content : form.studyContent.value,
-                    start_period : form.start_year.value + '-' + form.start_month.value + '-' + form.start_day.value,
-                    end_period : form.end_year.value + '-' + form.end_month.value + '-' + form.end_day.value,
-                    hashtag: form,
-                }
-            })
-            .then((req) => {return req.data;})
-            .then((data) => {
-                alert("수정 완료");
-            })
-
         }
 
-        // 게시물 삭제하기
-        function deleteFeed() {
+        /* 삭제하기 modal YES 버튼을 누를 경우 */
+        function True() {
             var id = document.getElementById("study_id");
 
             axios({
@@ -63,7 +66,17 @@
             })
             .then((req) => {return req.data;})
             .then((data) => {
-                alert("삭제 완료");
+                $('#exampleModal').modal("hide"); // modal 닫기
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: '게시물이 삭제되었습니다.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                setTimeout(function() { // 메인페이지 이동
+                    document.location.href="http://localhost:8000/swith";
+                }, 1000);
             })
         }
 
@@ -87,39 +100,103 @@
         /* 그룹이미지 업로드 부분 */
         var uploadedFile = '';
         function uploadFile(obj) {
-        var formData = new FormData();
-        // 이미지를 동적폼 전송 가능하게 해주는 FormData 객체 생성
-        // FormData 객체는 window.FormData에 위치
-        formData.append('name', uploadedFile);
-        formData.append('studyImage', obj.files[0]);
-        console.log(uploadedFile);
-        console.log(obj.files[0]);
-        // append() 메소드로 key-value 값을 하나씩 추가
-        // 같은 key를 가진 값을 여러개 넣을 수 있음 ! (값은 문자열로 자동변환)
+             var formData = new FormData();
+            // 이미지를 동적폼 전송 가능하게 해주는 FormData 객체 생성
+            // FormData 객체는 window.FormData에 위치
+            formData.append('name', uploadedFile);
+            formData.append('studyImage', obj.files[0]);
+            console.log(uploadedFile);
+            console.log(obj.files[0]);
+            // append() 메소드로 key-value 값을 하나씩 추가
+            // 같은 key를 가진 값을 여러개 넣을 수 있음 ! (값은 문자열로 자동변환)
+            axios({
+                method: 'post', 
+                url: 'http://localhost:8000/feed/management/upload',
+                data: formData
+            })
+            .then((req) => {
+                console.log(req.data);
+                // $('#groupImgLabel').css('display','none');
+                return req.data
+            })
+            .then((data) => {
+                uploadedFile = data.fileName;
+                alert(data.study_image);
+                // $('#group_img').attr('src', '/public/group/' + data.fileName);
+                $("#group_img").css({"background-image":`url(/public/group/${data.fileName})`}); 
+                $("#group_img").css({"background-size":`500px 300px`});
+                $('#group_img').css('border','none');
+                $('.groupImgLabel > p').css('opacity','0');
 
-        axios({
-            method: 'post', 
-            url: 'http://localhost:8000/feed/management/upload',
-            data: formData
-        })
-        .then((req) => {
-            console.log(req.data);
-            // $('#groupImgLabel').css('display','none');
-            return req.data
-        })
-        .then((data) => {
-            uploadedFile = data.fileName;
-            alert(data.study_image);
-            // $('#group_img').attr('src', '/public/group/' + data.fileName);
-            $("#group_img").css({"background-image":`url(/public/group/${data.fileName})`}); 
-            $("#group_img").css({"background-size":`500px 300px`});
-            $('#group_img').css('border','none');
-            $('.groupImgLabel > p').css('opacity','0');
-            
-        })
-    }
+            })
+        }
 
-        // 목록 버튼을 누르면
+        /* 데이터 유효성 검사 alert */
+        function checkData () {
+            var form = document.getElementById("management_info");
+
+            if (form.studyName.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '그룹명을 입력해주세요!',
+                    text: '20글자 이내',
+                })
+                return false;
+            }
+
+            if (form.studyCategory.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '카테고리를 선택해주세요!'
+                })
+                return false;
+            }
+
+            if (form.studyRecruit.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '모집인원을 확인해주세요!',
+                    text: '최대 20명',
+                })
+                return false;
+            }
+
+
+            if (form.studyContent.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '소개글을 작성해주세요.',
+                })
+                return false;
+            }
+           
+
+            var startDate = new Date($('#start_year').val()+'-'+ $('#start_month').val()+'-'+  $('#start_day').val());
+            var endDate = new Date($('#end_year').val()+'-'+  $('#end_month').val()+'-'+  $('#end_day').val());
+
+            if (startDate >= endDate) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '스터디 기간을 확인해주세요.',
+                    text: '종료일은 시작일보다 이른 날짜일 수 없습니다.',
+                })
+                return false;
+            }
+
+            //해시태그 미완성
+            // if (hashtag) {
+            //     Swal.fire({
+            //         icon: 'warning',
+            //         title: '스터디 기간을 확인해주세요.',
+            //         text: '종료일은 시작일보다 이른 날짜일 수 없습니다.',
+            //     })
+            //     return false;
+            // }
+
+            return true;
+        }
+
+        /*  목록 버튼 */
         function list() {
             document.location.href="http://localhost:8000/swith"; 
         }
@@ -296,8 +373,28 @@
 
 
                         <div class="regi_btn_wrap">
-                            <button class="cancelebutton regi_btn2" type="button" onclick="deleteFeed();">삭제하기</button>
+                            <!-- Button trigger modal -->
+                            <button class="cancelebutton regi_btn2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">삭제하기</button>
                             <button class="editbutton regi_btn" type="button" onclick="editFeed();">수정하기</button>     
+                        </div>
+
+                        <!-- 삭제 Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">게시물을 삭제 하시겠습니까?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="취소"></button>
+                                </div>
+                                <div class="modal-body">
+                                    정말로 삭제하시겠습니까?
+                                </div>
+                                <div class="modal-footer" >
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="color:ccc;">NO</button>
+                                <button type="button" id="modal_btn2" class="btn btn-primary" style="color:4686C2;">YES</button>
+                                </div>
+                            </div>
+                            </div>
                         </div>
 
                         <div class="Category_box"></div>
@@ -325,41 +422,36 @@
 
     <script>
         $(document).ready(function(){ 
-            /* 스터디 카테고리 */
+
+            /* 스터디 카테고리 정보 불러오기 */
             var category_btn = document.querySelectorAll('.radio-btn');
             var study_category = document.getElementById('study_category');
-
             for(let i = 0; i < category_btn.length; i++){
                 if (category_btn[i].innerText == study_category.innerText) {
                     $("#category"+(i+1)).prop("checked",true);
                 }
             }
 
-            /* 스터디 시작일 */
+            /* 스터디 시작일 정보 불러오기 */
             var start_period = document.getElementById('start_period').innerText;
             var start_list = start_period.split("-");
+            $("#start_year").val(parseInt(start_list[0])).prop("selected", true);
+            $("#start_month").val(parseInt(start_list[1])).prop("selected", true);
+            $("#start_day").val(parseInt(start_list[2])).prop("selected", true);
 
-            var start_year = parseInt(start_list[0]);
-            var start_month = parseInt(start_list[1]);
-            var start_day = parseInt(start_list[2]);
-
-            $("#start_year").val(start_year).prop("selected", true);
-            $("#start_month").val(start_month).prop("selected", true);
-            $("#start_day").val(start_day).prop("selected", true);
-
-            /* 스터디 마감일 */
+            /* 스터디 마감일 정보 불러오기*/
             var end_period = document.getElementById('end_period').innerText;
             var end_list = end_period.split("-");
-
-            var end_year = parseInt(end_list[0]);
-            var end_month = parseInt(end_list[1]);
-            var end_day = parseInt(end_list[2]);
-
-            $("#end_year").val(end_year).prop("selected", true);
-            $("#end_month").val(end_month).prop("selected", true);
-            $("#end_day").val(end_day).prop("selected", true);
+            $("#end_year").val(parseInt(end_list[0])).prop("selected", true);
+            $("#end_month").val(parseInt(end_list[1])).prop("selected", true);
+            $("#end_day").val(parseInt(end_list[2])).prop("selected", true);
 
         });
+
+        /* 삭제하기 버튼 modal */
+        var button = document.getElementById('modal_btn2');
+        button.addEventListener('click',  True);
+
     </script>
 </body>
 </html>

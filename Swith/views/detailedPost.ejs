@@ -5,21 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상세조회(게시물수정)</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- CSS -->
     <link rel="stylesheet" href="/public/css/detailedPost.css">
     <link rel="stylesheet" href="/public/css/navbar.css" />
     <link rel="stylesheet" href="/public/css/footer.css" />
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
     <script>
-        // 게시물 수정 화면으로 이동
+        /* 게시물 수정 화면으로 이동 */
         function detailed() {
             var form = document.getElementById('study_id');
-            
             axios({
                 method:'get',
                 url: "http://localhost:8000/feed/management",
@@ -30,18 +29,16 @@
             .then((req) => { return req.data;})
             .then((data) => {
                 document.location.href="http://localhost:8000/feed/management?study_id="+form.innerText;
-        
             })
         }
 
-        // 목록 버튼을 누르면
+        /* 목록 버튼 */
         function detailedPost_index() {
                 document.location.href="http://localhost:8000/swith";
-            }
+        }
     </script>
 </head>
 <body>
-
     <header>
         <a href="http://localhost:8000/swith" class="logo">
             <img src="/public/main/logo.png" alt="logo" />
