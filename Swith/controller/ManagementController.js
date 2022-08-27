@@ -36,11 +36,13 @@ exports.patch_management = (req, res) => {
 }
 
 /* 게시물 삭제 버튼 클릭 */
-exports.delete_management = (req, res) => {
-
-    models.Studygroup.destroy({
+exports.delete_management = async (req, res) => {
+    // studymemeber 정보 먼저 삭제 후, studygroup 정보 삭제
+    await models.Studymember.destroy({
         where: { study_id: req.body.study_id }
-    }).then((result) => {
-        res.send("success delete");
     });
+    await models.Studygroup.destroy({
+        where: { study_id: req.body.study_id }
+    });
+    await res.send("success delete");
 }
