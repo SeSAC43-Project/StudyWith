@@ -35,10 +35,12 @@
                     // data는 signupController에서 true, false 형식으로 보낸다.
                     if ( data ) { // data가 true이면 실행
                         $("#checkID_text").css("color", "green"); // id가 checkID_text 인 태그 css 설정
+                        $("#checkID_text").css("font-size", "0.8rem"); 
                         $("#checkID_text").text("사용할 수 있는 아이디입니다."); // id가 checkID_text 인 태그 텍스트 변경
                         $( "button" ).removeAttr("disabled") // 버튼의 disabled 속성을 제거, disabled: 클릭하지 못하도록 하는 속성
                     } else { // data가 false이면 실행
                         $("#checkID_text").css("color", "red");
+                        $("#checkID_text").css("font-size", "0.8rem");
                         $("#checkID_text").text("사용할 수 없는 아이디입니다.");
                         $( "button" ).attr("disabled", "true");
                     }
@@ -59,10 +61,12 @@
                     console.log(data);
                     if ( data ) {
                         $("#checkNickname_text").css("color", "green");
+                        $("#checkNickname_text").css("font-size", "0.8rem"); 
                         $("#checkNickname_text").text("사용할 수 있는 닉네임입니다.");
                         $( "button" ).removeAttr("disabled")
                     } else {
                         $("#checkNickname_text").css("color", "red");
+                        $("#checkNickname_text").css("font-size", "0.8rem"); 
                         $("#checkNickname_text").text("사용할 수 없는 닉네임입니다.");
                         $( "button" ).attr("disabled", "true");
                     }
@@ -75,10 +79,12 @@
                     if(document.getElementById('pw').value==document.getElementById('pwConfirm').value){
                         document.getElementById('check').innerHTML='비밀번호 일치🥰'
                         document.getElementById('check').style.color='rgb(54, 54, 255)';
+                        $("#check").css("font-size", "0.8rem");
                     }
                     else{
                         document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다';
                         document.getElementById('check').style.color='rgb(255, 89, 89)';
+                        $("#check").css("font-size", "0.8rem");
                     }
                 }
             }
@@ -89,7 +95,7 @@
 
                 var flag = checkData(); // 데이터 유효성 검사
 
-                if (flag == true ) {
+                if ( flag == true ) { // 유효성 검사 통과하면 Post
                     axios({
                         method:'post',
                         url: "http://localhost:8000/user/signup",
@@ -133,11 +139,11 @@
                 .then((data) => {
                     uploadedFile = data.fileName;
                     $("#uploadedProfile").css({"background-image":`url(/public/user/${data.fileName})`}); 
-                    $("#uploadedProfile").css({"background-size":`70px 70px`}); 
+                    $("#uploadedProfile").css({"background-size":`100px 100px`}); 
                 })
             }
 
-            /* 데이터 유효성 검사*/
+            /* 데이터 유효성 검사 alert */
             function checkData () {
                 var form = document.getElementById("signup_form");
 
@@ -239,12 +245,13 @@
                                 
                                 <input type="text" name="id" placeholder="아이디" onkeyup="checkID( this );" class="userid" style="color:white" maxlength='20' required>
                                 <br>
-                                <p id="checkID_text"></p>
+                                <span id="checkID_text"></span>
 
                                 <br><br>
         
                                 <input type="text" name="nickname" placeholder="닉네임" onkeyup="checkNickname( this );" class="nickname" style="color:white" maxlength='6' required/>
-                                <p id="checkNickname_text"></p>
+                                <br>
+                                <span id="checkNickname_text"></span>
 
                                 <br><br>
         
@@ -272,13 +279,15 @@
                                 <span class="span_field">관심분야</span><br><br>
                                     <!-- <div class="first">1순위 -->
                                             <select name="firstField" class="category">
-                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                                <option value="언어">언어</option>
-                                                <option value="자격증">자격증</option>
-                                                <option value="인증">인증</option>
-                                                <option value="취업/이직">취업/이직</option>
-                                                <option value="공모전">공모전</option>
-                                                <option value="취미">취미</option>
+                                                <option value="">관심분야 1순위
+                                                    <option value="IT">IT</option>
+                                                    <option value="언어">언어</option>
+                                                    <option value="자격증">자격증</option>
+                                                    <option value="인증">인증</option>
+                                                    <option value="취업">취업</option>
+                                                    <option value="공모전">공모전</option>
+                                                    <option value="취미">취미</option>
+                                                </option>
                                             </select>
                                     <!-- </div> -->
         
@@ -286,13 +295,15 @@
         
                                     <!-- <div class="second">2순위 -->
                                             <select name="secondField" class="category">
-                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                                <option value="언어">언어</option>
-                                                <option value="자격증">자격증</option>
-                                                <option value="인증">인증</option>
-                                                <option value="취업/이직">취업/이직</option>
-                                                <option value="공모전">공모전</option>
-                                                <option value="취미">취미</option>
+                                                <option value="">관심분야 2순위
+                                                    <option value="IT">IT</option>
+                                                    <option value="언어">언어</option>
+                                                    <option value="자격증">자격증</option>
+                                                    <option value="인증">인증</option>
+                                                    <option value="취업">취업</option>
+                                                    <option value="공모전">공모전</option>
+                                                    <option value="취미">취미</option>
+                                                </option>
                                             </select>
                                     <!-- </div> -->
         
@@ -300,13 +311,15 @@
         
                                     <!-- <div class="third">3순위 -->
                                             <select name="thirdField" class="category">
-                                                <option value="컴퓨터/IT">컴퓨터/IT</option>
-                                                <option value="언어">언어</option>
-                                                <option value="자격증">자격증</option>
-                                                <option value="인증">인증</option>
-                                                <option value="취업/이직">취업/이직</option>
-                                                <option value="공모전">공모전</option>
-                                                <option value="취미">취미</option>
+                                                <option value="">관심분야 3순위
+                                                    <option value="IT">IT</option>
+                                                    <option value="언어">언어</option>
+                                                    <option value="자격증">자격증</option>
+                                                    <option value="인증">인증</option>
+                                                    <option value="취업">취업</option>
+                                                    <option value="공모전">공모전</option>
+                                                    <option value="취미">취미</option>
+                                                </option>
                                             </select>
                                     <!-- </div> -->
         
@@ -316,7 +329,7 @@
                                     <div class="warningDiv"></div>
                                     <br><br>
         
-                                    <button type="button" class="signupBtn" style="color:#FFE19C" onclick="signup();">회원가입</button>
+                                    <button type="button" id="signup_btn" class="signupBtn" style="color:#FFE19C" onclick="signup();">회원가입</button>
                                     
                                     <br><br><br>
                                             
