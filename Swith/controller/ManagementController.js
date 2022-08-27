@@ -37,10 +37,15 @@ exports.patch_management = (req, res) => {
 
 /* 게시물 삭제 버튼 클릭 */
 exports.delete_management = async (req, res) => {
-    // studymemeber 정보 먼저 삭제 후, studygroup 정보 삭제
+    // studymemeber, Likes 정보 먼저 삭제 후, studygroup 정보 삭제
+    await models.Likes.destroy({
+        where: { study_id: req.body.study_id }
+    });
+    
     await models.Studymember.destroy({
         where: { study_id: req.body.study_id }
     });
+    
     await models.Studygroup.destroy({
         where: { study_id: req.body.study_id }
     });
