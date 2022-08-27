@@ -56,6 +56,7 @@ form {
   height: 1300px;
   text-align: center;
   box-sizing: border-box;
+  margin: auto;
 }
   
 .management_container {
@@ -112,11 +113,13 @@ h2 {
     border-bottom: 1px solid #e5e5e5;
     width: 100%;
     position: relative;
+    left: 40px;
 }
 .form-row:first-child {
   display: flex;
   text-align: center;
   justify-content: center;
+  align-items: center;
 }
 
 .name {
@@ -353,7 +356,7 @@ form input::file-selector-button {
   /* margin: auto; */
   text-align: center;
   top:-10px;
-  left: 200px;
+  left: 150px;
 }
 
 #group_img:hover{
