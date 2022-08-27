@@ -22,10 +22,6 @@ body{
     width: 100%;
 }
 
-.name {
-  font-weight:bold;
-}
-
 .whole_container {
   box-sizing: border-box;
   position: relative;
@@ -40,6 +36,10 @@ body{
     align-items: center;
 }
   
+.management_container {
+  margin-top: 50px;
+}
+
 .management_container, h2 { 
     position: relative;
 }
@@ -56,25 +56,15 @@ form {
   height: 1300px;
   text-align: center;
   box-sizing: border-box;
-  margin: auto;
 }
   
-.management_container {
-  margin-top: 50px;
-}
-.management_container, h2 {
-    /* display: flex;
-    justify-content: center; 
-    align-items: center;*/ 
-    position: relative;
-}
 
 .form_container {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-left: 50px;
+  /* margin-left: 50px; */
 }
   
 .context_container {
@@ -84,9 +74,6 @@ form {
   background-color: #fff;
 }
 
-h2 {
-  font-size: xx-large;
-}
 
 /* form:after {
     content: '';
@@ -113,13 +100,12 @@ h2 {
     border-bottom: 1px solid #e5e5e5;
     width: 100%;
     position: relative;
-    left: 40px;
 }
+
 .form-row:first-child {
   display: flex;
   text-align: center;
   justify-content: center;
-  align-items: center;
 }
 
 .name {
@@ -131,6 +117,7 @@ h2 {
     font-weight: bold;
     margin: 0 0 0 20px;
 }
+
 .value {
   flex-grow:9;
   padding:10px 0 10px 0;
@@ -182,6 +169,18 @@ ul {
 form input::file-selector-button {
   display: none;
 }
+
+
+.group input[type="file"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form input::file-selector-button {
+  display: none;
+}
+
 
 .input_text {
   background: transparent;
@@ -255,7 +254,6 @@ form input::file-selector-button {
 
   .radio-btn input[type=radio] {
     display: none;
-    cursor: pointer;
   }
 
   .radio_btn label {
@@ -314,6 +312,7 @@ form input::file-selector-button {
 
 
 /* 그룹이미지 */
+
 .group input[type="file"] {
   position: absolute;
   width: 1px;
@@ -325,38 +324,34 @@ form input::file-selector-button {
   border: 0;
 }
 
-form input::file-selector-button {
-  display: none;
-}
 
 #group_img_upload {
-  position: absolute;
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
-  padding:10px 10px 10px 10px;
-  width:700px;
-  height:100px;
+  z-index: 3; */
+  position: absolute;
+  top: -25px;
+  left: 300px;
+  cursor: pointer;
 }
 
 .groupImgLabel {
-  display: inline;
-  width: 700px;
-  height: 200px;
+  display: inline-block;
+  width: 500px;
+  height: 300px;
+  cursor: pointer;
 }
+
 
 #group_img {
   width: 500px;
   height: 300px;
-  border: 3px dashed;
-  border-color: #4686C2;
   /* position: absolute; */
   position: relative;
   /* margin: auto; */
   text-align: center;
   top:-10px;
-  left: 150px;
 }
 
 #group_img:hover{
@@ -380,11 +375,10 @@ form input::file-selector-button {
 }
 footer {
   width: 100%;
-  position:relative;
-  bottom:0;
+  position: relative;
+  bottom:-240px;
   height:30px;
   transform: translateY(-100%);  
-
 }
 #footer>a {
   cursor: pointer;

@@ -113,7 +113,7 @@
             // 같은 key를 가진 값을 여러개 넣을 수 있음 ! (값은 문자열로 자동변환)
             axios({
                 method: 'post', 
-                url: 'http://localhost:8000/feed/management/upload',
+                url: 'http://localhost:8000/feed/write/upload',
                 data: formData
             })
             .then((req) => {
@@ -123,13 +123,10 @@
             })
             .then((data) => {
                 uploadedFile = data.fileName;
-                alert(data.study_image);
-                // $('#group_img').attr('src', '/public/group/' + data.fileName);
                 $("#group_img").css({"background-image":`url(/public/group/${data.fileName})`}); 
                 $("#group_img").css({"background-size":`500px 300px`});
                 $('#group_img').css('border','none');
                 $('.groupImgLabel > p').css('opacity','0');
-
             })
         }
 
@@ -211,18 +208,19 @@
             <br>
             <div class="management_container">
                 <!-- form -->
-                <form id="management_info" name="management_form" class="form_container" enctype="multipart/form-data">
+                <form id="management_info" class="form_container" enctype="multipart/form-data">
                     <div class="context_container">
 
                         <!-- 스터디 아이디-->
                         <div id="study_id" style="display:none"><%=result.study_id %></div>
 
                         <!-- 스터디 이미지 업로드 -->
+                        <div id="study_image" style="display:none"><%=result.study_image %></div>
                         <div class="form-row" style="height: 300px;">
                             <div class="group" id="group_img_upload">
-                                <div id="group_img" style="background-image:url(/public/group/<%=result.study_img%>); background-size:700px 70px; ">
+                                <div id="group_img">
                                     <label class="groupImgLabel" for="groupImg">
-                                        <input type="file" id="groupImg" style="display: none" name="studyImage" onchange="uploadFile(this);">
+                                        <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);">
                                     </label>
                                 </div>
                             </div>
@@ -400,15 +398,16 @@
 
                         <div class="Category_box"></div>
                         <button class="writebutton" type="button" onclick="list();">목록</button>
-                        
+                        <div class="Category_box"></div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- footer -->
-    <footer>
+
+     <!-- footer -->
+     <footer>
         <div id="footer" class="footer">
         <div class="footer_logo">    
             <img width="60" height="30" src="/public/login/logo.png" alt="footer_logo">
@@ -419,11 +418,17 @@
         <br>
         </div>
     </footer>
-
-
+    
     <script>
         $(document).ready(function(){ 
+            
+            /* 스터디 이미지 불러오기 */
+            var imagePath = "/public/group/" + document.getElementById('study_image').innerText;
+            console.log(imagePath);
+            $('#group_img').css({"background-image": "url('" + imagePath+ "')"});
+            $('#group_img').css({"background-size": "500px 300px"});
 
+        
             /* 스터디 카테고리 정보 불러오기 */
             var category_btn = document.querySelectorAll('.radio-btn');
             var study_category = document.getElementById('study_category');
