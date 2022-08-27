@@ -84,9 +84,9 @@
                                             <p style="display: none;"><%=data[i].study_id %></p>
                                         </div>
                                         <div class = "post-content">
-                                            <span><%=data[i].study_name%></span>
-                                            <span><i class="fa-solid fa-user"></i><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
-                                            <p><%=data[i].study_content%></p>
+                                            <span class="search_studyname"><%=data[i].study_name%></span><br>
+                                            <div class='total_recruit'><span><i class="fa-solid fa-user"></i><%=data[i].num%></span>/<span><%=data[i].study_recruit%></span></div>
+                                            <p class='study_content_box'><%=data[i].study_content%></p>
                                         </div> 
                                     </div>
                                     <div class="likes">
@@ -163,7 +163,7 @@
 
                                 for ( var i = 0; i < data.data.length; i++ ){
                                     html += "<div class = 'studys categoryPostSection'><div class = 'all-category' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>"
-                                    html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><sapn>" + data.data[i].study_name + "</sapn><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span><p>"+ data.data[i].study_content +"</p></div></div>";
+                                    html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><sapn class='search_studyname'>" + data.data[i].study_name + "</sapn><br><div class='total_recruit'><span><span class='fa-solid fa-user'></span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><p class='study_content_box'>"+ data.data[i].study_content +"</p></div></div>";
 
                                 if ( data.likeList[i] == '0') {
                                     html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>"; 
