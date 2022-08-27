@@ -97,7 +97,7 @@ exports.main_likes = (req, res) => {
     Models.Likes.create( object )
     .then((result) => {
         console.log('좋아요 결과는:',result);
-        res.send({isLikes: true});
+        res.send({isLikes: true, study_id : req.body.study_id});
     })
 }
 
@@ -110,6 +110,6 @@ exports.likes_remove = (req, res) => {
         }
     }).then((result) => {
         console.log('좋아요 삭제: ', result);
-        res.send({isDislikes: true});
+        res.send({isDislikes: true, study_id : req.body.study_id});
     })
 }

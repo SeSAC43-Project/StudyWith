@@ -166,9 +166,9 @@
                                     html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><sapn>" + data.data[i].study_name + "</sapn><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span><p>"+ data.data[i].study_content +"</p></div></div>";
 
                                 if ( data.likeList[i] == '0') {
-                                    html += "<div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>"; 
+                                    html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>"; 
                                 } else { 
-                                    html += "<div class='likes'><p style='font-size:2rem;' class='heart fa-solid fa-heart'></p></div></div>";
+                                    html += "<div class='likes' onclick='reply_dislikes(this.id, this)' id="+data.data[i].study_id + "><p style='font-size:2rem;' class='heart fa-solid fa-heart'></p></div></div>";
                                 }
 
 
@@ -184,6 +184,47 @@
                     });  
                 }
 
+    // 카테고리 좋아요 버튼 기능
+    function reply_likes(study_id, target) {
+        axios({
+            method:'post',
+            url: 'http://localhost:8000/swith/search/likes',
+            data : {
+                study_id : study_id,
+                    }
+            })
+            .then((req) => { return req.data;})
+            .then((data) => {
+                if (data.isLikes == true) {
+                    $(target).children('.heart').removeClass('far fa-heart');
+                    $(target).children('.heart').addClass('fa-solid fa-heart');
+                    $(target).children('.heart').addClass('heartEffect');
+                    $(target).attr('onclick', 'reply_dislikes(this.id, this);');
+                    $(target).attr('id', data.study_id);
+                }
+            })
+        }
+
+    // 카테고리 좋아요취소 버튼 기능
+    function reply_dislikes(study_id, target) {
+        axios({
+            method:'post',
+            url: 'http://localhost:8000/swith/search/likes/remove',
+            data : {
+                study_id : study_id,
+            }
+        })
+        .then((req) => { return req.data;})
+        .then((data) => {
+            if (data.isDislikes == true) {
+                console.log('되나요..?');
+                $(target).children('.heart').removeClass('fa-solid fa-heart');
+                $(target).children('.heart').addClass('far fa-heart');
+                $(target).attr('onclick', 'reply_likes(this.id, this);');
+                $(target).attr('id', data.study_id);
+            }
+        })
+    }
 
     //좋아요 버튼,취소 동시에 기능
 
