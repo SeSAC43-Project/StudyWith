@@ -232,7 +232,7 @@
             for (const allB of allBs) {
                 allB.addEventListener('click', function(obj) {
                     var study_site = obj.currentTarget;
-                    var study_id = $(study_site).children('div').children('p').text();
+                    var study_id = $(study_site).children('div:first').children('p').text();
                     
                     // var target = document.getElementsByClassName(".likes");
                     // if(obj.target.getElementsByClassName != 'likes')
