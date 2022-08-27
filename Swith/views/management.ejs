@@ -37,7 +37,6 @@
                         study_content : form.studyContent.value,
                         start_period : form.start_year.value + '-' + form.start_month.value + '-' + form.start_day.value,
                         end_period : form.end_year.value + '-' + form.end_month.value + '-' + form.end_day.value,
-                        hashtag: form,
                     }
                 })
                 .then((req) => {return req.data;})
@@ -49,6 +48,9 @@
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    setTimeout(function() {
+                        document.location.href="http://localhost:8000/feed/management?study_id="+id.innerText;
+                    }, 1000);
                 })
             }
         }
@@ -138,7 +140,7 @@
             if (form.studyName.value == '') {
                 Swal.fire({
                     icon: 'warning',
-                    title: '그룹명을 입력해주세요!',
+                    title: '스터디명을 입력해주세요!',
                     text: '20글자 이내',
                 })
                 return false;
@@ -152,11 +154,11 @@
                 return false;
             }
 
-            if (form.studyRecruit.value == '') {
+            if (form.studyRecruit.value == '' || form.studyRecruit.value > 20 || form.studyRecruit.value < 1) {
                 Swal.fire({
                     icon: 'warning',
                     title: '모집인원을 확인해주세요!',
-                    text: '최대 20명',
+                    text: '최소 1명 ~ 최대 20명',
                 })
                 return false;
             }
@@ -226,8 +228,6 @@
                             </div>
                         </div>
 
-                        <div class="Category_box"></div>
-
                         <!-- 스터디 명 -->
                         <div class="form-row">
                             <div class="name">스터디명&nbsp;&nbsp;&nbsp;</div>
@@ -274,10 +274,11 @@
                                     <label for="online">온라인</label>
                                     <input type="radio" name="studyForm" id="offline" value="오프라인" checked disabled>
                                     <label for="offline">오프라인</label>
-                                    <p>
+                                    <br>
+                                    <span>
                                         <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required disabled>&nbsp;
                                         <input type="text" id="sample6_address" name="sample6_adderess" value="<%= result.study_address%>" style="width: 300px; height: 25px; text-align: center;" disabled><br>
-                                    </p>
+                                    </span>
                                 <% } %>
                             </div>
                         </div>
@@ -306,53 +307,53 @@
                             <div class="name">스터디 기간</div>
                             <ul class="period">
                                 <li><div class="value">
-                                    시작일: <input type="hidden" name="start_period">
+                                    시작일 &nbsp<input type="hidden" name="start_period">
                                     <select id="start_year" name="start_year" required>
                                         <option>
                                             <%for(var i=2022; i<=2050; i++) {%>
                                                 <option value="<%=i%>"><%=i%></option>
                                             <%}%>
                                         </option>
-                                    </select>년
+                                    </select> 년&nbsp
                                     <select id="start_month" name="start_month" required>
                                         <option>
                                             <%for(var j=1; j<=12; j++) {%>
                                                 <option value="<%=j%>"><%=j%></option>
                                             <%}%>
                                         </option>
-                                    </select>월
+                                    </select> 월&nbsp
                                     <select id="start_day" name="start_day" required>
                                         <option>
                                             <%for(var k=1; k<=31; k++) {%>
                                                 <option value="<%=k%>"><%=k%></option>
                                             <%}%>
                                         </option>
-                                    </select>일
+                                    </select> 일
                                 </div></li>
 
                                 <li><div class="value">
-                                    종료일: <input type="hidden" name="end_period">
+                                    종료일 &nbsp<input type="hidden" name="end_period">
                                     <select id="end_year" name="end_year" required>
                                         <option>
                                             <%for(var i=2022; i<=2050; i++) {%>
                                                 <option value="<%=i%>"><%=i%></option>
                                             <%}%>
                                         </option>
-                                    </select>년
+                                    </select> 년&nbsp
                                     <select id="end_month" name="end_month" required>
                                         <option>
                                             <%for(var j=1; j<=12; j++) {%>
                                                 <option value="<%=j%>"><%=j%></option>
                                             <%}%>
                                         </option>
-                                    </select>월
+                                    </select> 월&nbsp
                                     <select id="end_day" name="end_day" required>
                                         <option>
                                             <%for(var k=1; k<=31; k++) {%>
                                                 <option value="<%=k%>"><%=k%></option>
                                             <%}%>
                                         </option>
-                                    </select>일
+                                    </select> 일
                                 </div></li>
                             </ul>
                         </div>
