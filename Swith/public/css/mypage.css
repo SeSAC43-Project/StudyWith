@@ -28,8 +28,13 @@ a {
 
 .info-field {
   position: absolute;
-  top: 10%;
-  left: 22%;
+  top: 70px;
+  width: 500px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+  left: 300px;
 }
 
 .mypage-head {
@@ -131,11 +136,24 @@ a {
 .nickname, .email, #pw, #pwConfirm {
   border: 0;
   background-color: #f3f7fe;
-  width:600px;
+  width:300px;
   height: 30px;
   border-radius: 30px;
   text-align: center;
+  /* float: left;
+  display: inline-block; */
 }
+
+.name-div {
+  width: 120px;
+  text-align: right;
+  float: left;
+  padding-top: 5px;
+}
+.input-div {
+  float: left;
+}
+
 input {
   text-align: center;
 }
