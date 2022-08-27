@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
-
-    <link rel="stylesheet" href="/public/css/mypage.css" />
-
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
     <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+    <!-- modal -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/public/css/mypage.css" />
 
     <script>
             // 회원정보수정 / 참여중 / 찜목록 이동
@@ -66,39 +67,79 @@
                 }
             }
 
-            // 회원정보 수정 
+            /* 회원정보 수정 */
             function info_modify() {
                 var form = document.getElementById('modify_info');
-                let nickname = $('#nickname').val();
-                let email = $('#email').val();
-                let pw = $('#pw').val();
-                let category1 = $('#category1').val();
-                let category2 = $('#category2').val();
-                let category3 = $('#category3').val();
 
-
-                axios({
-                    method:'post',
-                    url: "http://localhost:8000/user/mypage",
-                    data: {
-                        user_name : nickname,
-                        user_email : email,
-                        user_password : pw,
-                        category1: category1,
-                        category2: category2,
-                        category3: category3
-                    }
-                })
-                .then((req) => { return req.data;})
-                .then((data) => {
-                    alert(data);
-                });
+                var flag = checkData();
+                if (flag) {
+                    axios({
+                        method:'post',
+                        url: "http://localhost:8000/user/mypage",
+                        data: {
+                            user_name : form.nickname.value,
+                            user_email : form.email.value,
+                            user_password : form.password.value,
+                            category1: form.firstField.value,
+                            category2: form.secondField.value,
+                            category3: form.thirdField.value
+                        }
+                    })
+                    .then((req) => { return req.data;})
+                    .then((data) => {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: '수정되었습니다.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    });
+                }
             }
 
+            /* 데이터 유효성 검사 alert */
+            function checkData () {
+                var form = document.getElementById("modify_info");
 
-    </script>
-    
+                if (form.nickname.value == '' ) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '낙네임을 입력해주세요!',
+                        text: '6글자 이내',
+                    })
+                    return false;
+                }
 
+                if (form.password.value == '') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '비밀번호를 입력해주세요!',
+                        text: '45글자 이내',
+                    })
+                    return false;
+                }
+
+                if (form.email.value != '' && !form.email.value.includes('@') ) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '올바른 이메일 형식이 아닙니다.',
+                        text: '45글자 이내',
+                    })
+                    return false;
+                }
+
+                if (form.checkPw.value == '') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '비밀번호 확인해주세요!',
+                        text: '45글자 이내',
+                    })
+                    return false;
+                }
+                return true;
+            }
+    </script>  
 </head>
 <body>
     <div class="container">
@@ -162,7 +203,7 @@
                             </div>
                         <div class="name-div">비밀번호 확인 : &nbsp;&nbsp;</div>
                             <div class="input-div">
-                            <input type="password" onchange="pwCheck()" id="pwConfirm" style="color: black" /><br>
+                            <input type="password" onchange="pwCheck()" name="checkPw" id="pwConfirm" style="color: black" /><br>
                             <span id="check"></span>
                             </div>
                     </div>
