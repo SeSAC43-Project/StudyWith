@@ -153,12 +153,26 @@
         <script>
 
             function idRemember() {
-                // 아이디를 기억해줘 누르면 쿠키 생성 및 날짜 지정
-                var date = new Date();
-                date.setDate(date.getDate() + 30); 
-                var afterMonth = date.toGMTString();
+                // 아이디 기억하기 쿠키가 존재하는지 확인 
+                var cookieArr = document.cookie.split("; ");
+                if (cookieArr.includes('id=remember')) {  // 쿠키가 있는 상태에서
+                    // 쿠키 삭제(만료시켜버리기)
+                    var date = new Date();
+                    date.setDate(date.getDate() - 10); 
+                    var before = date.toGMTString();
+                    document.cookie = `id=remember; expires=${before}}`;
+                } else { // 쿠키가 없는 상태에서
+                    // 날짜 생성 한달 뒤 
+                    var date = new Date();
+                    date.setDate(date.getDate() + 30); 
+                    var afterMonth = date.toGMTString();
+                    
+                    // 아이디를 기억해줘 누르면 쿠키 생성해주기
+                    document.cookie = `id=remember; expires=${afterMonth}`;
+                }
 
-                document.cookie = `id=remember; expires=${afterMonth}`;
+
+
             }
         </script>
     </body>
