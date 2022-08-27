@@ -48,7 +48,7 @@
         })
     </script>
 
-
+<!-- 상단 카테고리 -->
         <div class = "main-container">
             <div class = "filter-container">
                 <div class = "category-head">
@@ -65,6 +65,7 @@
                         </form>
                 </div>
 
+<!-- 카테고리 아래 게시글 보여주기 -->
                 <div class="resultText">
                     <h2> 💡 "<%=search %> " 검색 결과입니다.</h2>
                 </div>
@@ -103,7 +104,7 @@
             </div>
         </div>
         
-        <script>
+<script>
 
 
     // 검색 결과 부분
@@ -146,7 +147,7 @@
 
                                 for ( var i = 0; i < data.data.length; i++ ){
                                     html += "<div class = 'studys categoryPostSection'><div class = 'all-category' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>"
-                                    html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><h2>" + data.data[i].study_name + "</h2><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div></div>";
+                                    html += "<div class='post-img'>" + "<img width='200px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><span class='category-name'>" + data.data[i].study_category + "</span><p>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><sapn>" + data.data[i].study_name + "</sapn><span>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span><p>"+ data.data[i].study_content +"</p></div></div>";
 
                                 if ( data.likeList[i] == '0') {
                                     html += "<div class='likes'><p style='font-size:2rem;' class='heart far fa-heart'></p></div></div>"; 
@@ -225,7 +226,7 @@
             
 
 
-            // 메인에서 검색, 카테고리 선택 후 상세페이지로 이동하기
+    // 메인에서 검색, 카테고리 선택 후 상세페이지로 이동하기
             var allBs = document.getElementsByClassName('all-business');
 
             for (const allB of allBs) {
@@ -281,7 +282,7 @@
             };
 
 
-            // 서치페이지에서 카테고리 선택 후 상세페이지로 이동하기
+    // 서치페이지에서 카테고리 선택 후 상세페이지로 이동하기
             function reply_click(clicked_id) {
                 goDetail(clicked_id);
             }
