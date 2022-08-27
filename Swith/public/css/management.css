@@ -14,6 +14,7 @@ html,body {
     padding: 0;
     background-color: #ffffff;
     margin: 0;
+    padding: 0;
 }
 
 body{
@@ -51,28 +52,41 @@ form {
   position: relative;
   background: white;
   border-radius: .4em;
-  width: 900px;
+  width: 1200px;
   height: 1300px;
   text-align: center;
   box-sizing: border-box;
-
 }
   
+.management_container {
+  margin-top: 50px;
+}
+.management_container, h2 {
+    /* display: flex;
+    justify-content: center; 
+    align-items: center;*/ 
+    position: relative;
+}
+
 .form_container {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* box-sizing: border-box; */
   position: relative;
+  margin-left: 50px;
 }
   
 .context_container {
 position: absolute;
-/* padding-top: 10%; */
-width: 80%;
+width: 100%;
+top: 5%;
 }
-  
-form:after {
+
+h2 {
+  font-size: xx-large;
+}
+
+/* form:after {
     content: '';
     position: absolute;
     top: 0;
@@ -86,7 +100,7 @@ form:after {
     margin-left: -10px;
     margin-top: -20px;
 }
-  
+   */
   
 .form-row {
     display:flex;
@@ -95,7 +109,13 @@ form:after {
     align-items:center;
     padding: 20px 0 20px 0;
     border-bottom: 1px solid #e5e5e5;
-    width: 100%;
+    width: 90%;
+    position: relative;
+}
+.form-row:first-child {
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }
 
 .name {
@@ -104,6 +124,7 @@ form:after {
     font-size: 20px;
     margin-top: 11px;
     flex-grow:1;
+    font-weight: bold;
 }
 .value {
   flex-grow:9;
@@ -135,7 +156,7 @@ ul {
 
   #on_off input[type=radio]+label{
     display: inline-block;
-    /* cursor: pointer; */
+    cursor: pointer;
     height: 25px;
     width: 90px;
     border: 1px #4686C2;
@@ -148,10 +169,13 @@ ul {
 }
 
 #on_off input[type=radio]:checked+label{
-  background-color: darkgrey;
+  background-color: 4686c2;
   color: #fff;
 }
 
+#on_off input[type=radio]+label:hover {
+  color:#5aa5eb;
+}
 
 form input::file-selector-button {
   display: none;
@@ -288,17 +312,18 @@ form input::file-selector-button {
 
 /* 그룹이미지 */
 .group input[type="file"] {
-  /* position: absolute;
+  position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
-  border: 0; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: 0;
+}
+
+form input::file-selector-button {
+  display: none;
 }
 
 #group_img_upload {
@@ -319,24 +344,25 @@ form input::file-selector-button {
 }
 
 #group_img {
-  width: 700px;
-  height: 200px;
-  /* border: 3px dashed;
-  border-color: #4686C2; */
-  position: absolute;
-  margin: auto;
+  width: 500px;
+  height: 300px;
+  border: 3px dashed;
+  border-color: #4686C2;
+  /* position: absolute; */
+  position: relative;
+  /* margin: auto; */
   text-align: center;
-  top:-10px; 
+  top:-10px;
+  left: 200px;
 }
 
 #group_img:hover{
   cursor:pointer;
-  /* background-color: #4686C2; */
+  background-color: #4686C2;
 }
 #group_img:active {
-  cursor:pointer;
-  /* background-color: #4686C2; */
-} 
+  background-color: #4686C2;
+}
 
 #wrapper {
   width: 100%;
@@ -418,6 +444,7 @@ footer {
   font-weight: bold;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  font-size: 20px;
 }
 
 /* 목록버튼 */
@@ -427,6 +454,7 @@ footer {
   border-radius: 20px;
   background-color: #4D6275;
   font-weight: bold;
+  font-size: 20px;
 }
 
 /* 여백용 박스 */
