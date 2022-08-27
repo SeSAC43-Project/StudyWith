@@ -187,7 +187,7 @@ span {
 .userid, .nickname, .email, #pw, #pwConfirm, .pwAnswer, .category_hint {
   border: 0;
   background-color: #4686C2;
-  width:300px;
+  width: 300px;
   height: 30px;
   border-radius: 30px;
   text-align: center;
@@ -216,7 +216,7 @@ input:focus {
   left: 360px;
   right: 0;
   margin: auto;
-  font-size: 5px;
+  font-size: 0.7rem;
 }
 
 #nickname-check {
@@ -234,7 +234,7 @@ input:focus {
   left: 360px;
   right: 0;
   margin: auto;
-  font-size: 5px;
+  font-size: 0.7rem;
 }
 
 .span_field {
@@ -249,7 +249,7 @@ input:focus {
   border: 1px solid;
   border-color: #4686C2;
   text-align: center;
-  font-size: 10px;
+  /* font-size: 10px; */
   line-height: 30px;
   width: 50px;
   height: 30px;
