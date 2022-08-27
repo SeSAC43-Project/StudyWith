@@ -43,7 +43,7 @@
 
         // 비밀번호 찾기 답을 맞은 경우
         function TrueCase() {
-            $('#find_button').html("<button id='modify_btn' class='modifyUser' style='color:white'>비밀번호 변경</button>");
+            $('#find_button').html("<button class='modifyUser' style='color:white'>비밀번호 변경</button>");
         }   
 
         /* 아이디 유무 검사 */
@@ -69,20 +69,20 @@
             }
 
             // 엔터키 눌리면 버튼 눌리기
-                // var form = document.getElementById("find_button");
+                var form = document.getElementById("hint_answer");
 
-                //     form.addEventListener("keyup", function (event) {
-                //     if (event.keyCode === 13) {
-                //         event.preventDefault();
-                //         document.getElementById("modify_bt").click();
-                //     }
-                // });
+                    form.addEventListener("keyup", function (event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                        document.getElementById("password_find").click();
+                    }
+                });
                 
-        $('#hint_answer').keypress(function(e){
-            if ( e.keyCode === 13 ) {
-                password_find();
-            }
-        });
+        // $('#hint_answer').keypress(function(e){
+        //     if ( e.keyCode === 13 ) {
+        //         password_find();
+        //     }
+        // });
 
             // 로그안 창으로 돌아가기
             function back() {
