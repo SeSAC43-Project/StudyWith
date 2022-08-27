@@ -172,3 +172,7 @@ a {
 .second {
   margin: auto auto 20px 50px;
 }
+
+.user_info .pTag {
+  margin-left: 100px;
+}

@@ -202,6 +202,29 @@
     </script>
 </head>
 <body>
+    <header>
+        <a href="http://localhost:8000/swith" class="logo">
+            <img src="/public/main/logo.png" alt="logo" />
+        </a>
+        <ul>
+            <li><a href="http://localhost:8000/feed/write">
+                <i class="fa-solid fa-folder-plus">&nbsp;&nbsp;스터디 등록</i></a>
+            </li>
+            <li><a href="http://localhost:8000/user/login">
+                <i class="fa-solid fa-user">&nbsp;&nbsp;로그인</i></a>
+            </li>
+            <li><a href="http://localhost:8000/user/mypage">
+                <i class="fa-solid fa-heart">&nbsp;&nbsp;마이페이지</i></a>
+            </li>
+        </ul>
+    </header>
+    <script type="text/javascript">
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
+    </script>
+
     <div id="wrapper">
         <div class="whole_container">
             <h2 style="text-align: center;">스터디 관리📌</h2>
@@ -406,17 +429,14 @@
     </div>
 
 
-     <!-- footer -->
-     <footer>
-        <div id="footer" class="footer">
-        <div class="footer_logo">    
-            <img width="60" height="30" src="/public/login/logo.png" alt="footer_logo">
-            <a href="index.js"></a>
-        </div>
-        <br>
-        <p style="font-size:x-small;"class="copyright">Copyright 2022. Swith. All Rights Reserved.</p>
-        <br>
-        </div>
+      <!-- ==========================================footer========================================== -->
+    <footer class="sticky-footer">
+        <ul>
+            <li><a href="http://localhost:8000/swith">Home</a></li>
+            <li><a href="">Feed</a></li>
+            <li><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank">About us</a></li>
+        </ul>
+        <p> © Copyright 2022. Swith. All Rights Reserved.</p>
     </footer>
     
     <script>
