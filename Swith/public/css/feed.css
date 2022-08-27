@@ -47,8 +47,6 @@ header img:hover {
 header ul {
   position: relative;
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   margin-right: 160px;
 }
 header ul li {
