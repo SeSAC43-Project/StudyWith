@@ -170,42 +170,43 @@
                     <br><br><br>
 
                     <span class="span_field">관심분야</span><br><br>
+                    <div id="data_category1" style="display:none"><%=data[0].category1 %></div>
                     <div class="inte-field">
                         <!-- <div class="first">1순위 -->
                                 <select name="firstField" class="category" id="category1">
-                                    <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                    <option value="IT">IT</option>
                                     <option value="언어">언어</option>
                                     <option value="자격증">자격증</option>
                                     <option value="인증">인증</option>
-                                    <option value="취업/이직">취업/이직</option>
+                                    <option value="취업">취업</option>
                                     <option value="공모전">공모전</option>
                                     <option value="취미">취미</option>
                                 </select>
                         <!-- </div> -->
 
                         <br><br>
-
+                        <div id="data_category2" style="display:none"><%=data[0].category2 %></div>
                         <!-- <div class="second">2순위 -->
                                 <select name="secondField" class="category" id="category2">
-                                    <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                    <option value="IT">IT</option>
                                     <option value="언어">언어</option>
                                     <option value="자격증">자격증</option>
                                     <option value="인증">인증</option>
-                                    <option value="취업/이직">취업/이직</option>
+                                    <option value="취업">취업</option>
                                     <option value="공모전">공모전</option>
                                     <option value="취미">취미</option>
                                 </select>
                         <!-- </div> -->
 
                         <br><br>
-
+                        <div id="data_category3" style="display:none"><%=data[0].category3 %></div>
                         <!-- <div class="third">3순위 -->
                                 <select name="thirdField" class="category" id="category3">
-                                    <option value="컴퓨터/IT">컴퓨터/IT</option>
+                                    <option value="IT">IT</option>
                                     <option value="언어">언어</option>
                                     <option value="자격증">자격증</option>
                                     <option value="인증">인증</option>
-                                    <option value="취업/이직">취업/이직</option>
+                                    <option value="취업">취업</option>
                                     <option value="공모전">공모전</option>
                                     <option value="취미">취미</option>
                                 </select>
@@ -223,6 +224,16 @@
             </div>
         </div>
     </div>
+    <script>
+        /* 스터디 카테고리 정보 불러오기 */
+        var data_category1 = document.getElementById('data_category1').innerText;
+        var data_category2 = document.getElementById('data_category2').innerText;
+        var data_category3 = document.getElementById('data_category3').innerText;
 
+        $("#category1").val(data_category1).prop("checked",true);
+        $("#category2").val(data_category2).prop("checked",true);
+        $("#category3").val(data_category3).prop("checked",true);
+
+    </script>
 </body>
 </html>
