@@ -42,12 +42,30 @@ exports.mypage_likes = async (req, res) => {
     const result = await Models.sequelize.query(sql); 
     console.log('찜 목록 정보 : ', result);
 
+    // 내가 가입한 스터디 현재인원 넣을 리스트 생성
+    var memberCount = []
+    const member_data = result[0];
+
+    // 내가 가입한 스터디 현재 가입인원 확인
+    for (let i=0; i < member_data.length; i++) {
+        let countMember = `
+        SELECT COUNT(M.user_id) + 1 AS member
+        FROM studymember AS M
+        LEFT OUTER JOIN studygroup AS G ON M.study_id = G.study_id
+        WHERE M.study_id = ${member_data[i].study_id};`
+        
+        const result2 = await Models.sequelize.query(countMember);
+        const currentCount = result2[0];
+        memberCount.push(currentCount[0].member);
+    }
+    console.log(memberCount);
+
     // 만약 찜한 스터디가 하나도 없다면? 
     var isLikes = true // 찜한 스터디가 있음
     if ( result[0].length == 0) {
         isLikes = false // 가입된 스터디가 없음
     }
-    res.render('mypage2', {data: result[0], isLikes: isLikes}); 
+    res.render('mypage2', {data: result[0], isLikes: isLikes, memberCount: memberCount}); 
 }
 
 
