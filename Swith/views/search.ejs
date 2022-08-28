@@ -120,14 +120,6 @@
 
 </body>
 <script>
-    function showDetail( id ){
-        var form = new FormData();
-        form.append("study_id", id);
-        form.method = "get";
-        form.action="/d";
-        form.submit();
-    }
-
     // 검색 결과 부분
     $('.category').children('p').on('click',function(e) {
             var cate_target = e.target;
