@@ -31,9 +31,13 @@
             // var feed_hashtags = feed_hashtag.toString();
 
             var hashtags = $('.newHashtag').text();  //#가#나#다//
-            var hashtag = rehashtags.split('#').slice(1); // {'가','나','다'}
-            var feed_hashtag = hashtag.toString();
-
+            
+            var hashtag = hashtags.split('#').slice(1); // {'가','나','다'}
+            
+            var feed_hashtags = hashtag.toString();
+            
+            var feed_hashtag = feed_hashtags.replace(/\X/g,"");
+            
 
             var result = feed.checkValidity();
 
@@ -73,7 +77,7 @@
                     study_content : feed.studyContent.value,
                     start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
                     end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
-                    hashtag: feed_hashtags,
+                    hashtag: feed_hashtag,
                 }
             })
             .then((req) => { return req.data })
@@ -302,7 +306,7 @@
                 <div class="form-row">
                     <div class="name">스터디 소개글</div>
                     <div class="value">
-                        <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;" maxlength="20" required></textarea>
+                        <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;" required></textarea>
                     </div>
                 </div>
                 <div class="form-row">

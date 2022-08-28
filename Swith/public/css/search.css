@@ -153,6 +153,7 @@ body {
   
 }
 
+
 /** single post **/
 
 .feed-main-container{
@@ -259,6 +260,7 @@ figcaption{
   justify-content: center;
   font-size: 12px;
   margin: 15px 0;
+  overflow: hidden;
 }
 
 /* 
