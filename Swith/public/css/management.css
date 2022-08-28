@@ -429,6 +429,20 @@ form input::file-selector-button {
   height: 100%;
 }
 
+/* 해시태그 삭제부분 */
+.removeTagButton {
+  border: 0;
+  background-color:  white;
+  width: 23px;
+  height: 23px;
+  margin-left:5px;
+
+}
+
+.removeTagButton:hover {
+  color: red;
+}
+
 /* ==========================================footer====================================== */
 .sticky-footer {
   /* position: sticky; */

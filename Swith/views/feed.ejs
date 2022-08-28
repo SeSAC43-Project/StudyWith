@@ -30,13 +30,14 @@
             // var feed_hashtag = hashtags2.slice(1);
             // var feed_hashtags = feed_hashtag.toString();
 
-            var hashtags = $('.newHashtag').text();  //#가#나#다//
+            var hashtags = $('.newHashtag').text(); 
             
-            var hashtag = hashtags.split('#').slice(1); // {'가','나','다'}
+            var hashtag = hashtags.split('#').slice(1); 
             
             var feed_hashtags = hashtag.toString();
             
             var feed_hashtag = feed_hashtags.replace(/\X/g,"");
+            
             
 
             var result = feed.checkValidity();
@@ -118,10 +119,6 @@
             const txt = document.getElementById('text_hashtag').value;
             const text = txt.replace(" ","");
 
-            // let btn = "<button type='button' class='deleteHashtag' onclick='deleteTag();'>X</button>";
-            // $('#enter_hashtag').append(btn);   //이부분은 해시태그 삭제할 때 적용(미완)
-
-            // console.log(txt);
             if (($('.newHashtag').length < '7' )) {
                 if ((text.length < '7')) {
                     if (event.keyCode == 13) {
