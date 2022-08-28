@@ -74,3 +74,11 @@ exports.find_isId = (req, res) => {
         }
     })
 }
+
+// 로그아웃
+exports.logout = (req, res) => {
+    req.session.destroy(() => {
+      req.session;
+    });
+    res.send("true");
+  };
