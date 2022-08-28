@@ -31,6 +31,7 @@ a {
   top: 70px;
   width: 500px;
   height: 100px;
+  padding-top: 3vw; 
   align-items: center;
   justify-content: center;
   margin-bottom: 100px;

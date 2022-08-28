@@ -144,7 +144,7 @@
 <body>
     <div class="container">
 
-        <div class="mypage-head"> 😋 <%= data[0].user_name %> 님 환영합니다! 😋
+        <div class="mypage-head"> 😋 SWITH에 오신걸 환영합니다! 😋
             <button type="button" onclick="goHome()" class="homeBtn">
                 <i class="fa-solid fa-house"></i>
             </button>
@@ -178,21 +178,14 @@
         </div>
 
         <div class="modify-list">
-            <div class="user_info">
-
                 <form id="modify_info">
-
-                    
                     <div class="info-field">
                         <div class="name-div">닉네임 : &nbsp;&nbsp;</div>
                             <div class="input-div">
                             <input type="text" id="nickname" name="nickname" value="<%=data[0].user_name %>" required onkeyup="checkNickname( this );" class="nickname" style="color: black" />
                             <p id="checkNickname_text"></p>
                             </div>
-                        
-
                     <br><br><br>
-
                         <div class="name-div">이메일 : &nbsp;&nbsp;</div>
                             <div class="input-div">
                             <input type="text" id="email" name="email" value="<%=data[0].user_email %>" class="email" style="color: black" /><br><br>
@@ -207,9 +200,6 @@
                             <span id="check"></span>
                             </div>
                     </div>
-                    
-                    <br><br><br>
-
                     <span class="span_field">관심분야</span><br><br>
                     <div id="data_category1" style="display:none"><%=data[0].category1 %></div>
                     <div class="inte-field">
@@ -262,7 +252,7 @@
 
                    
                 </form>
-            </div>
+            
         </div>
     </div>
     <script>

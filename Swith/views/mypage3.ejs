@@ -123,7 +123,8 @@
                                     <div class="studyName">
                                         <h4><%=HeadStudy[i].study_name%></h4>
                                     </div>
-                                    <p><%=HeadStudy[i].hashtag%></p><br>
+                                    <%var str = HeadStudy[i].hashtag%>
+                                    <p id="hashtag"><%=str.substring(0,15)%></p><br>
                                     <!--study_id-->
                                     <div id="study_id" style="display:none"><%=HeadStudy[i].study_id %></div>
                                     <!-- 현재인원/모집인원 -->
@@ -144,7 +145,8 @@
                                     <div class="studyName">
                                         <h4><%=memberStudy[i].study_name%></h4>
                                     </div>
-                                    <p><%=memberStudy[i].hashtag%></p><br>
+                                    <%var str2 = memberStudy[i].hashtag%>
+                                    <p id="hashtag"><%=str2.substring(0,15)%></p><br>
                                     <!--study_id-->
                                     <div id="study_id" style="display:none"><%=memberStudy[i].study_id %></div>
                                     <!-- 현재인원/모집인원 -->
@@ -153,7 +155,9 @@
                                 <% } %>
                             </div>
                 <% } else {%>
-                            <p>가입된 스터디가 없습니다 😌 </p><br>
+                        <div>
+                            <p id="emptyMsg">가입된 스터디가 없습니다 😌 </p><br>
+                        </div>
                     <% } %>
         </div>
         

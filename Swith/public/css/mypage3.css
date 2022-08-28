@@ -32,6 +32,7 @@ a {
   grid-gap: 30px; */
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .mypage-head {
@@ -96,10 +97,15 @@ a {
   transform: translateY(-100%);
 }
 
-
+#emptyMsg {
+  text-align: center; 
+  font-size: 17px;
+  padding-top: 10px;
+}
+ 
 .modify-list {
   width: 1050px;
-  height: 200vh;
+  height: auto;
   border-radius: 20px;
   border-color: #4686C2;
   border-width: 3px;
@@ -109,7 +115,13 @@ a {
   top: 220px;
 }
 
-
+.total_recruit {
+  font-size: 12px;
+  float: right;
+}
+#hashtag {
+  text-align: center; 
+}
 .profile-box {
   width: 250px;
   height: 250px;
@@ -122,7 +134,7 @@ a {
   background: transparent;
   transition: transform 0.5s background 0.5s;
   margin : 30px;
-  left: 55px;
+  /* left: 55px; */
 
 }
 .profile-box:hover {
@@ -167,10 +179,14 @@ a {
   color: #555;
 }
 .head {
-  margin: 50px auto 20px 50px;
+  margin: 70px auto 0 auto;
+  text-align: center;
+  font-size: 20px;
 }
 .second {
-  margin: auto auto 20px 50px;
+  margin: 70px auto 0 auto;
+  text-align: center;
+  font-size: 20px;
 }
 
 .user_info .pTag {
