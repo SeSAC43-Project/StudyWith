@@ -139,6 +139,12 @@ body {
   border-radius: 20px;
 }
 
+.active {
+  /* border-bottom: 3px solid #4686C2; */
+  background-color: rgb(70, 134, 194,0.5);
+  border-radius: 20px;
+}
+
 .category > p {
   background:transparent;
   width: 160px;
@@ -200,6 +206,7 @@ body {
   position: relative;
   text-align: center;
   width: 300px;
+  margin-bottom: 15px;
 
 }
 .post-img > img {
@@ -297,6 +304,13 @@ figcaption{
   text-overflow:ellipsis;
   
 
+}
+.study_content_box > span {
+  margin:10px 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 /* 

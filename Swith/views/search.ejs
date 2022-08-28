@@ -98,7 +98,7 @@
                                             <div class='total_recruit'>
                                                 <span><i class="fa-solid fa-user"></i> <%=data[i].num%></span> /<span> <%=data[i].study_recruit%></span>
                                             </div><br>
-                                            <p class='study_content_box'><%=data[i].study_content%></p>
+                                            <p class='study_content_box'><span><%=data[i].study_content%></span></p>
                                         </div> 
                                     </div>
                                     <!-- <span class="likes">
@@ -190,7 +190,7 @@
                                     html += "<div class='likes' onclick='reply_dislikes(this.id, this)' id="+data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart fa-solid fa-heart'></p></div></div>";
                                     }
                                         
-                                    html += "<div class='total_recruit'><span><i class='fa-solid fa-user'></i>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><br><p class='study_content_box'>"+ data.data[i].study_content +"</p></div></div></div>";
+                                    html += "<div class='total_recruit'><span><i class='fa-solid fa-user'></i>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><br><p class='study_content_box'><span>"+ data.data[i].study_content +"</span></p></div></div></div>";
                                 
                                 }
 
