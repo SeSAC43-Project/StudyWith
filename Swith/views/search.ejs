@@ -95,19 +95,12 @@
                                                 <% } %> 
                                             </div>
                                             </div>
-                                            <div class='total_recruit'>
-                                                <span><i class="fa-solid fa-user"></i> <%=data[i].num%></span> /<span> <%=data[i].study_recruit%></span>
-                                            </div><br>
                                             <p class='study_content_box'><span><%=data[i].study_content%></span></p>
+                                            <div class='total_recruit'>
+                                                <span><i class="fa-solid fa-user"></i> <%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
+                                            </div><br>
                                         </div> 
                                     </div>
-                                    <!-- <span class="likes">
-                                        <% if (likeList[i] == '0') { %>
-                                            <p style="font-size:1.3rem;" class="heart far fa-heart"></p>
-                                        <% } else { %>
-                                            <p style="font-size:1.3rem;" class="heart fa-solid fa-heart"></p>
-                                        <% } %> 
-                                    </span> -->
                                 </div>
                                     <% } %>
                             </div>
@@ -185,12 +178,12 @@
                                     html += "<div class='post-img' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>" + "<img width='300px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><div class='name_likes'><div class='search_studyname'>" + data.data[i].study_name + "</div>";
                                         
                                     if ( data.likeList[i] == '0') {
-                                    html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div></div>"; 
+                                    html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div>"; 
                                     } else { 
-                                    html += "<div class='likes' onclick='reply_dislikes(this.id, this)' id="+data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart fa-solid fa-heart'></p></div></div>";
+                                    html += "<div class='likes' onclick='reply_dislikes(this.id, this)' id="+data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart fa-solid fa-heart'></p></div>";
                                     }
                                         
-                                    html += "<div class='total_recruit'><span><i class='fa-solid fa-user'></i>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><br><p class='study_content_box'><span>"+ data.data[i].study_content +"</span></p></div></div></div>";
+                                    html += "</div><p class='study_content_box'><span>"+ data.data[i].study_content +"</span></p><div class='total_recruit'><span><i class='fa-solid fa-user'></i>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><br></div></div></div>";
                                 
                                 }
 
