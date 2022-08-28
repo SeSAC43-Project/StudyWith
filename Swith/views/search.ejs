@@ -58,7 +58,7 @@
                             <% for (i=0; i <= 6; i++){ %> 
                                 <button type="button" class="category-title" id='category-title[i]'>
                                     <div class="category" >
-                                        <p width="160px;"><%=ca_list[i]%></p>
+                                        <p><%=ca_list[i]%></p>
                                     </div>
                                 </button>
                                 <% }%> 
@@ -67,7 +67,8 @@
 
 <!-- 카테고리 아래 게시글 보여주기 -->
                 <div class="resultText">
-                    <h2> 💡 "<%=search %> " 검색 결과입니다.</h2>
+                    <h2 class="resultText_search"> 💡 "<span class="resultText_search_text"><%=search %></span>" 검색 결과입니다.</h2>
+                    <h2 class="resultText_category"> 💡 "<span class="resultText_category_text"><%=category %></span>" 검색 결과입니다.</h2>
                 </div>
                 <div class="searchSection">
                     <div class = "feed-collect">
@@ -133,6 +134,13 @@
             })
 
 
+    if ($('.resultText_category_text').html() != '') {
+        $('.resultText_category').css('display','block');
+        $('.resultText_search').css('display','none');
+    } else if ($('.resultText_category_text').html() == '') {
+        $('.resultText_category').css('display','none');
+        $('.resultText_search').css('display','block');
+    }
 
     // 카테고리 정보 보내기 
                     

@@ -139,6 +139,12 @@ body {
   border-radius: 20px;
 }
 
+.category > p {
+  background:transparent;
+  width: 160px;
+}
+
+
 
 .resultText, .cate_resultText {
   font-family: "GmarketSansMedium";
