@@ -1,12 +1,14 @@
 @font-face {
-  font-family: 'GS_bold'; 
-  src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "GS_bold";
+  font-family: "GmarketSansMedium";
 }
 
 header {
@@ -65,10 +67,28 @@ header ul li a {
   transition: 0.6s;
   font-size: 13px;
 }
+
+.logout {
+  position: relative;
+  margin: 0 15px;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  transition: 0.6s;
+  font-size: 13px;
+}
+
+
 header ul li a:hover {
   cursor: pointer;
   transform: scale(1.05);
 }
+
+.logout:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
 header.sticky .logo,
 header.sticky ul li a {
   color: #000;

@@ -2,7 +2,15 @@ const Models  = require('../model');
 
 // 메인 페이지 렌더링
 exports.main_index = (req, res) => {
-    res.render('main'); 
+    var user_id;
+    if (req.session.user_id != null) {
+        user_id = req.session.user_id;
+    } else {
+        user_id = "";
+    }
+    console.log("session user_id:", user_id);
+
+    res.render('main', {session_id: user_id}); 
 }
 
 // 메인 페이지 검색 기능

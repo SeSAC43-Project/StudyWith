@@ -7,24 +7,60 @@
   <title>StudyWITH</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+  <!-- Axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- sweetalert -->
+  <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+  <!-- typed.js-->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- CSS -->
   <link rel="stylesheet" href="/public/css/main.css" />
   <!-- <link rel="stylesheet" href="/public/css/footer.css" /> -->
 
-  <!-- Axios -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-  <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
-
-
   <script>
-
+    /* 검색 */
     function mainSearch() {
         var form = document.getElementById('search_form');
         var search = $("#search").val();
-        
         form.submit();
+    }
+
+    /* 로그아웃 */
+    function logout() {
+        Swal.fire({
+            title: '로그아웃',
+            text: "정말로 로그아웃 하시겠습니까?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#a9a9a9',
+            confirmButtonText: '로그아웃 하기'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios({
+                    method:'get',
+                    url:'http://localhost:8000/user/logout'
+                })
+                .then((req) => {return req.data;})
+                .then((data) => {
+                    if (data) {
+                            Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: '로그아웃 되었습니다.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        setTimeout(function() {
+                            document.location.href="http://localhost:8000/swith";
+                        }, 1000);
+                    }
+                })
+            }
+        })
     }
   </script>
 </head>
@@ -38,14 +74,21 @@
             <li><a href="http://localhost:8000/feed/write">
                 <i class="fa-solid fa-folder-plus">&nbsp;&nbsp;스터디 등록</i></a>
             </li>
-            <li><a href="http://localhost:8000/user/login">
-                <i class="fa-solid fa-user">&nbsp;&nbsp;로그인</i></a>
-            </li>
+            <% if (session_id == "") { %>
+                <li><a href="http://localhost:8000/user/login"> 
+                    <i class="fa-solid fa-user">&nbsp;&nbsp;로그인</i></a>
+                </li>
+            <% } else { %>
+                <li class="logout" onclick="logout();">
+                    <i class="fa-solid fa-user">&nbsp;&nbsp;로그아웃</i></a>
+                </li>
+            <% } %>
             <li><a href="http://localhost:8000/user/mypage">
                 <i class="fa-solid fa-heart">&nbsp;&nbsp;마이페이지</i></a>
             </li>
         </ul>
     </header>
+    
     <script type="text/javascript">
         window.addEventListener("scroll", function () {
             var header = document.querySelector("header");
@@ -111,41 +154,9 @@
            </div>
        </div>
    </div>
-
-
-   <script>
-       const icon = document.querySelector('.icon');
-       const mysearch = document.querySelector('.mysearch');
-       icon.onclick = function() {
-           mysearch.classList.toggle('active')
-       }
-   </script>
-
-   <script>
-
-       let userTexts = document.getElementsByClassName("user-text");
-       let catPics = document.getElementsByClassName("catPic")
-
-       function showReview() {
-           for(catPic of catPics){
-               catPic.classList.remove("active-pic")
-           }
-           for(userText of userTexts){
-               userText.classList.remove("active-text")
-           }
-           let i = Array.from(catPics).indexOf(event.target);
-
-           catPics[i].classList.add("active-pic");
-           userTexts[i].classList.add("active-text");
-       }
-
-   </script>
-
    
     <!-- ==========================================메인 세번째 페이지======================================  -->
   
-
-
     <div class="container_third">
        <h1>SWITH에는 &nbsp;<span class="auto-type">IT</span>&nbsp;&nbsp;스터디그룹이 있어요 💁🏼‍♂️ </h1>
        <div class="row">
@@ -160,50 +171,10 @@
                             <p><%=ca_list[i]%></p>
                         </div>
                     </button>
-                    <% }%> 
-                </form>
+                <% }%> 
+            </form>
         </div>
-        </div>
-    <script>
-        // var send = document.getElementById('service');
-
-        var sends = document.getElementsByClassName('service');
-
-        for (const send of sends) {
-
-        send.addEventListener('click', function(obj) {
-            var target = obj.currentTarget;  //[object HTMLButtonElement]
-            var target_value = $(target).children('.category').children('p').text(); 
-            //.category p .text() : 카테고리 전부가 나옴
-            //target에서 div class=category에서의 p의 텍스트
-            
-            // alert(target_value);
-
-            // $('#ca_input').val($(obj.currentTarget).text());
-            $('#ca_input').val(target_value);
-            
-
-            var form = document.getElementById('category-form'); 
-            form.action = 'http://localhost:8000/swith/search';
-            form.method = 'post'; 
-            form.submit();
-        });  
-    }
-    </script> 
-                    
-       </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
-    <script>
-       var typed = new Typed(".auto-type", {
-           strings: ["언어" , "자격증", "인증", "취업", "공모전", "취미"],
-           typeSpeed: 150,
-           backSpeed: 150,
-           loop: true
-       })
-    </script>
 
     <!-- ==========================================footer========================================== -->
     <footer class="sticky-footer">
@@ -215,6 +186,61 @@
         <p> © Copyright 2022. Swith. All Rights Reserved.</p>
     </footer>
 
+    <script>
+        const icon = document.querySelector('.icon');
+        const mysearch = document.querySelector('.mysearch');
+ 
+        icon.onclick = function() {
+            mysearch.classList.toggle('active')
+        }
+ 
+        let userTexts = document.getElementsByClassName("user-text");
+        let catPics = document.getElementsByClassName("catPic")
+ 
+        function showReview() {
+            for(catPic of catPics){
+                catPic.classList.remove("active-pic")
+            }
+            for(userText of userTexts){
+                userText.classList.remove("active-text")
+            }
+            let i = Array.from(catPics).indexOf(event.target);
+ 
+            catPics[i].classList.add("active-pic");
+            userTexts[i].classList.add("active-text");
+        }
+
+
+        // var send = document.getElementById('service');
+        var sends = document.getElementsByClassName('service');
+
+        for (const send of sends) {
+            send.addEventListener('click', function(obj) {
+                var target = obj.currentTarget;  //[object HTMLButtonElement]
+                var target_value = $(target).children('.category').children('p').text(); 
+                //.category p .text() : 카테고리 전부가 나옴
+                //target에서 div class=category에서의 p의 텍스트
+                
+                // alert(target_value);
+
+                // $('#ca_input').val($(obj.currentTarget).text());
+                $('#ca_input').val(target_value);
+                
+
+                var form = document.getElementById('category-form'); 
+                form.action = 'http://localhost:8000/swith/search';
+                form.method = 'post'; 
+                form.submit();
+            });  
+        }
+
+        var typed = new Typed(".auto-type", {
+           strings: ["언어" , "자격증", "인증", "취업", "공모전", "취미"],
+           typeSpeed: 150,
+           backSpeed: 150,
+           loop: true
+        })
+    </script>
 </body>
 </html>
 
