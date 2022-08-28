@@ -120,6 +120,13 @@ select:hover {
     cursor: pointer;
 }
 
+.PopUp {
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+    top: 10px;
+}
+
 .hint {
     background-color: #4686C2;
     width: 350px;
@@ -129,7 +136,7 @@ select:hover {
     color: white;
     text-align: center;
     position: relative;
-    bottom: -20px;
+    bottom: -10px;
 }
 
 
@@ -186,3 +193,4 @@ p {
     text-align: center;
     bottom: -200px;
 }
+

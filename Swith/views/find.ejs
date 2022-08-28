@@ -12,6 +12,7 @@
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         function password_find() {
@@ -38,12 +39,17 @@
             
         // 비밀 번호 찾기 답을 틀린 경우 
         function FalseCase() {
-            $('#PopUp').html("<p>질문과 답을 재확인해주세요.</p>");
+        //     $('#PopUp').html("<p>질문과 답을 재확인해주세요.</p>");
+        // }
+            $(".PopUp").html("아이디 또는 비밀번호를 확인해주세요.");
+            $(".PopUp").css("color","red");
+            // Swal.fire('아이디 또는 비밀번호를 확인해주세요.');
         }
 
         // 비밀번호 찾기 답을 맞은 경우
         function TrueCase() {
             $('#find_button').html("<button class='modifyUser' style='color:white'>비밀번호 변경</button>");
+            // document.location.href="http://localhost:8000/user/modify";
         }   
 
         /* 아이디 유무 검사 */
