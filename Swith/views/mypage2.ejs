@@ -79,11 +79,14 @@
                                 <div class="profile-box">
                                     <img src="/public/group/<%=data[i].study_image%>" />
                                     <div class="studyName">
+                                        data[i]<%=data[i]%>
                                         <h4><%=data[i].study_name%></h4>
                                     </div>
                                     <p><%=data[i].hashtag%></p><br>
+                                    <!--study_id-->
+                                    <div id="study_id" style="display:none"><%=data[i].study_id %></div>
+                                    <!-- 인원수 표기 해주세요 -->
                                     <!-- <p><%=data[i].study_recruit%></p> -->
-                                    <span>스터디 id : <%=data[i].study_id%></span>
                                 </div>
                             </div>
                             <% } %>
@@ -104,7 +107,7 @@
         for (const study of studys) {
             study.addEventListener('click', function(obj) {
                 var study_site = obj.currentTarget;
-                var study_id = $(study_site).children('span').text();
+                var study_id = $(study_site).children('#study_id').text();
                 goDetail(study_id);
             })
         }
