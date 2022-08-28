@@ -77,13 +77,6 @@
             //         document.getElementById("password_find").click();
             //     }
             // });
-                
-        $('#container').keyup(function(e){
-            if ( e.keyCode === 13 ) {
-                password_find();
-                return;
-            }
-        });
 
         // function enter_findd() {
         //     if ( e.keyCode === 13 ) {
@@ -146,5 +139,14 @@
             </div>    
         </div>        
     </tbody>
+    <script>
+        // 엔터키 누르면 버튼 실행
+        $('#container').keyup(function(e){
+            if ( e.keyCode === 13 ) {
+                password_find();
+                return;
+            }
+        });
+    </script>
 </body>
 </html>
