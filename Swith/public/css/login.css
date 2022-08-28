@@ -50,6 +50,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0 auto;
         z-index: 3;
         padding:10px 10px 10px 10px;
     }
