@@ -110,4 +110,9 @@ input:focus {
     height:50px;
 }
 
+.modifyUser_2 {
+    width: 150px;
+    height:35px;
+}
+
 a:link { text-decoration:none; }

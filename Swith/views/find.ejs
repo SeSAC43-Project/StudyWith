@@ -119,7 +119,7 @@
                         <br><p id="checkID_text"></p>
                         
                     
-                        <select name="hint" class="hint" style="width:300px;height:50px;">
+                        <select name="hint" class="hint" style="width:350px;height:50px;">
                             <option value="0">전체</option>
                             <option value="1">어느 중학교 출신인가요?</option>
                             <option value="2">좌우명을 입력해주세요.</option>
@@ -132,7 +132,13 @@
                         <br><br>
                         <button href="javascript:enter_find();" type="button" id="find_button" class="findUser" onclick="password_find()" style="color:white">비밀번호 찾기</button>
                         </div>
-                        <button type="button" id="login_back" class="login_back" onclick="back()" style="color:#FFE19C">로그인 하기</button>
+                        <div class="text_box">
+                            <span>이미 스윗이신가요?</span>&nbsp;
+
+                            <a href="javascript:void(0);" onclick="back();return">로그인</a>&nbsp;
+                            <span>하러가기</span>
+                        </div>
+                        <!-- <button type="button" id="login_back" class="login_back" onclick="back()" style="color:#FFE19C">로그인 하기</button> -->
                     </div>
                 </form>
             </div>  
