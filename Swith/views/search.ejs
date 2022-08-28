@@ -15,6 +15,8 @@
   <!-- swiper -->
   <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
   <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
+  <!-- typed.js-->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://kit.fontawesome.com/cf7a6dd6e5.js" crossorigin="anonymous"></script>
@@ -43,28 +45,39 @@
         })
     </script>
 
-<!-- 상단 카테고리 -->
-        <div class = "main-container">
-            <div class = "filter-container">
-                <div class = "category-head">
-                        <form id="category-form">
-                            <input type='hidden' name="category" id="ca_input">
-                            <% var ca_list = ['IT', '언어', '자격증', '인증', '취업', '공모전', '취미']%> 
-                            <% for (i=0; i <= 6; i++){ %> 
-                                <button type="button" class="category-title" id='category-title[i]'>
-                                    <div class="category" >
-                                        <p><%=ca_list[i]%></p>
-                                    </div>
-                                </button>
-                                <% }%> 
-                        </form>
-                </div>
 
-<!-- 카테고리 아래 게시글 보여주기 -->
-                <div class="resultText">
-                    <h2 class="resultText_search"> 💡 "<span class="resultText_search_text"><%=search %></span>" 검색 결과입니다.</h2>
-                    <h2 class="resultText_category"> 💡 "<span class="resultText_category_text"><%=category %></span>" 검색 결과입니다.</h2>
-                </div>
+<!-- 상단 카테고리 -->
+<div class = "main-container">
+    <div class = "filter-container">
+        <div class = "category-head">
+            <form id="category-form">
+                <input type='hidden' name="category" id="ca_input">
+                <% var ca_list = ['IT', '언어', '자격증', '인증', '취업', '공모전', '취미']%> 
+                <% for (i=0; i <= 6; i++){ %> 
+                    <button type="button" class="category-title" id='category-title[i]'>
+                        <div class="category" >
+                            <p><%=ca_list[i]%></p>
+                        </div>
+                    </button>
+                    <% }%> 
+                </form>
+                <div id="result_box">
+                    <!-- 카테고리 아래 게시글 보여주기 -->
+                    <div class="resultText">
+                        <h2 class="resultText_search"> 💡 "<span class="resultText_search_text"><%=search %></span>" 검색 결과입니다.</h2>
+                        <h2 class="resultText_category"> 💡 "<span class="resultText_category_text"><%=category %></span>" 검색 결과입니다.</h2>
+                    </div>
+                    <!-- 검색창 -->
+                        <div id="search_box" >
+                            <form id="search" onsubmit="return false">
+                                <input id='search_input' type="text" name="search" placeholder="📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀"> 
+                                <button class="clear" onclick='main2_search();' style="font-size: 20px;">🔍</button>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+
+
                 <div class="searchSection">
                     <div class = "feed-collect">
                         <div class = "feed-main-container">
@@ -131,12 +144,44 @@
         $('.resultText_search').css('display','block');
         $('.resultText_search').html('<h2> 💡 전체 검색 결과입니다.</h2>');
     }
+    // 검색 정보 보내기
+    function main2_search() {
+        var form = document.getElementById('search');
+        axios({
+            method: 'post', 
+            url: 'http://localhost:8000/swith/search/category', 
+            data: {
+                search : form.search.value
+            }
+        })
+        .then((req) => {return req.data;})
+        .then((data) => {
+            if (data.flag == true) {
+                console.log(data),
+                console.log(data.data);
+                console.log(data.likeList);
+            }
+            var html = "";
 
-    // 카테고리 정보 보내기 
+            for ( var i = 0; i < data.data.length; i++ ){
+                html += "<div class = 'studys categoryPostSection'><div class = 'all-category'>";
+                html += "<div class='post-img' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>" + "<img width='300px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><div class='name_likes'><div class='search_studyname'>" + data.data[i].study_name + "</div>";
                     
+                if ( data.likeList[i] == '0') {
+                html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div>"; 
+                } else { 
+                html += "<div class='likes' onclick='reply_dislikes(this.id, this)' id="+data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart fa-solid fa-heart'></p></div>";
+                }
+                    
+                html += "</div><p class='study_content_box'><span>"+ data.data[i].study_content +"</span></p><div class='total_recruit'><span><i class='fa-solid fa-user'></i>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><br></div></div></div>";
+            }
+            $(".feed-main-container").empty();
+            $(".feed-main-container").append(html);
+            })
+        }
+
+    // 카테고리 정보 보내기    
     var categorys = document.querySelectorAll('.category-title');
-                    
-                    
                     for (const category of categorys) {     
                         category.addEventListener('click', function(obj) {
                             var car_site = obj.currentTarget;  //[object HTMLButtonElement]
@@ -346,6 +391,7 @@
             function goDetail(cate_study_id) {
                     document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${cate_study_id}`;
             }
+
     /* 로그아웃 */
     function logout() {
             Swal.fire({
