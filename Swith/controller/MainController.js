@@ -8,8 +8,6 @@ exports.main_index = (req, res) => {
     } else {
         user_id = "";
     }
-    console.log("session user_id:", user_id);
-
     res.render('main', {session_id: user_id}); 
 }
 
