@@ -78,18 +78,18 @@
             //     }
             // });
                 
-        // $('#id').keyup(function(e){
-        //     if ( e.keyCode === 13 ) {
-        //         enter_find();
-        //         return;
-        //     }
-        // });
-
-        function enter_findd() {
+        $('#container').keyup(function(e){
             if ( e.keyCode === 13 ) {
                 password_find();
+                return;
             }
-        }
+        });
+
+        // function enter_findd() {
+        //     if ( e.keyCode === 13 ) {
+        //         password_find();
+        //     }
+        // }
 
         // 로그안 창으로 돌아가기
         function back() {
@@ -109,7 +109,7 @@
     <!-- navbar -->
 
     <tbody>
-        <div class="container">
+        <div class="container" id="container">
             <img src="/public/login/login_image.png" class="find_background">
             
             <div class="form_background"></div>
@@ -142,7 +142,7 @@
                         <button type="button" id="login_back" class="login_back" onclick="back()" style="color:white;">로그인 화면으로가기</button>
                     </div>
                 </form>
-            </div>    
+            </div>  
             </div>    
         </div>        
     </tbody>
