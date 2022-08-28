@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,10 +25,15 @@
         /* 게시물 등록 */
         function writeFeed() {
             var feed = document.getElementById("feed_info");
-            var hashtags = document.getElementById("enter_hashtag").innerHTML;
-            var hashtags2 = hashtags.split('#');
-            var feed_hashtag = hashtags2.slice(1);
-            var feed_hashtags = feed_hashtag.toString();
+            // var hashtags = document.getElementById("enter_hashtag").innerHTML;
+            // var hashtags2 = hashtags.split('#');
+            // var feed_hashtag = hashtags2.slice(1);
+            // var feed_hashtags = feed_hashtag.toString();
+
+            var hashtags = $('.newHashtag').text();  //#가#나#다//
+            var hashtag = rehashtags.split('#').slice(1); // {'가','나','다'}
+            var feed_hashtag = hashtag.toString();
+
 
             var result = feed.checkValidity();
 
@@ -108,17 +112,39 @@
             const keyword = document.getElementById('enter_hashtag');
             // console.log(keyword);
             const txt = document.getElementById('text_hashtag').value;
+            const text = txt.replace(" ","");
 
             // let btn = "<button type='button' class='deleteHashtag' onclick='deleteTag();'>X</button>";
             // $('#enter_hashtag').append(btn);   //이부분은 해시태그 삭제할 때 적용(미완)
 
             // console.log(txt);
-            if (event.keyCode == 13) {
-                keyword.innerHTML += "<span class='newHashtag'>" + '#' + txt + "</span>";
-                document.getElementById('text_hashtag').value = "";
-                
+            if (($('.newHashtag').length < '7' )) {
+                if ((text.length < '7')) {
+                    if (event.keyCode == 13) {
+                        keyword.innerHTML += "<span class='newHashtag'>" + '#' + text + "<button type='button' class='removeTagButton' onclick='deleteTag(event);'>X</button></span>";
+                        document.getElementById('text_hashtag').value = "";
+                    } }
+                else {
+                        Swal.fire({
+                        title: 'Error!',
+                        text: '해시태그는 최대 6글자까지만 가능해요.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                        })
+                    }
+            }
+            else {
+                document.getElementById('text_hashtag').value = "해시태그는 7개까지만 입력 가능해요!";
+                $('#text_hashtag').css('color','red');
             }
         }   
+
+
+        // 해시태그 삭제버튼 누를 시 태그 삭제
+        function deleteTag(e) {
+            const removeTagOne = e.target.parentElement;
+            removeTagOne.remove();
+        }
 
     /* 다음 주소 api ('동/로/가'만 받아오는 것처럼 보이도록) */
     function searchForAddress() {

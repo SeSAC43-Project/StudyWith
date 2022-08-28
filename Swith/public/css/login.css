@@ -9,6 +9,9 @@
         font-family: "GmarketSansMedium";
     }
 
+    a:hover {
+        cursor: pointer;
+    }
     html,body {
         height:100%;
     }

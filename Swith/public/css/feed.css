@@ -508,6 +508,18 @@ footer {
 }
 
 
+.removeTagButton {
+  border: 0;
+  background-color:  #f3f7fe;
+  width: 23px;
+  height: 23px;
+
+}
+
+.removeTagButton:hover {
+  color: red;
+}
+
 /* ==========================================footer====================================== */
 .sticky-footer {
   /* position: sticky; */
