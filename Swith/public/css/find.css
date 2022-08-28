@@ -7,6 +7,7 @@
 
   * {
     font-family: "GmarketSansMedium";
+    
 }
 
 /* 전체 컨테이너 설정 */
@@ -14,7 +15,7 @@
     margin: auto;
     padding: 0px;
     width: 100%;
-    height: 100rem;
+    height: 120vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,6 +26,7 @@
 .find_card {
     position: absolute;
     margin: 0 auto;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
