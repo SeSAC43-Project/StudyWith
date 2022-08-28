@@ -81,7 +81,8 @@
                                     <div class="studyName">
                                         <h4><%=data[i].study_name%></h4>
                                     </div>
-                                    <p><%=data[i].hashtag%></p><br>
+                                    <%var str = data[i].hashtag%>
+                                    <p id="hashtag"><%=str.substring(0,15)%></p><br>
                                     <!--study_id-->
                                     <div id="study_id" style="display:none"><%=data[i].study_id %></div>
                                     <!-- 현재인원/모집인원 -->
@@ -90,7 +91,9 @@
                             </div>
                             <% } %>
                 <% } else {%>
-                            <p class="pTag">가입된 스터디가 없습니다 😌 </p><br>
+                        <div>
+                            <p id="emptyMsg">가입된 스터디가 없습니다 😌 </p><br>
+                        </div>
                     <% } %>
 
 
