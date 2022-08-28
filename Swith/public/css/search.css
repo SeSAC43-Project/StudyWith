@@ -158,10 +158,10 @@ body {
 
 .feed-main-container{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 400px);
   grid-gap: 0px;
 }
-.studys {
+.studys{
   font-family: "GmarketSansMedium";
   margin: 50px 50px;
   border-radius: 20px;
@@ -169,6 +169,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.all-business,.all-category {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .studys:hover {
@@ -190,14 +199,21 @@ body {
 .post-img{
   position: relative;
   text-align: center;
+  width: 300px;
 
 }
+.post-img > img {
+  border-radius: 20px 20px 0 0 ;
+}
+
 .post-content > h2 {
   padding:10px 0;
 }
 
 figcaption{
-  width: 200px; height: 200px;
+  width: 100%;
+   height: 200px;
+   border-radius: 20px 20px 0 0 ;
   background-color: rgba(0,0,0,0.7);
 
   position: absolute; /* 이미지와 겹치게 처리 */
@@ -218,14 +234,26 @@ figcaption{
 
 
 .search_studyname {
-  color: #4686C2;
+  background-color: #4686C2;
+  color:white;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
   font-weight: bold;
+  font-size:18px;
+  margin:0 15px;
 }
 
 .total_recruit {
   font-size: 12px;
   float: right;
-
+  margin-top:10px;
+  margin-bottom: 10px;
+  display: block;
 }
 
 .category-name{
@@ -250,17 +278,25 @@ figcaption{
 .post-content {
   text-align: center;
 }
-
+.name_likes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .study_content_box {
-  background-color: rgba(211, 211, 211, 0.219);
+  background-color: rgba(211, 211, 211, 0.119);
   border-radius: 5px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-  margin: 15px 0;
+  margin: 20px 20px 20px 15px;
   overflow: hidden;
+  width: 200px;
+  text-overflow:ellipsis;
+  
+
 }
 
 /* 
