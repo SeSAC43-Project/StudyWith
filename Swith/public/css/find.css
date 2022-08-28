@@ -59,8 +59,10 @@
 
 .login_logo {
     margin-top: 10px;
-    top: 10px;
+    top: -40px;
     padding-bottom: 10px;
+    position: relative;
+
 }
 
 .form_background {
@@ -79,7 +81,13 @@
 .password_find {
     /* justify-content: center; */
     /* padding:0 30px; */
-    margin: 25px 25px;
+    margin: 40px 40px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: auto;
+    position: relative;
+    top: -30px;
 }
 
 .find_password_user, .hint_answer, .hint {
@@ -89,7 +97,7 @@
     height: 50px;
     border-radius: 30px;
     position: relative;
-    bottom: 20px;
+    bottom: 60px;
 }
 
 input {
@@ -101,12 +109,13 @@ input:focus {
 }
 
 option {
-    font-size: 20px;
+    font-size: 18px;
 }
 
-select > option {
+select:hover {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
 .hint {
@@ -118,7 +127,7 @@ select > option {
     color: white;
     text-align: center;
     position: relative;
-    bottom: -10px;
+    bottom: -20px;
 }
 
 
@@ -129,7 +138,7 @@ select > option {
     width: 300px;
     height:50px;
     position: relative;
-    bottom: 20px;
+    bottom: 40px;
 }
 
 .modifyUser {
@@ -149,15 +158,20 @@ a:link { text-decoration:none; }
 
 #checkID_text {
     text-align : center;
-    margin-top: -15px;
+    margin-top: -50px;
+}
+
+p {
+    margin-top: -10px;
 }
 
 .login_back {
     background-color: #4686C2;
     border:0;
-    width: 300px;
-    height:50px;
+    width: 120px;
+    height:35px;
     border-radius: 30px;
     position: absolute;
-    bottom: -180px;
+    bottom: -250px;
+    left: 100px;
 }
