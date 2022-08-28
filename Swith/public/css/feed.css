@@ -138,9 +138,10 @@ h2 {
 
 form {
 	position: relative;
-	/* background: white; */
-	border-radius: .4em;
-    width:1200px;
+	background: white;
+	/* border-radius: .4em; */
+  border-radius: 20px;
+  width:1200px;
     height: 1600px;
     text-align: center;
     box-sizing: border-box;
