@@ -135,8 +135,14 @@
                     }
             }
             else {
-                document.getElementById('text_hashtag').value = "해시태그는 7개까지만 입력 가능해요!";
-                $('#text_hashtag').css('color','red');
+                // document.getElementById('text_hashtag').value = "해시태그는 7개까지만 입력 가능해요!";
+                // $('#text_hashtag').css('color','red');
+                Swal.fire({
+                        title: 'Error!',
+                        text: '해시태그는 7개까지만 입력 가능해요!',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                        })
             }
         }   
 
