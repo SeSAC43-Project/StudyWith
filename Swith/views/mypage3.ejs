@@ -143,8 +143,10 @@
                                         <h4><%=memberStudy[i].study_name%></h4>
                                     </div>
                                     <p><%=memberStudy[i].hashtag%></p><br>
+                                    <!--study_id-->
+                                    <div id="study_id" style="display:none"><%=memberStudy[i].study_id %></div>
+                                    <!-- 인원수 표기 해주세요 -->
                                     <!-- <p><%=memberStudy[i].study_recruit%></p> -->
-                                    <span>스터디 id : <%=memberStudy[i].study_id%></span>
                                 </div>
                                 
                                 <% } %>
@@ -161,7 +163,7 @@
             for (const study of studys) {
                 study.addEventListener('click', function(obj) {
                     var study_site = obj.currentTarget;
-                    var study_id = $(study_site).children('span').text();
+                    var study_id = $(study_site).children('#study_id').text();
                     goDetail(study_id);
                 })
             }
