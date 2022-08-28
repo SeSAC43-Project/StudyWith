@@ -228,6 +228,10 @@ header.sticky ul li a {
   display: flex;
   justify-content: center;
   align-items: center;
+  border:0;
+  outline:0;
+  background-color: transparent;
+  
 }
 /* .clear::before {
   position: absolute;
