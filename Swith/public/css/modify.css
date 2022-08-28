@@ -13,7 +13,7 @@
     margin: auto;
     padding: 0px;
     width: 100%;
-    height: 100vh;
+    height: 150vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,6 +85,9 @@
     padding-top: -60px;
     padding-left: -15rem;;
     font-size: 30px;
+    position: relative;
+    top: 570px;
+    right: 355px;
 }
 
 .modify_form_user, .check_pw, .check_pwd, .modifyUser_1, .modifyUser_2 {
