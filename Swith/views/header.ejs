@@ -1,3 +1,6 @@
+<html>
+<head>
+
 <script>
     /* 로그아웃 */
     function logout() {
@@ -35,6 +38,7 @@
     }
 </script>
 </head>
+
 <body>
     <a href="http://localhost:8000/swith" class="logo">
         <img src="/public/main/logo.png" alt="logo" />
@@ -56,5 +60,12 @@
             <i class="fa-solid fa-heart">&nbsp;&nbsp;마이페이지</i></a>
         </li>
     </ul>
+
+    <script type="text/javascript">
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
+    </script>
 </body>
 </html>
