@@ -270,7 +270,7 @@
                 <div class="form-row">
                     <div class="name">모집인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
                     <div class="value">
-                    <input type="text" id="studyRecruit" name="studyRecruit" style="width: 40px;" required>&nbsp;명
+                    <input type="text" id="studyRecruit" name="studyRecruit" style="width: 40px;" required>&nbsp;명<span style="font-size:11px; font-weight: bold;"> ( ※ 최소 1 명 ~ 최대 20 명)</span>
                     </div>
                 </div>
                 <div class="form-row">
@@ -286,7 +286,7 @@
                     시작일: <input type="hidden" id="start_period" name="start_period">
                     <select id="start_year" name="start_year" required>
                         <option>
-                            <%for(var i=2022; i<=2050; i++) {%>
+                            <%for(var i=2022; i<=2025; i++) {%>
                                 <option value="<%=i%>"><%=i%></option>
                             <%}%>
                         </option>
@@ -313,7 +313,7 @@
                     종료일: <input type="hidden" id="end_period" name="end_period">
                     <select id="end_year" name="end_year" required>
                         <option>
-                            <%for(var i=2022; i<=2050; i++) {%>
+                            <%for(var i=2022; i<=2025; i++) {%>
                                 <option value="<%=i%>"><%=i%></option>
                             <%}%>
                         </option>
