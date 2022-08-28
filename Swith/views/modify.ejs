@@ -12,12 +12,11 @@
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!--sweetalert -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
     <script>
-        $(window).on('load', function() {
-            document.getElementById('id').value = '<%=id%>'
-        });
-
         function pw_check() {
             let pw = $('#pw').val(); 
             let pw2 = $('#pwd').val();
@@ -30,42 +29,71 @@
             };
         }
         
+        /* 비밀번호 변경 */
         function password_modify() {
             var form = document.getElementById('modify_password');
-            let id = $('#id').val();
-            let pw = $('#pw').val();
-            axios({
-                method:'post',
-                url: "http://localhost:8000/user/update",
-                data: {
-                    user_id : id,
-                    user_password : pw, 
-                }
-            })
-            .then((req) => { return req.data;})
-            .then((data) => {
-                alert(data);
-                gologin();
-            });
-        }
-
-        function gologin() {
-            location.replace('http://localhost:8000/user/login');
+            var flag = checkData();
+            if (flag) {
+                axios({
+                    method:'post',
+                    url: "http://localhost:8000/user/update",
+                    data: {
+                        user_id : form.id.value,
+                        user_password : form.password.value, 
+                    }
+                })
+                .then((req) => { return req.data;})
+                .then((data) => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: '변경 되었습니다.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    setTimeout(function() {
+                        document.location.href="http://localhost:8000/user/login";
+                    }, 1000);
+                });
+            }
         }
 
         /* 비밀번호 확인 */
         function pwCheck() {
-                if(document.getElementById('pw').value !='' && document.getElementById('pwd').value!=''){
-                    if(document.getElementById('pw').value==document.getElementById('pwd').value){
-                        document.getElementById('checkPw').innerHTML='비밀번호 일치🥰'
-                        document.getElementById('checkPw').style.color='rgb(54, 54, 255)';
-                    }
-                    else{
-                        document.getElementById('checkPw').innerHTML='비밀번호가 일치하지 않습니다';
-                        document.getElementById('checkPw').style.color='rgb(255, 89, 89)';
-                    }
+            if(document.getElementById('pw').value !='' && document.getElementById('pwd').value!=''){
+                if(document.getElementById('pw').value==document.getElementById('pwd').value){
+                    document.getElementById('checkPw').innerHTML='비밀번호 일치🥰'
+                    document.getElementById('checkPw').style.color='rgb(54, 54, 255)';
+                }
+                else{
+                    document.getElementById('checkPw').innerHTML='비밀번호가 일치하지 않습니다';
+                    document.getElementById('checkPw').style.color='rgb(255, 89, 89)';
                 }
             }
+        }
+
+        /* 데이터 유효성 검사 alert */
+        function checkData () {
+            var form = document.getElementById("modify_password");
+
+            if (form.password.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '비밀번호 확인해주세요!',
+                    text: '45글자 이내',
+                })
+                return false;
+            }
+
+            if (form.password2.value == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '비밀번호 확인을 해주세요!',
+                })
+                return false;
+            }
+            return true;
+        }
     </script>
     <style>
         .Popup {
@@ -84,14 +112,14 @@
             <div class="modify_info">
                 <img src="/public/login/logo.png" width="300px;" class="modify_logo"><br>
                 <!-- <div class="form_background"></div> -->
-                <div id="modify_password">
+                <div id="modify_password2">
                 <div class="modify_card">
                     <div class="pw_modify">  
                         <h1 class="password_modify"><%=id%>님 비밀번호 변경</h1>
                     </div>
 
                 <form id="modify_password">
-                    <div><input id="id" type="text" name="id" class="modify_form_user" placeholder="아이디" style="color:white"></div><br>
+                    <div><input id="id" type="text" name="id" class="modify_form_user" value="<%=id%>" style="color:white"></div><br>
                     
                     <div><input id="pw" type="password" name="password" class="check_pw" placeholder="비밀번호" onchange="pwCheck()" required style="color:white"></div><br>
 
@@ -99,7 +127,7 @@
                     <!-- </div> -->
                     <div id="checkPw" class="checkPw"></div><br>
                     <button type="button" class="modifyUser_2"
-                    onclick="password_modify()" style="color:#FFE19C">비밀번호 변경하기</button>
+                    onclick="password_modify()" style="color:#FFE19C">비밀번호 변경</button>
                     </div>
                 </div>    
                 </form>

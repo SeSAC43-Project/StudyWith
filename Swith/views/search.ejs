@@ -7,22 +7,17 @@
   <title>StudyWITH</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
   <link rel="stylesheet" href="/public/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="/public/css/search.css" />
-  <!-- <link rel="stylesheet" href="/public/css/navbar.css" />
-  <link rel="stylesheet" href="/public/css/footer.css" /> -->
-  <script src="https://kit.fontawesome.com/cf7a6dd6e5.js" crossorigin="anonymous"></script>
-
-
+  <!--sweetalert -->
+  <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <!-- swiper -->
   <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
   <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
-
   <!-- Axios -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+  <script src="https://kit.fontawesome.com/cf7a6dd6e5.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -30,14 +25,14 @@
             <img src="/public/main/logo.png" alt="logo" />
         </a>
         <ul>
-            <li><a href="http://localhost:8000/feed/write">
-                <i class="fa-solid fa-folder-plus">&nbsp;&nbsp;스터디 등록</i></a>
+            <li class="logout"><a href="http://localhost:8000/feed/write">
+                <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
             </li>
-            <li><a href="http://localhost:8000/user/login">
-                <i class="fa-solid fa-user">&nbsp;&nbsp;로그인</i></a>
+            <li class="logout" onclick="logout();">
+                <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
             </li>
-            <li><a href="http://localhost:8000/user/mypage">
-                <i class="fa-solid fa-heart">&nbsp;&nbsp;마이페이지</i></a>
+            <li class="logout"><a href="http://localhost:8000/user/mypage">
+                <i class="fa-solid fa-heart"><span>&nbsp;&nbsp;마이페이지</span></i></a>
             </li>
         </ul>
     </header>
@@ -95,19 +90,12 @@
                                                 <% } %> 
                                             </div>
                                             </div>
-                                            <div class='total_recruit'>
-                                                <span><i class="fa-solid fa-user"></i> <%=data[i].num%></span> /<span> <%=data[i].study_recruit%></span>
-                                            </div><br>
                                             <p class='study_content_box'><span><%=data[i].study_content%></span></p>
+                                            <div class='total_recruit'>
+                                                <span><i class="fa-solid fa-user"></i> <%=data[i].num%></span>/<span><%=data[i].study_recruit%></span>
+                                            </div><br>
                                         </div> 
                                     </div>
-                                    <!-- <span class="likes">
-                                        <% if (likeList[i] == '0') { %>
-                                            <p style="font-size:1.3rem;" class="heart far fa-heart"></p>
-                                        <% } else { %>
-                                            <p style="font-size:1.3rem;" class="heart fa-solid fa-heart"></p>
-                                        <% } %> 
-                                    </span> -->
                                 </div>
                                     <% } %>
                             </div>
@@ -124,17 +112,7 @@
         </ul>
         <p> © Copyright 2022. Swith. All Rights Reserved.</p>
     </footer>
-
-</body>
 <script>
-    function showDetail( id ){
-        var form = new FormData();
-        form.append("study_id", id);
-        form.method = "get";
-        form.action="/d";
-        form.submit();
-    }
-
     // 검색 결과 부분
     $('.category').children('p').on('click',function(e) {
             var cate_target = e.target;
@@ -151,6 +129,7 @@
     } else if ($('.resultText_category_text').html() == '') {
         $('.resultText_category').css('display','none');
         $('.resultText_search').css('display','block');
+        $('.resultText_search').html('<h2> 💡 전체 검색 결과입니다.</h2>');
     }
 
     // 카테고리 정보 보내기 
@@ -185,12 +164,12 @@
                                     html += "<div class='post-img' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>" + "<img width='300px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><div class='name_likes'><div class='search_studyname'>" + data.data[i].study_name + "</div>";
                                         
                                     if ( data.likeList[i] == '0') {
-                                    html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div></div>"; 
+                                    html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div>"; 
                                     } else { 
-                                    html += "<div class='likes' onclick='reply_dislikes(this.id, this)' id="+data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart fa-solid fa-heart'></p></div></div>";
+                                    html += "<div class='likes' onclick='reply_dislikes(this.id, this)' id="+data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart fa-solid fa-heart'></p></div>";
                                     }
                                         
-                                    html += "<div class='total_recruit'><span><i class='fa-solid fa-user'></i>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><br><p class='study_content_box'><span>"+ data.data[i].study_content +"</span></p></div></div></div>";
+                                    html += "</div><p class='study_content_box'><span>"+ data.data[i].study_content +"</span></p><div class='total_recruit'><span><i class='fa-solid fa-user'></i>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><br></div></div></div>";
                                 
                                 }
 
@@ -367,8 +346,42 @@
             function goDetail(cate_study_id) {
                     document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${cate_study_id}`;
             }
-
+    /* 로그아웃 */
+    function logout() {
+            Swal.fire({
+                title: '로그아웃',
+                text: "정말로 로그아웃 하시겠습니까?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#a9a9a9',
+                confirmButtonText: '로그아웃 하기'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios({
+                        method:'get',
+                        url:'http://localhost:8000/user/logout'
+                    })
+                    .then((req) => {return req.data;})
+                    .then((data) => {
+                        if (data) {
+                                Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: '로그아웃 되었습니다.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            setTimeout(function() {
+                                document.location.href="http://localhost:8000/swith";
+                            }, 1000);
+                        }
+                    })
+                }
+            })
+        }
 </script>
+</body>
 </html>
 
 

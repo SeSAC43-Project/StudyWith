@@ -30,9 +30,9 @@
 
     }
 
-    .login_main {
+    /* .login_main {
         position: relative;
-    }
+    } */
 
 
     .login_background {
@@ -50,6 +50,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0 auto;
         z-index: 3;
         padding:10px 10px 10px 10px;
     }
@@ -89,6 +90,7 @@
         width:300px;
         height: 50px;
         border-radius: 30px;
+        margin-bottom: 25px;
     }
     input {
         text-align: center;
@@ -98,10 +100,10 @@
     input:focus {
         outline: 3px solid #4686C2
     }
-
+/* 
     .remember {
         padding-top: 20px;
-    }
+    } */
 
     input[id="userid_Remember"] {
         position:relative;

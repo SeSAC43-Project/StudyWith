@@ -5,18 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swith:비밀번호 찾기</title>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/public/css/find.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!--sweetalert -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/find.css">
 
     <script>
         function password_find() {
-                var form = document.getElementById('find_password');
+            var form = document.getElementById('find_password');
+            var flag = checkData();
+            if ( flag == true ) {
                 axios ({
                     method:'post',
                     url: "http://localhost:8000/user/find",
@@ -28,7 +32,7 @@
                 })
                 .then((req) => { return req.data; })
                 .then((data) => {
-                    console.log('여기가 악', data);
+                    console.log('답을 확인해주세요', data);
                     if (data == "") { // 답 틀리면
                         FalseCase();
                     } else { // 답 맞으면
@@ -36,6 +40,7 @@
                     }
                 });
             }
+        }
             
         // 비밀 번호 찾기 답을 틀린 경우 
         function FalseCase() {
@@ -54,46 +59,54 @@
 
         /* 아이디 유무 검사 */
         function checkID( obj ){
-                axios({
-                    method: "post",
-                    url: "http://localhost:8000/user/find/isId ",
-                    data: {
-                        user_id: obj.value,
-                    }})
-                    .then((rep) => {return rep.data;})
-                    .then((data) => {
-                    console.log(data);
-                    // data는 signupController에서 true, false 형식으로 보낸다.
-                    if ( data ) { // data가 true면 실행
-                        $("#checkID_text").css("color", "green");
-                        $("#checkID_text").text("존재하는 아이디 입니다.");
-                    } else { // data가 false면 실행
-                        $("#checkID_text").css("color", "red");
-                        $("#checkID_text").text("존재하지 않는 아이디입니다.");
-                    }
-                });
-            }
-
-        // 엔터키 눌리면 버튼 눌리기
-            // var form = document.getElementById("hint_answer");
-
-            //     form.addEventListener("keyup", function (event) {
-            //     if (event.keyCode === 13) {
-            //         event.preventDefault();
-            //         document.getElementById("password_find").click();
-            //     }
-            // });
-
-        // function enter_findd() {
-        //     if ( e.keyCode === 13 ) {
-        //         password_find();
-        //     }
-        // }
+            axios({
+                method: "post",
+                url: "http://localhost:8000/user/find/isId ",
+                data: {
+                    user_id: obj.value,
+                }})
+                .then((rep) => {return rep.data;})
+                .then((data) => {
+                console.log(data);
+                // data는 signupController에서 true, false 형식으로 보낸다.
+                if ( data ) { // data가 true면 실행
+                    $("#checkID_text").css("color", "green");
+                    $("#checkID_text").text("존재하는 아이디 입니다.");
+                } else { // data가 false면 실행
+                    $("#checkID_text").css("color", "red");
+                    $("#checkID_text").text("존재하지 않는 아이디입니다.");
+                }
+            });
+        }
 
         // 로그안 창으로 돌아가기
         function back() {
             document.location.href="http://localhost:8000/user/login"; 
         }
+
+        /* 데이터 유효성 검사 alert */
+        function checkData () {
+                var form = document.getElementById("find_password");
+
+                if (form.user_id.value == '') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '아이디를 입력해주세요!',
+                        text: '20글자 이내',
+                    })
+                    return false;
+                }
+
+                if (form.hint_answer.value == '') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '비밀번호 힌트 답을 입력해주세요',
+                        text: '50글자 이내',
+                    })
+                    return false;
+                }
+                return true;
+            }
     </script>
     <style>
         .PopUp {

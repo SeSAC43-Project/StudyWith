@@ -122,7 +122,11 @@ a {
   position: absolute;
   margin-top: 0;
 }
-
+#checkNickname_text {
+  text-align: center;
+  font-size: 14px;
+  padding:0.5vw;
+}
 .inte-field {
   align-items: center;
   justify-content: center;

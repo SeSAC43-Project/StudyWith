@@ -68,7 +68,7 @@ header ul li a {
   font-size: 13px;
 }
 
-.logout {
+.logout i {
   position: relative;
   margin: 0 15px;
   text-decoration: none;
@@ -78,6 +78,9 @@ header ul li a {
   font-size: 13px;
 }
 
+i span {
+  font-family: "GmarketSansMedium";
+}
 
 header ul li a:hover {
   cursor: pointer;
