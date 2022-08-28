@@ -528,10 +528,10 @@ footer {
 
 .removeTagButton {
   border: 0;
-  background-color:  #f3f7fe;
+  /* background-color: white; */
+  background-color: white;
   width: 23px;
   height: 23px;
-
 }
 
 .removeTagButton:hover {
