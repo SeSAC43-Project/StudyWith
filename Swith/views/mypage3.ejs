@@ -125,8 +125,9 @@
                                     </div>
                                     <p><%=HeadStudy[i].hashtag%></p><br>
                                     <!--study_id-->
-                                    <div id="study_id" style="display:none"><%=memberStudy[i].study_id %></div>
-                                    <!-- 인원수 표기 해주세요 -->
+                                    <div id="study_id" style="display:none"><%=HeadStudy[i].study_id %></div>
+                                    <!-- 현재인원/모집인원 -->
+                                    <div class='total_recruit'><span><i class="fa-solid fa-user"></i><%=HeadCount[i]%></span>/<span><%=HeadStudy[i].study_recruit%></span></div>
                                 </div>
                             <!-- </div> -->
                             <% } %>
@@ -146,10 +147,9 @@
                                     <p><%=memberStudy[i].hashtag%></p><br>
                                     <!--study_id-->
                                     <div id="study_id" style="display:none"><%=memberStudy[i].study_id %></div>
-                                    <!-- 인원수 표기 해주세요 -->
-                                    <!-- <p><%=memberStudy[i].study_recruit%></p> -->
+                                    <!-- 현재인원/모집인원 -->
+                                    <div class='total_recruit'><span><i class="fa-solid fa-user"></i><%=memberCount[i]%></span>/<span><%=memberStudy[i].study_recruit%></span></div>
                                 </div>
-                                
                                 <% } %>
                             </div>
                 <% } else {%>
