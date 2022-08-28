@@ -71,11 +71,11 @@
             <img src="/public/main/logo.png" alt="logo" />
         </a>
         <ul>
-            <li><a href="http://localhost:8000/feed/write">
+            <li class="logout"><a href="http://localhost:8000/feed/write">
                 <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
             </li>
             <% if (session_id == "") { %>
-                <li><a href="http://localhost:8000/user/login"> 
+                <li class="logout"><a href="http://localhost:8000/user/login"> 
                     <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그인</span></i></a>
                 </li>
             <% } else { %>
@@ -83,7 +83,7 @@
                     <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
                 </li>
             <% } %>
-            <li><a href="http://localhost:8000/user/mypage">
+            <li class="logout"><a href="http://localhost:8000/user/mypage">
                 <i class="fa-solid fa-heart"><span>&nbsp;&nbsp;마이페이지</span></i></a>
             </li>
         </ul>

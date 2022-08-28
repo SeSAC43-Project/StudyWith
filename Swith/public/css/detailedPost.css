@@ -78,7 +78,7 @@ header {
     transform: scale(1.05);
   }
   
-  .logout i :hover {
+  .logout:hover {
     cursor: pointer;
     transform: scale(1.05);
   }
