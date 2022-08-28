@@ -84,8 +84,8 @@
                                     <p><%=data[i].hashtag%></p><br>
                                     <!--study_id-->
                                     <div id="study_id" style="display:none"><%=data[i].study_id %></div>
-                                    <!-- 인원수 표기 해주세요 -->
-                                    <!-- <p><%=data[i].study_recruit%></p> -->
+                                    <!-- 현재인원/모집인원 -->
+                                    <div class='total_recruit'><span><i class="fa-solid fa-user"></i><%=memberCount[i]%></span>/<span><%=data[i].study_recruit%></span></div>
                                 </div>
                             </div>
                             <% } %>
