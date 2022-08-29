@@ -68,9 +68,16 @@
                                 </tr>
                         </tbody>
                         </table>
+ 
                         <div>댓글창
-                            <table id="commentHere">
-                                
+                            <table id="commentHere" border="1">
+                                <% for (i=0; i<detailData.length; i++) { %>
+                                <tr>
+                                    <td><%=detailData[i].reply_name%></td>
+                                    <td><%=detailData[i].reply_contents%></td>
+                                    <td><%=detailData[i].reply_regdate%></td>
+                                </tr>
+                                <% } %>
                             </table>
 
                         </div>
