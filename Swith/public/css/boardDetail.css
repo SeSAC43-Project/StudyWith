@@ -141,19 +141,3 @@ table {
   overflow: hidden;
 
 }
-
-thead {
-  font-weight:bold;
-  color:white;
-  background-color: #4686C2;
-}
-
-/* td, th {
-  border: none;
-  border-bottom: rgb(0, 0, 0,0.5);
-} */
-
-
-.lounge_title:hover {
-  cursor: pointer;
-}
