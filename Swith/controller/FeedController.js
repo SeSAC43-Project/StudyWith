@@ -62,10 +62,8 @@ exports.uploadProfile = (req, res) => {
     })
 }
 
-exports.studylounge_index = async(req, res) => {
-    // // 보내줄 데이터 
-    // const 
-    // res.render('board');
+exports.studylounge_index = (req, res) => {
+    res.render('board');
 }
 
 exports.post_studylounge = (req, res) => {
