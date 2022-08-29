@@ -130,14 +130,13 @@ a {
 
 table {
 /* border: 1px #4686C2 solid; */
-border: none;
-border-bottom: rgb(0, 0, 0, 0.3);
-font-size: .9em;
-box-shadow: 0 2px 5px rgba(0,0,0,.25);
-width: 90%;
-height: 100%;
-border-collapse: collapse;
-border-radius: 5px;
-overflow: hidden;
-
+  border : none;
+  border-bottom: rgb(0, 0, 0, 0.3);
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 90%;
+  height: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
 }
