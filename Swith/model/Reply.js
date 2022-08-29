@@ -23,7 +23,7 @@ const Reply = (Sequelize, DataTypes) => {
                 allowNull: false,
             },
             reply_regdate: {
-                type: DataTypes.DATE,
+                type: DataTypes.DATE, //mysql: DATETIME
                 allowNull: false,
                 defaultValue: DataTypes.NOW,
             }, 
