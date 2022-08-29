@@ -68,7 +68,7 @@ CREATE TABLE reply (
     user_id VARCHAR(20) NOT NULL, 
     study_id INT NOT NULL,
     reply_contents VARCHAR(200) NOT NULL,
-    relpy_regdate DATE,
+    relpy_regdate DATETIME,
     FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
     FOREIGN KEY (`study_id`) REFERENCES `studygroup` (`study_id`),
     FOREIGN KEY (`lounge_id`) REFERENCES `studylounge` (`lounge_id`)
