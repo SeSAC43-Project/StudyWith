@@ -103,12 +103,25 @@ exports.post_reply = (req, res) => {
 }
 
 // 스터디 라운지 게시물 삭제 기능
-exports.board_remove = (req, res) => {
+exports.board_remove = async(req, res) => {
+    // 댓글 정보 먼저 삭제 후 라운지 게시물 삭제
+    await Models.Reply.destroy({
+        where: {lounge_id : req.body.lounge_id}
+    }); 
+    
+    await Models.Studylounge.destroy({
+        where: {lounge_id: req.body.lounge_id}
+    });
 
+    await res.send("success delete");
 }
 
 
 // 스터디 라운지 댓글 삭제 기능
 exports.reply_remove = (req, res) => {
-    
+    Models.Reply.destroy({
+        where: {reply_id : req.body.reply_id}
+    });
+
+    res.send("success delete");
 }
