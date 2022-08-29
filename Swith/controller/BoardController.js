@@ -17,12 +17,17 @@ exports.studylounge_index = async(req, res) => {
     res.render('board', {boardData : result});
 }
 
+// 스터디 라운지 게시물 등록 화면
+exports.lounge_write = (req, res) => {
+    res.render('boardPost', {study_id:req.query.study_id})
+}
+
 // 스터디 라운지 게시물 등록
 exports.post_studylounge = (req, res) => {
     let Obj = {
         user_id : req.session.user_id, 
         study_id : req.body.study_id, 
-        title : req.bdoy.title, 
+        title : req.body.title, 
         lounge_contents : req.body.lounge_contents
     };
     Models.Studylounge.create( Obj )
