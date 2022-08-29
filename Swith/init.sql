@@ -58,7 +58,7 @@ CREATE TABLE studylounge (
     title VARCHAR(20) NOT NULL, 
     lounge_contents MEDIUMTEXT NOT NULL,
     lounge_regdate DATE,
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+    FOREIGN KEY (`writer_id`) REFERENCES `user` (`user_id`),
     FOREIGN KEY (`study_id`) REFERENCES `studygroup` (`study_id`)
 );
 
@@ -69,7 +69,6 @@ CREATE TABLE reply (
     reply_contents VARCHAR(200) NOT NULL,
     relpy_regdate DATETIME,
     FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-    FOREIGN KEY (`study_id`) REFERENCES `studygroup` (`study_id`),
     FOREIGN KEY (`lounge_id`) REFERENCES `studylounge` (`lounge_id`)
 );
 
