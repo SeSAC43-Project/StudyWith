@@ -15,8 +15,8 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="/public/css/detailedPost.css">
-    <link rel="stylesheet" href="/public/css/navbar.css" />
-    <link rel="stylesheet" href="/public/css/footer.css" />
+    <!-- <link rel="stylesheet" href="/public/css/navbar.css" />
+    <link rel="stylesheet" href="/public/css/footer.css" /> -->
     <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
 
     
@@ -99,7 +99,7 @@
                 <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
             </li>
             <li class="logout"><a href="http://localhost:8000/user/mypage">
-                <i class="fa-solid fa-heart"><span>&nbsp;&nbsp;마이페이지</span></i></a>
+                <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
             </li>
         </ul>
     </header>
@@ -141,11 +141,13 @@
                                         <span class="studyName_txt"><%= result.study_name %></span>
                                     <% } %>   
                                     </p>
-                                    <!-- <ul>
-                                        <li>장소</li>
-                                        <li>모임시간</li>
-                                        <li>첫 모임일</li>
-                                    </ul> -->
+                                    <div class="likes">
+                                        <% if (islike == false) { %>
+                                            <p style="font-size:1.3rem;" class="heart far fa-heart"></p>
+                                        <% } else { %>
+                                            <p style="font-size:1.3rem;" class="heart fa-solid fa-heart"></p>
+                                        <% } %>
+                                    </div>
                                 </div>
                             </div>
                         <!-- </div>     -->
@@ -339,5 +341,57 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        var likes = document.querySelector('.likes');
+        likes.addEventListener('click', function(obj) {
+            console.log($('.likes').children('.heart').hasClass('far fa-heart'));
+
+            //빈 하트이면 
+            if( $('.likes').children('.heart').hasClass('far fa-heart')) {
+                like('insert');
+            } else { //빨간 하트이면
+                like('delete');
+            }
+        })
+
+        //좋아요 기능
+        function like(flag) {
+            var form = document.getElementById('study_id');
+            if ( flag == 'insert') {
+                axios({
+                    method:'post',
+                    url: 'http://localhost:8000/swith/search/likes',
+                    data : {
+                        study_id : form.innerText,
+                    }
+                })
+                .then((req) => { return req.data;})
+                .then((data) => {
+                    if (data.isLikes == true) {
+                        $('.likes').children('.heart').removeClass('far fa-heart');
+                        $('.likes').children('.heart').addClass('fa-solid fa-heart');
+                        $('.likes').children('.heart').addClass('heartEffect');
+                    }
+                    
+                });
+            } else {
+                axios({
+                    method:'post',
+                    url: 'http://localhost:8000/swith/search/likes/remove',
+                    data : {
+                        study_id : form.innerText,
+                    }
+                })
+                .then((req) => { return req.data;})
+                .then((data) => {
+                    if (data.isDislikes == true) {
+                        $('.likes').children('.heart').removeClass('fa-solid fa-heart');
+                        $('.likes').children('.heart').addClass('far fa-heart');
+                    }
+                })
+            }
+        }
+    </script>
 </body>
 </html>

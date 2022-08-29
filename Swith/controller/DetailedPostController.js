@@ -5,18 +5,33 @@ const { sequelize } = require("../model/index");
 exports.detailedPost_index = async (req, res) => {
 
     //보내줄 데이터
-    const [result, metadata] = await sequelize.query(`SELECT U.user_id, U.user_name, U.user_image, G.study_id, G.head_id, G.study_name, G.study_content, G.study_form, G.study_address, G.study_recruit, G.study_category, G.study_image, G.study_content, G.start_period, G.end_period, G.hashtag, G.study_views
+    const [result, metadata] = await sequelize.query(`SELECT U.user_id, U.user_name, U.user_image, G.*
     from user U 
     inner join studygroup G on G.head_id = U.user_id
     WHERE G.study_id = ${req.query.study_id}
     UNION
-    SELECT U.user_id, U.user_name, U.user_image, G.study_id, G.head_id, G.study_name, G.study_content, G.study_form, G.study_address, G.study_recruit, G.study_category, G.study_image, G.study_content, G.start_period, G.end_period, G.hashtag, G.study_views
+    SELECT U.user_id, U.user_name, U.user_image, G.*
     FROM user U
     inner join studymember M on U.user_id = M.user_id 
     inner join studygroup G on G.study_id = M.study_id
     WHERE M.study_id = ${req.query.study_id};`);
 
     console.log("result:", result);
+
+    //좋아요 여부
+    var likeCheck = await models.Likes.findOne( {
+        where: {
+            user_id: req.session.user_id,
+            study_id: req.query.study_id,
+        }
+    });
+    console.log("likeCheck:", likeCheck);
+    var islike;
+    if ( likeCheck == null) {
+        islike = false;
+    } else {
+        islike = true;
+    }
 
     // 일반가입멤버인지 아닌지 check
     var memCheck = await models.Studymember.findOne( {
@@ -42,12 +57,12 @@ exports.detailedPost_index = async (req, res) => {
 
         if( headCheck == null || headCheck == undefined) { // 가입X
             console.log("가입x result:", result)
-            return res.render('detailedPost3', {result: result});
+            return res.render('detailedPost3', {result: result, islike: islike});
         } else { // 조장이면
-            return res.render('detailedPost', {result: result});
+            return res.render('detailedPost', {result: result, islike: islike});
         }  
     } else { // 일반가입멤버이면
-        return res.render('detailedPost2', {result: result});
+        return res.render('detailedPost2', {result: result, islike: islike});
     }
 }
 
