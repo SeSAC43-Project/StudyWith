@@ -17,7 +17,7 @@
 <body>
     <div class="container">
 
-        <div class="mypage-head"> 😋 SWITH LOUNGE 에 오신걸 환영합니다! 😋
+        <div class="mypage-head"> 😋 <%=boardData[0].study_name%> 에 오신걸 환영합니다! 😋
             <button type="button" onclick="goHome()" class="homeBtn">
                 <i class="fa-solid fa-house"></i>
             </button>
@@ -26,18 +26,18 @@
         <div class="menu">
             <div onclick="goSearch()">
                 <i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData[0].study_id%>">게시판조회</a>
+                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData.study_id%>">게시판조회</a>
                 </i>
                 <span><i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData[0].study_id%>">게시판조회</a>
+                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData.study_id%>">게시판조회</a>
                 </i></span>
             </div>
             <div onclick="goPosting()">
                 <i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData[0].study_id%>">게시판등록</a>
+                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData.study_id%>">게시판등록</a>
                 </i>
                 <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData[0].study_id%>">게시판등록</a>
+                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData.study_id%>">게시판등록</a>
                 </i></span>
             </div>
         </div>
@@ -57,7 +57,7 @@
                                 <!-- <div id="study_id" style="display:none"><%=boardData[0].study_id %></div> -->
                                 <tr class="lounge_total">
                                     <td class="lounge_name"><%=boardData[i].write_name%></td>
-                                    <td class="lounge_title" id="<%=boardData[i].lounge_id%>"    onclick="detailBoard(this.id,this);"><%=boardData[i].title%></td>
+                                    <td class="lounge_title" id="<%=boardData[i].lounge_id%>" onclick="detailBoard(this.id);"><%=boardData[i].title%></td>
                                     <td class="lounge_date"><%=boardData[i].lounge_regdate%></td>
                                 </tr>
                             <% } %> 
@@ -89,6 +89,9 @@
         function detailBoard(clicked_lounge_id) {
             document.location.href=`http://localhost:8000/feed/board/detail?lounge_id=${clicked_lounge_id}`;
         }
+        function goHome() {
+            document.location.href="http://localhost:8000/swith";
+            }
     </script>
 </body>
 </html>
