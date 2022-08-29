@@ -5,59 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>footer</title>
-    <style>
-        @font-face {
-        font-family: 'GS_bold'; 
-        src: local('GmarketSans-Bold'), url('http://script.ebay.co.kr/fonts/GmarketSansBold.woff') format('woff');
-        }
-        * {
-        font-family: "GS_bold";
-        }
-        body {
-            margin: 0;
-            font-family: 'market Sans';
-        }
-        #footer {
-            width: 100%;
-            background-color: rgb(241, 242, 244);
-            text-align: center;
-            text-align: center;
-            padding: 10px;
-        }
-        #footer>a {
-            cursor: pointer;
-        }
-        .footer_logo {
-            cursor: pointer;
-        }
-        /* a {
-            cursor: pointer;
-        } */
-        /* div {
-            text-align: center;
-            padding: 10px;
-        } */
-        .copyright {
-            margin-top: 5px;
-        }
-        .footer {
-            width: 100%;
-            margin: auto;
-            position: absolute;
-            /* height: 9999px; */
-            bottom: 0px;
-            left: 0;
-        }
-    </style>
 </head>
 <body>
-    <footer>
-        <div id="footer" class="footer">
-        <div class="footer_logo">    
-            <img width="60" height="30" src="../public/login/logo.png" alt="footer_logo">
-            <a href="index.js"></a>
-        </div>
-        <p class="copyright">Copyright 2022. Swith. All Rights Reserved.</p>
+    <!-- ==========================================footer========================================== -->
+    <footer class="footer">
+        <div class="inner-footer">
+            <div class="social-links">
+                <ul>
+                    <li class="social-items"><a href="https://github.com/SeSAC43-Project/StudyWith" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+                    <li class="social-items"><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank"><img src="/public/main/notion.png" alt="notion"></a></li>
+                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-square-instagram"></i></a></li>
+                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="quick-links">
+                <ul>
+                    <li class="quick-items"><a href="">메인</a></li>
+                    <li class="quick-items"><a href="https://sesac.seoul.kr/course/active/detail.do" target="_blank">스윗소개</a></li>
+                    <li class="quick-items"><a href="javascript:void(0)">이용약관</a></li>
+                    <li class="quick-items"><a href="javascript:void(0)">개인정보처리방침</a></li>
+                </ul>
+            </div>
+
+            <div class="outer-footer">
+                © Copyright 2022. Swith. All Rights Reserved.
+            </div>
         </div>
     </footer>
 </body>
