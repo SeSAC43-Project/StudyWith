@@ -69,12 +69,12 @@ a {
 .modify-list {
   width: 1050px;
   height: 100vh;
-  display: flex;
   border-radius: 20px;
   border-color: #4686C2;
   border-width: 3px;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   /* position: relative; */
   background-color: #fff;
   box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
@@ -90,7 +90,10 @@ a {
   display: flex;
   justify-content: center;
 } */
-
+/* .board_list {
+  display: flex;
+  flex-direction: column;
+} */
 .menu {
   background: #fff;
   display: flex;
@@ -141,3 +144,4 @@ border-radius: 5px;
 overflow: hidden;
 
 }
+
