@@ -15,8 +15,8 @@
     </head>
     <body>
         
-            <% if(locals.user_id) { %>
-                <div id="user_id" style="display:none"><%=user_id %></div>
+            <% if(locals.login_id) { %>
+                <div id="user_id" style="display:none"><%=login_id%></div>
             <% } %>
             <div class="container">
                 <img src="/public/login/login_image.png" class="login_background">
@@ -125,6 +125,7 @@
             }
                  
             function idRemember() {
+                console.log('바보')
                 // 아이디 기억하기 쿠키가 존재하는지 확인 
                 var cookieArr = document.cookie.split("; ");
                 if (cookieArr.includes('id=remember')) {  // 쿠키가 있는 상태에서

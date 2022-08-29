@@ -104,7 +104,7 @@ MainRouter.post('/search/detailed', main.search_detail); // 메인페이지에�
 
 /* 로그인 확인 미들웨어 */
 function checkSession (req, res, next) {
-    if (req.session.user_id != null) next(); 
+    if (req.session.user_id != null && req.session.user_id != '') next(); 
     else {
         res.redirect('/user/login');
     }
