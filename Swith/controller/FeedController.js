@@ -61,3 +61,11 @@ exports.uploadProfile = (req, res) => {
         name : req.file.name, // 이전 파일 이름
     })
 }
+
+exports.studylounge_index = (req, res) => {
+    res.render('board');
+}
+
+exports.post_studylounge = (req, res) => {
+    
+}
