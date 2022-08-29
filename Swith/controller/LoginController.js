@@ -2,7 +2,7 @@ const Models  = require('../model');
 
 // 로그인 페이지 렌더링
 exports.login_index = (req, res) => {
-    res.render('login', {user_id: req.session.user_id}); 
+    res.render('login', {login_id: req.session.login_id}); 
 }
 
 // 로그인 시스템 구현 
@@ -14,6 +14,7 @@ exports.post_login = (req, res) => {
         
         if (req.body.user_password == result.user_password) {
             req.session.user_id = req.body.user_id; 
+            req.session.login_id = req.body.user_id; 
             console.log(req.session);
             res.send('True'); // 로그인 성공
             return 
@@ -77,8 +78,8 @@ exports.find_isId = (req, res) => {
 
 // 로그아웃
 exports.logout = (req, res) => {
-    req.session.destroy(() => {
-      req.session;
-    });
+    req.session.user_id = '';
+    console.log(req.session);
+
     res.send("true");
-  };
+};
