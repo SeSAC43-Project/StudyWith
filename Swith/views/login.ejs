@@ -58,18 +58,18 @@
                 <!-- </div> -->
                 </div>
         <script>
-            //  // 아이디를 기억해줘 확인 절차 시행
-            //  $(window).on('load', function() {
-            //     var cookieArr = document.cookie.split("; ");
-            //     // 아이디 기억하기 쿠키가 존재하면 아이디 띄워주기! 
-            //     if (cookieArr.includes('id=remember')) {
-            //         var id_input = document.getElementById('user');
-            //         var user_id = document.getElementById('user_id').innerText;
-            //         id_input.value = user_id;
+             // 아이디를 기억해줘 확인 절차 시행
+             $(window).on('load', function() {
+                var cookieArr = document.cookie.split("; ");
+                // 아이디 기억하기 쿠키가 존재하면 아이디 띄워주기! 
+                if (cookieArr.includes('id=remember')) {
+                    var id_input = document.getElementById('user');
+                    var user_id = document.getElementById('user_id').innerText;
+                    id_input.value = user_id;
 
-            //         $("#userid_Remember").prop('checked', true);
-            //     }
-            // })
+                    $("#userid_Remember").prop('checked', true);
+                }
+            })
 
             //  엔터키 - 로그인
             $('#pw').keypress(function(e) {
