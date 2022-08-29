@@ -366,6 +366,11 @@ ul {
     flex-wrap:wrap;
   }
 
+  .radio-btn:hover {
+    cursor: pointer;
+    color:#4686C2;
+  }
+
   .radio-btn input[type=radio] {
     display: none;
   }
@@ -374,7 +379,6 @@ ul {
       border-radius: 10px;
       margin: auto;
       text-align: center;
-
   }
   .radio-btn input[type=radio]:checked + label {
     background-color: #4686C2;
@@ -390,11 +394,11 @@ ul {
   }
 
   .radio-btn label:hover {
+    cursor: pointer;
     color:#4686C2;
   }
 
   /* 스터디 기간 */
-
 .period {
   display: flex;
   justify-content: center;

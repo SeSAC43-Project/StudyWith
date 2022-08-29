@@ -46,31 +46,32 @@
                     </div>
 
                     <!-- 스터디 아이디 -->
-                    <div id="study_id" style="display:none"><%=result[0].study_id %></div>     
-                        <!-- 스터디 이미지 -->    
-                        <div class="studyImage">
+                    <div id="study_id" style="display:none"><%=result[0].study_id %></div> 
+
+                    <!-- 스터디 이미지 -->    
+                    <div class="studyImage">
+                        <% if(locals.result[0]) { %>
+                            <img class="group_img" src="/public/group/<%= result[0].study_image%>" style="border-radius:15px;">
+                        <% } else { %>
+                            <img class="group_img" src="/public/group/<%= result.study_image%>" style="border-radius:15px;">
+                        <% } %>  
+                        <!-- 스터디 이름 -->
+                        <div class="studyName">
+                            <p class="studyName_2">
                             <% if(locals.result[0]) { %>
-                                <img class="group_img" src="/public/group/<%= result[0].study_image%>" style="border-radius:15px;">
+                                <span class="studyName_txt"><%= result[0].study_name %></span>
                             <% } else { %>
-                                <img class="group_img" src="/public/group/<%= result.study_image%>" style="border-radius:15px;">
-                            <% } %>  
-                            <!-- 스터디 이름 -->
-                            <div class="studyName">
-                                <p class="studyName_2">
-                                <% if(locals.result[0]) { %>
-                                    <span class="studyName_txt"><%= result[0].study_name %></span>
+                                <span class="studyName_txt"><%= result.study_name %></span>
+                            <% } %>   
+                            </p>
+                            <div class="likes">
+                                <% if (islike == false) { %>
+                                    <p style="font-size:1.3rem;" class="heart far fa-heart"></p>
                                 <% } else { %>
-                                    <span class="studyName_txt"><%= result.study_name %></span>
-                                <% } %>   
-                                </p>
-                                <div class="likes">
-                                    <% if (islike == false) { %>
-                                        <p style="font-size:1.3rem;" class="heart far fa-heart"></p>
-                                    <% } else { %>
-                                        <p style="font-size:1.3rem;" class="heart fa-solid fa-heart"></p>
-                                    <% } %>
-                                </div>
+                                    <p style="font-size:1.3rem;" class="heart fa-solid fa-heart"></p>
+                                <% } %>
                             </div>
+                        </div>
                     </div>
 
                     <!-- 카테고리 -->

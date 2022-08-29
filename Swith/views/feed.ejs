@@ -17,11 +17,204 @@
     <!-- <link rel="stylesheet" href="/public/css/footer.css" /> -->
 
    <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header>
+        <a href="http://localhost:8000/swith" class="logo">
+            <img src="/public/main/logo.png" alt="logo" />
+        </a>
+        <ul>
+            <li class="logout"><a href="http://localhost:8000/feed/write">
+                <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
+            </li>
+            <li class="logout" onclick="logout();">
+                <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
+            </li>
+            <li class="logout"><a href="http://localhost:8000/user/mypage">
+                <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
+            </li>
+        </ul>
+    </header>
+
+    <div id="wrapper">
+        
+        <div class="whole_container">
+        <h2 style="text-align: center;">스터디 등록📌</h2>
+        <div class="feed_container">
+        <form id="feed_info" class="form_container" enctype="multipart/form-data">
+                <div class="context_container">
+                    
+                    <div class="form-row" style="height: 300px;">
+                        <div class="group" id="group_img_upload">
+                                <div id="group_img">
+                                <label class="groupImgLabel" for="groupImg">
+                                    <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br><p>그룹이미지를 선택해주세요!</p></label>
+                            </div>
+                        </div>
 
 
+                    </div>
+                    <div class="form-row">
+                        <div class="name">스터디명&nbsp;&nbsp;&nbsp;</div>
+                        <div class="value"> 
+                        <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요. (20자 이내로)" maxlength="20" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">카테고리 <br><span style="font-size: 0.7rem;">*카테고리를 선택해주세요.</span></div>
+                        <div class="value">
+                        <ul>
+                            <li class="radio-btn"><input type="radio" id="category1" name="studyCategory" value="언어" required>
+                                <label for="category1">언어</label></li>
+                            <li class="radio-btn"><input type="radio" id="category2" name="studyCategory" value="자격증">
+                                <label for="category2">자격증</label></li>
+                            <li class="radio-btn"><input type="radio" id="category3" name="studyCategory" value="취업">
+                                <label for="category3">취업</label></li>
+                            <li class="radio-btn"><input type="radio" id="category4" name="studyCategory" value="IT">
+                                <label for="category4">IT</label></li>
+                            <li class="radio-btn"><input type="radio" id="category5" name="studyCategory" value="취미">
+                                <label for="category5">취미</label></li>
+                            <li class="radio-btn"><input type="radio" id="category6" name="studyCategory" value="인증">
+                                <label for="category6">인증</label></li>
+                            <li class="radio-btn"><input type="radio" id="category7" name="studyCategory" value="공모전">
+                                <label for="category7">공모전</label></li>
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">스터디형태</div><br>
+                        <div class="value" id="on_off">
+                            <input type="radio" name="studyForm" id="online" value="온라인" required>
+                            <label for="online">온라인</label>
+                            <input type="radio" name="studyForm" id="offline" value="오프라인" required>
+                            <label for="offline">오프라인</label>
+                            <p>
+                                <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required>&nbsp;
+                                <!-- <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 70px;"> &nbsp; -->
+                                <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" style="width: 300px; height: 25px; text-align: center;"><br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">모집인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <div class="value">
+                        <input type="number" id="studyRecruit" name="studyRecruit" min="1" max="20" style="width: 60px;" required>&nbsp;명<span style="font-size:11px; font-weight: bold;"> ( ※ 최소 1 명 ~ 최대 20 명)</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">스터디 소개글</div>
+                        <div class="value">
+                            <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">스터디 기간</div>
+                        <ul class="period">
+                        <li><div class="value">
+                        시작일: <input type="hidden" id="start_period" name="start_period">
+                        <select id="start_year" name="start_year" required>
+                            <option>
+                                <%for(var i=2022; i<=2025; i++) {%>
+                                    <option value="<%=i%>"><%=i%></option>
+                                <%}%>
+                            </option>
+                        </select>년
+                        <select id="start_month" name="start_month" required>
+                            <option>
+                                <%for(var j=1; j<=12; j++) {%>
+                                    <option value="<%=j%>"><%=j%></option>
+                                <%}%>
+                            </option>
+                        </select>월
+                        <select id="start_day" name="start_day" required>
+                            <option>
+                                <%for(var k=1; k<=31; k++) {%>
+                                    <option value="<%=k%>"><%=k%></option>
+                                <%}%>
+                            </option>
+                        </select>일
+                        </div>
+                        </li>
 
+                        <li>
+                        <div class="value">
+                        종료일: <input type="hidden" id="end_period" name="end_period">
+                        <select id="end_year" name="end_year" required>
+                            <option>
+                                <%for(var i=2022; i<=2025; i++) {%>
+                                    <option value="<%=i%>"><%=i%></option>
+                                <%}%>
+                            </option>
+                        </select>년
+                        <select id="end_month" name="end_month" required>
+                            <option>
+                                <%for(var j=1; j<=12; j++) {%>
+                                    <option value="<%=j%>"><%=j%></option>
+                                <%}%>
+                            </option>
+                        </select>월
+                        <select id="end_day" name="end_day" required>
+                            <option>
+                                <%for(var k=1; k<=31; k++) {%>
+                                    <option value="<%=k%>"><%=k%></option>
+                                <%}%>
+                            </option>
+                        </select>일
+                    </li>
+                    </div>
+                </ul>
+
+                <div class="form-row">
+                    <div class="name">해시태그</div>
+                    <div class="value"><input class="input_text" type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요." name="hashTag" onkeypress="show_hashtag(event)">
+                        <p>
+                            <span id="enter_hashtag" name="enter_hashtag"></span>
+                        </p>
+                    </div>
+                </div>
+                <br><br>
+                <div class="warningDiv"></div>
+                <br><br>
+
+                <button class="writebutton" type="button" onclick="writeFeed();">스터디 등록</button>
+                <button class="cancelebutton" type="button" onclick="cancelFeed();">취소/닫기</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- ==========================================footer========================================== -->
+    <footer class="footer">
+        <div class="inner-footer">
+            <div class="social-links">
+                <ul>
+                    <li class="social-items"><a href="https://github.com/SeSAC43-Project/StudyWith" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+                    <li class="social-items"><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank"><img src="/public/main/notion.png" alt="notion"></a></li>
+                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-square-instagram"></i></a></li>
+                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="quick-links">
+                <ul>
+                    <li class="quick-items"><a href="">메인</a></li>
+                    <li class="quick-items"><a href="https://sesac.seoul.kr/course/active/detail.do" target="_blank">스윗소개</a></li>
+                    <li class="quick-items"><a href="javascript:void(0)">이용약관</a></li>
+                    <li class="quick-items"><a href="javascript:void(0)">개인정보처리방침</a></li>
+                </ul>
+            </div>
+
+            <div class="outer-footer">
+                © Copyright 2022. Swith. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
     <script>
-
+        /* navbar */
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
         /* 게시물 등록 */
         function writeFeed() {
             var feed = document.getElementById("feed_info");
@@ -38,8 +231,39 @@
             
             var feed_hashtag = feed_hashtags.replace(/\X/g,"");
             
-            
+            var flag = checkData(); //데이터 유효성 검사
 
+            if ( flag ) {
+                axios({
+                    method:'post',
+                    url:'http://localhost:8000/feed/write',
+                    data : {
+                        study_name : feed.studyName.value,
+                        study_category : feed.studyCategory.value,
+                        study_form : feed.studyForm.value,
+                        study_recruit : feed.studyRecruit.value,
+                        study_address : feed.sample6_address.value, 
+                        study_image : uploadedFile, 
+                        study_content : feed.studyContent.value,
+                        start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
+                        end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
+                        hashtag: feed_hashtag,
+                    }
+                })
+                .then((req) => { return req.data })
+                .then((data) => { 
+                    // console.log(data);
+                    if (data.isResult == true) {
+                        document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${data.result.study_id}`;
+                        // 지금 막 등록된 페이지로 이동하도록 수정
+                    }
+                })
+            }   
+        }
+
+        /* 데이터 유효성 검사 alert */
+        function checkData () {
+            var feed = document.getElementById("feed_info");
             var result = feed.checkValidity();
 
             if ( !result ) {
@@ -53,42 +277,24 @@
             var endDate = new Date($('#end_year').val()+'-'+  $('#end_month').val()+'-'+  $('#end_day').val());
 
             if (startDate >= endDate) {
-                // swal('Error!','스터디 기간을 확인해주세요.','warning');
-
                 Swal.fire({
-                    title: 'Error!',
-                    text: '스터디 기간을 확인해주세요.',
+                    title: '스터디 기간을 확인해주세요.',
+                    text: '종료일은 시작일보다 이른 날짜일 수 없습니다.',
                     icon: 'warning',
                     confirmButtonText: 'OK'
                     })
                 return;
             }
-            
 
-            axios({
-                method:'post',
-                url:'http://localhost:8000/feed/write',
-                data : {
-                    study_name : feed.studyName.value,
-                    study_category : feed.studyCategory.value,
-                    study_form : feed.studyForm.value,
-                    study_recruit : feed.studyRecruit.value,
-                    study_address : feed.sample6_address.value, 
-                    study_image : uploadedFile, 
-                    study_content : feed.studyContent.value,
-                    start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
-                    end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
-                    hashtag: feed_hashtag,
-                }
-            })
-            .then((req) => { return req.data })
-            .then((data) => { 
-                // console.log(data);
-                if (data.isResult == true) {
-                    document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${data.result.study_id}`;
-                    // 지금 막 등록된 페이지로 이동하도록 수정
-                }
-            })
+            if (feed.studyRecruit.value == '' || feed.studyRecruit.value > 20 || feed.studyRecruit.value < 1) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '모집인원을 확인해주세요!',
+                    text: '최소 1명 ~ 최대 20명',
+                })
+                return false;
+            }
+            return true;
         }
 
         function cancelFeed() {
@@ -111,7 +317,7 @@
                 
             })
         });
-    
+
         /* 해시태그 엔터시 추가되는 부분 */
         function show_hashtag(event) {
             const keyword = document.getElementById('enter_hashtag');
@@ -243,207 +449,6 @@
                 }
             })
         }
-
     </script>
-</head>
-<body>
-
-    <header>
-        <a href="http://localhost:8000/swith" class="logo">
-            <img src="/public/main/logo.png" alt="logo" />
-        </a>
-        <ul>
-            <li class="logout"><a href="http://localhost:8000/feed/write">
-                <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
-            </li>
-            <li class="logout" onclick="logout();">
-                <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
-            </li>
-            <li class="logout"><a href="http://localhost:8000/user/mypage">
-                <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
-            </li>
-        </ul>
-    </header>
-
-    <script type="text/javascript">
-        window.addEventListener("scroll", function () {
-            var header = document.querySelector("header");
-            header.classList.toggle("sticky", window.scrollY > 0);
-        })
-    </script>
-
-    <div id="wrapper">
-        
-    <div class="whole_container">
-    <h2 style="text-align: center;">스터디 등록📌</h2>
-    <div class="feed_container">
-    <form id="feed_info" class="form_container" enctype="multipart/form-data">
-            <div class="context_container">
-                
-                <div class="form-row" style="height: 300px;">
-                    <div class="group" id="group_img_upload">
-                            <div id="group_img">
-                            <label class="groupImgLabel" for="groupImg">
-                                <input type="file" id="groupImg" style="display: none;" name="studyImage" onchange="uploadFile(this);"><br><p>그룹이미지를 선택해주세요!</p></label>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="form-row">
-                    <div class="name">스터디명&nbsp;&nbsp;&nbsp;</div>
-                    <div class="value"> 
-                    <input class="input_text" type="text" name="studyName" placeholder="스터디 그룹명을 적어주세요. (20자 이내로)" maxlength="20" required></div>
-                </div>
-                <div class="form-row">
-                    <div class="name">카테고리 <br><span style="font-size: 0.7rem;">*카테고리를 선택해주세요.</span></div>
-                    <div class="value">
-                    <ul>
-                        <li class="radio-btn"><input type="radio" id="category1" name="studyCategory" value="언어" required>
-                            <label for="category1">언어</label></li>
-                        <li class="radio-btn"><input type="radio" id="category2" name="studyCategory" value="자격증">
-                            <label for="category2">자격증</label></li>
-                        <li class="radio-btn"><input type="radio" id="category3" name="studyCategory" value="취업">
-                            <label for="category3">취업</label></li>
-                        <li class="radio-btn"><input type="radio" id="category4" name="studyCategory" value="IT">
-                            <label for="category4">IT</label></li>
-                        <li class="radio-btn"><input type="radio" id="category5" name="studyCategory" value="취미">
-                            <label for="category5">취미</label></li>
-                        <li class="radio-btn"><input type="radio" id="category6" name="studyCategory" value="인증">
-                            <label for="category6">인증</label></li>
-                        <li class="radio-btn"><input type="radio" id="category7" name="studyCategory" value="공모전">
-                            <label for="category7">공모전</label></li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="name">스터디형태</div><br>
-                    <div class="value" id="on_off">
-                        <input type="radio" name="studyForm" id="online" value="온라인" required>
-                        <label for="online">온라인</label>
-                        <input type="radio" name="studyForm" id="offline" value="오프라인" required>
-                        <label for="offline">오프라인</label>
-                        <p>
-                            <input type="button" id="search_address" onclick="searchForAddress()" value="주소 검색" required>&nbsp;
-                            <!-- <input type="text" id="sample6_postcode" placeholder="우편번호" style="width: 70px;"> &nbsp; -->
-                            <input type="text" id="sample6_address" name="sample6_adderess" placeholder="주소" style="width: 300px; height: 25px; text-align: center;"><br>
-                        </p>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="name">모집인원&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                    <div class="value">
-                    <input type="text" id="studyRecruit" name="studyRecruit" style="width: 40px;" required>&nbsp;명<span style="font-size:11px; font-weight: bold;"> ( ※ 최소 1 명 ~ 최대 20 명)</span>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="name">스터디 소개글</div>
-                    <div class="value">
-                        <textarea class="input_text" name='studyContent' placeholder="스터디 소개글을 적어주세요." style="border: 1px solid #000; border-radius: 5px;" required></textarea>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="name">스터디 기간</div>
-                    <ul class="period">
-                    <li><div class="value">
-                    시작일: <input type="hidden" id="start_period" name="start_period">
-                    <select id="start_year" name="start_year" required>
-                        <option>
-                            <%for(var i=2022; i<=2025; i++) {%>
-                                <option value="<%=i%>"><%=i%></option>
-                            <%}%>
-                        </option>
-                    </select>년
-                    <select id="start_month" name="start_month" required>
-                        <option>
-                            <%for(var j=1; j<=12; j++) {%>
-                                <option value="<%=j%>"><%=j%></option>
-                            <%}%>
-                        </option>
-                    </select>월
-                    <select id="start_day" name="start_day" required>
-                        <option>
-                            <%for(var k=1; k<=31; k++) {%>
-                                <option value="<%=k%>"><%=k%></option>
-                            <%}%>
-                        </option>
-                    </select>일
-                    </div>
-                    </li>
-
-                    <li>
-                    <div class="value">
-                    종료일: <input type="hidden" id="end_period" name="end_period">
-                    <select id="end_year" name="end_year" required>
-                        <option>
-                            <%for(var i=2022; i<=2025; i++) {%>
-                                <option value="<%=i%>"><%=i%></option>
-                            <%}%>
-                        </option>
-                    </select>년
-                    <select id="end_month" name="end_month" required>
-                        <option>
-                            <%for(var j=1; j<=12; j++) {%>
-                                <option value="<%=j%>"><%=j%></option>
-                            <%}%>
-                        </option>
-                    </select>월
-                    <select id="end_day" name="end_day" required>
-                        <option>
-                            <%for(var k=1; k<=31; k++) {%>
-                                <option value="<%=k%>"><%=k%></option>
-                            <%}%>
-                        </option>
-                    </select>일
-                </li>
-                </div>
-            </ul>
-
-            <div class="form-row">
-                <div class="name">해시태그</div>
-                <div class="value"><input class="input_text" type="text" id="text_hashtag" placeholder="해시태그를 입력해주세요." name="hashTag" onkeypress="show_hashtag(event)">
-                    <p>
-                        <span id="enter_hashtag" name="enter_hashtag"></span>
-                    </p>
-                </div>
-            </div>
-            <br><br>
-            <div class="warningDiv"></div>
-            <br><br>
-
-            <button class="writebutton" type="button" onclick="writeFeed();">스터디 등록</button>
-            <button class="cancelebutton" type="button" onclick="cancelFeed();">취소/닫기</button>
-                </div>
-            </div>
-    </form>
-</div>
-
-</div>
-<!-- ==========================================footer========================================== -->
-<footer class="footer">
-    <div class="inner-footer">
-        <div class="social-links">
-            <ul>
-                <li class="social-items"><a href="https://github.com/SeSAC43-Project/StudyWith" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-                <li class="social-items"><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank"><img src="/public/main/notion.png" alt="notion"></a></li>
-                <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-square-instagram"></i></a></li>
-                <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a></li>
-            </ul>
-        </div>
-
-        <div class="quick-links">
-            <ul>
-                <li class="quick-items"><a href="">메인</a></li>
-                <li class="quick-items"><a href="https://sesac.seoul.kr/course/active/detail.do" target="_blank">스윗소개</a></li>
-                <li class="quick-items"><a href="javascript:void(0)">이용약관</a></li>
-                <li class="quick-items"><a href="javascript:void(0)">개인정보처리방침</a></li>
-            </ul>
-        </div>
-
-        <div class="outer-footer">
-            © Copyright 2022. Swith. All Rights Reserved.
-        </div>
-    </div>
-</footer>
 </body>
 </html>
