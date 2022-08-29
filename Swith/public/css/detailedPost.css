@@ -221,6 +221,8 @@ form {
     text-align: center;
     justify-content: center;
     display: flex;
+    position: relative;
+    top: 40px;
     /* color: white; */
 }
 
@@ -525,11 +527,19 @@ form {
   }
   
   .fa-heart:before {
+    position: relative;
+    left: 420px;
+    bottom: -73px;
     color: red;
     content: "\f004";
   }
 
-  .heartEffect {
+
+  .fa-heart:hover {
+    cursor: pointer;
+  }
+   
+  /* .heartEffect {
     animation-duration: 3s;
     animation-name: heartBling;
     animation-iteration-count: 1;
@@ -541,4 +551,4 @@ form {
       33% { transform: scale( 0.9 ); }
       66% { transform: scale( 1.3 ); }
       100% { transform: scale( 1.0 ); }
-  }
+  } */
