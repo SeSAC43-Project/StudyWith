@@ -94,7 +94,8 @@
                                         </div>
                                         <div class = "post-content">
                                             <div class="name_likes">
-                                            <div class="search_studyname"><%=data[i].study_name%></div>
+                                                <%var studyName = data[i].study_name%>
+                                            <div class="search_studyname"><%=studyName.substring(0,10)%></div>
                                             <div class="likes">
                                                 <% if (likeList[i] == '0') { %>
                                                     <p style="font-size:1.3rem;" class="heart far fa-heart"></p>
@@ -181,8 +182,9 @@
             var html = "";
 
             for ( var i = 0; i < data.data.length; i++ ){
+                var studyName = data.data[i].study_name;
                 html += "<div class = 'studys categoryPostSection'><div class = 'all-category'>";
-                html += "<div class='post-img' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>" + "<img width='300px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><div class='name_likes'><div class='search_studyname'>" + data.data[i].study_name + "</div>";
+                html += "<div class='post-img' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>" + "<img width='300px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><div class='name_likes'><div class='search_studyname'>" + studyName.substring(0,10) + "</div>";
                     
                 if ( data.likeList[i] == '0') {
                 html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div>"; 
@@ -222,8 +224,9 @@
                                 var html = "";
 
                                 for ( var i = 0; i < data.data.length; i++ ){
+                                    var studyName = data.data[i].study_name;
                                     html += "<div class = 'studys categoryPostSection'><div class = 'all-category'>";
-                                    html += "<div class='post-img' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>" + "<img width='300px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><div class='name_likes'><div class='search_studyname'>" + data.data[i].study_name + "</div>";
+                                    html += "<div class='post-img' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>" + "<img width='300px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><div class='name_likes'><div class='search_studyname'>" + studyName.substring(0,10) + "</div>";
                                         
                                     if ( data.likeList[i] == '0') {
                                     html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div>"; 
