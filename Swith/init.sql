@@ -66,7 +66,6 @@ CREATE TABLE reply (
     reply_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     lounge_id INT NOT NULL, 
     user_id VARCHAR(20) NOT NULL, 
-    study_id INT NOT NULL,
     reply_contents VARCHAR(200) NOT NULL,
     relpy_regdate DATETIME,
     FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
@@ -104,7 +103,7 @@ DELETE FROM user WHERE user_id='aa';
 insert into studylounge values('1', 'aa', '1', '스터디 공지', '문래역 1번 출구에서 만나요!', '2022-08-29');
 
 -- 댓글 테스트
-insert into reply values('1', '1', 'bb', '1', '좋아요 저는 참석 가능', '2022-08-29');
+insert into reply values('1', '1', 'bb', '좋아요 저는 참석 가능', '2022-08-29');
 
 ----------------------------------------------------------
 --* Back 참고용
