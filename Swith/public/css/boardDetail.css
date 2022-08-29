@@ -145,3 +145,6 @@ overflow: hidden;
 
 }
 
+.lounge_back:hover {
+  cursor: pointer;
+}

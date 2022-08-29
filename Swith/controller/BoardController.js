@@ -113,7 +113,8 @@ exports.board_remove = async(req, res) => {
         where: {lounge_id: req.body.lounge_id}
     });
 
-    await res.send("success delete");
+    // await res.send("success delete");
+    await res.send(true);
 }
 
 
@@ -123,5 +124,6 @@ exports.reply_remove = (req, res) => {
         where: {reply_id : req.body.reply_id}
     });
 
-    res.send("success delete");
+    // res.send("success delete");
+    res.send(true);
 }
