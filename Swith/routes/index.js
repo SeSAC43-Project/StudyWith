@@ -80,6 +80,9 @@ FeedRouter.get('/management', checkSession, management.get_management); // 게�
 FeedRouter.patch('/management/edit', management.patch_management); // 게시물 수정 버튼
 FeedRouter.delete('/management/delete', management.delete_management); // 게시물 삭제 버튼
 
+FeedRouter.get('/board', feed.studylounge_index); // 스터디 게시판 화면
+FeedRouter.post('/board', feed.post_studylounge); // 스터디 게시물 등록
+
 
 /* 메인페이지 관련 */
 const MainRouter = express.Router();
