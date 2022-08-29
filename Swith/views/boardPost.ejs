@@ -12,35 +12,60 @@
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <!-- css -->
-    <link rel="stylesheet" href="/public/css/board.css" /> 
+    <link rel="stylesheet" href="/public/css/boardPost.css" /> 
+
+    <script>
+      function add_Posting() {
+        var form = document.getElementById("signup_form");
+
+            axios({
+                method:'post',
+                url: "http://localhost:8000/feed/board/write",
+                data: {
+                    user_id: form.user_id.value,
+                    study_id: form.study_id.value,
+                    title : form.title.value,
+                    lounge_contents: form.lounge_contents.value,
+                    }
+            })
+            .then((req) => { return req.data;})
+            .then((data) => {
+                document.location.href="http://localhost:8000/feed/board";
+            })        
+        }
+      
+        function goHome() {
+            document.location.href="http://localhost:8000/swith";
+            }
+        
+    </script>
 </head>
 <body>
     <div class="container">
 
-        <div class="mypage-head"> 😋 SWITH에 오신걸 환영합니다! 😋 //여기는 스터디네임 불러오기
+        <div class="mypage-head"> 😋 <%=study_id %>&nbsp&nbsp님 환영합니다! 😋
             <button type="button" onclick="goHome()" class="homeBtn">
                 <i class="fa-solid fa-house"></i>
             </button>
         </div>
 
         <div class="modify-list">
-                <form id="modify_info">
-                    <div class="info-field">
-                        <!-- <table border="1">
-                            <tr>
-                                <td>번호</td>
-                                <td>작성자</td>
-                                <td>제목</td>
-                                <td>등록일</td>
-                            </tr>
-                        </table> -->
+          <form id="modify_info">
 
-                    </div>
-                    <button type="button" class="writePost" style="color:#FFE19C" onclick="add_Posting();">글쓰기</button>
-                    </div>
-                </form>
-            
-        </div>
+              <div class="input-group">
+                <input type="hidden" id="studyId" value="<%=study_id %>" name="study_id">
+              </div>
+
+              <div class="input-group">
+                <input type="text" id="title" name="title" required>
+                <label for="title"><i class="fa-solid fa-paw"></i>&nbsp&nbsp제목</label>
+              </div>
+              <div class="input-group">
+                <textarea id="message" rows="15" name="lounge_contents" required></textarea>
+                <label for="message"><i class="fa-solid fa-message"></i>&nbsp&nbsp내용</label>
+              </div>
+              <button type="button" class="writePost" onclick="add_Posting();"><i class="fas fa-paper-plane"></i>&nbsp&nbsp글쓰기</button>
+          </form>
     </div>
 </body>
 </html>
