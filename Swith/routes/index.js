@@ -83,7 +83,8 @@ FeedRouter.delete('/management/delete', management.delete_management); // 게시
 /* 스터디 라운지 관련*/
 const board = require('../controller/BoardController');
 FeedRouter.get('/board', board.studylounge_index); // 스터디 라운지 조회 화면
-FeedRouter.post('/board', board.post_studylounge); // 스터디 라운지 게시물 등록
+FeedRouter.get('/board/write', board.lounge_write); // 스터디 라운지 게시물 등록 화면
+FeedRouter.post('/board/write', board.post_studylounge); // 스터디 라운지 게시물 등록 기능
 
 
 /* 메인페이지 관련 */
