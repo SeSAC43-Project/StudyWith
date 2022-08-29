@@ -36,6 +36,7 @@ a {
   justify-content: center;
   margin-bottom: 100px;
   left: 300px;
+  margin-bottom: 300px;
 }
 
 .mypage-head {
@@ -43,7 +44,7 @@ a {
   width: 1050px;
   height: 10vh;
   position: absolute;
-  top: 5%;
+  top: 40px;
   display: flex;
   border-radius: 20px;
   align-items: center;
@@ -71,7 +72,7 @@ a {
   box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
   overflow: hidden;
   position: absolute;
-  top: 20%;
+  top: 150px;
   border-radius: 20px;
 }
 
@@ -109,7 +110,7 @@ a {
 
 .modify-list {
   width: 1050px;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   border-radius: 20px;
   border-color: #4686C2;
@@ -120,7 +121,7 @@ a {
   background-color: #fff;
   box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
   position: absolute;
-  margin-top: 0;
+  top: 220px;
 }
 #checkNickname_text {
   text-align: center;
