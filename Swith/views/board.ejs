@@ -34,17 +34,16 @@
             </div>
             <div onclick="goPosting()">
                 <i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/">게시판등록</a>
+                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData[0].study_id%>">게시판등록</a>
                 </i>
                 <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/">게시판등록</a>
+                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData[0].study_id%>">게시판등록</a>
                 </i></span>
             </div>
         </div>
 
         <div class="modify-list">
                 <form id="modify_info">
-                    <div class="info-field">
                         <table border="1" class="lounge_main" style="text-align: center;">
                             <thead>
                             <tr class="lounge_main_total">
@@ -64,8 +63,6 @@
                             <% } %> 
                         </tbody>
                         </table>
-
-                    </div>
                 </form>
             
         </div>

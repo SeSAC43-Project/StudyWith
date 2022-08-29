@@ -88,6 +88,43 @@ a {
   left: 36%;
 }
 
+.menu {
+  background: #fff;
+  display: flex;
+  box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: absolute;
+  top: 150px;
+  border-radius: 20px;
+  width:1050px;
+}
+
+.menu div {
+  text-align:center;
+  padding: 20px;
+  width: 525px;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.menu div span {
+  position: absolute;
+  color: #4686C2;
+  height: 100%;
+  padding: 20px;
+  width: 525px;
+  left: 0;
+  top: 100%;
+  border-bottom: 5px solid #4686C2;
+}
+
+.menu div:hover {
+  transform: translateY(-100%);
+}
+
+
 
 
 form {
