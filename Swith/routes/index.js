@@ -85,6 +85,10 @@ const board = require('../controller/BoardController');
 FeedRouter.get('/board', board.studylounge_index); // 스터디 라운지 조회 화면
 FeedRouter.get('/board/write', board.lounge_write); // 스터디 라운지 게시물 등록 화면
 FeedRouter.post('/board/write', board.post_studylounge); // 스터디 라운지 게시물 등록 기능
+FeedRouter.post('/board/remove', board.board_remove); // 스터디 라운지 게시물 삭제 기능
+FeedRouter.get('/board/detail', board.lounge_detail); // 스터디 라운지 상세조회 화면
+FeedRouter.post('/board/detail', board.post_reply); // 스터디 라운지 상세조회 댓글 등록 기능
+FeedRouter.post('/board/detail/remove', board.reply_remove); // 스터디 라운지 댓글 삭제 기능
 
 
 /* 메인페이지 관련 */
