@@ -7,21 +7,275 @@
     <title>상세조회(스터디가입)</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <!--bootstrap -->
+    <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-     <!-- sweetalert -->
-  <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css" rel="stylesheet">
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <!-- sweetalert -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="/public/css/detailedPost.css">
     <!-- <link rel="stylesheet" href="/public/css/navbar.css" />
     <link rel="stylesheet" href="/public/css/footer.css" /> -->
     <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <a href="http://localhost:8000/swith" class="logo">
+            <img src="/public/main/logo.png" alt="logo" />
+        </a>
+        <ul>
+            <li class="logout"><a href="http://localhost:8000/feed/write">
+                <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
+            </li>
+            <li class="logout" onclick="logout();">
+                <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
+            </li>
+            <li class="logout"><a href="http://localhost:8000/user/mypage">
+                <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
+            </li>
+        </ul>
+    </header>
 
+    <tbody>
+        <div class="wrap">
+            <form id="deatailPost" name="deatailPost">
+                <!-- <div class="CategoryImage" style="color:white;"> -->
+                <div class="box">
+                    <div class="img_box">
+                        <div class="Category_box"></div>
+                    </div>
+
+                        <!-- 스터디 아이디 -->
+                        <div id="study_id" style="display:none"><%=result[0].study_id %></div>
+
+                        <!-- 스터디 이미지(등록이미지)  -->
+                        <!-- <div class="studyImage" style="color:white;">  -->              
+                        <div class="studyImage">
+                            <!-- <img src="/public/image/mainYour.png"> -->
+                            <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
+                            <% if(locals.result[0]) { %>
+                                <img class="group_img" src="/public/group/<%= result[0].study_image%>" style="border-radius:15px;">
+                            <% } else { %>
+                                <img class="group_img" src="/public/group/<%= result.study_image%>" style="border-radius:15px;">
+                            <% } %>
+                            <!-- 스터디 이름 -->
+                            <div class="studyName">
+                                <p class="studyName_2">
+                                <!-- <% if(locals.result[0]) { %> -->
+                                    <span class="studyName_txt"><%= result[0].study_name %></span>
+                                <% } else { %>
+                                    <span class="studyName_txt"><%= result.study_name %></span>
+                                <% } %>   
+                                </p>
+                                <div class="likes">
+                                    <% if (islike == false) { %>
+                                        <p style="font-size:1.3rem;" class="heart far fa-heart"></p>
+                                    <% } else { %>
+                                        <p style="font-size:1.3rem;" class="heart fa-solid fa-heart"></p>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- </div>     -->
+            
+                <!-- <div class="section_box"> -->
+                    <!-- 카테고리 -->
+                    <div>
+                        <p class="Category_txt">
+                            <% if(locals.result[0]) { %>
+                                <span><%= result[0].study_category %></span>
+                            <% } else { %>
+                                <span><%= result.study_category %></span>
+                            <% } %>   
+                        </p>
+                    </div>
+
+                    <div class="section_box">
+                        <div class="name">스터디 소개글</div>
+                        <div class="value"><%=result[0].study_content %>
+                        </div>
+                    </div>
+                    
+                    <div class="section_box">
+                        <div class="name">해시태그</div>
+                        <div class="value"><%=result[0].hashtag %>
+                        </div>
+                    </div>
+                    
+                    <div class="section_box">
+                        <div class="name_wrap">스터디 현재멤버</div>
+                        <div class="user_name_box">
+                            <% if(locals.result[0]) { %>
+                                <% for(var i=0; i < result.length; i++) { %>
+                                    <% if (i == 0) { %>
+                                        <div class="value_wrap">
+                                            <div class="name_image">
+                                                <img class="img" src="/public/user/<%= result[i].user_image%>">
+                                            </div>
+                                            <div class="name_txt">
+                                                <p class="result_txt">👑<%= result[i].user_name %></p>
+                                            </div>
+                                        </div>
+                                    <% } else { %>
+                                        <div class="value_wrap">
+                                            <div class="name_image">
+                                                <img class="img" src="/public/user/<%= result[i].user_image%>">
+                                            </div>
+                                            <div class="name_txt">
+                                                <p class="result_txt"><%= result[i].user_name %></p>
+                                            </div>
+                                        </div>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                        </div> 
+                    </div>
+
+
+                    <div class="section_box">
+                        <div class="name">스터디 형태</div>
+                        <div class="value"><% if(locals.result[0]) { %>
+                            <%= result[0].study_form %>
+                                <% } else { %>
+                                    <%= result.study_form %>
+                                <% } %>
+                        </div>
+                    </div>
+
+                    <% if(result[0].study_address != ' ') { %>  
+                        <div class="section_box">
+                            <div class="name">스터디위치</div>
+                            <div class="value"><% if(locals.result[0]) { %>
+                                <%= result[0].study_address %>
+                                    <% } else { %>
+                                    <%= result.study_address %>
+                                <% } %>
+                            </div>
+                        </div>
+                    <% } %>
+                    
+                    <div class="section_box">
+                        <div class="name">모집인원</div>
+
+                        <div class="value"><% if(locals.result[0]) { %>
+                            <%= result[0].study_recruit %>명
+                                <% } else { %>
+                                <%= result.study_recruit %>명
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="section_box">
+                        <div class="name">스터디기간</div>
+                        <div class="value">
+                            <div class="period_box">
+                                <!-- 시작일 -->
+                                <% if(locals.result[0]) { %>
+                                <%= result[0].start_period %>
+                                    <% } else { %>
+                                <%= result.start_period %>
+                                    <% } %>
+                                ~    
+                                <!-- 마감일 -->
+                                <% if(locals.result[0]) { %>
+                                <%= result[0].end_period %>
+                                    <% } else { %>
+                                <%= result.end_period %>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Category_box"></div>
+                    <!-- <button type="button" onclick="detailed()" class="detail" style="color:white">탈퇴하기</button> -->
+
+                    <!-- Button trigger modal -->
+                    <% if (result.length < result[0].study_recruit) { %>
+                        <button type="button" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white">스터디가입</button>
+                    <% } else { %>
+                        <button type="button" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white" disabled>스터디가입</button>
+                    <% } %>
+
+
+
+                    <!-- 가입 Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">스터디 그룹에 가입하시겠습니까?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="취소"></button>
+                            </div>
+                            <div class="modal-body">
+                                정말로 가입하시겠습니까?
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+                            <button type="button" id="modal_btn2" class="btn btn-primary">YES</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="regi_btn_wrap">
+                        <div class="regi_txt">
+                            <% if (result.length < result[0].study_recruit) { %>
+                                <span>가입가능</span>
+                            <% } else { %>
+                                <span>모집마감</span>
+                            <% } %>
+                        </div>
+                        
+                        <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
+                    </div>
+
+                    <div class="Category_box"></div>
+                </div>
+
+            </div>   
+            </form>
+        </div>
+    </tbody>
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="inner-footer">
+            <div class="social-links">
+                <ul>
+                    <li class="social-items"><a href="https://github.com/SeSAC43-Project/StudyWith" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+                    <li class="social-items"><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank"><img src="/public/main/notion.png" alt="notion"></a></li>
+                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-square-instagram"></i></a></li>
+                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="quick-links">
+                <ul>
+                    <li class="quick-items"><a href="">메인</a></li>
+                    <li class="quick-items"><a href="https://sesac.seoul.kr/course/active/detail.do" target="_blank">스윗소개</a></li>
+                    <li class="quick-items"><a href="javascript:void(0)">이용약관</a></li>
+                    <li class="quick-items"><a href="javascript:void(0)">개인정보처리방침</a></li>
+                </ul>
+            </div>
+
+            <div class="outer-footer">
+                © Copyright 2022. Swith. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
     
     <script>
+        /* navbar */
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
+
         /* 가입하기 modal YES 버튼을 누를 경우 */
+        var button = document.getElementById('modal_btn2');
+        button.addEventListener('click',  True);
+
         function True() {
             var form = document.getElementById('study_id');
             axios({
@@ -84,265 +338,8 @@
                 }
             })
         }
-    </script>
-</head>
-<body>
-    <header>
-        <a href="http://localhost:8000/swith" class="logo">
-            <img src="/public/main/logo.png" alt="logo" />
-        </a>
-        <ul>
-            <li class="logout"><a href="http://localhost:8000/feed/write">
-                <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
-            </li>
-            <li class="logout" onclick="logout();">
-                <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
-            </li>
-            <li class="logout"><a href="http://localhost:8000/user/mypage">
-                <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
-            </li>
-        </ul>
-    </header>
-    <script type="text/javascript">
-        window.addEventListener("scroll", function () {
-            var header = document.querySelector("header");
-            header.classList.toggle("sticky", window.scrollY > 0);
-        })
-    </script>
 
-        <tbody>
-            <div class="wrap">
-                <form id="deatailPost" name="deatailPost">
-                    <!-- <div class="CategoryImage" style="color:white;"> -->
-                    <div class="box">
-                        <div class="img_box">
-                            <div class="Category_box"></div>
-                        </div>
-
-                            <!-- 스터디 아이디 -->
-                            <div id="study_id" style="display:none"><%=result[0].study_id %></div>
-
-                            <!-- 스터디 이미지(등록이미지)  -->
-                            <!-- <div class="studyImage" style="color:white;">  -->              
-                            <div class="studyImage">
-                                <!-- <img src="/public/image/mainYour.png"> -->
-                                <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
-                                <% if(locals.result[0]) { %>
-                                    <img class="group_img" src="/public/group/<%= result[0].study_image%>" style="border-radius:15px;">
-                                <% } else { %>
-                                    <img class="group_img" src="/public/group/<%= result.study_image%>" style="border-radius:15px;">
-                                <% } %>
-                                <!-- 스터디 이름 -->
-                                <div class="studyName">
-                                    <p class="studyName_2">
-                                    <!-- <% if(locals.result[0]) { %> -->
-                                        <span class="studyName_txt"><%= result[0].study_name %></span>
-                                    <% } else { %>
-                                        <span class="studyName_txt"><%= result.study_name %></span>
-                                    <% } %>   
-                                    </p>
-                                    <div class="likes">
-                                        <% if (islike == false) { %>
-                                            <p style="font-size:1.3rem;" class="heart far fa-heart"></p>
-                                        <% } else { %>
-                                            <p style="font-size:1.3rem;" class="heart fa-solid fa-heart"></p>
-                                        <% } %>
-                                    </div>
-                                </div>
-                            </div>
-                        <!-- </div>     -->
-                
-                    <!-- <div class="section_box"> -->
-                        <!-- 카테고리 -->
-                        <div>
-                            <p class="Category_txt">
-                                <% if(locals.result[0]) { %>
-                                    <span><%= result[0].study_category %></span>
-                                <% } else { %>
-                                    <span><%= result.study_category %></span>
-                                <% } %>   
-                            </p>
-                        </div>
-
-                        <div class="section_box">
-                            <div class="name">스터디 소개글</div>
-                            <div class="value"><%=result[0].study_content %>
-                            </div>
-                        </div>
-                        
-                        <div class="section_box">
-                            <div class="name">해시태그</div>
-                            <div class="value"><%=result[0].hashtag %>
-                            </div>
-                        </div>
-                        
-                        <div class="section_box">
-                            <div class="name_wrap">스터디 현재멤버</div>
-                            <div class="user_name_box">
-                                <% if(locals.result[0]) { %>
-                                    <% for(var i=0; i < result.length; i++) { %>
-                                        <% if (i == 0) { %>
-                                            <div class="value_wrap">
-                                                <div class="name_image">
-                                                    <img class="img" src="/public/user/<%= result[i].user_image%>">
-                                                </div>
-                                                <div class="name_txt">
-                                                    <p class="result_txt">👑<%= result[i].user_name %></p>
-                                                </div>
-                                            </div>
-                                        <% } else { %>
-                                            <div class="value_wrap">
-                                                <div class="name_image">
-                                                    <img class="img" src="/public/user/<%= result[i].user_image%>">
-                                                </div>
-                                                <div class="name_txt">
-                                                    <p class="result_txt"><%= result[i].user_name %></p>
-                                                </div>
-                                            </div>
-                                        <% } %>
-                                    <% } %>
-                                <% } %>
-                            </div> 
-                        </div>
-
-
-                        <div class="section_box">
-                            <div class="name">스터디 형태</div>
-                            <div class="value"><% if(locals.result[0]) { %>
-                                <%= result[0].study_form %>
-                                    <% } else { %>
-                                        <%= result.study_form %>
-                                    <% } %>
-                            </div>
-                        </div>
-
-                        <% if(result[0].study_address != ' ') { %>  
-                            <div class="section_box">
-                                <div class="name">스터디위치</div>
-                                <div class="value"><% if(locals.result[0]) { %>
-                                    <%= result[0].study_address %>
-                                        <% } else { %>
-                                        <%= result.study_address %>
-                                    <% } %>
-                                </div>
-                            </div>
-                        <% } %>
-                        
-                        <div class="section_box">
-                            <div class="name">모집인원</div>
-
-                            <div class="value"><% if(locals.result[0]) { %>
-                                <%= result[0].study_recruit %>명
-                                    <% } else { %>
-                                    <%= result.study_recruit %>명
-                                <% } %>
-                            </div>
-                        </div>
-
-                        <div class="section_box">
-                            <div class="name">스터디기간</div>
-                            <div class="value">
-                                <div class="period_box">
-                                    <!-- 시작일 -->
-                                    <% if(locals.result[0]) { %>
-                                    <%= result[0].start_period %>
-                                        <% } else { %>
-                                    <%= result.start_period %>
-                                        <% } %>
-                                    ~    
-                                    <!-- 마감일 -->
-                                    <% if(locals.result[0]) { %>
-                                    <%= result[0].end_period %>
-                                        <% } else { %>
-                                    <%= result.end_period %>
-                                        <% } %>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="Category_box"></div>
-                        <!-- <button type="button" onclick="detailed()" class="detail" style="color:white">탈퇴하기</button> -->
-    
-                        <!-- Button trigger modal -->
-                        <% if (result.length < result[0].study_recruit) { %>
-                            <button type="button" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white">스터디가입</button>
-                        <% } else { %>
-                            <button type="button" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white" disabled>스터디가입</button>
-                        <% } %>
-
-
-
-                        <!-- 가입 Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">스터디 그룹에 가입하시겠습니까?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="취소"></button>
-                                </div>
-                                <div class="modal-body">
-                                    정말로 가입하시겠습니까?
-                                </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-                                <button type="button" id="modal_btn2" class="btn btn-primary">YES</button>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-
-                        
-                        <div class="regi_btn_wrap">
-                            <div class="regi_txt">
-                                <% if (result.length < result[0].study_recruit) { %>
-                                    <span>가입가능</span>
-                                <% } else { %>
-                                    <span>모집마감</span>
-                                <% } %>
-                            </div>
-                            
-                            <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
-                        </div>
-
-                        <div class="Category_box"></div>
-                    </div>
-
-                </div>   
-                </form>
-            </div>
-        </tbody>
-        <script>
-            var button = document.getElementById('modal_btn2');
-            button.addEventListener('click',  True);
-        </script>
-
-         <!-- ==========================================footer========================================== -->
-    <footer class="footer">
-        <div class="inner-footer">
-            <div class="social-links">
-                <ul>
-                    <li class="social-items"><a href="https://github.com/SeSAC43-Project/StudyWith" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-                    <li class="social-items"><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank"><img src="/public/main/notion.png" alt="notion"></a></li>
-                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-square-instagram"></i></a></li>
-                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a></li>
-                </ul>
-            </div>
-
-            <div class="quick-links">
-                <ul>
-                    <li class="quick-items"><a href="">메인</a></li>
-                    <li class="quick-items"><a href="https://sesac.seoul.kr/course/active/detail.do" target="_blank">스윗소개</a></li>
-                    <li class="quick-items"><a href="javascript:void(0)">이용약관</a></li>
-                    <li class="quick-items"><a href="javascript:void(0)">개인정보처리방침</a></li>
-                </ul>
-            </div>
-
-            <div class="outer-footer">
-                © Copyright 2022. Swith. All Rights Reserved.
-            </div>
-        </div>
-    </footer>
-    
-    <script>
+        /* 좋아요 기능 */
         var likes = document.querySelector('.likes');
         likes.addEventListener('click', function(obj) {
             console.log($('.likes').children('.heart').hasClass('far fa-heart'));

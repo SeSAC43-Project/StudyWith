@@ -17,11 +17,19 @@ exports.get_management =  (req, res) => {
 /* 게시물 수정 버튼 클릭 */
 exports.patch_management = (req, res) => {
 
+    let study_image = '';
+
+    if ( req.body.study_image == '') { // user 이미지가 없을 경우
+        study_image = 'group_default.jpg';
+    } else {
+        study_image = req.body.study_image;
+    }
+
     let newObj = {
         study_name: req.body.study_name,
         study_category: req.body.study_category,
         study_recruit: req.body.study_recruit,
-        study_image: req.body.study_image,
+        study_image: study_image,
         study_content: req.body.study_content,
         start_period: req.body.start_period,
         end_period: req.body.end_period,
