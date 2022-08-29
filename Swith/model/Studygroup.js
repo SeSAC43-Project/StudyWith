@@ -82,6 +82,8 @@ const Studygroup = (Sequelize, DataTypes) => {
         Studygroup.belongsToMany(models.User, { through: 'Studymember' });
         // N:M 관계 
         Studygroup.belongsToMany(models.User, { through: 'Likes' });
+        // N:M 관계 
+        Studygroup.belongsToMany(models.User, { through: 'Studylounge' });
     }
 
     return model;
