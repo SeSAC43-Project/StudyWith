@@ -17,6 +17,8 @@ db.User = require("./User")(sequelize, Sequelize);
 db.Studygroup = require("./Studygroup")(sequelize, Sequelize);
 db.Studymember = require("./Studymember")(sequelize, Sequelize);
 db.Likes = require("./likes")(sequelize, Sequelize);
+db.Studylounge= require("./Studylounge")(sequelize, Sequelize);
+db.Reply= require("./Reply")(sequelize, Sequelize);
 
 /* foreign key설정 */
 // db.Studygroup.hasMany(db.User, {
