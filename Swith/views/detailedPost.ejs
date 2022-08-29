@@ -10,74 +10,14 @@
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!--sweetalert -->
+    <!-- sweetalert -->
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal/minimal.css" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="/public/css/detailedPost.css">
     <!-- <link rel="stylesheet" href="/public/css/navbar.css" /> -->
     <!-- <link rel="stylesheet" href="/public/css/footer.css" /> -->
-
    <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
-
-
-    <script>
-        /* 게시물 수정 화면으로 이동 */
-        function detailed() {
-            var form = document.getElementById('study_id');
-            axios({
-                method:'get',
-                url: "http://localhost:8000/feed/management",
-                params: {
-                    study_id : form.innerText
-                }
-            })
-            .then((req) => { return req.data;})
-            .then((data) => {
-                document.location.href="http://localhost:8000/feed/management?study_id="+form.innerText;
-            })
-        }
-
-        /* 목록 버튼 */
-        function detailedPost_index() {
-                document.location.href="http://localhost:8000/swith";
-        }
-
-        /* 로그아웃 */
-        function logout() {
-            Swal.fire({
-                title: '로그아웃',
-                text: "정말로 로그아웃 하시겠습니까?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#a9a9a9',
-                confirmButtonText: '로그아웃 하기'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    axios({
-                        method:'get',
-                        url:'http://localhost:8000/user/logout'
-                    })
-                    .then((req) => {return req.data;})
-                    .then((data) => {
-                        if (data) {
-                                Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: '로그아웃 되었습니다.',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                            setTimeout(function() {
-                                document.location.href="http://localhost:8000/swith";
-                            }, 1000);
-                        }
-                    })
-                }
-            })
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -96,30 +36,19 @@
             </li>
         </ul>
     </header>
-    <script type="text/javascript">
-        window.addEventListener("scroll", function () {
-            var header = document.querySelector("header");
-            header.classList.toggle("sticky", window.scrollY > 0);
-        })
-    </script>
 
-        <tbody>
-            <div class="wrap">
-                <form id="deatailPost" name="deatailPost">
-            <!-- <div class="CategoryImage" style="color:white;"> -->
+    <tbody>
+        <div class="wrap">
+            <form id="deatailPost" name="deatailPost">
                 <div class="box">
                     <div class="img_box">   
                         <div class="Category_box"></div>
                     </div>
 
                     <!-- 스터디 아이디 -->
-                    <div id="study_id" style="display:none"><%=result[0].study_id %></div>
-                    
-                        <!-- 스터디 이미지(등록이미지)  -->
-                        <!-- <div class="studyImage" style="color:white;">  -->              
+                    <div id="study_id" style="display:none"><%=result[0].study_id %></div>     
+                        <!-- 스터디 이미지 -->    
                         <div class="studyImage">
-                            <!-- <img src="/public/image/mainStudy.png"> -->
-                            <!-- 스터디 이미지는 아직 없어서 안불러와 질 것 같아서 주석할게요-->
                             <% if(locals.result[0]) { %>
                                 <img class="group_img" src="/public/group/<%= result[0].study_image%>" style="border-radius:15px;">
                             <% } else { %>
@@ -145,32 +74,29 @@
                     </div>
 
                     <!-- 카테고리 -->
-                        <div>
-                            <p class="Category_txt">
-                                <% if(locals.result[0]) { %>
-                                    <span><%= result[0].study_category %></span>
-                                <% } else { %>
-                                    <span><%= result.study_category %></span>
-                                <% } %>   
-                            </p>
-                        </div>
-                    <!-- </div>     -->
-            
-                <!-- <div class="section_box"> -->
+                    <div>
+                        <p class="Category_txt">
+                            <% if(locals.result[0]) { %>
+                                <span><%= result[0].study_category %></span>
+                            <% } else { %>
+                                <span><%= result.study_category %></span>
+                            <% } %>   
+                        </p>
+                    </div>
 
                     <div class="section_box">
                         <div class="name">스터디 소개글</div>
                         <div class="value"><%=result[0].study_content %>
                         </div>
                     </div>
-                    
+                
                     <div class="section_box">
                         <div class="name">해시태그</div>
                         <div class="value"><%=result[0].hashtag %>
                         </div>
                     </div>
-                    
-                    
+                
+                
                     <div class="section_box">
                         <div class="name_wrap">스터디 현재멤버</div>
                         <div class="user_name_box">
@@ -253,106 +179,169 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="Category_box"></div>
 
-                        <button type="button" onclick="detailed()" class="detail" style="color:white">게시물 수정하기</button>
-                        
-    
-                        <div class="regi_btn_wrap">
-                            <div class="regi_txt">
-                                <% if (result.length < result[0].study_recruit) { %>
-                                    <span>모집중</span>
-                                <% } else { %>
-                                    <span>모집마감</span>
-                                <% } %>
-                            </div>
-                            
-                            <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
+                    <button type="button" onclick="detailed()" class="detail" style="color:white">게시물 수정하기</button>
+                    
+
+                    <div class="regi_btn_wrap">
+                        <div class="regi_txt">
+                            <% if (result.length < result[0].study_recruit) { %>
+                                <span>모집중</span>
+                            <% } else { %>
+                                <span>모집마감</span>
+                            <% } %>
                         </div>
+                        
+                        <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
+                    </div>
 
-                        <div class="Category_box"></div>
-                    </div>    
-
-                </div>   
-                </form>
+                    <div class="Category_box"></div>
+                </div>    
+            </div>   
+            </form>
+        </div>
+    </tbody>
+    <!-- footer -->
+    <footer class="footer">
+        <div class="inner-footer">
+            <div class="social-links">
+                <ul>
+                    <li class="social-items"><a href="https://github.com/SeSAC43-Project/StudyWith" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+                    <li class="social-items"><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank"><img src="/public/main/notion.png" alt="notion"></a></li>
+                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-square-instagram"></i></a></li>
+                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a></li>
+                </ul>
             </div>
-        </tbody>
-        <!-- ==========================================footer========================================== -->
-        <footer class="footer">
-            <div class="inner-footer">
-                <div class="social-links">
-                    <ul>
-                        <li class="social-items"><a href="https://github.com/SeSAC43-Project/StudyWith" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-                        <li class="social-items"><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank"><img src="/public/main/notion.png" alt="notion"></a></li>
-                        <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-square-instagram"></i></a></li>
-                        <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a></li>
-                    </ul>
-                </div>
 
-                <div class="quick-links">
-                    <ul>
-                        <li class="quick-items"><a href="">메인</a></li>
-                        <li class="quick-items"><a href="https://sesac.seoul.kr/course/active/detail.do" target="_blank">스윗소개</a></li>
-                        <li class="quick-items"><a href="javascript:void(0)">이용약관</a></li>
-                        <li class="quick-items"><a href="javascript:void(0)">개인정보처리방침</a></li>
-                    </ul>
-                </div>
-
-                <div class="outer-footer">
-                    © Copyright 2022. Swith. All Rights Reserved.
-                </div>
+            <div class="quick-links">
+                <ul>
+                    <li class="quick-items"><a href="">메인</a></li>
+                    <li class="quick-items"><a href="https://sesac.seoul.kr/course/active/detail.do" target="_blank">스윗소개</a></li>
+                    <li class="quick-items"><a href="javascript:void(0)">이용약관</a></li>
+                    <li class="quick-items"><a href="javascript:void(0)">개인정보처리방침</a></li>
+                </ul>
             </div>
-        </footer>
-        <script>
-            var likes = document.querySelector('.likes');
-            likes.addEventListener('click', function(obj) {
-                console.log($('.likes').children('.heart').hasClass('far fa-heart'));
 
-                //빈 하트이면 
-                if( $('.likes').children('.heart').hasClass('far fa-heart')) {
-                    like('insert');
-                } else { //빨간 하트이면
-                    like('delete');
+            <div class="outer-footer">
+                © Copyright 2022. Swith. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* navbar */
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
+
+        /* 게시물 수정 화면으로 이동 */
+        function detailed() {
+            var form = document.getElementById('study_id');
+            axios({
+                method:'get',
+                url: "http://localhost:8000/feed/management",
+                params: {
+                    study_id : form.innerText
                 }
             })
+            .then((req) => { return req.data;})
+            .then((data) => {
+                document.location.href="http://localhost:8000/feed/management?study_id="+form.innerText;
+            })
+        }
 
-            //좋아요 기능
-            function like(flag) {
-                var form = document.getElementById('study_id');
-                if ( flag == 'insert') {
+        /* 목록 버튼 */
+        function detailedPost_index() {
+                document.location.href="http://localhost:8000/swith";
+        }
+
+        /* 로그아웃 */
+        function logout() {
+            Swal.fire({
+                title: '로그아웃',
+                text: "정말로 로그아웃 하시겠습니까?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#a9a9a9',
+                confirmButtonText: '로그아웃 하기'
+            }).then((result) => {
+                if (result.isConfirmed) {
                     axios({
-                        method:'post',
-                        url: 'http://localhost:8000/swith/search/likes',
-                        data : {
-                            study_id : form.innerText,
-                        }
+                        method:'get',
+                        url:'http://localhost:8000/user/logout'
                     })
-                    .then((req) => { return req.data;})
+                    .then((req) => {return req.data;})
                     .then((data) => {
-                        if (data.isLikes == true) {
-                            $('.likes').children('.heart').removeClass('far fa-heart');
-                            $('.likes').children('.heart').addClass('fa-solid fa-heart');
-                            $('.likes').children('.heart').addClass('heartEffect');
-                        }
-                        
-                    });
-                } else {
-                    axios({
-                        method:'post',
-                        url: 'http://localhost:8000/swith/search/likes/remove',
-                        data : {
-                            study_id : form.innerText,
-                        }
-                    })
-                    .then((req) => { return req.data;})
-                    .then((data) => {
-                        if (data.isDislikes == true) {
-                            $('.likes').children('.heart').removeClass('fa-solid fa-heart');
-                            $('.likes').children('.heart').addClass('far fa-heart');
+                        if (data) {
+                                Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: '로그아웃 되었습니다.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            setTimeout(function() {
+                                document.location.href="http://localhost:8000/swith";
+                            }, 1000);
                         }
                     })
                 }
+            })
+        }
+
+        /* 좋아요 기능 */
+        var likes = document.querySelector('.likes');
+        likes.addEventListener('click', function(obj) {
+            console.log($('.likes').children('.heart').hasClass('far fa-heart'));
+
+            //빈 하트이면 
+            if( $('.likes').children('.heart').hasClass('far fa-heart')) {
+                like('insert');
+            } else { //빨간 하트이면
+                like('delete');
             }
-        </script>
+        })
+
+        function like(flag) {
+            var form = document.getElementById('study_id');
+            if ( flag == 'insert') {
+                axios({
+                    method:'post',
+                    url: 'http://localhost:8000/swith/search/likes',
+                    data : {
+                        study_id : form.innerText,
+                    }
+                })
+                .then((req) => { return req.data;})
+                .then((data) => {
+                    if (data.isLikes == true) {
+                        $('.likes').children('.heart').removeClass('far fa-heart');
+                        $('.likes').children('.heart').addClass('fa-solid fa-heart');
+                        $('.likes').children('.heart').addClass('heartEffect');
+                    }
+                    
+                });
+            } else {
+                axios({
+                    method:'post',
+                    url: 'http://localhost:8000/swith/search/likes/remove',
+                    data : {
+                        study_id : form.innerText,
+                    }
+                })
+                .then((req) => { return req.data;})
+                .then((data) => {
+                    if (data.isDislikes == true) {
+                        $('.likes').children('.heart').removeClass('fa-solid fa-heart');
+                        $('.likes').children('.heart').addClass('far fa-heart');
+                    }
+                })
+            }
+        }
+    </script>
 </body>
 </html>
