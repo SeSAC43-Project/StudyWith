@@ -16,21 +16,24 @@
 
     <script>
       function add_Posting() {
-        var form = document.getElementById("signup_form");
+        var form = document.getElementById("modify_info");
+        var studyData = document.getElementById("study_id").innerText;
 
             axios({
                 method:'post',
                 url: "http://localhost:8000/feed/board/write",
                 data: {
-                    user_id: form.user_id.value,
-                    study_id: form.study_id.value,
+                    study_id: studyData,
                     title : form.title.value,
                     lounge_contents: form.lounge_contents.value,
                     }
             })
             .then((req) => { return req.data;})
             .then((data) => {
-                document.location.href="http://localhost:8000/feed/board";
+                // console.log(data);
+                // console.log(data.result.lounge_id);
+                // console.log(data.result);
+                document.location.href=`http://localhost:8000/feed/board/detail?lounge_id=${data.result.lounge_id}`;
             })        
         }
       
@@ -51,10 +54,10 @@
 
         <div class="modify-list">
           <form id="modify_info">
-
-              <div class="input-group">
-                <input type="hidden" id="studyId" value="<%=study_id %>" name="study_id">
-              </div>
+            <div style="display:none" id="study_id"><%=study_id %></div>
+              <!-- <div class="input-group">
+                <input type="text" id="studyId" value="<%=study_id %>" name="study_id">
+              </div> -->
 
               <div class="input-group">
                 <input type="text" id="title" name="title" required>
