@@ -27,7 +27,7 @@ const Studylounge = (Sequelize, DataTypes) => {
                 allowNull: false,
             },
             lounge_regdate: {
-                type: DataTypes.DATE,
+                type: DataTypes.DATEONLY, //mysql: DATE
                 allowNull: false,
                 defaultValue: DataTypes.NOW,
             }, 
