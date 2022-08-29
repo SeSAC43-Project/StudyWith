@@ -364,13 +364,13 @@
             axios({
                 method: 'get',
                 url: "http://localhost:8000/feed/board",
-                params: {
+                data: {
                     study_id : form.innerText
                 }
             })
             .then((req) => {return req.data;})
             .then((data) => {
-                document.location.href="http://localhost:8000/feed/board?study_id="+form.innerText;
+                document.location.href=`http://localhost:8000/feed/board?study_id=${study_id}`;
             })
         }
     </script>

@@ -410,7 +410,7 @@
             axios({
                 method: 'get',
                 url: "http://localhost:8000/feed/board",
-                params: {
+                data: {
                     study_id : form.innerText
                 }
             })
