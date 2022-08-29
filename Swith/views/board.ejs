@@ -17,30 +17,80 @@
 <body>
     <div class="container">
 
-        <div class="mypage-head"> 😋 SWITH에 오신걸 환영합니다! 😋 //여기는 스터디네임 불러오기
+        <div class="mypage-head"> 😋 SWITH LOUNGE 에 오신걸 환영합니다! 😋
             <button type="button" onclick="goHome()" class="homeBtn">
                 <i class="fa-solid fa-house"></i>
             </button>
         </div>
 
+        <div class="menu">
+            <div onclick="goSearch()">
+                <i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData[0].study_id%>">게시판조회</a>
+                </i>
+                <span><i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData[0].study_id%>">게시판조회</a>
+                </i></span>
+            </div>
+            <div onclick="goPosting()">
+                <i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/">게시판등록</a>
+                </i>
+                <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/">게시판등록</a>
+                </i></span>
+            </div>
+        </div>
+
         <div class="modify-list">
                 <form id="modify_info">
                     <div class="info-field">
-                        <table border="1">
-                            <tr>
-                                <td>번호</td>
-                                <td>작성자</td>
-                                <td>제목</td>
-                                <td>등록일</td>
+                        <table border="1" class="lounge_main" style="text-align: center;">
+                            <thead>
+                            <tr class="lounge_main_total">
+                                <th class="lounge_main_name">작성자</th>
+                                <th class="lounge_main_title">제목</th>
+                                <th class="lounge_main_date">등록일</th>
                             </tr>
+                            </thead>
+                            <tbody>
+                            <% for (i=0; i <boardData.length; i++) {%>
+                                <!-- <div id="study_id" style="display:none"><%=boardData[0].study_id %></div> -->
+                                <tr class="lounge_total">
+                                    <td class="lounge_name"><%=boardData[i].write_name%></td>
+                                    <td class="lounge_title" id="<%=boardData[i].lounge_id%>"    onclick="detailBoard(this.id,this);"><%=boardData[i].title%></td>
+                                    <td class="lounge_date"><%=boardData[i].lounge_regdate%></td>
+                                </tr>
+                            <% } %> 
+                        </tbody>
                         </table>
-
-                    </div>
-                    <button type="button" class="writePost" style="color:#FFE19C" onclick="add_Posting();">글쓰기</button>
                     </div>
                 </form>
             
         </div>
     </div>
+
+    <script>
+
+        // /* 라운지 등록 상세페이지 화면으로 이동 */
+        // function add_Posting() {
+        //     var form = document.getElementById('study_id');
+        //     axios({
+        //         method:'get',
+        //         url: "http://localhost:8000/feed/board",
+        //         params: {
+        //             study_id : form.innerText
+        //         }
+        //     })
+        //     .then((req) => { return req.data;})
+        //     .then((data) => {
+        //         document.location.href="http://localhost:8000/feed/board?study_id="+form.innerText;
+        //     })
+        // }
+
+        function detailBoard(clicked_lounge_id) {
+            document.location.href=`http://localhost:8000/feed/board/detail?lounge_id=${clicked_lounge_id}`;
+        }
+    </script>
 </body>
 </html>
