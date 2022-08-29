@@ -10,15 +10,18 @@ exports.post_login = (req, res) => {
     Models.User.findOne({
         where: {user_id : req.body.user_id}
     }).then((result) => {
-        console.log('post login 실행 :', result); 
+        
+        if(result == null) {
+            return res.send('false');
+        }
+        console.log("result",result);
         
         if (req.body.user_password == result.user_password) {
             req.session.user_id = req.body.user_id; 
             console.log(req.session);
-            res.send('True'); // 로그인 성공
-            return 
+            return res.send('true'); // 로그인 성공
         }
-        res.send('False'); // 로그인 실패 
+        return res.send('false'); // 로그인 실패 
     });
 }
 
