@@ -1,0 +1,90 @@
+/* 정보 */
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  * {
+    font-family: "GmarketSansMedium";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  .container {
+    height: 150vh;
+    width: 100%;
+    background: #f3f7fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .info-field {
+    position: absolute;
+    top: 70px;
+    width: 500px;
+    height: 100px;
+    padding-top: 3vw; 
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+    left: 300px;
+    margin-bottom: 300px;
+  }
+  
+  .mypage-head {
+    background-color: #fff;
+    width: 1050px;
+    height: 10vh;
+    position: absolute;
+    top: 40px;
+    display: flex;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  
+  .homeBtn {
+    background-color: #f5d17c;
+    border-radius: 20px;
+    border-color: black;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 20px;
+  }
+  .homeBtn:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+
+  .modify-list {
+    width: 1050px;
+    height: 100vh;
+    display: flex;
+    border-radius: 20px;
+    border-color: #4686C2;
+    border-width: 3px;
+    align-items: center;
+    justify-content: center;
+    /* position: relative; */
+    background-color: #fff;
+    box-shadow: 0 10px 10px 0px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 220px;
+  }
+ 
+  .info-field {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 36%;
+  }
