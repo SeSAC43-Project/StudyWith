@@ -100,7 +100,11 @@ INSERT INTO studymember (study_id, user_id) VALUES (1, "aa");
 -- 삭제 테스트
 DELETE FROM user WHERE user_id='aa';
 
+-- 게시물 테스트
+insert into studylounge values('1', 'aa', '1', '스터디 공지', '문래역 1번 출구에서 만나요!', '2022-08-29');
 
+-- 댓글 테스트
+insert into reply values('1', '1', 'bb', '1', '좋아요 저는 참석 가능', '2022-08-29');
 
 ----------------------------------------------------------
 --* Back 참고용
