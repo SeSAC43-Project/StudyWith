@@ -471,6 +471,8 @@ h2 {
   margin: 0;
   padding: 0;
   background-color: #f3f7fe;
+  position: relative;
+  transition: translateY(-100%);
 }
 
 .social-links {
