@@ -61,7 +61,7 @@ header ul li a {
   color: #000;
   font-weight: bold;
   transition: 0.6s;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .logout i {
@@ -71,7 +71,7 @@ header ul li a {
   color: #000;
   font-weight: bold;
   transition: 0.6s;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 header ul li:hover {
