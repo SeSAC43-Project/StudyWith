@@ -18,6 +18,8 @@
     <!-- <link rel="stylesheet" href="/public/css/navbar.css" /> -->
     <!-- <link rel="stylesheet" href="/public/css/footer.css" /> -->
    <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
     <header>
@@ -59,9 +61,9 @@
                         <div class="studyName">
                             <p class="studyName_2">
                             <% if(locals.result[0]) { %>
-                                <span class="studyName_txt"><%= result[0].study_name %></span>
+                                <span class="studyName_txt" id="study_name"><%= result[0].study_name %></span>
                             <% } else { %>
-                                <span class="studyName_txt"><%= result.study_name %></span>
+                                <span class="studyName_txt" id="study_name"><%= result.study_name %></span>
                             <% } %>   
                             </p>
                             <div class="likes">
@@ -86,8 +88,17 @@
                     </div>
 
                     <div class="section_box">
+                        <div class="name">스터디 가입 공유하기</div>
+                        <div class="value">
+                            <a id="kakao-link-btn" href="javascript:kakaoShare()">
+                                <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="section_box">
                         <div class="name">스터디 소개글</div>
-                        <div class="value"><%=result[0].study_content %>
+                        <div class="value" id="study_content"><%=result[0].study_content %>
                         </div>
                     </div>
                 
@@ -206,6 +217,14 @@
                         </button>
                     </div>
 
+                    <div>
+                        <button class="Lounge_btn" type="button" onclick="Lounge_index()">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            <br>
+                            Study Lounge
+                        </button>
+                    </div>
+
                     <div class="Category_box"></div>
                 </div>    
             </div>   
@@ -240,6 +259,37 @@
     </footer>
 
     <script>
+        /* kako URL 공유하기 */
+        Kakao.init('13291edd72c52e4e1212011eed2230da');
+
+        function kakaoShare() {
+            var study_name = document.getElementById('study_name');
+            var study_content = document.getElementById('study_content');
+            Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: study_name.innerText,
+                description: study_content.innerText,
+                imageUrl: '/public/group/group_default.jpg',
+                link: {
+                mobileWebUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
+                webUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
+                },
+            },
+            buttons: [
+                {
+                title: '웹으로 보기',
+                link: {
+                    mobileWebUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
+                    webUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
+                },
+                },
+            ],
+            // 카카오톡 미설치 시 카카오톡 설치 경로이동
+            installTalk: true,
+            })
+        }
+
         /* navbar */
         window.addEventListener("scroll", function () {
             var header = document.querySelector("header");
