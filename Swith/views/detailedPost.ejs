@@ -199,7 +199,7 @@
                     </div>
 
                     <div>
-                        <button class="Lounge_btn" type="button" onclick="Lounge_btn()">
+                        <button class="Lounge_btn" type="button" onclick="Lounge_index()">
                             <i class="fa-regular fa-pen-to-square"></i>
                             <br>
                             Study Lounge
@@ -359,7 +359,9 @@
             }
 
         // 스터디 라운지 페이지로 이동
-        function Lounge_btn() {
+        function Lounge_index() {
+            var form = document.getElementById('study_id');
+
             document.location.href="http://localhost:8000/feed/board?study_id="+form.innerText;
         }
     </script>
