@@ -26,18 +26,18 @@
         <div class="menu">
             <div onclick="goSearch()">
                 <i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData.study_id%>">게시판조회</a>
+                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData[0].study_id%>">게시판조회</a>
                 </i>
                 <span><i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData.study_id%>">게시판조회</a>
+                    <a href="http://localhost:8000/feed/board?study_id=<%=boardData[0].study_id%>">게시판조회</a>
                 </i></span>
             </div>
             <div onclick="goPosting()">
                 <i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData.study_id%>">게시판등록</a>
+                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData[0].study_id%>">게시판등록</a>
                 </i>
                 <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData.study_id%>">게시판등록</a>
+                    <a href="http://localhost:8000/feed/board/write?study_id=<%=boardData[0].study_id%>">게시판등록</a>
                 </i></span>
             </div>
         </div>
