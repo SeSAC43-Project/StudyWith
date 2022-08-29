@@ -17,54 +17,150 @@
 <body>
   <div class="container">
 
-    <div class="mypage-head"> 😋 SWITH LOUNGE 에 오신걸 환영합니다! 😋
-        <button type="button" onclick="goHome()" class="homeBtn">
-            <i class="fa-solid fa-house"></i>
-        </button>
-    </div>
+        <div class="mypage-head"> 😋 <%=detailData[0].study_name%> 에 오신걸 환영합니다! 😋
+            <button type="button" onclick="goHome()" class="homeBtn">
+                <i class="fa-solid fa-house"></i>
+            </button>
+        </div>
 
-    <div class="menu">
-      <div onclick="goSearch()">
-          <i class="fa-solid fa-user">&nbsp;&nbsp;
-              <a href="">게시판조회</a>
-          </i>
-          <span><i class="fa-solid fa-user">&nbsp;&nbsp;
-              <a href="">게시판조회</a>
-          </i></span>
-      </div>
-      <div onclick="goPosting()">
-          <i class="fa-solid fa-podcast">&nbsp;&nbsp;
-              <a href="http://localhost:8000/">게시판등록</a>
-          </i>
-          <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
-              <a href="http://localhost:8000/">게시판등록</a>
-          </i></span>
-      </div>
-    </div>
-
-    <div class="modify-list">
-      <form id="board_info">
-          <div class="info-field">
-            <div class="input-group">
-              <label for="title"><i class="fa-solid fa-paw"></i>제목</label>
+        <div class="menu">
+            <div onclick="goSearch()">
+                <i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>">게시판조회</a>
+                </i>
+                <span><i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>">게시판조회</a>
+                </i></span>
             </div>
-            <div class="input-group">
-              <label for="message"><i class="fa-solid fa-message"></i>내용</label>
+            <div onclick="goPosting()">
+                <i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board/write">게시판등록</a>
+                </i>
+                <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board/write">게시판등록</a>
+                </i></span>
             </div>
-          </div>
-        </form>
+        </div>
 
-        <div class="lounge_back" onclick="backToLounge();">목록</div>
-        
-      <form id="comment_info">
-          <input type="text" name="studymem_name" readonly>
-          <input type="text" name="studymem_comment">
-          <button type="button" onclick="enterComment();">등록</button>
-          <!-- 댓글 수정삭제 시간상 가능하면 하기 -->
-      </form>
+        <div class="modify-list">
+                <form id="board_info">
+                    <div class="info-field">
+                        <div class="lounge_back" onclick="backToLounge();">목록</div>
+                        <table border="1" class="lounge_main" style="text-align: center;">
+                            <thead>
+                            <tr class="lounge_main_total">
+                                <th class="lounge_main_name">작성자</th>
+                                <th class="lounge_main_title">제목</th>
+                                <th class="lounge_main_date">등록일</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="lounge_total">
+                                    <td class="lounge_name"><%=detailData[0].write_name%></td>
+                                    <td class="lounge_title" id="<%=detailData[0].lounge_id%>"><%=detailData[0].title%></td>
+                                    <td class="lounge_date"><%=detailData[0].lounge_regdate%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><%=detailData[0].lounge_contents%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><button type='button' onclick='deletePosting();'>삭제</button></td>
+                                </tr>
+                        </tbody>
+                        </table>
+                        <div>댓글창
+                            <table id="commentHere">
+                                
+                            </table>
+
+                        </div>
+                    </div>
+                </form>
+
+                <form id="comment_info">
+                    <input type="text" name="studymem_name" value="<%=currentUser%>" readonly>
+                    <input type="text" name="studymem_lounge_id" value="<%=detailData[0].lounge_id%>" readonly>
+                    <input type="text" id="studymem_comment" name="studymem_comment">
+                    <button type="button" onclick="enterComment();">등록</button>
+                    <!-- 댓글 수정삭제 시간상 가능하면 하기 -->
+                </form>
 
     </div>
 
-  </div>
+    <script>
+        function enterComment() {
+            var comments = document.getElementById('comment_info');
+            
+            axios({
+                method:'post',
+                url : 'http://localhost:8000/feed/board/detail',
+                data : {
+                    reply_id : comments.studymem_name.value,
+                    reply_contents : comments.studymem_comment.value,
+                    lounge_id : comments.studymem_lounge_id.value,
+                }
+            })
+            .then((req) => {return req.data})
+            .then((data) => {
+                var tb = document.getElementById('commentHere');
+                var tr = tb.insertRow();
+                var td1 = tr.insertCell();
+                var td2 = tr.insertCell();
+                var td3 = tr.insertCell();
+                var td4 = tr.insertCell();
+                var html = "<button type='button' onclick='deleteComment();'>삭제</button>" 
+                
+                console.log(data.result);
+
+                td1.innerHTML = data.result.user_id;
+                td2.innerHTML = data.result.reply_contents;
+                td3.innerHTML = data.result.reply_regdate;
+                td4.innerHTML = html;
+
+                document.getElementById('studymem_comment').value = "";
+
+                
+            })
+        }
+        function backToLounge() {
+            document.location.href=`http://localhost:8000/feed/board?study_id=${study_id}`;
+        }
+
+        function deleteComment() {
+            var comments = document.getElementById('comment_info');
+            axios({
+                method:'delete',
+                url:'http://localhost:8000/feed/board/detail/remove',
+                data: {
+                    reply_id : comments.studymem_name.value
+                }
+
+            }).then((req) => { return req.data;})
+            .then((data) => {
+                alert(data);
+            })
+        }
+
+        function deletePosting() {
+            var comments = document.getElementById('comment_info');
+            axios({
+                method:'delete',
+                url:'http://localhost:8000/feed/board/remove',
+                data: {
+                    reply_id : comments.studymem_name.value,
+                    lounge_id : comments.studymem_lounge_id.value,
+                }
+
+            }).then((req) => { return req.data;})
+            .then((data) => {
+                alert(data);
+            })
+        }
+
+        function goHome() {
+            document.location.href="http://localhost:8000/swith";
+            }
+    </script>
+
 </body>
 </html>
