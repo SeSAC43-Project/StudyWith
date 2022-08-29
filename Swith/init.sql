@@ -53,7 +53,7 @@ CREATE TABLE likes (
 
 CREATE TABLE studylounge (
     lounge_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    user_id VARCHAR(20) NOT NULL, 
+    writer_id VARCHAR(20) NOT NULL, 
     study_id INT NOT NULL,
     title VARCHAR(20) NOT NULL, 
     lounge_contents MEDIUMTEXT NOT NULL,
