@@ -230,13 +230,13 @@
                         <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
                     </div>
 
-                    <div>
+                    <!-- <div>
                         <button class="Lounge_btn" type="button" onclick="Lounge_index()">
                             <i class="fa-regular fa-pen-to-square"></i>
                             <br>
                             Study Lounge
                         </button>
-                    </div>
+                    </div> -->
 
                     <div class="Category_box"></div>
                 </div>
@@ -398,18 +398,18 @@
             }
         }
 
-        // 스터디 라운지 페이지 이동 버튼
-        function scrollIntoView(selector) {
-                const scrollTo = document.querySelector(selector);
-                scrollTo.scrollIntoView({ behavior: 'smooth' });
-            }
+        // // 스터디 라운지 페이지 이동 버튼
+        // function scrollIntoView(selector) {
+        //         const scrollTo = document.querySelector(selector);
+        //         scrollTo.scrollIntoView({ behavior: 'smooth' });
+        //     }
 
-        /// 스터디 라운지 페이지로 이동
-        function Lounge_index() {
-            var form = document.getElementById('study_id');
+        // /// 스터디 라운지 페이지로 이동
+        // function Lounge_index() {
+        //     var form = document.getElementById('study_id');
 
-            document.location.href="http://localhost:8000/feed/board?study_id="+form.innerText;
-        }
+        //     document.location.href="http://localhost:8000/feed/board?study_id="+form.innerText;
+        // }
     </script>
 </body>
 </html>
