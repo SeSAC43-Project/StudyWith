@@ -431,6 +431,40 @@ form {
     padding: 20 30px;
 }
 
+.Lounge_btn {
+  position: fixed;
+  bottom: 200px;
+  right: 70px;
+  width: 80px;
+  height: 80px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #2A5175;
+  background-color: white;
+  box-shadow: 0 0 0 1px #4686C2;
+  border-radius: 50%;
+  opacity: 0;
+  border: 0;
+  /* pointer-events: none; */
+  transition: opacity 300ms ease-in;
+}
+
+.Lounge_btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.Lounge_btn:hover {
+  background-color: #2A5175;
+  width: 80px;
+  height: 80px;
+  border: 0;
+  font-weight: bold;
+  border-radius: 50%;
+  color: #fff;
+}
+
+
 /* ==========================================footer====================================== */
 .inner-footer {
     margin-top: 500px;
