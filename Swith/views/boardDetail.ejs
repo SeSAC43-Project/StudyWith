@@ -12,10 +12,10 @@
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
     <!-- css -->
-    <link rel="stylesheet" href="/public/css/board.css" /> 
+    <link rel="stylesheet" href="/public/css/boardDetail.css" /> 
 </head>
 <body>
-    <div class="container">
+  <div class="container">
 
         <div class="mypage-head"> 😋 <%=detailData[0].study_name%> 에 오신걸 환영합니다! 😋
             <button type="button" onclick="goHome()" class="homeBtn">
@@ -85,7 +85,6 @@
                     <!-- 댓글 수정삭제 시간상 가능하면 하기 -->
                 </form>
 
-        </div>
     </div>
 
     <script>
@@ -162,5 +161,6 @@
             document.location.href="http://localhost:8000/swith";
             }
     </script>
+
 </body>
-</html> 
+</html>
