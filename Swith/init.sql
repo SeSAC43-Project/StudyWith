@@ -54,11 +54,11 @@ CREATE TABLE likes (
 CREATE TABLE studylounge (
     lounge_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     writer_id VARCHAR(20) NOT NULL, 
-    study_id INT NOT NULL,
+    user_id INT NOT NULL,
     title VARCHAR(20) NOT NULL, 
     lounge_contents MEDIUMTEXT NOT NULL,
     lounge_regdate DATE,
-    FOREIGN KEY (`writer_id`) REFERENCES `user` (`user_id`),
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
     FOREIGN KEY (`study_id`) REFERENCES `studygroup` (`study_id`)
 );
 
