@@ -43,6 +43,14 @@
         </div>
 
         <div class="modify-list">
+            <div class="board_list">
+                <form id="comment_info">
+                    <input type="text" name="studymem_name" value="<%=currentUser%>" readonly>
+                    <input type="text" name="studymem_lounge_id" value="<%=detailData[0].lounge_id%>" readonly>
+                    <input type="text" id="studymem_comment" name="studymem_comment">
+                    <button type="button" onclick="enterComment();">등록</button>
+                    <!-- 댓글 수정삭제 시간상 가능하면 하기 -->
+                </form>
                 <form id="board_info">
                     <div class="info-field">
                         <div class="lounge_back" onclick="backToLounge();">목록</div>
@@ -68,23 +76,27 @@
                                 </tr>
                         </tbody>
                         </table>
+ 
                         <div>댓글창
-                            <table id="commentHere">
-                                
+                            <table id="commentHere" border="1" >
+                                <% for (i=0; i<detailData.length; i++) { %>
+                                <tr>
+                                    <td><%=detailData[i].reply_writer%></td>
+                                    <td><%=detailData[i].reply_contents%></td>
+                                    <td><%=detailData[i].reply_regdate%></td>
+                                </tr>
+                                <% } %>
                             </table>
-
                         </div>
+
                     </div>
                 </form>
-
-                <form id="comment_info">
-                    <input type="text" name="studymem_name" value="<%=currentUser%>" readonly>
-                    <input type="text" name="studymem_lounge_id" value="<%=detailData[0].lounge_id%>" readonly>
-                    <input type="text" id="studymem_comment" name="studymem_comment">
-                    <button type="button" onclick="enterComment();">등록</button>
-                    <!-- 댓글 수정삭제 시간상 가능하면 하기 -->
-                </form>
+            </div>
+            <div>
+        </div>
     </div>
+
+    
 
     <script>
         function enterComment() {
