@@ -94,12 +94,6 @@
                         </div>
                     </div>
                 
-                    <div class="section_box">
-                        <div class="name">해시태그</div>
-                        <div class="value"><%=result[0].hashtag %>
-                        </div>
-                    </div>
-                
                 
                     <div class="section_box">
                         <div class="name_wrap">스터디 현재멤버</div>
@@ -184,7 +178,11 @@
                         </div>
                     </div>
 
-                    <div class="Category_box"></div>
+                    <!-- 해시태그 -->
+                    <div id="hashtag" style="display: none;"><%=result[0].hashtag %></div>
+                    <div id="hashtag_box" class="hashtag_box"></div>
+
+                    <!-- <div class="Category_box"></div> -->
 
                     <button type="button" onclick="detailed()" class="detail" style="color:white">게시물 수정하기</button>
                     
@@ -249,8 +247,16 @@
     </footer>
 
     <script>
-         /* kakao URL 공유하기 */
-         Kakao.init('13291edd72c52e4e1212011eed2230da');
+        /* 해시태그 */
+        $(document).ready(function(){ 
+            var hashtag_list = $('#hashtag').text().split('#').slice(1,-1);
+            var hashtag_box = document.getElementById('hashtag_box');
+            for (hashtag of hashtag_list)
+                hashtag_box.innerHTML += `<span class="hashtag">#${hashtag}</span>`;
+        });
+
+        /* kakao URL 공유하기 */
+        Kakao.init('13291edd72c52e4e1212011eed2230da');
 
         function kakaoShare() {
             var study_id = document.getElementById('study_id').innerText;
