@@ -44,7 +44,39 @@
 
         <div class="modify-list">
                 <form id="modify_info">
-                        <table border="1" class="lounge_main" style="text-align: center;">
+                    <div class="cuteContainer">
+                        <img src="/public/group/123456789.jpg" />
+                        <img src="/public/group/1661772816438.jpg" />
+                        <img src="/public/image/hiroo.jpeg" />
+                        <img src="/public/group/1661792822028.jpg">
+                        <img src="/public/group/group_default.jpg">
+                    </div>
+                    <hr>
+                    <h2 class="listH2">LIST
+                        <i class="fa-brands fa-instagram"></i>
+                    </h2>
+                    <div class="box">
+                        <% if (isBoard == true ) {%>     
+                            <% for (i=0; i <boardData.length; i++) {%>
+                        <div class="list" id="<%=boardData[i].lounge_id%>" onclick="detailBoard(this.id);">
+                            <div class="imgBx">
+                                <img src="/public/image/cute.png" />
+                            </div>
+                            <div class="content">
+                                <h3 class="rank"><small>#</small><%=boardData[0].write_name%></h3>
+                                <h2><%=boardData[0].title%></h2>
+                                <p><%=boardData[0].lounge_regdate%></p>
+                            </div>
+                            
+                        </div>
+                        <% } %> 
+                        <% } else { %> 
+                        <% } %>
+                    </div>
+
+
+
+                        <!-- <table border="1" class="lounge_main" style="text-align: center;">
                             <thead>
                             <tr class="lounge_main_total">
                                 <th class="lounge_main_name">작성자</th>
@@ -55,7 +87,6 @@
                             <tbody>
                             <% if (isBoard == true ) {%>     
                                 <% for (i=0; i <boardData.length; i++) {%>
-                                    <!-- <div id="study_id" style="display:none"><%=boardData[0].study_id %></div> -->
                                     <tr class="lounge_total">
                                         <td class="lounge_name"><%=boardData[i].write_name%></td>
                                         <td class="lounge_title" id="<%=boardData[i].lounge_id%>" onclick="detailBoard(this.id);"><%=boardData[i].title%></td>
@@ -65,7 +96,7 @@
                             <% } else { %> 
                             <% } %>
                         </tbody>
-                        </table>
+                        </table> -->
                 </form>
             
         </div>
