@@ -8,7 +8,6 @@ exports.studylounge_index = async(req, res) => {
         FROM studygroup 
         WHERE study_id = ${req.query.study_id}; 
     `)
-    console.log(studyname[0]);
 
     const [result, metadata] = await Models.sequelize.query(`
         SELECT L.*, U.user_name AS write_name, G.study_name
