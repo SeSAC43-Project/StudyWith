@@ -3,6 +3,13 @@ const Models  = require('../model');
 // 스터디라운지 조회 페이지 
 exports.studylounge_index = async(req, res) => {
     // 보내줄 데이터 
+    const [studyname] = await Models.sequelize.query(`
+        SELECT study_name 
+        FROM studygroup 
+        WHERE study_id = ${req.query.study_id}; 
+    `)
+    console.log(studyname[0]);
+
     const [result, metadata] = await Models.sequelize.query(`
         SELECT L.*, U.user_name AS write_name, G.study_name
         FROM studylounge AS L
@@ -21,7 +28,7 @@ exports.studylounge_index = async(req, res) => {
     }
     console.log('게시물 유무', isBoard)
     
-    res.render('board', {isBoard: isBoard , boardData : result});
+    res.render('board', {isBoard: isBoard , boardData : result, studyname: studyname[0]});
 }
 
 // 스터디 라운지 게시물 등록 화면
@@ -113,7 +120,8 @@ exports.board_remove = async(req, res) => {
         where: {lounge_id: req.body.lounge_id}
     });
 
-    await res.send("success delete");
+    // await res.send("success delete");
+    await res.send(true);
 }
 
 
@@ -123,5 +131,6 @@ exports.reply_remove = (req, res) => {
         where: {reply_id : req.body.reply_id}
     });
 
-    res.send("success delete");
+    // res.send("success delete");
+    res.send(true);
 }

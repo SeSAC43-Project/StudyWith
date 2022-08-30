@@ -134,12 +134,12 @@
                <div class="user-text">
                    <h2>😼 공부인증 챌린지에 참여하고 싶으신가요? 😽</h2> <br>
                    <img src="/public/image/challenge.png" alt=""> <br><br>
-                   <a href="javascript:void(0)" type="button">자세히 보기</a>
+                   <a href="javascript:void(0)" type="button" onclick="challenge()">자세히 보기</a>
                </div>
                <div class="user-text active-text">
                    <h2>😼 SWITH이 처음이신가요? 😽</h2> <br>
                    <img src="/public/image/guide.png" alt=""> <br><br>
-                   <a href="javascript:void(0)" type="button">자세히 보기</a>
+                   <a href="javascript:void(0)" type="button" onclick="guide()">자세히 보기</a>
                </div>
                <div class="user-text">
                    <h2>😼 스터디그룹 운영비법이 궁금하신가요? 😽</h2> <br>
@@ -259,7 +259,24 @@
            loop: true
         })
 
-        
+        // 공부인증 챌린지 자세히보기 버튼 누를때
+        function challenge() {
+            Swal.fire(
+                '',
+                '준비중입니다.',
+                'warning'
+                )
+                
+        }
+
+        // 이용가이드 자세히보기 버튼 누를때
+        function guide() {
+            Swal.fire(
+                '',
+                '준비중입니다.',
+                'warning'
+                )
+        }
     </script>
 </body>
 </html>
