@@ -18,7 +18,7 @@
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="/public/css/main.css" />
-  <link rel="stylesheet" href="/public/css/navbar.css" />
+  <!-- <link rel="stylesheet" href="/public/css/navbar.css" /> -->
 
   <script>
     /* 검색 */
@@ -69,23 +69,23 @@
     <!-- ==========================================navbar========================================== -->
     <header>
         <a href="http://localhost:8000/swith" class="logo">
-            <img src="/public/main/logo.png" alt="logo" />
+            <img src="/public/main/logo.svg" alt="logo" />
         </a>
         <ul>
             <li class="logout"><a href="http://localhost:8000/feed/write">
-                <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
+                <i class="fa-solid fa-folder-plus"></i><span>스터디 등록</span></a>
             </li>
             <% if (session_id == "") { %>
                 <li class="logout"><a href="http://localhost:8000/user/login"> 
-                    <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그인</span></i></a>
+                    <i class="fa-solid fa-user"></i><span>로그인</span></a>
                 </li>
             <% } else { %>
                 <li class="logout" onclick="logout();">
-                    <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
+                    <i class="fa-solid fa-user"></i><span>로그아웃</span></a>
                 </li>
             <% } %>
             <li class="logout"><a href="http://localhost:8000/user/mypage">
-                <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
+                <i class="fa-solid fa-house-chimney-user"></i><span>마이페이지</span></a>
             </li>
         </ul>
     </header>

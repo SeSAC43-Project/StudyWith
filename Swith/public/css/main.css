@@ -39,7 +39,7 @@ header .logo {
 }
 header img {
   position: relative;
-  width: 110px;
+  width: 150px;
   transition: 0.6s;
 }
 header img:hover {
@@ -63,12 +63,12 @@ header ul li a {
   margin: 0 15px;
   text-decoration: none;
   color: #000;
-  font-weight: bold;
+  /* font-weight: bold; */
   transition: 0.6s;
-  font-size: 15px;
+  font-size: 17px;
 }
 
-.logout i {
+/* .logout i {
   position: relative;
   margin: 0 15px;
   text-decoration: none;
@@ -76,10 +76,17 @@ header ul li a {
   font-weight: bold;
   transition: 0.6s;
   font-size: 15px;
-}
+} */
 
-i span {
+.logout span {
   font-family: "GmarketSansMedium";
+  position: relative;
+  margin: 0 10px;
+  text-decoration: none;
+  color: #000;
+  /* font-weight: bold; */
+  transition: 0.6s;
+  font-size: 17px;
 }
 
 header ul li a:hover {
