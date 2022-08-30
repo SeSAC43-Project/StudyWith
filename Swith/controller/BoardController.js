@@ -3,8 +3,8 @@ const Models  = require('../model');
 // 스터디라운지 조회 페이지 
 exports.studylounge_index = async(req, res) => {
     // 보내줄 데이터 
-    const [studyname] = await Models.sequelize.query(`
-        SELECT study_name 
+    const [studydata] = await Models.sequelize.query(`
+        SELECT study_name, study_id
         FROM studygroup 
         WHERE study_id = ${req.query.study_id}; 
     `)
@@ -28,7 +28,7 @@ exports.studylounge_index = async(req, res) => {
     }
     console.log('게시물 유무', isBoard)
     
-    res.render('board', {isBoard: isBoard , boardData : result, studyname: studyname[0]});
+    res.render('board', {isBoard: isBoard , boardData : result, studydata: studydata[0]});
 }
 
 // 스터디 라운지 게시물 등록 화면
