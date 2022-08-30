@@ -2,21 +2,20 @@ const Models  = require('../model');
 
 // 스터디라운지 조회 페이지 
 exports.studylounge_index = async(req, res) => {
-    // 보내줄 데이터 
+    // 맨위에 이동 및 스터디 표시 위하여 보내줄 스터디 데이터(게시물없어도 나와야함)
     const [studydata] = await Models.sequelize.query(`
         SELECT study_name, study_id
         FROM studygroup 
         WHERE study_id = ${req.query.study_id}; 
     `)
 
+    // 게시물 관련 데이터
     const [result, metadata] = await Models.sequelize.query(`
-        SELECT L.*, U.user_name AS write_name, G.study_name
+        SELECT L.*, U.user_name AS write_name
         FROM studylounge AS L
-        LEFT OUTER JOIN user AS U ON L.user_id = U.user_id
-        LEFT OUTER JOIN studygroup AS G ON L.study_id = G.study_id
+            LEFT OUTER JOIN user AS U ON L.user_id = U.user_id
         WHERE L.study_id = ${req.query.study_id}; 
-        `
-    );
+    `);
         
     console.log('게시물 result: ', result);
 
