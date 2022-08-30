@@ -138,12 +138,11 @@
             .then((req) => {return req.data})
             .then((data) => {
                 var html = "";
-
                 
-                    html = "<div class= 'comment-section' id= " + detailData[i].reply_id + ">"
-                            + "<input type = 'hidden' class='hidden_replyId' value= " + detailData[i].reply_id +">"
-                            + "<span id= 'replayName'>" + replynames[i] + "</span>"
-                            + "<div class= 'msg-box' id= 'replyCont' >" + detailData[i].reply_contents + "</div>"
+                    html = "<div class= 'comment-section' id= " + data.result.reply_id + ">"
+                            + "<input type = 'hidden' class='hidden_replyId' value= " + data.result.reply_id +">"
+                            + "<span id= 'replayName'>" + data.replyname[0].user_name + "</span>"
+                            + "<div class= 'msg-box' id= 'replyCont' >" + data.result.reply_contents + "</div>"
                             + "<button type='button' class='delete'>x</button>"
                             + "</div>";
 
