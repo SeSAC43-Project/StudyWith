@@ -100,7 +100,7 @@
                         <input type="hidden" name="studymem_name" value="<%=currentUser%>" readonly>
                         <input type="hidden" name="studymem_lounge_id" value="<%=detailData[0].real_lounge%>" readonly>
                         <h3><%=currentUser%><br><input type="text" class="text" placeholder="댓글을 남겨주세요" name="studymem_comment" /></h3>
-                        <div><button type="button" onclick="enterComment()" class="enterImg" ></button></div>
+                        <div><button type="button" onclick="enterComment()" class="enterBtn" ></button></div>
                     </div>
         </div>
 
@@ -246,8 +246,8 @@
             document.location.href="http://localhost:8000/swith";
             }
 
-        function goDetail() {
-            document.location.href="http://localhost:8000/feed/board/write";
+        function goPost() {
+            document.location.href="http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>";
             }
     </script>
 

@@ -18,7 +18,7 @@
   }
   
   .container {
-    height: 170vh;
+    height: 200vh;
     width: 100%;
     background: #f3f7fe;
     display: flex;
@@ -186,4 +186,117 @@ thead {
   cursor: pointer;
   font-weight: bold;
   /* transform: scale(1.05); */
+}
+
+.cuteContainer {
+  display: flex;
+  width: 600px;
+  height: 60px;
+  margin-top: 100px;
+  justify-content: center;
+}
+.cuteContainer img {
+  display: flex;
+  width: 80px;
+  height: 80px;
+  /* padding: 20px; */
+  margin: 20px;
+  border-radius: 50%;
+  border: 2px solid #f5d17c;
+}
+.cuteContainer img:hover {
+  transform: scale(1.3);
+  box-shadow: -15px 30px 50px rgba( 0, 0, 0, 0.2);
+}
+
+hr {
+  border-top: 1px dashed #f5d17c;
+  /* color: #f5d17c;
+  background-color: #f5d17c; */
+  height: 2px;
+  width: 600px;
+  margin-top: 80px;
+}
+.listH2 {
+  margin-top: 30px;
+  margin-left: 20px;
+  color: #4686C2;
+  justify-content: space-between;
+}
+
+.box {
+  position: relative;
+  min-width: 600px;
+  min-height: 600px;
+  height: auto;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);;
+  border-radius: 20px;
+  backdrop-filter: blur(25px);
+  z-index: 10;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+.box .list {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  background: #f3f7fe;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.box .list:hover {
+  background: #f5d17c;
+  box-shadow: -15px 30px 50px rgba( 0, 0, 0, 0.2);
+  transform: scale(1) translateX(30px) translateY(-15px);
+  z-index: 1000;
+  color: #4686C2;
+}
+
+.box .list .imgBx {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.box .list .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+.box .list .content h2, p {
+  color: #4686C2;
+}
+.box .list .content .rank {
+  position: absolute;
+  right: 20px;
+  color: #4686C2;
+  transition: 0.5s;
+}
+.box .list .content .rank small {
+  font-weight: 500;
+  opacity: 0.25;
+}
+.box .list:hover .content .rank {
+  right: 20px;
 }

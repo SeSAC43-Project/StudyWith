@@ -18,7 +18,7 @@ a {
 }
 
 .container {
-  height: 150vh;
+  height: 200vh;
   width: 100%;
   background: #f3f7fe;
   display: flex;
@@ -68,7 +68,7 @@ a {
 
 .modify-list {
   width: 1050px;
-  height: 100vh;
+  height: auto;
   border-radius: 20px;
   border-color: #4686C2;
   border-width: 3px;
@@ -150,7 +150,9 @@ overflow: hidden;
   cursor: pointer;
 }
 
-
+#board_info {
+  width: 500px;
+}
 .card {
   position: relative;
   width: 500px;
@@ -160,6 +162,9 @@ overflow: hidden;
   padding: 20px;
   height: auto;
   border-radius: 20px;
+  margin-top: 100px;
+  margin-left: 50%;
+  margin-bottom: 100px;
 }
 .card .top {
   display: flex;
@@ -264,12 +269,12 @@ overflow: hidden;
 .delete {
   background-color: #262626;
   color: #fff;
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1em;
+  font-size: 5px;
   border-radius: 50%;
 }
 .delete:hover {
@@ -281,6 +286,7 @@ overflow: hidden;
   align-items: center;
   margin-bottom: 0;
   justify-content: space-between;
+  margin-top: 20px;
 }
 .addComments h3 {
   font-size: 13px;
@@ -313,4 +319,24 @@ overflow: hidden;
 }
 .text::placeholder {
   color: #777;
+}
+.enterBtn {
+  width: 30px;
+  height: 27px;
+  background:url(/public/image/share.png);
+  background-size: contain;
+  border: none;
+  /* border-radius: 50%; */
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.right button {
+  width: 40px;
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 20px;
+  background: #f3f7fe;
+  cursor: pointer;
+  border-width: 1px;
 }
