@@ -88,15 +88,6 @@
                     </div>
 
                     <div class="section_box">
-                        <div class="name">스터디 가입 공유하기</div>
-                        <div class="value">
-                            <a id="kakao-link-btn" href="javascript:kakaoShare()">
-                                <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="section_box">
                         <div class="name">스터디 소개글</div>
                         <div class="value" id="study_content"><%=result[0].study_content %>
                         </div>
@@ -216,6 +207,12 @@
                             Study Lounge
                         </button>
                     </div>
+                    
+                    <div>
+                        <button class="url_btn" type="button" onclick="kakaoShare()">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </button>
+                    </div>
 
                     <div class="Category_box"></div>
                 </div>    
@@ -262,18 +259,18 @@
             content: {
                 title: study_name.innerText,
                 description: study_content.innerText,
-                imageUrl: '/public/group/group_default.jpg',
+                imageUrl: 'https://ifh.cc/g/nDRcjp.jpg',
                 link: {
-                mobileWebUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
-                webUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
+                mobileWebUrl: 'http://localhost:8000/feed/detailedPost?study_id=2',
+                webUrl: 'http://localhost:8000/feed/detailedPost?study_id=2',
                 },
             },
             buttons: [
                 {
-                title: '웹으로 보기',
+                title: '스터디 참여하러 가기',
                 link: {
-                    mobileWebUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
-                    webUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
+                    mobileWebUrl: 'http://localhost:8000/feed/detailedPost?study_id=2',
+                    webUrl: 'http://localhost:8000/feed/detailedPost?study_id=2',
                 },
                 },
             ],

@@ -466,6 +466,23 @@ form {
   color: #fff;
 }
 
+.url_btn{
+  position: absolute;
+  top: 78px;
+  right: -194px;
+  width: 80px;
+  height: 80px;
+  font-size: 20px;
+  color: aliceblue;
+  border-radius: 50%;
+  opacity: 1;
+  pointer-events: auto;
+  border: 0;
+  /* pointer-events: none; */
+  background-color:transparent;
+  transition: opacity 300ms ease-in;
+}
+
 
 /* ==========================================footer====================================== */
 .inner-footer {
