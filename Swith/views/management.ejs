@@ -300,7 +300,11 @@
             $("#end_day").val(parseInt(end_list[2])).prop("selected", true);
 
             /* 해시태그 정보 불러오기 */
-            var hashtag = document.getElementById('hashtag').innerText;
+            var hashtag_list = document.getElementById('hashtag').innerText.split(',');
+            const keyword = document.getElementById('enter_hashtag');
+            for (hashtag of hashtag_list) {
+                keyword.innerHTML += "<span class='newHashtag'>" + '#' + hashtag + "<button type='button' class='removeTagButton' onclick='deleteTag(event);'>X</button></span>";
+            }
         });
         /* navbar*/
         window.addEventListener("scroll", function () {
@@ -314,15 +318,9 @@
             var id = document.getElementById("study_id");
 
             var hashtags = $('.newHashtag').text(); 
-            alert("hashtags:", hashtags);
-            
             var hashtag = hashtags.split('#').slice(1); 
-            alert("hashtag:", hashtag);
             var feed_hashtags = hashtag.toString();
-            alert("feed_hashtags:", feed_hashtags);
             var feed_hashtag = feed_hashtags.replace(/\X/g,"");
-            alert("feed_hashtag:", feed_hashtag);
-
 
             var flag = checkData(); //데이터 유효성 검사
 
@@ -351,9 +349,9 @@
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    // setTimeout(function() {
-                    //     document.location.href="http://localhost:8000/feed/detailedPost?study_id="+id.innerText;
-                    // }, 1000);
+                    setTimeout(function() {
+                        document.location.href="http://localhost:8000/feed/detailedPost?study_id="+id.innerText;
+                    }, 1000);
                 })
             }
         }
@@ -391,12 +389,8 @@
         /* 해시태그 엔터시 추가되는 부분 */
         function show_hashtag(event) {
             const keyword = document.getElementById('enter_hashtag');
-            alert("keyword:", keyword);
-            // console.log(keyword);
             const txt = document.getElementById('text_hashtag').value;
-             alert("txt:", txt);
             const text = txt.replace(" ","");
-            alert("text:", text);
 
             if (($('.newHashtag').length < '7' )) {
                 if ((text.length < '7')) {
