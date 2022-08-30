@@ -43,87 +43,68 @@
         </div>
 
         <div class="modify-list">
-            <form id="board_info">
-            <div class="card">
-                <div class="top">
-                    <div class="userDetails">
-                        <div class="profile-img">
-                            <img src="/public/image/cat.png" class="cover">
+            <div class="board_list">
+                <form id="comment_info">
+                    <input type="text" name="studymem_name" value="<%=currentUser%>" readonly>
+                    <input type="text" name="studymem_lounge_id" value="<%=detailData[0].real_lounge%>" readonly>
+                    <input type="text" id="studymem_comment" name="studymem_comment">
+                    <button type="button" onclick="enterComment();">등록</button>
+                    <!-- 댓글 수정삭제 시간상 가능하면 하기 -->
+                </form>
+                <form id="board_info">
+                    <div class="info-field">
+                        <div class="lounge_back" onclick="backToLounge();">목록</div>
+                        <table border="1" class="lounge_main" style="text-align: center;">
+                            <thead>
+                            <tr class="lounge_main_total">
+                                <th class="lounge_main_name">작성자</th>
+                                <th class="lounge_main_title">제목</th>
+                                <th class="lounge_main_date">등록일</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="tr_<%=detailData[0].real_rounge%>" class="lounge_total">
+                                    <td style="display: none;"><%=detailData[0].real_rounge%></td>
+                                    <td class="lounge_name"><%=detailData[0].write_name%></td>
+                                    <td class="lounge_title" id="<%=detailData[0].real_rounge%>"><%=detailData[0].title%></td>
+                                    <td class="lounge_date"><%=detailData[0].lounge_regdate%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><%=detailData[0].lounge_contents%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><button class='deletePosting' type='button'>삭제</button></td>
+                                </tr>
+                        </tbody>
+                        </table>
+ 
+                        <div>댓글창
+                            <table id="commentHere" border="1" >
+                                <% for (i=0; i<detailData.length; i++) { %>
+                                <tr id="tr_<%=detailData[i].reply_id%>">
+                                    <td style="display: none;" class="hidden_replyId"><%=detailData[i].reply_id%></td>
+                                    <td><%=replynames[i]%></td>
+                                    <td><%=detailData[i].reply_contents%></td>
+                                    <td><%=detailData[i].reply_regdate%></td>
+                                    <td><button class="deleteComment" type='button'>삭제</button></td>
+                                </tr>
+                                <% } %>
+                            </table>
                         </div>
-                        <h3><%=detailData[0].write_name%><br><span><%=detailData[0].lounge_regdate%></span></h3>
-                    </div>
-                    <div><i class="fa-solid fa-ellipsis-vertical" id="dot"></i>
-                    </div>
-                </div>
 
-                <div class="messageBox">
-                    <h3><%=detailData[0].title%></h3><br>
-                    <h4><%=detailData[0].lounge_contents%></h4>
-
-                </div>
-                <div class="actionBtns">
-                    <div class="left">
-                        <img src="/public/image/heart.png" class="heart" onclick="likeBtn()">
-                        <img src="/public/image/comment.png">
-                        <img src="/public/image/share.png" onclick="goPost()">
                     </div>
-                    <div class="right">
-                        <img src="/public/image/bookmark.png">
-                    </div>
-                </div>
-
-                <h4 class="message"><b><%=detailData[0].write_name%></b>&nbsp;&nbsp;&nbsp;<span>#StudyWITH</span>&nbsp;&nbsp;<span>#스터디위드</span>&nbsp;&nbsp;<span>#스윗</span>&nbsp;&nbsp;<span>#함께해요😋</span></h4>
-
-                <div id="commentBox">
-                <div id="commentHere">
-                    <% for (i=0; i<detailData.length; i++) { %>
-                    <div class="comment-section" id="<%=detailData[i].reply_id%>">
-                        <input type="hidden" class="hidden_replyId" value="<%=detailData[i].reply_id%>">
-                        <span id="replayName"><%=replynames[i]%></span>
-                        <div class="msg-box" id="replyCont"><%=detailData[i].reply_contents%></div>
-                        <button type="button" class="delete">x</button>
-                    </div>
-                    <% } %>
-                </div>
-                </div>
-            
-            </form>
-
-            <form id="comment_info">
-                <div class="addComments">
-                    <div class="userImg">
-                        <img src="/public/image/cute.png" >
-                    </div>
-                    <input type="hidden" name="studymem_name" value="<%=currentUser%>" readonly>
-                    <input type="hidden" name="studymem_lounge_id" value="<%=detailData[0].real_lounge%>" readonly>
-                    <h3><%=currentUser%><br><input type="text" class="text" placeholder="댓글을 남겨주세요" name="studymem_comment" /></h3>
-                    <div><button type="button" onclick="enterComment()" class="enterImg" ></button></div>
-                </div>
+                </form>
+            </div>
+            <div>
         </div>
-
-            <script>
-                function likeBtn() {
-                    let heart = document.querySelector('.heart')
-                    if (heart.src.match("/public/image/heart.png")){
-                        heart.src = "/public/image/heart_red.png";
-                    }
-                    else {
-                        heart.src = "/public/image/heart.png";
-                    }
-                }
-            </script>
-
-            </form>
-
-        
     </div>
 
     
 
     <script>
-
+      
     // 댓글 등록
-    function enterComment() {
+        function enterComment() {
             var comments = document.getElementById('comment_info');
             
             axios({
@@ -137,20 +118,22 @@
             })
             .then((req) => {return req.data})
             .then((data) => {
-                var html = "";
-
+                var tb = document.getElementById('commentHere');
+                var tr = tb.insertRow();
+                var td1 = tr.insertCell();
+                var td2 = tr.insertCell();
+                var td3 = tr.insertCell();
+                // var td4 = tr.insertCell();
+                // var html = "<button type='button' onclick='deleteComment();'>삭제</button>" 
                 
-                    html = "<div class= 'comment-section' id= " + detailData[i].reply_id + ">"
-                            + "<input type = 'hidden' class='hidden_replyId' value= " + detailData[i].reply_id +">"
-                            + "<span id= 'replayName'>" + replynames[i] + "</span>"
-                            + "<div class= 'msg-box' id= 'replyCont' >" + detailData[i].reply_contents + "</div>"
-                            + "<button type='button' class='delete'>x</button>"
-                            + "</div>";
+                console.log(data.result);
 
-                $("#commentBox").append(html);
-                
+                td1.innerHTML = data.result.user_id;
+                td2.innerHTML = data.result.reply_contents;
+                td3.innerHTML = data.result.reply_regdate;
+                // td4.innerHTML = html;
 
-                // document.getElementById('studymem_comment').value = "";
+                document.getElementById('studymem_comment').value = "";
 
                 
             })
@@ -158,7 +141,7 @@
 
 
     // 댓글 삭제
-    var dCs= document.querySelectorAll('.delete');
+        var dCs= document.querySelectorAll('.deleteComment');
 
         for (const dC of dCs) {
 
@@ -166,7 +149,7 @@
                 var target = event.currentTarget;
                 console.log(target);  //버튼 그 자체
 
-                var replyId = $(target).parent('button').siblings('.hidden_replyId').value();
+                var replyId = $(target).parent('td').siblings('.hidden_replyId').text();
                 console.log(replyId);
                 axios({
                     method:'post',
@@ -179,7 +162,7 @@
                 .then((data) => {
                     
                     if (data == true) {
-                    $(target).parent('button').parent('div').remove();
+                    $(target).parent('td').parent('tr').remove();
                     console.log('삭제완료!');
                     }
                 })
@@ -227,10 +210,6 @@
     //홈버튼
         function goHome() {
             document.location.href="http://localhost:8000/swith";
-            }
-
-        function goDetail() {
-            document.location.href="http://localhost:8000/feed/board/write";
             }
     </script>
 
