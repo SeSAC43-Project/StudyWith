@@ -300,10 +300,11 @@
             $("#end_day").val(parseInt(end_list[2])).prop("selected", true);
 
             /* 해시태그 정보 불러오기 */
-            var hashtag_list = document.getElementById('hashtag').innerText.split(',');
+            var hashtag_list = document.getElementById('hashtag').innerText.split('#');
             const keyword = document.getElementById('enter_hashtag');
             for (hashtag of hashtag_list) {
-                keyword.innerHTML += "<span class='newHashtag'>" + '#' + hashtag + "<button type='button' class='removeTagButton' onclick='deleteTag(event);'>X</button></span>";
+                if( hashtag != '') 
+                    keyword.innerHTML += "<span class='newHashtag'>" + '#' + hashtag + "<button type='button' class='removeTagButton' onclick='deleteTag(event);'>X</button></span>";
             }
         });
         /* navbar*/
@@ -317,10 +318,7 @@
             var form = document.getElementById("management_info");
             var id = document.getElementById("study_id");
 
-            var hashtags = $('.newHashtag').text(); 
-            var hashtag = hashtags.split('#').slice(1); 
-            var feed_hashtags = hashtag.toString();
-            var feed_hashtag = feed_hashtags.replace(/\X/g,"");
+            var hashtags = $('.newHashtag').text().split('X').join('').trim(); 
 
             var flag = checkData(); //데이터 유효성 검사
 
@@ -337,7 +335,7 @@
                         study_content : form.studyContent.value,
                         start_period : form.start_year.value + '-' + form.start_month.value + '-' + form.start_day.value,
                         end_period : form.end_year.value + '-' + form.end_month.value + '-' + form.end_day.value,
-                        hashtag: feed_hashtag,
+                        hashtag: hashtags,
                     }
                 })
                 .then((req) => {return req.data;})
@@ -505,6 +503,15 @@
                     icon: 'warning',
                     title: '스터디 기간을 확인해주세요.',
                     text: '종료일은 시작일보다 이른 날짜일 수 없습니다.',
+                })
+                return false;
+            }
+            
+            var hashtag = $('.newHashtag').text();
+            if (hashtag == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '해시태그를 입력해주세요',
                 })
                 return false;
             }
