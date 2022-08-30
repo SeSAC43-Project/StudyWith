@@ -67,7 +67,7 @@ CREATE TABLE reply (
     lounge_id INT NOT NULL, 
     user_id VARCHAR(20) NOT NULL, 
     reply_contents VARCHAR(200) NOT NULL,
-    relpy_regdate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    reply_regdate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
     FOREIGN KEY (`lounge_id`) REFERENCES `studylounge` (`lounge_id`)
 );
