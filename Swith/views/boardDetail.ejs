@@ -83,7 +83,7 @@
                                 <% for (i=0; i<detailData.length; i++) { %>
                                 <tr id="tr_<%=detailData[i].reply_id%>">
                                     <td style="display: none;" class="hidden_replyId"><%=detailData[i].reply_id%></td>
-                                    <td><%=detailData[i].write_name%></td>
+                                    <td><%=replynames[i]%></td>
                                     <td><%=detailData[i].reply_contents%></td>
                                     <td><%=detailData[i].reply_regdate%></td>
                                     <td><button class="deleteComment" type='button'>삭제</button></td>
