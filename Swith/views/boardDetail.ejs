@@ -43,64 +43,15 @@
         </div>
 
         <div class="modify-list">
-/*여기부터*/
-            <div class="board_list">
-                <form id="comment_info">
-                    <input type="text" name="studymem_name" value="<%=currentUser%>" readonly>
-                    <input type="text" name="studymem_lounge_id" value="<%=detailData[0].real_lounge%>" readonly>
-                    <input type="text" type="hidden" name="studymem_user_name" value="<%=detailData[0].realUser_id%>">
-                    <input type="text" id="studymem_comment" name="studymem_comment">
-                    <button type="button" onclick="enterComment();">등록</button>
-                    <!-- 댓글 수정삭제 시간상 가능하면 하기 -->
-                </form>
-                <form id="board_info">
-                    <div class="info-field">
-                        <div class="lounge_back" onclick="backToLounge();">목록</div>
-                        <table border="1" class="lounge_main" style="text-align: center;">
-                            <thead>
-                            <tr class="lounge_main_total">
-                                <th class="lounge_main_name">작성자</th>
-                                <th class="lounge_main_title">제목</th>
-                                <th class="lounge_main_date">등록일</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr id="tr_<%=detailData[0].real_rounge%>" class="lounge_total">
-                                    <td style="display: none;"><%=detailData[0].real_lounge%></td>
-                                    <td class="lounge_name"><%=detailData[0].realUser_id%></td>
-                                    <td class="lounge_title" id="<%=detailData[0].real_rounge%>"><%=detailData[0].title%></td>
-                                    <td class="lounge_date"><%=detailData[0].lounge_regdate%></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3"><%=detailData[0].lounge_contents%></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3"><button class='deletePosting' type='button' id="<%=detailData[0].realUser_id%>" onclick="deletePost(this.id,this)">삭제</button></td>
-                                </tr>
-                        </tbody>
-                        </table>
- 
-                        <div>댓글창
-                            <table id="commentHere" border="1" >
-                                <% for (i=0; i<detailData.length; i++) { %>
-                                <tr id="tr_<%=detailData[i].reply_id%>">
-                                    <td style="display: none;" class="hidden_replyId"><%=detailData[i].user_id%></td>
-                                    <td class="replyName"><%=replynames[i]%></td>
-                                    <td><%=detailData[i].reply_contents%></td>
-                                    <td><%=detailData[i].reply_regdate%></td>
-                                    <td><button class="deleteComment" id="<%=detailData[i].reply_id%>" type='button' onclick="deleteComment(this.id,this);">삭제</button></td>
-                                </tr>
-                                <% } %>
-                            </table>
-/*여기까지*/
             <form id="board_info">
             <div class="card">
                 <div class="top">
                     <div class="userDetails">
                         <div class="profile-img">
                             <img src="/public/image/cat.png" class="cover">
-/*여기부터*/
                         </div>
+                        <div style="display: none;" class="realLounge" id="<%=detailData[0].real_lounge%>"><%=detailData[0].real_lounge%></div>
+                        <div style="display: none;" class="realUserid" id="<%=detailData[0].realUser_id%>"><%=detailData[0].realUser_id%></div>
                         <h3><%=detailData[0].write_name%><br><span><%=detailData[0].lounge_regdate%></span></h3>
                     </div>
                     <div><i class="fa-solid fa-ellipsis-vertical" id="dot"></i>
@@ -110,8 +61,8 @@
                 <div class="messageBox">
                     <h3><%=detailData[0].title%></h3><br>
                     <h4><%=detailData[0].lounge_contents%></h4>
-
                 </div>
+
                 <div class="actionBtns">
                     <div class="left">
                         <img src="/public/image/heart.png" class="heart" onclick="likeBtn()">
@@ -119,7 +70,8 @@
                         <img src="/public/image/share.png" onclick="goPost()">
                     </div>
                     <div class="right">
-                        <img src="/public/image/bookmark.png">
+                        <!-- <img src="/public/image/bookmark.png"> -->
+                        <button type='button' id="<%=detailData[0].realUser_id%>" onclick="deletePost(this.id,this)">삭제</button>
                     </div>
                 </div>
 
@@ -129,27 +81,27 @@
                 <div id="commentHere">
                     <% for (i=0; i<detailData.length; i++) { %>
                     <div class="comment-section" id="<%=detailData[i].reply_id%>">
-                        <input type="hidden" class="hidden_replyId" value="<%=detailData[i].reply_id%>">
+                        <input type="hidden" class="hidden_replyId" value="<%=detailData[i].reply_writer%>">
                         <span id="replayName"><%=replynames[i]%></span>
                         <div class="msg-box" id="replyCont"><%=detailData[i].reply_contents%></div>
-                        <button type="button" class="delete">x</button>
+                        <button type="button" id="<%=detailData[i].reply_id%>" class="delete" onclick="deleteComment(this.id,this);">x</button>
                     </div>
                     <% } %>
                 </div>
                 </div>
             
-            </form>
+                </form>
 
-            <form id="comment_info">
-                <div class="addComments">
-                    <div class="userImg">
-                        <img src="/public/image/cute.png" >
+                <form id="comment_info">
+                    <div class="addComments">
+                        <div class="userImg">
+                            <img src="/public/image/cute.png" >
+                        </div>
+                        <input type="hidden" name="studymem_name" value="<%=currentUser%>" readonly>
+                        <input type="hidden" name="studymem_lounge_id" value="<%=detailData[0].real_lounge%>" readonly>
+                        <h3><%=currentUser%><br><input type="text" class="text" placeholder="댓글을 남겨주세요" name="studymem_comment" /></h3>
+                        <div><button type="button" onclick="enterComment()" class="enterImg" ></button></div>
                     </div>
-                    <input type="hidden" name="studymem_name" value="<%=currentUser%>" readonly>
-                    <input type="hidden" name="studymem_lounge_id" value="<%=detailData[0].real_lounge%>" readonly>
-                    <h3><%=currentUser%><br><input type="text" class="text" placeholder="댓글을 남겨주세요" name="studymem_comment" /></h3>
-                    <div><button type="button" onclick="enterComment()" class="enterImg" ></button></div>
-                </div>
         </div>
 
             <script>
@@ -206,30 +158,18 @@
             })
         }
 
-/*여기부터*/
-    
-    //댓글삭제
-        function deleteComment(id,target) {
+
+     //댓글삭제
+     function deleteComment(id,target) {
             var User_form = document.getElementById("comment_info");
             var UserNow = User_form.studymem_name.value;
-            var UserId = $(target).parent('td').siblings('.hidden_replyId').text();
+            var UserId = $(target).siblings('.hidden_replyId').val();
+            console.log(UserNow);
             console.log(id);
+            console.log(UserId);
 
-            if (UserId == UserNow) {
-/*여기까지*/
-
-    // 댓글 삭제
-    var dCs= document.querySelectorAll('.delete');
-
-        for (const dC of dCs) {
-
-            dC.addEventListener('click',function(event) {
-                var target = event.currentTarget;
-                console.log(target);  //버튼 그 자체
-
-                var replyId = $(target).parent('button').siblings('.hidden_replyId').value();
-                console.log(replyId);
-/*여기부터*/
+            if (UserNow == UserId) {
+                console.log('굿');
                 axios({
                     method:'post',
                     url:'http://localhost:8000/feed/board/detail/remove',
@@ -242,8 +182,7 @@
                         // console.log(UserId);
                         // console.log(UserNow);
                     if (data == true) {
-/*여기부터*/
-                            $(target).parent('td').parent('tr').remove();
+                            $(target).parent('div').remove();
                             console.log('삭제성공!');
 
                         } 
@@ -253,43 +192,23 @@
                     })
                 }
             }
-        
 
-    //
-        function deletePost(id,target) {
+
+    //게시글 삭제
+    function deletePost(id,target) {
             var User_form = document.getElementById("comment_info");
             var UserNow = User_form.studymem_name.value; //현재 아이디
             // var UserName = User_form.studymem_user_name.value;  //아이디
             console.log(UserNow);
             // console.log(UserName);
 
-            var PostLoungeId = $(target).parent('td').parent('tr').siblings('.lounge_total').children('td:first').text();
-            var PostName = $(target).parent('td').parent('tr').siblings('.lounge_total').children('td:nth-child(2)').text();
+            var PostLoungeId = $('.realLounge').attr('id');
+            var PostName = $('.realUserid').attr('id');
+            // var PostName = $(target).parent('div').parent('div').siblings('.top').children('div').children('.userDetails').children('.realUserid').text();
             console.log(PostLoungeId); //라운지아이디
             console.log(PostName); //작성자네임?
 
             if ( PostName == UserNow) {
-/*여기부터*/
-                    $(target).parent('button').parent('div').remove();
-                    console.log('삭제완료!');
-                    }
-                })
-            })
-        }
-
-
-
-    //게시글 삭제
-        var dPs= document.querySelectorAll('.deletePosting');
-
-        for (const dP of dPs) {
-
-            dP.addEventListener('click',function(event) {
-                var target = event.currentTarget;
-                var loungeId = $(target).parent('td').parent('tr').siblings('.lounge_total').children('td:first').text();
-                console.log(loungeId);
-
-/*여기부터*/
                 axios({
                     method:'post',
                     url:'http://localhost:8000/feed/board/remove',
@@ -301,8 +220,9 @@
                 .then((data) => {
                         
                     if (data == true) {
-                            $(target).parent('td').parent('tr').parent('tbody').remove();
-                            alert('삭세 성공!');
+                            // $(target).parent('div').parent('div').parent('tbody').remove();
+                            $('.card').remove();
+                            alert('삭제 성공!');
                             document.location.href='http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>';
 
                         } 
@@ -312,12 +232,6 @@
                             console.log('작성자가 아닙니다!');
                         }
             }
-
-
-
-
-
-
 
 
     // 목록 클릭 시 라운지로 돌아가기
