@@ -54,7 +54,7 @@ exports.post_studylounge = (req, res) => {
 exports.lounge_detail = async(req, res) => {
     // 보내줄 데이터 
     const [result, metadata] = await Models.sequelize.query(`
-        SELECT U.user_name AS write_name, L.* , G.study_name, R.*, R.user_id AS reply_writer
+        SELECT U.user_name AS write_name, L.* , G.study_name, R.*, R.user_id AS reply_writer, L.lounge_id AS real_lounge
         FROM studylounge AS L
         LEFT OUTER JOIN user AS U ON L.user_id = U.user_id
         LEFT OUTER JOIN studygroup AS G ON L.study_id = G.study_id
