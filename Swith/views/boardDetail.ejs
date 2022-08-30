@@ -43,12 +43,62 @@
         </div>
 
         <div class="modify-list">
+
             <form id="board_info">
             <div class="card">
                 <div class="top">
                     <div class="userDetails">
                         <div class="profile-img">
                             <img src="/public/image/cat.png" class="cover">
+
+            <div class="board_list">
+                <form id="comment_info">
+                    <input type="text" name="studymem_name" value="<%=currentUser%>" readonly>
+                    <input type="text" name="studymem_lounge_id" value="<%=detailData[0].lounge_id%>" readonly>
+                    <input type="text" id="studymem_comment" name="studymem_comment">
+                    <button type="button" onclick="enterComment();">등록</button>
+                    <!-- 댓글 수정삭제 시간상 가능하면 하기 -->
+                </form>
+                <form id="board_info">
+                    <div class="info-field">
+                        <div class="lounge_back" onclick="backToLounge();">목록</div>
+                        <table border="1" class="lounge_main" style="text-align: center;">
+                            <thead>
+                            <tr class="lounge_main_total">
+                                <th class="lounge_main_name">작성자</th>
+                                <th class="lounge_main_title">제목</th>
+                                <th class="lounge_main_date">등록일</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="tr_<%=detailData[0].lounge_id%>" class="lounge_total">
+                                    <td style="display: none;"><%=detailData[0].lounge_id%></td>
+                                    <td class="lounge_name"><%=detailData[0].write_name%></td>
+                                    <td class="lounge_title" id="<%=detailData[0].lounge_id%>"><%=detailData[0].title%></td>
+                                    <td class="lounge_date"><%=detailData[0].lounge_regdate%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><%=detailData[0].lounge_contents%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><button class='deletePosting' type='button'>삭제</button></td>
+                                </tr>
+                        </tbody>
+                        </table>
+ 
+                        <div>댓글창
+                            <table id="commentHere" border="1" >
+                                <% for (i=0; i<detailData.length; i++) { %>
+                                <tr id="tr_<%=detailData[i].reply_id%>">
+                                    <td style="display: none;" class="hidden_replyId"><%=detailData[i].reply_id%></td>
+                                    <td><%=replynames[i]%></td>
+                                    <td><%=detailData[i].reply_contents%></td>
+                                    <td><%=detailData[i].reply_regdate%></td>
+                                    <td><button class="deleteComment" type='button'>삭제</button></td>
+                                </tr>
+                                <% } %>
+                            </table>
+
                         </div>
                         <h3><%=detailData[0].write_name%><br><span><%=detailData[0].lounge_regdate%></span></h3>
                     </div>

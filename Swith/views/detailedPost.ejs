@@ -19,6 +19,7 @@
     <!-- <link rel="stylesheet" href="/public/css/footer.css" /> -->
    <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+   <!-- kakao -->
    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
@@ -85,15 +86,6 @@
                                 <span><%= result.study_category %></span>
                             <% } %>   
                         </p>
-                    </div>
-
-                    <div class="section_box">
-                        <div class="name">스터디 가입 공유하기</div>
-                        <div class="value">
-                            <a id="kakao-link-btn" href="javascript:kakaoShare()">
-                                <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" />
-                            </a>
-                        </div>
                     </div>
 
                     <div class="section_box">
@@ -216,6 +208,12 @@
                             Study Lounge
                         </button>
                     </div>
+                    
+                    <div>
+                        <button class="url_btn" type="button" onclick="kakaoShare()">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </button>
+                    </div>
 
                     <div class="Category_box"></div>
                 </div>    
@@ -251,29 +249,30 @@
     </footer>
 
     <script>
-        /* kako URL 공유하기 */
-        Kakao.init('13291edd72c52e4e1212011eed2230da');
+         /* kakao URL 공유하기 */
+         Kakao.init('13291edd72c52e4e1212011eed2230da');
 
         function kakaoShare() {
-            var study_name = document.getElementById('study_name');
-            var study_content = document.getElementById('study_content');
+            var study_id = document.getElementById('study_id').innerText;
+            var study_name = document.getElementById('study_name').innerText;
+            var study_content = document.getElementById('study_content').innerText;
             Kakao.Link.sendDefault({
             objectType: 'feed',
             content: {
-                title: study_name.innerText,
-                description: study_content.innerText,
-                imageUrl: '/public/group/group_default.jpg',
+                title: "[스터디] "+study_name,
+                description: study_content,
+                imageUrl: 'https://ifh.cc/g/Mltso8.png',
                 link: {
-                mobileWebUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
-                webUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
+                mobileWebUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
+                webUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
                 },
             },
             buttons: [
                 {
-                title: '웹으로 보기',
+                title: '스터디 참여하러 가기',
                 link: {
-                    mobileWebUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
-                    webUrl: 'http://localhost:8000/feed/detailedPost?study_id=6',
+                    mobileWebUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
+                    webUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
                 },
                 },
             ],

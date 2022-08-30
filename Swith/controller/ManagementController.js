@@ -33,7 +33,7 @@ exports.patch_management = (req, res) => {
         study_content: req.body.study_content,
         start_period: req.body.start_period,
         end_period: req.body.end_period,
-        hasgtag: req.body.hasgtag
+        hashtag: req.body.hashtag,
     }
 
     models.Studygroup.update( newObj, {
