@@ -101,18 +101,29 @@ exports.lounge_detail = async(req, res) => {
 }
 
 // 스터디 라운지 상세조회 댓글 등록 기능
-exports.post_reply = (req, res) => {
+exports.post_reply = async(req, res) => {
+    // 새로 추가되는 댓글 데이터
     let Obj = {
         lounge_id : req.body.lounge_id, 
         user_id : req.session.user_id, 
         reply_contents : req.body.reply_contents, 
     };
-    Models.Reply.create( Obj )
-    .then((result) => {
-        console.log(result);
-        res.send({isResult: true, result: result})
-    })
-}
+    // 댓글 DB에 추가
+    const newReply = await Models.Reply.create( Obj );
+
+    // 댓글 작성자 닉네임 불러오기 
+    const replyname = await Models.sequelize.query(`
+        SELECT U.user_name
+        FROM user AS U
+        INNER JOIN reply AS R ON U.user_id = R.user_id
+        WHERE R.user_id = '${newReply.user_id}'
+        GROUP BY R.user_id;
+    `); 
+
+    console.log('여기가 닉네임!!!!!!!!!',replyname[0]);
+
+    res.send({isResult: true, result: newReply, replyname: replyname[0]})
+};
 
 // 스터디 라운지 게시물 삭제 기능
 exports.board_remove = async(req, res) => {

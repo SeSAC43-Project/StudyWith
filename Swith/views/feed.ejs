@@ -218,18 +218,12 @@
         /* 게시물 등록 */
         function writeFeed() {
             var feed = document.getElementById("feed_info");
-            // var hashtags = document.getElementById("enter_hashtag").innerHTML;
-            // var hashtags2 = hashtags.split('#');
-            // var feed_hashtag = hashtags2.slice(1);
-            // var feed_hashtags = feed_hashtag.toString();
-
-            var hashtags = $('.newHashtag').text(); 
+            //바로 #으로 저장되게끔 바꿨습니다.
+            var hashtags = $('.newHashtag').text().split('X').join('').trim(); 
             
-            var hashtag = hashtags.split('#').slice(1); 
-            
-            var feed_hashtags = hashtag.toString();
-            
-            var feed_hashtag = feed_hashtags.replace(/\X/g,"");
+            // var hashtag = hashtags.split('#').slice(1); 
+            // var feed_hashtags = hashtag.toString();
+            // var feed_hashtag = feed_hashtags.replace(/\X/g,"");
             
             var flag = checkData(); //데이터 유효성 검사
 
@@ -247,7 +241,7 @@
                         study_content : feed.studyContent.value,
                         start_period : feed.start_year.value + '-' + feed.start_month.value + '-' + feed.start_day.value,
                         end_period : feed.end_year.value + '-' + feed.end_month.value + '-' + feed.end_day.value,
-                        hashtag: feed_hashtag,
+                        hashtag: hashtags,
                     }
                 })
                 .then((req) => { return req.data })
@@ -267,9 +261,10 @@
             var result = feed.checkValidity();
 
             if ( !result ) {
-                $('.warningDiv').html('빈칸을 모두 입력해주세요!');
-                $('.warningDiv').css('color','red');
-
+                Swal.fire({
+                    title: '빈칸을 모두 입력해주세요',
+                    icon: 'warning',
+                    })
                 return false;
             }
 
@@ -281,9 +276,8 @@
                     title: '스터디 기간을 확인해주세요.',
                     text: '종료일은 시작일보다 이른 날짜일 수 없습니다.',
                     icon: 'warning',
-                    confirmButtonText: 'OK'
                     })
-                return;
+                return false;
             }
 
             if (feed.studyRecruit.value == '' || feed.studyRecruit.value > 20 || feed.studyRecruit.value < 1) {
@@ -294,6 +288,16 @@
                 })
                 return false;
             }
+            
+            var hashtag = $('.newHashtag').text();
+            if (hashtag == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '해시태그를 입력해주세요',
+                })
+                return false;
+            }
+
             return true;
         }
 

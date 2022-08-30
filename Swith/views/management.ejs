@@ -191,17 +191,16 @@
                                 </div></li>
                             </ul>
                         </div>
-                
-                        <!-- 해시태그 -->
+                        
+                        <div id="hashtag" style="display:none"><%=result.hashtag%></div>
                         <div class="form-row">
                             <div class="name">해시태그</div>
-                            <div class="value"><input class="input_text" type="text" id="text_hashtag" value="<%=result.hashtag%>" name="hashTag" onkeypress="show_hashtag(event)">
+                            <div class="value"><input class="input_text" type="text" id="text_hashtag" name="hashTag" onkeypress="show_hashtag(event)">
                                 <p>
                                     <span id="enter_hashtag" name="enter_hashtag"></span>
                                 </p>
                             </div>
                         </div>
-
                         <br><br>
                         <div class="warningDiv"></div>
                         <br><br>
@@ -300,20 +299,30 @@
             $("#end_month").val(parseInt(end_list[1])).prop("selected", true);
             $("#end_day").val(parseInt(end_list[2])).prop("selected", true);
 
+            /* 해시태그 정보 불러오기 */
+            var hashtag_list = document.getElementById('hashtag').innerText.split('#');
+            const keyword = document.getElementById('enter_hashtag');
+            for (hashtag of hashtag_list) {
+                if( hashtag != '') 
+                    keyword.innerHTML += "<span class='newHashtag'>" + '#' + hashtag + "<button type='button' class='removeTagButton' onclick='deleteTag(event);'>X</button></span>";
+            }
         });
         /* navbar*/
         window.addEventListener("scroll", function () {
             var header = document.querySelector("header");
             header.classList.toggle("sticky", window.scrollY > 0);
         })
+        
         /* 게시물 수정하기 */
         function editFeed() {
             var form = document.getElementById("management_info");
             var id = document.getElementById("study_id");
 
+            var hashtags = $('.newHashtag').text().split('X').join('').trim(); 
+
             var flag = checkData(); //데이터 유효성 검사
 
-            if (flag == true) { //유효성 검사 통과하면 Patch
+            if ( flag ) { //유효성 검사 통과하면 Patch
                 axios({
                     method:'patch',
                     url:'http://localhost:8000/feed/management/edit',
@@ -326,6 +335,7 @@
                         study_content : form.studyContent.value,
                         start_period : form.start_year.value + '-' + form.start_month.value + '-' + form.start_day.value,
                         end_period : form.end_year.value + '-' + form.end_month.value + '-' + form.end_day.value,
+                        hashtag: hashtags,
                     }
                 })
                 .then((req) => {return req.data;})
@@ -368,8 +378,8 @@
                     showConfirmButton: false,
                     timer: 1500
                 });
-                setTimeout(function() { // 메인페이지 이동
-                    document.location.href="http://localhost:8000/swith";
+                setTimeout(function() { // 마이페이지 참여중 화면으로 이동
+                    document.location.href="http://localhost:8000/user/mypage/studys";
                 }, 1000);
             })
         }
@@ -377,11 +387,9 @@
         /* 해시태그 엔터시 추가되는 부분 */
         function show_hashtag(event) {
             const keyword = document.getElementById('enter_hashtag');
-            // console.log(keyword);
             const txt = document.getElementById('text_hashtag').value;
             const text = txt.replace(" ","");
 
-            
             if (($('.newHashtag').length < '7' )) {
                 if ((text.length < '7')) {
                     if (event.keyCode == 13) {
@@ -398,10 +406,16 @@
                     }
             }
             else {
-                document.getElementById('text_hashtag').value = "해시태그는 7개까지만 입력 가능해요!";
-                $('#text_hashtag').css('color','red');
+                // document.getElementById('text_hashtag').value = "해시태그는 7개까지만 입력 가능해요!";
+                // $('#text_hashtag').css('color','red');
+                Swal.fire({
+                        title: 'Error!',
+                        text: '해시태그는 7개까지만 입력 가능해요!',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                        })
             }
-        } 
+        }   
         
         
         // 해시태그 삭제버튼 누를 시 태그 삭제
@@ -489,6 +503,15 @@
                     icon: 'warning',
                     title: '스터디 기간을 확인해주세요.',
                     text: '종료일은 시작일보다 이른 날짜일 수 없습니다.',
+                })
+                return false;
+            }
+            
+            var hashtag = $('.newHashtag').text();
+            if (hashtag == '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: '해시태그를 입력해주세요',
                 })
                 return false;
             }

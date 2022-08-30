@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+    <!-- modal -->
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/public/css/boardDetail.css" /> 
+</head>
+<body>
+  <div class="container">
+
+        <div class="mypage-head"> 😋 <%=detailData[0].study_name%> 에 오신걸 환영합니다! 😋
+            <button type="button" onclick="goHome()" class="homeBtn">
+                <i class="fa-solid fa-house"></i>
+            </button>
+        </div>
+
+        <div class="menu">
+            <div onclick="goSearch()">
+                <i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>">게시판조회</a>
+                </i>
+                <span><i class="fa-solid fa-user">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>">게시판조회</a>
+                </i></span>
+            </div>
+            <div onclick="goPosting()">
+                <i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board/write">게시판등록</a>
+                </i>
+                <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
+                    <a href="http://localhost:8000/feed/board/write">게시판등록</a>
+                </i></span>
+            </div>
+        </div>
+
+        <div class="modify-list">
+            <div class="board_list">
+                <form id="comment_info">
+                    <input type="text" name="studymem_name" value="<%=currentUser%>" readonly>
+                    <input type="text" name="studymem_lounge_id" value="<%=detailData[0].real_lounge%>" readonly>
+                    <input type="text" id="studymem_comment" name="studymem_comment">
+                    <button type="button" onclick="enterComment();">등록</button>
+                    <!-- 댓글 수정삭제 시간상 가능하면 하기 -->
+                </form>
+                <form id="board_info">
+                    <div class="info-field">
+                        <div class="lounge_back" onclick="backToLounge();">목록</div>
+                        <table border="1" class="lounge_main" style="text-align: center;">
+                            <thead>
+                            <tr class="lounge_main_total">
+                                <th class="lounge_main_name">작성자</th>
+                                <th class="lounge_main_title">제목</th>
+                                <th class="lounge_main_date">등록일</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="tr_<%=detailData[0].real_rounge%>" class="lounge_total">
+                                    <td style="display: none;"><%=detailData[0].real_rounge%></td>
+                                    <td class="lounge_name"><%=detailData[0].write_name%></td>
+                                    <td class="lounge_title" id="<%=detailData[0].real_rounge%>"><%=detailData[0].title%></td>
+                                    <td class="lounge_date"><%=detailData[0].lounge_regdate%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><%=detailData[0].lounge_contents%></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><button class='deletePosting' type='button'>삭제</button></td>
+                                </tr>
+                        </tbody>
+                        </table>
+ 
+                        <div>댓글창
+                            <table id="commentHere" border="1" >
+                                <% for (i=0; i<detailData.length; i++) { %>
+                                <tr id="tr_<%=detailData[i].reply_id%>">
+                                    <td style="display: none;" class="hidden_replyId"><%=detailData[i].reply_id%></td>
+                                    <td><%=replynames[i]%></td>
+                                    <td><%=detailData[i].reply_contents%></td>
+                                    <td><%=detailData[i].reply_regdate%></td>
+                                    <td><button class="deleteComment" type='button'>삭제</button></td>
+                                </tr>
+                                <% } %>
+                            </table>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div>
+        </div>
+    </div>
+
+    
+
+    <script>
+      
+    // 댓글 등록
+        function enterComment() {
+            var comments = document.getElementById('comment_info');
+            
+            axios({
+                method:'post',
+                url : 'http://localhost:8000/feed/board/detail',
+                data : {
+                    reply_id : comments.studymem_name.value,
+                    reply_contents : comments.studymem_comment.value,
+                    lounge_id : comments.studymem_lounge_id.value,
+                }
+            })
+            .then((req) => {return req.data})
+            .then((data) => {
+                var tb = document.getElementById('commentHere');
+                var tr = tb.insertRow();
+                var td1 = tr.insertCell();
+                var td2 = tr.insertCell();
+                var td3 = tr.insertCell();
+                // var td4 = tr.insertCell();
+                // var html = "<button type='button' onclick='deleteComment();'>삭제</button>" 
+                
+                console.log(data.result);
+
+                td1.innerHTML = data.result.user_id;
+                td2.innerHTML = data.result.reply_contents;
+                td3.innerHTML = data.result.reply_regdate;
+                // td4.innerHTML = html;
+
+                document.getElementById('studymem_comment').value = "";
+
+                
+            })
+        }
+
+
+    // 댓글 삭제
+        var dCs= document.querySelectorAll('.deleteComment');
+
+        for (const dC of dCs) {
+
+            dC.addEventListener('click',function(event) {
+                var target = event.currentTarget;
+                console.log(target);  //버튼 그 자체
+
+                var replyId = $(target).parent('td').siblings('.hidden_replyId').text();
+                console.log(replyId);
+                axios({
+                    method:'post',
+                    url:'http://localhost:8000/feed/board/detail/remove',
+                    data: {
+                        reply_id : replyId
+                    }
+                })
+                .then((req) => {return req.data;})
+                .then((data) => {
+                    
+                    if (data == true) {
+                    $(target).parent('td').parent('tr').remove();
+                    console.log('삭제완료!');
+                    }
+                })
+            })
+        }
+
+
+
+    //게시글 삭제
+        var dPs= document.querySelectorAll('.deletePosting');
+
+        for (const dP of dPs) {
+
+            dP.addEventListener('click',function(event) {
+                var target = event.currentTarget;
+                var loungeId = $(target).parent('td').parent('tr').siblings('.lounge_total').children('td:first').text();
+                console.log(loungeId);
+
+                axios({
+                    method:'post',
+                    url:'http://localhost:8000/feed/board/remove',
+                    data: {
+                        lounge_id : loungeId,
+                    }
+                })
+                .then((req) => {return req.data;})
+                .then((data) => {
+                    alert(data);
+                    // if (data == true) {
+                    // $(target).parent('td').parent('tr').parent('tbody').parent('table').remove();
+                    // alert('삭제완료!');
+                    
+                    // }
+                })
+            })
+        }
+
+
+    // 목록 클릭 시 라운지로 돌아가기
+    function backToLounge() {
+            // document.location.href=`http://localhost:8000/feed/board?study_id=${study_id}`;
+            document.location.href='http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>';
+        }
+
+    //홈버튼
+        function goHome() {
+            document.location.href="http://localhost:8000/swith";
+            }
+    </script>
+
+</body>
+</html>

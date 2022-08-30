@@ -43,6 +43,7 @@
         </div>
 
         <div class="modify-list">
+/*여기부터*/
             <div class="board_list">
                 <form id="comment_info">
                     <input type="text" name="studymem_name" value="<%=currentUser%>" readonly>
@@ -91,13 +92,81 @@
                                 </tr>
                                 <% } %>
                             </table>
+/*여기까지*/
+            <form id="board_info">
+            <div class="card">
+                <div class="top">
+                    <div class="userDetails">
+                        <div class="profile-img">
+                            <img src="/public/image/cat.png" class="cover">
+/*여기부터*/
                         </div>
-
+                        <h3><%=detailData[0].write_name%><br><span><%=detailData[0].lounge_regdate%></span></h3>
                     </div>
-                </form>
-            </div>
-            <div>
+                    <div><i class="fa-solid fa-ellipsis-vertical" id="dot"></i>
+                    </div>
+                </div>
+
+                <div class="messageBox">
+                    <h3><%=detailData[0].title%></h3><br>
+                    <h4><%=detailData[0].lounge_contents%></h4>
+
+                </div>
+                <div class="actionBtns">
+                    <div class="left">
+                        <img src="/public/image/heart.png" class="heart" onclick="likeBtn()">
+                        <img src="/public/image/comment.png">
+                        <img src="/public/image/share.png" onclick="goPost()">
+                    </div>
+                    <div class="right">
+                        <img src="/public/image/bookmark.png">
+                    </div>
+                </div>
+
+                <h4 class="message"><b><%=detailData[0].write_name%></b>&nbsp;&nbsp;&nbsp;<span>#StudyWITH</span>&nbsp;&nbsp;<span>#스터디위드</span>&nbsp;&nbsp;<span>#스윗</span>&nbsp;&nbsp;<span>#함께해요😋</span></h4>
+
+                <div id="commentBox">
+                <div id="commentHere">
+                    <% for (i=0; i<detailData.length; i++) { %>
+                    <div class="comment-section" id="<%=detailData[i].reply_id%>">
+                        <input type="hidden" class="hidden_replyId" value="<%=detailData[i].reply_id%>">
+                        <span id="replayName"><%=replynames[i]%></span>
+                        <div class="msg-box" id="replyCont"><%=detailData[i].reply_contents%></div>
+                        <button type="button" class="delete">x</button>
+                    </div>
+                    <% } %>
+                </div>
+                </div>
+            
+            </form>
+
+            <form id="comment_info">
+                <div class="addComments">
+                    <div class="userImg">
+                        <img src="/public/image/cute.png" >
+                    </div>
+                    <input type="hidden" name="studymem_name" value="<%=currentUser%>" readonly>
+                    <input type="hidden" name="studymem_lounge_id" value="<%=detailData[0].real_lounge%>" readonly>
+                    <h3><%=currentUser%><br><input type="text" class="text" placeholder="댓글을 남겨주세요" name="studymem_comment" /></h3>
+                    <div><button type="button" onclick="enterComment()" class="enterImg" ></button></div>
+                </div>
         </div>
+
+            <script>
+                function likeBtn() {
+                    let heart = document.querySelector('.heart')
+                    if (heart.src.match("/public/image/heart.png")){
+                        heart.src = "/public/image/heart_red.png";
+                    }
+                    else {
+                        heart.src = "/public/image/heart.png";
+                    }
+                }
+            </script>
+
+            </form>
+
+        
     </div>
 
     
@@ -105,7 +174,7 @@
     <script>
 
     // 댓글 등록
-        function enterComment() {
+    function enterComment() {
             var comments = document.getElementById('comment_info');
             
             axios({
@@ -119,27 +188,25 @@
             })
             .then((req) => {return req.data})
             .then((data) => {
-                var tb = document.getElementById('commentHere');
-                var tr = tb.insertRow();
-                var td1 = tr.insertCell();
-                var td2 = tr.insertCell();
-                var td3 = tr.insertCell();
-                // var td4 = tr.insertCell();
-                // var html = "<button type='button' onclick='deleteComment();'>삭제</button>" 
+                var html = "";
                 
-                console.log(data.result);
+                    html = "<div class= 'comment-section' id= " + data.result.reply_id + ">"
+                            + "<input type = 'hidden' class='hidden_replyId' value= " + data.result.reply_id +">"
+                            + "<span id= 'replayName'>" + data.replyname[0].user_name + "</span>"
+                            + "<div class= 'msg-box' id= 'replyCont' >" + data.result.reply_contents + "</div>"
+                            + "<button type='button' class='delete'>x</button>"
+                            + "</div>";
 
-                td1.innerHTML = data.result.user_id;
-                td2.innerHTML = data.result.reply_contents;
-                td3.innerHTML = data.result.reply_regdate;
-                // td4.innerHTML = html;
+                $("#commentBox").append(html);
+                
 
-                document.getElementById('studymem_comment').value = "";
+                // document.getElementById('studymem_comment').value = "";
 
                 
             })
         }
 
+/*여기부터*/
     
     //댓글삭제
         function deleteComment(id,target) {
@@ -149,6 +216,20 @@
             console.log(id);
 
             if (UserId == UserNow) {
+/*여기까지*/
+
+    // 댓글 삭제
+    var dCs= document.querySelectorAll('.delete');
+
+        for (const dC of dCs) {
+
+            dC.addEventListener('click',function(event) {
+                var target = event.currentTarget;
+                console.log(target);  //버튼 그 자체
+
+                var replyId = $(target).parent('button').siblings('.hidden_replyId').value();
+                console.log(replyId);
+/*여기부터*/
                 axios({
                     method:'post',
                     url:'http://localhost:8000/feed/board/detail/remove',
@@ -161,6 +242,7 @@
                         // console.log(UserId);
                         // console.log(UserNow);
                     if (data == true) {
+/*여기부터*/
                             $(target).parent('td').parent('tr').remove();
                             console.log('삭제성공!');
 
@@ -187,6 +269,27 @@
             console.log(PostName); //작성자네임?
 
             if ( PostName == UserNow) {
+/*여기부터*/
+                    $(target).parent('button').parent('div').remove();
+                    console.log('삭제완료!');
+                    }
+                })
+            })
+        }
+
+
+
+    //게시글 삭제
+        var dPs= document.querySelectorAll('.deletePosting');
+
+        for (const dP of dPs) {
+
+            dP.addEventListener('click',function(event) {
+                var target = event.currentTarget;
+                var loungeId = $(target).parent('td').parent('tr').siblings('.lounge_total').children('td:first').text();
+                console.log(loungeId);
+
+/*여기부터*/
                 axios({
                     method:'post',
                     url:'http://localhost:8000/feed/board/remove',
@@ -226,6 +329,10 @@
     //홈버튼
         function goHome() {
             document.location.href="http://localhost:8000/swith";
+            }
+
+        function goDetail() {
+            document.location.href="http://localhost:8000/feed/board/write";
             }
     </script>
 

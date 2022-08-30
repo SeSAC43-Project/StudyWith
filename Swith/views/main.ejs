@@ -18,7 +18,10 @@
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="/public/css/main.css" />
-  <link rel="stylesheet" href="/public/css/navbar.css" />
+  <!-- fullpage -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.extensions.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.css">
+  <!-- <link rel="stylesheet" href="/public/css/navbar.css" /> -->
 
   <script>
     /* 검색 */
@@ -69,142 +72,171 @@
     <!-- ==========================================navbar========================================== -->
     <header>
         <a href="http://localhost:8000/swith" class="logo">
-            <img src="/public/main/logo.png" alt="logo" />
+            <img src="/public/main/logo.svg" alt="logo" />
         </a>
         <ul>
             <li class="logout"><a href="http://localhost:8000/feed/write">
-                <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
+                <i class="fa-solid fa-folder-plus"></i><span>스터디 등록</span></a>
             </li>
             <% if (session_id == "") { %>
                 <li class="logout"><a href="http://localhost:8000/user/login"> 
-                    <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그인</span></i></a>
+                    <i class="fa-solid fa-user"></i><span>로그인</span></a>
                 </li>
             <% } else { %>
                 <li class="logout" onclick="logout();">
-                    <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
+                    <i class="fa-solid fa-user"></i><span>로그아웃</span></a>
                 </li>
             <% } %>
             <li class="logout"><a href="http://localhost:8000/user/mypage">
-                <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
+                <i class="fa-solid fa-house-chimney-user"></i><span>마이페이지</span></a>
             </li>
         </ul>
     </header>
-    
-    <script type="text/javascript">
-        window.addEventListener("scroll", function () {
-            var header = document.querySelector("header");
-            header.classList.toggle("sticky", window.scrollY > 0);
-        })
-    </script>
-    
+    <div id="fullpage">
     <!-- ==========================================메인 첫번째 페이지======================================  -->
-
-   <div class="slogun">
-       <h1>FIND.</h1>
-       <h1>YOUR.</h1>
-       <h1 id="studymate">STUDYMATE.</h1>
-       <div class="img-box"></div>
-       
-       <form id="search_form" method="post" action="/swith/search">
-       <div class="mysearch">
-           <div class="icon"></div>
-           <div class="input">
-               <input type="text" placeholder="📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀" id="search" name="search">
-               <button class="clear" name="search_button" style="font-size: 20px;">🔍</button>
-               <!-- <span class="clear" name="search_button" onclick="mainSearch()" style="font-size: 20px;">🔍</span> -->
-               <!-- <span class="clear" onclick="document.getElementById('mysearch').value = '' " style="font-size: 20px;">🔍</span> -->
-           </div>
-       </div>
-       </form>
-
-       <!-- <form id="search_form" onsubmit="return false">
-           <div class="search-line">
-               <input type="text" name="search" id='search' class="search_input" placeholder="찾고 있는 스터디를 검색해보세요" style="color:black">
-               <input type="button" name="search_button" class="search_button" value="🔍" onclick="mainSearch()">
-           </div>
-       </form> -->
-
-   </div>
-
-    <!-- ==========================================메인 두번째 페이지======================================  -->
-
-   <div class="container">
-       <div class="testimonial">
-           <div class="testimonial-text">
-               <div class="user-text">
-                   <h2>😼 공부인증 챌린지에 참여하고 싶으신가요? 😽</h2> <br>
-                   <img src="/public/image/challenge.png" alt=""> <br><br>
-                   <a href="javascript:void(0)" type="button" onclick="challenge()">자세히 보기</a>
-               </div>
-               <div class="user-text active-text">
-                   <h2>😼 SWITH이 처음이신가요? 😽</h2> <br>
-                   <img src="/public/image/guide.png" alt=""> <br><br>
-                   <a href="javascript:void(0)" type="button" onclick="guide()">자세히 보기</a>
-               </div>
-               <div class="user-text">
-                   <h2>😼 스터디그룹 운영비법이 궁금하신가요? 😽</h2> <br>
-                   <img src="/public/image/method.png" alt=""> <br><br>
-                   <a href="https://youtu.be/Jm72Vnfncxc" type="button">자세히 보기</a>
-               </div>
-           </div>
-               
-           <div class="testimonial-pic">
-               <img class="catPic" src="/public/image/cat1.jpeg" onclick="showReview()"/>
-               <img class="catPic active-pic" src="/public/image/cat2.jpeg" onclick="showReview()"/>
-               <img class="catPic" src="/public/image/cat3.jpeg" onclick="showReview()"/>
-           </div>
-       </div>
-   </div>
-   
-    <!-- ==========================================메인 세번째 페이지======================================  -->
-  
-    <div class="container_third">
-       <h1>SWITH에는 &nbsp;<span class="auto-type">IT</span>&nbsp;&nbsp;스터디그룹이 있어요 💁🏼‍♂️ </h1>
-       <div class="row">
-            <form id="category-form">
-                <input type='hidden' name="category" id="ca_input">
-                <% var ca_list = ['IT', '언어', '자격증', '인증', '취업', '공모전', '취미']%> 
-                <% var ca_icon = ['fa-solid fa-laptop-code', 'fa-solid fa-language', 'fa-solid fa-graduation-cap', 'fa-solid fa-circle-check', 'fa-solid fa-user-tie', 'fa-solid fa-trophy', 'fa-solid fa-icons']%> 
-                <% for (i=0; i <= 6; i++){ %> 
-                    <button class="service" id='service'>
-                        <i class="<%=ca_icon[i]%>"></i>
-                        <div class="category" >
-                            <p><%=ca_list[i]%></p>
-                        </div>
-                    </button>
-                <% }%> 
+    <div class="section">
+        <div class="slogun">
+            <h1>FIND.</h1>
+            <h1>YOUR.</h1>
+            <h1 id="studymate">STUDYMATE.</h1>
+            <div class="img-box"></div>
+            
+            <form id="search_form" method="post" action="/swith/search">
+                <div class="mysearch">
+                    <div class="icon"></div>
+                    <div class="input">
+                        <input type="text" placeholder="📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀" id="search" name="search">
+                        <button class="clear" name="search_button" style="font-size: 20px;">🔍</button>
+                        <!-- <span class="clear" name="search_button" onclick="mainSearch()" style="font-size: 20px;">🔍</span> -->
+                        <!-- <span class="clear" onclick="document.getElementById('mysearch').value = '' " style="font-size: 20px;">🔍</span> -->
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- ==========================================footer========================================== -->
-    <footer class="footer">
-        <div class="inner-footer">
-            <div class="social-links">
-                <ul>
-                    <li class="social-items"><a href="https://github.com/SeSAC43-Project/StudyWith" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-                    <li class="social-items"><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank"><img src="/public/main/notion.png" alt="notion"></a></li>
-                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-square-instagram"></i></a></li>
-                    <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a></li>
-                </ul>
-            </div>
-
-            <div class="quick-links">
-                <ul>
-                    <li class="quick-items"><a href="">메인</a></li>
-                    <li class="quick-items"><a href="https://sesac.seoul.kr/course/active/detail.do" target="_blank">스윗소개</a></li>
-                    <li class="quick-items"><a href="javascript:void(0)">이용약관</a></li>
-                    <li class="quick-items"><a href="javascript:void(0)">개인정보처리방침</a></li>
-                </ul>
-            </div>
-
-            <div class="outer-footer">
-                © Copyright 2022. Swith. All Rights Reserved.
+    <!-- ==========================================메인 두번째 페이지======================================  -->
+    <div class="section">
+        <div class="container">
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    <div class="user-text">
+                        <h2>😼 공부인증 챌린지에 참여하고 싶으신가요? 😽</h2> <br>
+                        <img src="/public/image/challenge.png" alt=""> <br><br>
+                        <a href="javascript:void(0)" type="button" onclick="challenge()">자세히 보기</a>
+                    </div>
+                    <div class="user-text active-text">
+                        <h2>😼 SWITH이 처음이신가요? 😽</h2> <br>
+                        <img src="/public/image/guide.png" alt=""> <br><br>
+                        <a href="javascript:void(0)" type="button" onclick="guide()">자세히 보기</a>
+                    </div>
+                    <div class="user-text">
+                        <h2>😼 스터디그룹 운영비법이 궁금하신가요? 😽</h2> <br>
+                        <img src="/public/image/method.png" alt=""> <br><br>
+                        <a href="https://youtu.be/Jm72Vnfncxc" type="button">자세히 보기</a>
+                    </div>
+                </div>
+                    
+                <div class="testimonial-pic">
+                    <img class="catPic" src="/public/image/cat1.jpeg" onclick="showReview()"/>
+                    <img class="catPic active-pic" src="/public/image/cat2.jpeg" onclick="showReview()"/>
+                    <img class="catPic" src="/public/image/cat3.jpeg" onclick="showReview()"/>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+   
+    <!-- ==========================================메인 세번째 페이지======================================  -->
+    <div class="section">
+        <div class="container_third">
+            <h1>SWITH에는 &nbsp;<span class="auto-type">IT</span>&nbsp;&nbsp;스터디그룹이 있어요 💁🏼‍♂️ </h1>
+            <div class="row">
+                <form id="category-form">
+                    <input type='hidden' name="category" id="ca_input">
+                    <% var ca_list = ['IT', '언어', '자격증', '인증', '취업', '공모전', '취미']%> 
+                    <% var ca_icon = ['fa-solid fa-laptop-code', 'fa-solid fa-language', 'fa-solid fa-graduation-cap', 'fa-solid fa-circle-check', 'fa-solid fa-user-tie', 'fa-solid fa-trophy', 'fa-solid fa-icons']%> 
+                    <% for (i=0; i <= 6; i++){ %> 
+                        <button class="service" id='service'>
+                            <i class="<%=ca_icon[i]%>"></i>
+                            <div class="category" >
+                                <p><%=ca_list[i]%></p>
+                            </div>
+                        </button>
+                    <% }%> 
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- ==========================================footer========================================== -->
+    <div class="section fp-auto-height">
+        <footer class="footer">
+            <div class="inner-footer">
+                <div class="social-links">
+                    <ul>
+                        <li class="social-items"><a href="https://github.com/SeSAC43-Project/StudyWith" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+                        <li class="social-items"><a href="https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56" target="_blank"><img src="/public/main/notion.png" alt="notion"></a></li>
+                        <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-square-instagram"></i></a></li>
+                        <li class="social-items"><a href="javascript:void(0)"><i class="fa-brands fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="quick-links">
+                    <ul>
+                        <li class="quick-items"><a href="">메인</a></li>
+                        <li class="quick-items"><a href="https://sesac.seoul.kr/course/active/detail.do" target="_blank">스윗소개</a></li>
+                        <li class="quick-items"><a href="javascript:void(0)">이용약관</a></li>
+                        <li class="quick-items"><a href="javascript:void(0)">개인정보처리방침</a></li>
+                    </ul>
+                </div>
+
+                <div class="outer-footer">
+                    © Copyright 2022. Swith. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
 
     <script>
+        /* navbar */
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
+        /* fullpage */
+        $(document).ready(function() {
+            //fullpage.js options
+            $('#fullpage').fullpage({
+                menu: '#myMenu',
+                autoScrolling:true,
+                // anchors:['Page1', 'Page2', 'Page3', 'footer'],
+                scrollHorizontally: true,
+                verticalCentered: true,
+                scrollingSpeed: 600,
+                animateAnchor:false,
+                loopBottom: true, //마지막 구역에서 스크롤을 아래로 내릴 때 첫번째 구역이동
+
+                afterLoad: function(origin, destination, direction, trigger){
+                    var origin = this;
+                    var header = document.querySelector("header");
+                    header.classList.add("sticky");
+
+                    //색인 사용
+                    if(origin.index == 1){
+                        header.classList.add("sticky");
+                        alert('실행');
+                    }
+
+                    //앵커링크 사용
+                    if(origin.anchors == 'Page1'){
+                        header.classList.toggle("sticky");
+                        alert('이동');
+                    }
+                },        
+            });
+        });
+        
+
         const icon = document.querySelector('.icon');
         const mysearch = document.querySelector('.mysearch');
  

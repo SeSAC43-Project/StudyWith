@@ -18,6 +18,8 @@
     <!-- <link rel="stylesheet" href="/public/css/navbar.css" />
     <link rel="stylesheet" href="/public/css/footer.css" /> -->
     <script src="https://kit.fontawesome.com/8132c83a04.js" crossorigin="anonymous"></script>
+    <!-- kakao -->
+   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
     <header>
@@ -63,9 +65,9 @@
                             <div class="studyName">
                                 <p class="studyName_2">
                                 <!-- <% if(locals.result[0]) { %> -->
-                                    <span class="studyName_txt"><%= result[0].study_name %></span>
+                                    <span class="studyName_txt" id="study_name"><%= result[0].study_name %></span>
                                 <% } else { %>
-                                    <span class="studyName_txt"><%= result.study_name %></span>
+                                    <span class="studyName_txt" id="study_name"><%= result.study_name %></span>
                                 <% } %>   
                                 </p>
                                 <div class="likes">
@@ -93,13 +95,7 @@
 
                     <div class="section_box">
                         <div class="name">스터디 소개글</div>
-                        <div class="value"><%=result[0].study_content %>
-                        </div>
-                    </div>
-                    
-                    <div class="section_box">
-                        <div class="name">해시태그</div>
-                        <div class="value"><%=result[0].hashtag %>
+                        <div class="value" id="study_content"><%=result[0].study_content %>
                         </div>
                     </div>
                     
@@ -186,8 +182,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Category_box"></div>
-                    <!-- <button type="button" onclick="detailed()" class="detail" style="color:white">탈퇴하기</button> -->
+                    
+                    <!-- 해시태그 -->
+                    <div id="hashtag" style="display: none;"><%=result[0].hashtag %></div>
+                    <div id="hashtag_box" class="hashtag_box"></div>
 
                     <!-- Button trigger modal -->
                     <% if (result.length < result[0].study_recruit) { %>
@@ -195,7 +193,6 @@
                     <% } else { %>
                         <button type="button" class="btn btn-primary detail" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white" disabled>스터디가입</button>
                     <% } %>
-
 
 
                     <!-- 가입 Modal -->
@@ -230,13 +227,11 @@
                         <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
                     </div>
 
-                    <!-- <div>
-                        <button class="Lounge_btn" type="button" onclick="Lounge_index()">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                            <br>
-                            Study Lounge
+                    <div>
+                        <button class="url_btn" type="button" onclick="kakaoShare()">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </button>
-                    </div> -->
+                    </div>
 
                     <div class="Category_box"></div>
                 </div>
@@ -274,6 +269,46 @@
     </footer>
     
     <script>
+        /* 해시태그 */
+        $(document).ready(function(){ 
+            var hashtag_list = $('#hashtag').text().split('#').slice(1,-1);
+            var hashtag_box = document.getElementById('hashtag_box');
+            for (hashtag of hashtag_list)
+                hashtag_box.innerHTML += `<span class="hashtag">#${hashtag}</span>`;
+        });
+        
+        /* kakao URL 공유하기 */
+        Kakao.init('13291edd72c52e4e1212011eed2230da');
+
+        function kakaoShare() {
+            var study_id = document.getElementById('study_id').innerText;
+            var study_name = document.getElementById('study_name').innerText;
+            var study_content = document.getElementById('study_content').innerText;
+            Kakao.Link.sendDefault({
+            objectType: 'feed',
+            content: {
+                title: "[스터디] "+study_name,
+                description: study_content,
+                imageUrl: 'https://ifh.cc/g/Mltso8.png',
+                link: {
+                mobileWebUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
+                webUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
+                },
+            },
+            buttons: [
+                {
+                title: '스터디 참여하러 가기',
+                link: {
+                    mobileWebUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
+                    webUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
+                },
+                },
+            ],
+            // 카카오톡 미설치 시 카카오톡 설치 경로이동
+            installTalk: true,
+            })
+        }
+
         /* navbar */
         window.addEventListener("scroll", function () {
             var header = document.querySelector("header");

@@ -231,7 +231,7 @@ form {
     flex-wrap:wrap;
     justify-content:flex-start;
     align-items:center;
-    padding: 20px 0 20px 0;
+    padding: 10px 0 10px 0;
     border-bottom: 1px solid #e5e5e5;
     width: 900px;
 }
@@ -326,6 +326,7 @@ form {
 .value {
     flex-grow:10;
     padding:10px 0 10px 0;
+    font-size: 17px;
 }
 
 .box_name_wrap {
@@ -336,6 +337,7 @@ form {
 .period_box {
     padding: 20px 20px;
     word-spacing: 20px;
+    font-size: 17px;
 }
 
 
@@ -483,6 +485,20 @@ form {
   transition: opacity 300ms ease-in;
 }
 
+.hashtag_box{
+  position: relative;
+  text-align: left;
+  width: 900px;
+  padding: 10px 30px 50px 0px;
+}
+
+.hashtag{
+  display: inline-flex;
+  height: 30px;
+  background-color: rgb(220, 219, 219);
+  margin: 5px;
+  padding: 5px 5px 5px 5px;
+}
 
 /* ==========================================footer====================================== */
 .inner-footer {
