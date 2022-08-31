@@ -120,8 +120,9 @@
                             <!-- <div class="feed-row"> -->
                                 <div class="profile-box">
                                     <img src="/public/group/<%=HeadStudy[i].study_image%>" />
+                                    <%var headStudyName = HeadStudy[i].study_name%>
                                     <div class="studyName">
-                                        <h4><%=HeadStudy[i].study_name%></h4>
+                                        <h4><%=headStudyName.substring(0,15)%></h4>
                                     </div>
                                     <%var str = HeadStudy[i].hashtag%>
                                     <p id="hashtag"><%=str.substring(0,20)%></p><br>
@@ -143,7 +144,8 @@
                                 <div class="profile-box">
                                     <img src="/public/group/<%=memberStudy[i].study_image%>" />
                                     <div class="studyName">
-                                        <h4><%=memberStudy[i].study_name%></h4>
+                                        <%var memberStudyName = memberStudy[i].study_name%>
+                                        <h4><%=memberStudyName.substring(0,15)%></h4>
                                     </div>
                                     <%var str2 = memberStudy[i].hashtag%>
                                     <p id="hashtag"><%=str2.substring(0,20)%></p><br>
