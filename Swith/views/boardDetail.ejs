@@ -92,7 +92,7 @@
             
                 </form>
 
-                <form id="comment_info">
+                <form id="comment_info" onsubmit="return false">
                     <div class="addComments">
                         <div class="userImg">
                             <img src="/public/image/cute.png" >
@@ -170,7 +170,6 @@
             console.log(UserId);
 
             if (UserNow == UserId) {
-                console.log('굿');
                 axios({
                     method:'post',
                     url:'http://49.50.164.134:8000/feed/board/detail/remove',
