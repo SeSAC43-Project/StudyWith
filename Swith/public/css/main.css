@@ -110,119 +110,120 @@ header.sticky ul li a {
   width: 100%;
   height: 100vh;
   background: #f3f7fe;
-  /* padding: 10px 3%; */
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+}
+.slogun_search {
+  /* box-sizing: border-box; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: auto;
+  height: 100%;
+  margin: 10% 10% 0 10%;
 }
 .slogun h1 {
-  font-size: 45px;
+  font-size: 60px;
   position: relative;
   z-index: 2;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 2px #000;
+  font-weight: 600;
+  color: rgb(69, 73, 78);
+  padding: 7px;
   cursor: pointer;
   transition: transform 0.5s;
 }
+
 .slogun #studymate {
-  font-size: 45px;
+  font-size: 85px;
   position: relative;
   z-index: 2;
-  /* -webkit-text-fill-color: transparent; */
-  -webkit-text-stroke: 2px #f5d17c;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  background-color: #4686c2;
   cursor: pointer;
   transition: transform 0.5s;
+  /*vertical-align: super;*/
+  padding: 12px 10px 8px 10px;
+  margin-top: 10px;
 }
+
 .slogun h1:hover {
-  -webkit-text-fill-color: #000;
+  -webkit-text-fill-color: #f5d17c;
   transform: translateY(-10px);
 }
+
 .slogun #studymate:hover {
-  -webkit-text-fill-color: #4686C2;
+  background-color: #f5d17c;
+  -webkit-text-fill-color: #fff;
   transform: translateY(-10px);
 }
 
 .img-box {
-  position: absolute;
+  position: inherit;
+  width: inherit;
   top: 0;
   right: 0;
   height: 100%;
-  width: 67%;
-  background-image: url(/public/image/mainFirst.png);
-  background-size: cover;
-  background-position: center;
+  background-color: #275185;
+  overflow: hidden;
 }
-.slogun h1:nth-child(1):hover ~ .img-box {
-  background-image: url(/public/image/mainFind-002.png);
-}
-.slogun h1:nth-child(2):hover ~ .img-box {
-  background-image: url(/public/image/mainYour.png);
-}
-.slogun h1:nth-child(3):hover ~ .img-box {
-  background-image: url(/public/image/mainStudy.png);
+
+.img-box > img {
+  width: 45vw;
+  height: 45vw;
+  overflow: hidden;
+  padding-left: 10vw;
 }
 
 .mysearch {
   position: relative;
-  width: 60px;
-  height: 60px;
-  background: #f3f7fe;
-  border-radius: 60px;
+  width: 40px;
+  height: 40px;
+  background-color: #f3f7fe;
+  border-radius: 20px;
   transition: 0.5s;
-  box-shadow: 0 0 0 5px #4686C2;
+  box-shadow: 0 0 0 2px #4686c2;
   overflow: hidden;
-}
-.mysearch.active {
-  width: 750px;
-}
-.mysearch .icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 60px;
-  height: 60px;
-  background: #f3f7fe;
-  border-radius: 60px;
+  margin-top: 3vw;
   display: flex;
-  justify-content: center ;
+  justify-content: flex-start;
   align-items: center;
+}
+
+.mysearch.active {
+  width: 500px;
+}
+
+.mysearch > i {
+  width: 30px;
+  font-size: 20px;
+  color: #275185;
+  transform: translateX(10px);
   cursor: pointer;
 }
-.mysearch .icon::before {
-  content: '';
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  border: 3px solid #4686C2;
-  border-radius: 50%;
-  transform: translate(-4px, -4px) rotate(315deg);
-}
-.mysearch .icon::after {
-  content: '';
-  position: absolute;
-  width: 3px;
-  height: 12px;
-  background-color: #4686C2;
-  transform: translate(6px, 6px) rotate(315deg);
-}
-.mysearch .input {
+
+.mysearch > .input {
   position: relative;
-  width: 670px;
-  height: 60px;
-  left: 60px;
+  width: 420px;
+  height: 40px;
+  left: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .mysearch .input input {
   position: absolute;
   top: 0;
+  padding: 0 15px;
   width: 100%;
   height: 100%;
   border: none;
   outline: none;
-  font-size: 18px;
+  font-size: 14px;
 }
 .clear {
   position: absolute;
@@ -230,16 +231,15 @@ header.sticky ul li a {
   transform: translateY(-50%);
   width: 15px;
   height: 15px;
-  right: 15px;
+  right: 0px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  border:0;
-  outline:0;
   background-color: transparent;
-  
+  border: 0px solid #fff;
 }
+
 /* .clear::before {
   position: absolute;
   content: '';
