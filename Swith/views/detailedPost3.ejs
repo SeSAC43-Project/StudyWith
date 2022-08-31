@@ -93,10 +93,10 @@
                         </p>
                     </div>
 
+                    <div id="study_content" style="display: none"><%=result[0].study_content %></div>
                     <div class="section_box">
-                        <div class="name">스터디 소개글</div>
-                        <div class="value" id="study_content"><%=result[0].study_content %>
-                        </div>
+                        <div class="name_contents">스터디 소개글</div>
+                        <div class="value_contents" id="study_content2"></div>
                     </div>
                     
                     <div class="section_box">
@@ -269,6 +269,10 @@
     </footer>
     
     <script>
+        /* 소개글 */
+        var content = $("#study_content").text().replaceAll("\n", "<br/>");
+        document.getElementById('study_content2').innerHTML = content;
+
         /* 해시태그 */
         $(document).ready(function(){ 
             var hashtag_list = $('#hashtag').text().split('#').slice(1,-1);

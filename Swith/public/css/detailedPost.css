@@ -97,6 +97,12 @@ body {
     font-weight:bold;
 }
 
+.name_contents{
+    font-weight:bold;
+    width: 900px;
+    font-size:21px;
+}
+
 /* 전체 컨테이너 */
 .wrap {
     box-sizing: border-box;
@@ -326,6 +332,12 @@ form {
 .value {
     flex-grow:10;
     padding:10px 0 10px 0;
+    font-size: 17px;
+}
+
+.value_contents{
+    flex-grow:10;
+    padding:30px 0 20px 0;
     font-size: 17px;
 }
 
