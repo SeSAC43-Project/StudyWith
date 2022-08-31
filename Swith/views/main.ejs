@@ -96,14 +96,14 @@
     <!-- ==========================================메인 첫번째 페이지======================================  -->
     <div class="section">
         <div class="slogun">
-            <h1>FIND.</h1>
-            <h1>YOUR.</h1>
-            <h1 id="studymate">STUDYMATE.</h1>
-            <div class="img-box"></div>
+            <div class="slogun_search">
+            <h1 class="firstSlogun">FIND YOUR.</h1>
+            <h1 class="secondeSlogun">STUDYMATE</h1>
+            <h1 id="studymate" class="thirdSlogun">SWITH</h1>
             
             <form id="search_form" method="post" action="/swith/search">
                 <div class="mysearch">
-                    <div class="icon"></div>
+                    <i class="icon fa-solid fa-magnifying-glass"></i>
                     <div class="input">
                         <input type="text" placeholder="📖 StudyWITH 에서 함께 공부할 스터디원을 찾아보세요! 👀" id="search" name="search">
                         <button class="clear" name="search_button" style="font-size: 20px;">🔍</button>
@@ -113,8 +113,11 @@
                 </div>
             </form>
         </div>
+        <div class="img-box">
+            <img id="main_img" src="../public/image/mainFirst.png">
+        </div>
+        </div>
     </div>
-
     <!-- ==========================================메인 두번째 페이지======================================  -->
     <div class="section">
         <div class="container">
@@ -145,7 +148,7 @@
             </div>
         </div>
     </div>
-   
+
     <!-- ==========================================메인 세번째 페이지======================================  -->
     <div class="section">
         <div class="container_third">
@@ -235,7 +238,12 @@
                 },        
             });
         });
-        
+
+        let change = $('.firstSlogun');
+        let img_box = $('#main_img')
+        change.addEventListener('mouseover', function () {
+            img_box.attr('src', '../public/image/mainYours.png')
+        });
 
         const icon = document.querySelector('.icon');
         const mysearch = document.querySelector('.mysearch');
