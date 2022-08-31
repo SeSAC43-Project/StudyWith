@@ -20,17 +20,17 @@
 </head>
 <body>
     <header>
-        <a href="http://localhost:8000/swith" class="logo">
+        <a href="http://49.50.164.134:8000/swith" class="logo">
             <img src="/public/main/logo.png" alt="logo" />
         </a>
         <ul>
-            <li class="logout"><a href="http://localhost:8000/feed/write">
+            <li class="logout"><a href="http://49.50.164.134:8000/feed/write">
                 <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
             </li>
             <li class="logout" onclick="logout();">
                 <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
             </li>
-            <li class="logout"><a href="http://localhost:8000/user/mypage">
+            <li class="logout"><a href="http://49.50.164.134:8000/user/mypage">
                 <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
             </li>
         </ul>
@@ -325,7 +325,7 @@
             if ( flag ) { //유효성 검사 통과하면 Patch
                 axios({
                     method:'patch',
-                    url:'http://localhost:8000/feed/management/edit',
+                    url:'http://49.50.164.134:8000/feed/management/edit',
                     data : {
                         study_id: id.innerText,
                         study_name : form.studyName.value,
@@ -348,7 +348,7 @@
                         timer: 1500
                     });
                     setTimeout(function() {
-                        document.location.href="http://localhost:8000/feed/detailedPost?study_id="+id.innerText;
+                        document.location.href="http://49.50.164.134:8000/feed/detailedPost?study_id="+id.innerText;
                     }, 1000);
                 })
             }
@@ -363,7 +363,7 @@
 
             axios({
                 method:'delete',
-                url:'http://localhost:8000/feed/management/delete',
+                url:'http://49.50.164.134:8000/feed/management/delete',
                 data : {
                     study_id: id.innerText
                 }
@@ -379,7 +379,7 @@
                     timer: 1500
                 });
                 setTimeout(function() { // 마이페이지 참여중 화면으로 이동
-                    document.location.href="http://localhost:8000/user/mypage/studys";
+                    document.location.href="http://49.50.164.134:8000/user/mypage/studys";
                 }, 1000);
             })
         }
@@ -438,7 +438,7 @@
             // 같은 key를 가진 값을 여러개 넣을 수 있음 ! (값은 문자열로 자동변환)
             axios({
                 method: 'post', 
-                url: 'http://localhost:8000/feed/write/upload',
+                url: 'http://49.50.164.134:8000/feed/write/upload',
                 data: formData
             })
             .then((req) => {
@@ -521,7 +521,7 @@
 
         /*  목록 버튼 */
         function list() {
-            document.location.href="http://localhost:8000/swith"; 
+            document.location.href="http://49.50.164.134:8000/swith";
         }
 
         /* 로그아웃 */
@@ -538,7 +538,7 @@
                 if (result.isConfirmed) {
                     axios({
                         method:'get',
-                        url:'http://localhost:8000/user/logout'
+                        url:'http://49.50.164.134:8000/user/logout'
                     })
                     .then((req) => {return req.data;})
                     .then((data) => {
@@ -551,7 +551,7 @@
                                 timer: 1500
                             });
                             setTimeout(function() {
-                                document.location.href="http://localhost:8000/swith";
+                                document.location.href="http://49.50.164.134:8000/swith";
                             }, 1000);
                         }
                     })

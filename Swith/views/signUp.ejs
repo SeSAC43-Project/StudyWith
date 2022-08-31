@@ -23,7 +23,7 @@
             function checkID( obj ){
                 axios({
                     method: "post",
-                    url: "http://localhost:8000/user/signup/isId", // routes/index.js 파일의 아이디 중복 검사 path 설정
+                    url: "http://49.50.164.134:8000/user/signup/isId", // routes/index.js 파일의 아이디 중복 검사 path 설정
                     data: {
                         user_id: obj.value,
                     }
@@ -50,7 +50,7 @@
             function checkNickname( obj ) {
                 axios({
                     method: "post",
-                    url: "http://localhost:8000/user/signup/isName",
+                    url: "http://49.50.164.134:8000/user/signup/isName",
                     data: {
                         user_name: obj.value,
                     }
@@ -97,7 +97,7 @@
                 if ( flag == true ) { // 유효성 검사 통과하면 Post
                     axios({
                         method:'post',
-                        url: "http://localhost:8000/user/signup",
+                        url: "http://49.50.164.134:8000/user/signup",
                         data: {
                             user_id: form.id.value,
                             user_name: form.nickname.value,
@@ -113,14 +113,14 @@
                     })
                     .then((req) => { return req.data;})
                     .then((data) => {
-                        document.location.href="http://localhost:8000/user/login";
+                        document.location.href="http://49.50.164.134:8000/user/login";
                     })        
                 }  
             }
 
             /* 로그인 버튼 클릭시 페이지 이동*/
             function user_login() {
-                document.location.href="http://localhost:8000/user/login";
+                document.location.href="http://49.50.164.134:8000/user/login";
             }
 
             /* 프로필 사진 등록 */
@@ -131,7 +131,7 @@
 
                 axios({
                     method:'post',
-                    url: "http://localhost:8000/user/signup/upload",
+                    url: "http://49.50.164.134:8000/user/signup/upload",
                     data: formData,
                 })
                 .then((req) => { return req.data;})
@@ -218,7 +218,7 @@
                         
                         <div class="user_info">
 
-                            <a href="http://localhost:8000/swith" ><img src="/public/login/logo.png" width="300px;" class="signup_logo"></a>
+                            <a href="http://49.50.164.134:8000/swith" ><img src="/public/login/logo.png" width="300px;" class="signup_logo"></a>
 
                                 <div class="profile" id="img_upload">
                                     <div id="uploadedProfile">

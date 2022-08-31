@@ -37,7 +37,7 @@
                     <form id="login_form">
                         <div class="form_background"></div>
                         <div class="login_info">
-                        <a href="http://localhost:8000/swith"><img src="/public/login/logo.png" width="300px;" class="login_logo"><br></a>
+                        <a href="http://49.50.164.134:8000/swith"><img src="/public/login/logo.png" width="300px;" class="login_logo"><br></a>
                         <div class="warningLogin"></div><br>
                             <input type="text" id="user" name="id" class="login_form_user" placeholder="아이디" style="color:white" required>
                             <!-- <br><br> -->
@@ -57,14 +57,14 @@
                             <div>
 
                                 <span>아직도 스윗이 아니신가요?</span>&nbsp;
-                                <!-- <a href="http://localhost:8000/user/signup" target="_self" onclick="register();" style="color:#4686C2; font-weight:bolder">회원가입</a>&nbsp -->
+                                <!-- <a href="http://49.50.164.134:8000/user/signup" target="_self" onclick="register();" style="color:#4686C2; font-weight:bolder">회원가입</a>&nbsp -->
                                 <a href="javascript:void(0);" onclick="register();return false;">회원가입</a>&nbsp;
                                 <span>하러가기</span>
                             </div>
                             <br>
                             <div>
 
-                            <!-- <a href="http://localhost:8000/user/find" target="_self" onclick="findPw();" style="color:black; font-weight: bolder;">비밀번호 찾기</a> -->
+                            <!-- <a href="http://49.50.164.134:8000/user/find" target="_self" onclick="findPw();" style="color:black; font-weight: bolder;">비밀번호 찾기</a> -->
                             <a href="javascript:void(0);" onclick="findPw();return false;">비밀번호 찾기</a>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
 
                 axios({
                     method:'post',
-                    url:'http://localhost:8000/user/login',
+                    url:'http://49.50.164.134:8000/user/login',
                     data : {
                         user_id: form.id.value,
                         user_password: form.password.value
@@ -106,7 +106,7 @@
                 .then((req) => {return req.data;})
                 .then((data) => {
                    if( data ) {
-                    document.location.href="http://localhost:8000/swith";
+                    document.location.href="http://49.50.164.134:8000/swith";
                    } else {
                         Swal.fire({
                             title: '로그인 실패!',
@@ -119,11 +119,11 @@
             }
         
             function register() {
-                document.location.href="http://localhost:8000/user/signup";
+                document.location.href="http://49.50.164.134:8000/user/signup";
             }
 
             function findPw() {
-                document.location.href="http://localhost:8000/user/find";
+                document.location.href="http://49.50.164.134:8000/user/find";
             }
                  
             function idRemember() {

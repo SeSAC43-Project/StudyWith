@@ -23,17 +23,17 @@
 </head>
 <body>
     <header>
-        <a href="http://localhost:8000/swith" class="logo">
+        <a href="http://49.50.164.134:8000/swith" class="logo">
             <img src="/public/main/logo.png" alt="logo" />
         </a>
         <ul>
-            <li class="logout"><a href="http://localhost:8000/feed/write">
+            <li class="logout"><a href="http://49.50.164.134:8000/feed/write">
                 <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
             </li>
             <li class="logout" onclick="logout();">
                 <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
             </li>
-            <li class="logout"><a href="http://localhost:8000/user/mypage">
+            <li class="logout"><a href="http://49.50.164.134:8000/user/mypage">
                 <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
             </li>
         </ul>
@@ -167,7 +167,7 @@
         var form = document.getElementById('search');
         axios({
             method: 'post', 
-            url: 'http://localhost:8000/swith/search/category', 
+            url: 'http://49.50.164.134:8000/swith/search/category',
             data: {
                 search : form.search.value
             }
@@ -209,7 +209,7 @@
 
                             axios({
                                 method: 'post',
-                                url: 'http://localhost:8000/swith/search/category',
+                                url: 'http://49.50.164.134:8000/swith/search/category',
                                 data : {
                                     study_category : car_value
                                 }
@@ -251,7 +251,7 @@
     function reply_likes(study_id, target) {
         axios({
             method:'post',
-            url: 'http://localhost:8000/swith/search/likes',
+            url: 'http://49.50.164.134:8000/swith/search/likes',
             data : {
                 study_id : study_id,
                     }
@@ -272,7 +272,7 @@
     function reply_dislikes(study_id, target) {
         axios({
             method:'post',
-            url: 'http://localhost:8000/swith/search/likes/remove',
+            url: 'http://49.50.164.134:8000/swith/search/likes/remove',
             data : {
                 study_id : study_id,
             }
@@ -305,7 +305,7 @@
 
                             axios({
                                 method:'post',
-                                url: 'http://localhost:8000/swith/search/likes',
+                                url: 'http://49.50.164.134:8000/swith/search/likes',
                                 data : {
                                     study_id : study_id,
                                         }
@@ -327,7 +327,7 @@
 
                             axios({
                                 method:'post',
-                                url: 'http://localhost:8000/swith/search/likes/remove',
+                                url: 'http://49.50.164.134:8000/swith/search/likes/remove',
                                 data : {
                                     study_id : study_id,
                                         }
@@ -362,7 +362,7 @@
 
                     axios ({
                         method:'post', 
-                        url:'http://localhost:8000/swith/search/detailed', 
+                        url:'http://49.50.164.134:8000/swith/search/detailed',
                         data : {
                             study_id : study_id
                         }
@@ -371,7 +371,7 @@
                     .then((data) => {
                         console.log(data.user_id); 
                         console.log(data.study_id);
-                        document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${data.study_id}`
+                        document.location.href=`http://49.50.164.134:8000/feed/detailedPost?study_id=${data.study_id}`
                     })
                 })
             }
@@ -409,7 +409,7 @@
                 goDetail(clicked_id);
             }
             function goDetail(cate_study_id) {
-                    document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${cate_study_id}`;
+                    document.location.href=`http://49.50.164.134:8000/feed/detailedPost?study_id=${cate_study_id}`;
             }
 
     /* 로그아웃 */
@@ -426,7 +426,7 @@
                 if (result.isConfirmed) {
                     axios({
                         method:'get',
-                        url:'http://localhost:8000/user/logout'
+                        url:'http://49.50.164.134:8000/user/logout'
                     })
                     .then((req) => {return req.data;})
                     .then((data) => {
@@ -439,7 +439,7 @@
                                 timer: 1500
                             });
                             setTimeout(function() {
-                                document.location.href="http://localhost:8000/swith";
+                                document.location.href="http://49.50.164.134:8000/swith";
                             }, 1000);
                         }
                     })

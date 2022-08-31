@@ -23,7 +23,7 @@
             if ( flag == true ) {
                 axios ({
                     method:'post',
-                    url: "http://localhost:8000/user/find",
+                    url: "http://49.50.164.134:8000/user/find",
                     data: {
                         user_id : form.user_id.value,
                         hint : form.hint.value,
@@ -54,14 +54,14 @@
         // 비밀번호 찾기 답을 맞은 경우
         function TrueCase() {
             $('#find_button').html("<button class='modifyUser' style='color:white'>비밀번호 변경</button>");
-            // document.location.href="http://localhost:8000/user/modify";
+            // document.location.href="http://49.50.164.134:8000/user/modify";
         }   
 
         /* 아이디 유무 검사 */
         function checkID( obj ){
             axios({
                 method: "post",
-                url: "http://localhost:8000/user/find/isId ",
+                url: "http://49.50.164.134:8000/user/find/isId ",
                 data: {
                     user_id: obj.value,
                 }})
@@ -81,7 +81,7 @@
 
         // 로그안 창으로 돌아가기
         function back() {
-            document.location.href="http://localhost:8000/user/login"; 
+            document.location.href="http://49.50.164.134:8000/user/login";
         }
 
         /* 데이터 유효성 검사 alert */
@@ -131,7 +131,7 @@
                 <!-- 폼 -->
                 <form id="find_password"  method="post" action="/user/modify">
                     <div class="box">
-                        <a href="http://localhost:8000/swith" ><img src="/public/login/logo.png" width="300px;" class="login_logo"><br></a>
+                        <a href="http://49.50.164.134:8000/swith" ><img src="/public/login/logo.png" width="300px;" class="login_logo"><br></a>
                         <h1 class="password_find">비밀번호 찾기</h1>
                         
                         <input type="text" id="id" name="user_id" class="find_password_user" placeholder="아이디" required style="color:white" onkeyup="checkID( this );">

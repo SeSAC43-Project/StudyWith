@@ -36,7 +36,7 @@
             if (flag) {
                 axios({
                     method:'post',
-                    url: "http://localhost:8000/user/update",
+                    url: "http://49.50.164.134:8000/user/update",
                     data: {
                         user_id : form.id.value,
                         user_password : form.password.value, 
@@ -52,7 +52,7 @@
                         timer: 1500
                     });
                     setTimeout(function() {
-                        document.location.href="http://localhost:8000/user/login";
+                        document.location.href="http://49.50.164.134:8000/user/login";
                     }, 1000);
                 });
             }
@@ -111,7 +111,7 @@
             <form id="modify_password">
             <div class="form_background"></div>
             <div class="modify_info">
-                <a href="http://localhost:8000/swith"><img src="/public/login/logo.png" width="300px;" class="modify_logo"></a><br>
+                <a href="http://49.50.164.134:8000/swith"><img src="/public/login/logo.png" width="300px;" class="modify_logo"></a><br>
                 <!-- <div class="form_background"></div> -->
                 <!-- <div id="modify_password2"> -->
                 <!-- <div class="modify_card">

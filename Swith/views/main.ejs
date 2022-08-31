@@ -45,7 +45,7 @@
             if (result.isConfirmed) {
                 axios({
                     method:'get',
-                    url:'http://localhost:8000/user/logout'
+                    url:'http://49.50.164.134:8000/user/logout'
                 })
                 .then((req) => {return req.data;})
                 .then((data) => {
@@ -58,7 +58,7 @@
                             timer: 1500
                         });
                         setTimeout(function() {
-                            document.location.href="http://localhost:8000/swith";
+                            document.location.href="http://49.50.164.134:8000/swith";
                         }, 1000);
                     }
                 })
@@ -71,15 +71,15 @@
     <!-- <%- include ('header.ejs') %> -->
     <!-- ==========================================navbar========================================== -->
     <header>
-        <a href="http://localhost:8000/swith" class="logo">
+        <a href="http://49.50.164.134:8000/swith" class="logo">
             <img src="/public/main/logo.svg" alt="logo" />
         </a>
         <ul>
-            <li class="logout"><a href="http://localhost:8000/feed/write">
+            <li class="logout"><a href="http://49.50.164.134:8000/feed/write">
                 <i class="fa-solid fa-folder-plus"></i><span>스터디 등록</span></a>
             </li>
             <% if (session_id == "") { %>
-                <li class="logout"><a href="http://localhost:8000/user/login"> 
+                <li class="logout"><a href="http://49.50.164.134:8000/user/login">
                     <i class="fa-solid fa-user"></i><span>로그인</span></a>
                 </li>
             <% } else { %>
@@ -87,7 +87,7 @@
                     <i class="fa-solid fa-user"></i><span>로그아웃</span></a>
                 </li>
             <% } %>
-            <li class="logout"><a href="http://localhost:8000/user/mypage">
+            <li class="logout"><a href="http://49.50.164.134:8000/user/mypage">
                 <i class="fa-solid fa-house-chimney-user"></i><span>마이페이지</span></a>
             </li>
         </ul>
@@ -278,7 +278,7 @@
                 
 
                 var form = document.getElementById('category-form'); 
-                form.action = 'http://localhost:8000/swith/search';
+                form.action = 'http://49.50.164.134:8000/swith/search';
                 form.method = 'post'; 
                 form.submit();
             });  

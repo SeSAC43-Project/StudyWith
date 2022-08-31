@@ -13,7 +13,7 @@
             if (result.isConfirmed) {
                 axios({
                     method:'get',
-                    url:'http://localhost:8000/user/logout'
+                    url:'http://49.50.164.134:8000/user/logout'
                 })
                 .then((req) => {return req.data;})
                 .then((data) => {
@@ -26,7 +26,7 @@
                             timer: 1500
                         });
                         setTimeout(function() {
-                            document.location.href="http://localhost:8000/swith";
+                            document.location.href="http://49.50.164.134:8000/swith";
                         }, 1000);
                     }
                 })
@@ -35,15 +35,15 @@
     }
 </script>
 <header>
-    <a href="http://localhost:8000/swith" class="logo">
+    <a href="http://49.50.164.134:8000/swith" class="logo">
         <img src="/public/main/logo.png" alt="logo" />
     </a>
     <ul>
-        <li><a href="http://localhost:8000/feed/write">
+        <li><a href="http://49.50.164.134:8000/feed/write">
             <i class="fa-solid fa-folder-plus">&nbsp;&nbsp;스터디 등록</i></a>
         </li>
         <% if (session_id == "") { %>
-            <li><a href="http://localhost:8000/user/login"> 
+            <li><a href="http://49.50.164.134:8000/user/login">
                 <i class="fa-solid fa-user">&nbsp;&nbsp;로그인</i></a>
             </li>
         <% } else { %>
@@ -51,7 +51,7 @@
                 <i class="fa-solid fa-user">&nbsp;&nbsp;로그아웃</i></a>
             </li>
         <% } %>
-        <li><a href="http://localhost:8000/user/mypage">
+        <li><a href="http://49.50.164.134:8000/user/mypage">
             <i class="fa-solid fa-heart">&nbsp;&nbsp;마이페이지</i></a>
         </li>
     </ul>

@@ -26,18 +26,18 @@
         <div class="menu">
             <div onclick="goSearch()">
                 <i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>">게시판조회</a>
+                    <a href="http://49.50.164.134:8000/feed/board?study_id=<%=detailData[0].study_id%>">게시판조회</a>
                 </i>
                 <span><i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>">게시판조회</a>
+                    <a href="http://49.50.164.134:8000/feed/board?study_id=<%=detailData[0].study_id%>">게시판조회</a>
                 </i></span>
             </div>
             <div onclick="goPosting()">
                 <i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board/write?study_id=<%=detailData[0].study_id%>">게시판등록</a>
+                    <a href="http://49.50.164.134:8000/feed/board/write?study_id=<%=detailData[0].study_id%>">게시판등록</a>
                 </i>
                 <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/feed/board/write?study_id=<%=detailData[0].study_id%>">게시판등록</a>
+                    <a href="http://49.50.164.134:8000/feed/board/write?study_id=<%=detailData[0].study_id%>">게시판등록</a>
                 </i></span>
             </div>
         </div>
@@ -131,7 +131,7 @@
             
             axios({
                 method:'post',
-                url : 'http://localhost:8000/feed/board/detail',
+                url : 'http://49.50.164.134:8000/feed/board/detail',
                 data : {
                     reply_id : comments.studymem_name.value,
                     reply_contents : comments.studymem_comment.value,
@@ -151,7 +151,7 @@
 
                 $("#commentBox").append(html);
                 
-                document.location.href='http://localhost:8000/feed/board/detail?lounge_id='+data.result.lounge_id;
+                document.location.href='http://49.50.164.134:8000/feed/board/detail?lounge_id='+data.result.lounge_id;
 
                 // document.getElementById('studymem_comment').value = "";
 
@@ -173,7 +173,7 @@
                 console.log('굿');
                 axios({
                     method:'post',
-                    url:'http://localhost:8000/feed/board/detail/remove',
+                    url:'http://49.50.164.134:8000/feed/board/detail/remove',
                     data: {
                         reply_id : id,
                     }
@@ -212,7 +212,7 @@
             if ( PostName == UserNow) {
                 axios({
                     method:'post',
-                    url:'http://localhost:8000/feed/board/remove',
+                    url:'http://49.50.164.134:8000/feed/board/remove',
                     data: {
                         lounge_id : PostLoungeId,
                     }
@@ -224,7 +224,7 @@
                             // $(target).parent('div').parent('div').parent('tbody').remove();
                             $('.card').remove();
                             alert('삭제 성공!');
-                            document.location.href='http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>';
+                            document.location.href='http://49.50.164.134:8000/feed/board?study_id=<%=detailData[0].study_id%>';
 
                         } 
                     
@@ -237,17 +237,17 @@
 
     // 목록 클릭 시 라운지로 돌아가기
     function backToLounge() {
-            // document.location.href=`http://localhost:8000/feed/board?study_id=${study_id}`;
-            document.location.href='http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>';
+            // document.location.href=`http://49.50.164.134:8000/feed/board?study_id=${study_id}`;
+            document.location.href='http://49.50.164.134:8000/feed/board?study_id=<%=detailData[0].study_id%>';
         }
 
     //홈버튼
         function goHome() {
-            document.location.href="http://localhost:8000/swith";
+            document.location.href="http://49.50.164.134:8000/swith";
             }
 
         function goPost() {
-            document.location.href="http://localhost:8000/feed/board?study_id=<%=detailData[0].study_id%>";
+            document.location.href="http://49.50.164.134:8000/feed/board?study_id=<%=detailData[0].study_id%>";
             }
     </script>
 

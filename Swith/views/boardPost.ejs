@@ -21,7 +21,7 @@
 
             axios({
                 method:'post',
-                url: "http://localhost:8000/feed/board/write",
+                url: "http://49.50.164.134:8000/feed/board/write",
                 data: {
                     study_id: studyData,
                     title : form.title.value,
@@ -33,12 +33,12 @@
                 // console.log(data);
                 // console.log(data.result.lounge_id);
                 // console.log(data.result);
-                document.location.href=`http://localhost:8000/feed/board/detail?lounge_id=${data.result.lounge_id}`;
+                document.location.href=`http://49.50.164.134:8000/feed/board/detail?lounge_id=${data.result.lounge_id}`;
             })        
         }
       
         function goHome() {
-            document.location.href="http://localhost:8000/swith";
+            document.location.href="http://49.50.164.134:8000/swith";
             }
         
     </script>

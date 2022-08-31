@@ -22,7 +22,7 @@
 
             axios({
                 method:'post',
-                url: "http://localhost:8000/user/signup/upload",
+                url: "http://49.50.164.134:8000/user/signup/upload",
                 data: formData,
             })
             .then((req) => { return req.data;})
@@ -37,7 +37,7 @@
         function checkNickname( obj ) {
                 axios({
                     method: "post",
-                    url: "http://localhost:8000/user/signup/isName",
+                    url: "http://49.50.164.134:8000/user/signup/isName",
                     data: {
                         user_name: obj.value,
                     }
@@ -59,16 +59,16 @@
         
         // 회원정보수정 / 참여중 / 찜목록 이동
         function goModify() {
-            document.location.href="http://localhost:8000/user/mypage";
+            document.location.href="http://49.50.164.134:8000/user/mypage";
         }
         function goPart() {
-            document.location.href="http://localhost:8000/user/mypage/studys";
+            document.location.href="http://49.50.164.134:8000/user/mypage/studys";
         }
         function goHeart() {
-            document.location.href="http://localhost:8000/user/mypage/likes";
+            document.location.href="http://49.50.164.134:8000/user/mypage/likes";
         }
         function goHome() {
-            document.location.href="http://localhost:8000/swith";
+            document.location.href="http://49.50.164.134:8000/swith";
         }
 
     </script>
@@ -86,26 +86,26 @@
         <div class="menu">
             <div onclick="goModify()">
                 <i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+                    <a href="http://49.50.164.134:8000/user/mypage">회원정보수정</a>
                 </i>
                 <span><i class="fa-solid fa-user">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/user/mypage">회원정보수정</a>
+                    <a href="http://49.50.164.134:8000/user/mypage">회원정보수정</a>
                 </i></span>
             </div>
             <div onclick="goPart()">
                 <i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+                    <a href="http://49.50.164.134:8000/user/mypage/studys">참여중</a>
                 </i>
                 <span><i class="fa-solid fa-podcast">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/user/mypage/studys">참여중</a>
+                    <a href="http://49.50.164.134:8000/user/mypage/studys">참여중</a>
                 </i></span>
             </div>
             <div onclick="goHeart()">
                 <i class="fa-solid fa-heart">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+                    <a href="http://49.50.164.134:8000/user/mypage/likes">찜목록</a>
                 </i>
                 <span><i class="fa-solid fa-heart">&nbsp;&nbsp;
-                    <a href="http://localhost:8000/user/mypage/likes">찜목록</a>
+                    <a href="http://49.50.164.134:8000/user/mypage/likes">찜목록</a>
                 </i></span>
             </div>
         </div>
@@ -174,7 +174,7 @@
             }
 
             function goDetail(study_id ) {        
-                document.location.href=`http://localhost:8000/feed/detailedPost?study_id=${study_id}`
+                document.location.href=`http://49.50.164.134:8000/feed/detailedPost?study_id=${study_id}`
             }
         </script>
 </body>

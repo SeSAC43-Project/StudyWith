@@ -24,17 +24,17 @@
 </head>
 <body>
     <header>
-        <a href="http://localhost:8000/swith" class="logo">
+        <a href="http://49.50.164.134:8000/swith" class="logo">
             <img src="/public/main/logo.png" alt="logo" />
         </a>
         <ul>
-            <li class="logout"><a href="http://localhost:8000/feed/write">
+            <li class="logout"><a href="http://49.50.164.134:8000/feed/write">
                 <i class="fa-solid fa-folder-plus"><span>&nbsp;&nbsp;스터디 등록</span></i></a>
             </li>
             <li class="logout" onclick="logout();">
                 <i class="fa-solid fa-user"><span>&nbsp;&nbsp;로그아웃</span></i></a>
             </li>
-            <li class="logout"><a href="http://localhost:8000/user/mypage">
+            <li class="logout"><a href="http://49.50.164.134:8000/user/mypage">
                 <i class="fa-solid fa-house-chimney-user"><span>&nbsp;&nbsp;마이페이지</span></i></a>
             </li>
         </ul>
@@ -269,16 +269,16 @@
                 description: study_content,
                 imageUrl: 'https://ifh.cc/g/Mltso8.png',
                 link: {
-                mobileWebUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
-                webUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
+                mobileWebUrl: 'http://49.50.164.134:8000/feed/detailedPost?'+study_id,
+                webUrl: 'http://49.50.164.134:8000/feed/detailedPost?'+study_id,
                 },
             },
             buttons: [
                 {
                 title: '스터디 참여하러 가기',
                 link: {
-                    mobileWebUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
-                    webUrl: 'http://localhost:8000/feed/detailedPost?'+study_id,
+                    mobileWebUrl: 'http://49.50.164.134:8000/feed/detailedPost?'+study_id,
+                    webUrl: 'http://49.50.164.134:8000/feed/detailedPost?'+study_id,
                 },
                 },
             ],
@@ -298,20 +298,20 @@
             var form = document.getElementById('study_id');
             axios({
                 method:'get',
-                url: "http://localhost:8000/feed/management",
+                url: "http://49.50.164.134:8000/feed/management",
                 params: {
                     study_id : form.innerText
                 }
             })
             .then((req) => { return req.data;})
             .then((data) => {
-                document.location.href="http://localhost:8000/feed/management?study_id="+form.innerText;
+                document.location.href="http://49.50.164.134:8000/feed/management?study_id="+form.innerText;
             })
         }
 
         /* 목록 버튼 */
         function detailedPost_index() {
-                document.location.href="http://localhost:8000/swith";
+                document.location.href="http://49.50.164.134:8000/swith";
         }
 
         /* 로그아웃 */
@@ -328,7 +328,7 @@
                 if (result.isConfirmed) {
                     axios({
                         method:'get',
-                        url:'http://localhost:8000/user/logout'
+                        url:'http://49.50.164.134:8000/user/logout'
                     })
                     .then((req) => {return req.data;})
                     .then((data) => {
@@ -341,7 +341,7 @@
                                 timer: 1500
                             });
                             setTimeout(function() {
-                                document.location.href="http://localhost:8000/swith";
+                                document.location.href="http://49.50.164.134:8000/swith";
                             }, 1000);
                         }
                     })
@@ -367,7 +367,7 @@
             if ( flag == 'insert') {
                 axios({
                     method:'post',
-                    url: 'http://localhost:8000/swith/search/likes',
+                    url: 'http://49.50.164.134:8000/swith/search/likes',
                     data : {
                         study_id : form.innerText,
                     }
@@ -384,7 +384,7 @@
             } else {
                 axios({
                     method:'post',
-                    url: 'http://localhost:8000/swith/search/likes/remove',
+                    url: 'http://49.50.164.134:8000/swith/search/likes/remove',
                     data : {
                         study_id : form.innerText,
                     }
@@ -409,7 +409,7 @@
         function Lounge_index() {
             var form = document.getElementById('study_id');
 
-            document.location.href="http://localhost:8000/feed/board?study_id="+form.innerText;
+            document.location.href="http://49.50.164.134:8000/feed/board?study_id="+form.innerText;
         }
     </script>
 </body>
