@@ -312,7 +312,7 @@
             var header = document.querySelector("header");
             header.classList.toggle("sticky", window.scrollY > 0);
         })
-        
+        var uploadedFile = $("#study_image").text();
         /* 게시물 수정하기 */
         function editFeed() {
             var form = document.getElementById("management_info");
@@ -425,7 +425,6 @@
         }
 
         /* 그룹이미지 업로드 부분 */
-        var uploadedFile = '';
         function uploadFile(obj) {
              var formData = new FormData();
             // 이미지를 동적폼 전송 가능하게 해주는 FormData 객체 생성
