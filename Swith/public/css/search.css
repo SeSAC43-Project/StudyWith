@@ -576,3 +576,10 @@ h2 {
   font-size: 13px;
   background-color: #f3f7fe;
 }
+
+#nothing {
+  font-size: 2vw;
+  text-align: center;
+  width: auto;
+  padding: 2vw;
+}

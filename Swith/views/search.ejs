@@ -82,6 +82,8 @@
                     <div class = "feed-collect">
                         <div class = "feed-main-container">
                             <!-- 스터디 정보 게시물 보여주기 및 보내기-->
+                            <%console.log('여기가 데이터', data)%>
+                            <%if (data[0] != null) { %>
                             <% for(var i=0; i<data.length; i++) {%>
                                     
                                 <div class="studys searchPostSection">
@@ -112,6 +114,10 @@
                                     </div>
                                 </div>
                                     <% } %>
+                                <% } else { %>
+                                    <span></span>
+                                   <span id='nothing'>아직 개설된 스터디가 없습니다 🥹</span>
+                                <% }%>
                             </div>
                         </div>
                     </div>
@@ -181,21 +187,27 @@
             }
             var html = "";
 
+            if (data.data[0] != null) {
             for ( var i = 0; i < data.data.length; i++ ){
                 var studyName = data.data[i].study_name;
                 html += "<div class = 'studys categoryPostSection'><div class = 'all-category'>";
                 html += "<div class='post-img' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>" + "<img width='300px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><div class='name_likes'><div class='search_studyname'>" + studyName.substring(0,10) + "</div>";
-                    
+
                 if ( data.likeList[i] == '0') {
-                html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div>"; 
-                } else { 
+                html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div>";
+                } else {
                 html += "<div class='likes' onclick='reply_dislikes(this.id, this)' id="+data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart fa-solid fa-heart'></p></div>";
                 }
-                    
+
                 html += "</div><p class='study_content_box'><span>"+ data.data[i].study_content +"</span></p><div class='total_recruit'><span><i class='fa-solid fa-user'></i>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><br></div></div></div>";
             }
             $(".feed-main-container").empty();
             $(".feed-main-container").append(html);
+            } else { // 검색어에 해당하는 결과가 없는 경우
+                html += "<span></span><span id='nothing'>아직 개설된 스터디가 없습니다 🥹</span>"
+                $(".feed-main-container").empty();
+                $(".feed-main-container").append(html);
+            };
             })
         }
 
@@ -227,22 +239,22 @@
                                     var studyName = data.data[i].study_name;
                                     html += "<div class = 'studys categoryPostSection'><div class = 'all-category'>";
                                     html += "<div class='post-img' id= " + data.data[i].study_id + " onclick='reply_click(this.id)'>" + "<img width='300px;' height='200px;' src='/public/group/" + data.data[i].study_image + "'/><figcaption>자세히보기</figcaption><span class='category-name'>" + data.data[i].study_category + "</span><p style='display: none;'>" + data.data[i].study_id + "</p></div>" + "<div class='post-content'><div class='name_likes'><div class='search_studyname'>" + studyName.substring(0,10) + "</div>";
-                                        
+
                                     if ( data.likeList[i] == '0') {
-                                    html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div>"; 
-                                    } else { 
+                                    html += "<div class='likes' onclick='reply_likes(this.id, this)' id="+ data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart far fa-heart'></p></div>";
+                                    } else {
                                     html += "<div class='likes' onclick='reply_dislikes(this.id, this)' id="+data.data[i].study_id + "><p style='font-size:1.3rem;' class='heart fa-solid fa-heart'></p></div>";
                                     }
-                                        
+
                                     html += "</div><p class='study_content_box'><span>"+ data.data[i].study_content +"</span></p><div class='total_recruit'><span><i class='fa-solid fa-user'></i>" + data.data[i].num + "</span>/<span>" + data.data[i].study_recruit + "</span></div><br></div></div></div>";
-                                
+
                                 }
 
                                 $(".feed-main-container").empty();
                                 $(".feed-main-container").append(html);
 
                             })
-        
+
             
                     });  
                 }
