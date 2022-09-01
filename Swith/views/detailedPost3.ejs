@@ -278,7 +278,8 @@
 
         /* 해시태그 */
         $(document).ready(function(){ 
-            var hashtag_list = $('#hashtag').text().split('#').slice(1,-1);
+            // var hashtag_list = $('#hashtag').text().split('#').slice(1,-1);
+            var hashtag_list = $('#hashtag').text().split('#').slice(1);
             var hashtag_box = document.getElementById('hashtag_box');
             for (hashtag of hashtag_list)
                 hashtag_box.innerHTML += `<span class="hashtag">#${hashtag}</span>`;
