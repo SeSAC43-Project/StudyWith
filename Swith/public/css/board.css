@@ -253,6 +253,7 @@ hr {
   cursor: pointer;
   transition: 0.5s;
   overflow: hidden;
+  height: auto;
 }
 .box .list:hover {
   background: #f5d17c;
@@ -283,6 +284,7 @@ hr {
   flex-direction: column;
   justify-content: center;
   color: #fff;
+  width: 360px;
 }
 .box .list .content h2, p {
   color: #4686C2;

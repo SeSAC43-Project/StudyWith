@@ -79,14 +79,18 @@
 
                 <div id="commentBox">
                 <div id="commentHere">
-                    <% for (i=0; i<detailData.length; i++) { %>
-                    <div class="comment-section" id="<%=detailData[i].reply_id%>">
-                        <input type="hidden" class="hidden_replyId" value="<%=detailData[i].reply_writer%>">
-                        <span id="replayName"><%=replynames[i]%></span>
-                        <div class="msg-box" id="replyCont"><%=detailData[i].reply_contents%></div>
-                        <button type="button" id="<%=detailData[i].reply_id%>" class="delete" onclick="deleteComment(this.id,this);">x</button>
-                    </div>
-                    <% } %>
+                    <% if (detailData.length != null) { %> 
+                        <% for (i=0; i<detailData.length; i++) { %>
+                        <div class="comment-section" id="<%=detailData[i].reply_id%>">
+                            <input type="hidden" class="hidden_replyId" value="<%=detailData[i].reply_writer%>">
+                            <span id="replayName"><%=replynames[i]%></span>
+                            <div class="msg-box" id="replyCont"><%=detailData[i].reply_contents%></div>
+                            <button type="button" id="<%=detailData[i].reply_id%>" class="delete" onclick="deleteComment(this.id,this);">x</button>
+                        </div>
+                        <% } %>
+                    <% } else { %>
+                        <div></div>
+                        <% } %>
                 </div>
                 </div>
             
@@ -141,7 +145,7 @@
             .then((req) => {return req.data})
             .then((data) => {
                 var html = "";
-                
+               
                     html = "<div class= 'comment-section' id= " + data.result.reply_id + ">"
                             + "<input type = 'hidden' class='hidden_replyId' value= " + data.result.reply_id +">"
                             + "<span id= 'replayName'>" + data.replyname[0].user_name + "</span>"
@@ -150,6 +154,8 @@
                             + "</div>";
 
                 $("#commentBox").append(html);
+
+                    
                 
                 document.location.href='http://49.50.164.134:8000/feed/board/detail?lounge_id='+data.result.lounge_id;
 
