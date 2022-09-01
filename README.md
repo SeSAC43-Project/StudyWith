@@ -30,7 +30,8 @@
 <img width="598" alt="스크린샷 2022-09-01 오후 5 25 50" src="https://user-images.githubusercontent.com/92668655/187868501-0450ef2c-4ce4-4ca2-8a5d-83387a971086.png">
 
 ### 개발 환경 
-<img width="1260" alt="image" src="https://user-images.githubusercontent.com/92668655/187870912-e2f82594-4eb2-482c-bb96-251d1120abb8.png">
+![개발환경](https://user-images.githubusercontent.com/92668655/187923449-02bc4a7d-d475-421f-856f-08863966bf58.jpg)
+
 
 ## DEMO 💻
 * [SWTIH 페이지🖌](http://49.50.164.134:8000/swith)
@@ -70,3 +71,8 @@
 |:--:|
 |![스터디 게시판](https://user-images.githubusercontent.com/92668655/187889262-9d0dc488-c1ab-4307-b96a-82ce1dbf0a83.gif)|
 |* 인스타그램 컨셉으로 작성된 게시물 조회(제목, 날짜, 내용, 데이터 조회)</br>* 참여하는 스터디원 모두 게시물 작성 가능</br>* 삭제기능으로 게시판 삭제 가능</br>* 댓글 기능으로 스터디원과 함께 소통가능</br>* 자신이 쓴 댓글 삭제 가능|
+
+|마이페이지|
+|:--:|
+|![ezgif com-gif-maker](https://user-images.githubusercontent.com/92668655/187924835-b521c32c-5a20-427f-aed3-2232f439889a.gif)|
+|* 회원정보 수정 기능</br>* 가입한 스터디 그룹 조회 가능(내가 조장인 스터디& 내가  참여하고 있는 스터디)</br>* 내가 좋아요한 스터디 그룹조회</br>* 스터디 그룹 데이터 모달창으로 간략히 조회|
