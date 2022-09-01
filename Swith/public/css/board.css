@@ -262,6 +262,7 @@ hr {
   cursor: pointer;
   transition: 0.5s;
   overflow: hidden;
+  height: auto;
 }
 .box .list:hover {
   background: #f5d17c;
