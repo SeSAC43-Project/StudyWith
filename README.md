@@ -4,9 +4,14 @@
 <img width="933" alt="스크린샷 2022-09-01 오후 5 12 04" src="https://user-images.githubusercontent.com/92668655/187865685-dc906c6d-ce2a-4d3d-b2eb-eb149c2c3d38.png">
 
 ## 팀원 소개 
-|[곽시하](https://github.com/SashaGwak)|[김세준](https://github.com/yesejun-can)|[성유하](https://github.com/sungyuha)|[윤미진](https://github.com/mijinyun)|[이주옥](https://github.com/juoklee)|
-|:--:|:--:|:--:|:--:|:--:|
-|백엔드 개발 및 팀장|프론트 엔드 개발|프론트 엔드 개발|프론트 엔드 개발|백엔드 개발|
+|팀원|역할(파일명 기준)|
+|:--:|:--:|
+[곽시하](https://github.com/SashaGwak)|Front) main, search, login, find, feed, modify, mypage, boardDetail, boardPost</br>Back) Board, Feed, Login, Main, Mypage, model, DB설계|
+|[김세준](https://github.com/yesejun-can)|Front)signup, main, navbar&footer, mypage, boardPost, boardDetail, 와이어프레임설계, ppt|
+|[성유하](https://github.com/sungyuha)|Front) find, modify, detailedPost, management, 와이어프레임설계, ppt|
+|[윤미진](https://github.com/mijinyun)|Front) Login, feed, main, search, board, boardDetail, 와이어프레임설계, 발표|
+|[이주옥](https://github.com/juoklee)|Front) signup, detailedPost, management, main</br>Back) DetaildPost, management, signup, model, DB설계|
+
 
 ### 팀원별 responsibility
 <img width="926" alt="스크린샷 2022-09-01 오후 5 19 59" src="https://user-images.githubusercontent.com/92668655/187867183-cdb7754d-f9c3-46e0-b671-f2aef2fd7d1a.png">
