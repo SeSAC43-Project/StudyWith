@@ -46,8 +46,7 @@
 </head>
 <body>
     <div class="container">
-
-        <div class="mypage-head"> 😋 <%=study_id %>&nbsp;&nbsp;님 환영합니다! 😋
+        <div class="mypage-head"> 😋 <%=studydata.study_name %>에 오신걸 환영합니다! 😋
             <button type="button" onclick="goHome()" class="homeBtn">
                 <i class="fa-solid fa-house"></i>
             </button>
@@ -56,9 +55,9 @@
 
         <div class="modify-list">
           <form id="modify_info">
-            <div style="display:none" id="study_id"><%=study_id %></div>
+            <div style="display:none" id="study_id"><%=studydata.study_id %></div>
               <!-- <div class="input-group">
-                <input type="text" id="studyId" value="<%=study_id %>" name="study_id">
+                <input type="text" id="studyId" value="<%=studydata.study_id %>" name="study_id">
               </div> -->
 
               <div class="input-group">
