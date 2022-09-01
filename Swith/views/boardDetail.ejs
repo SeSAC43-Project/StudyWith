@@ -79,7 +79,7 @@
 
                 <div id="commentBox">
                 <div id="commentHere">
-                    <% if (detailData.length != null) { %> 
+                    <% if (detailData[i].reply_id != null) { %> 
                         <% for (i=0; i<detailData.length; i++) { %>
                         <div class="comment-section" id="<%=detailData[i].reply_id%>">
                             <input type="hidden" class="hidden_replyId" value="<%=detailData[i].reply_writer%>">
