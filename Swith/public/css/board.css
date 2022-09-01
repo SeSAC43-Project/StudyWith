@@ -217,6 +217,15 @@ hr {
   width: 600px;
   margin-top: 80px;
 }
+.hr2 {
+  border-top: 1px dashed #f5d17c;
+  /* color: #f5d17c;
+  background-color: #f5d17c; */
+  height: 2px;
+  width: 600px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
 .listH2 {
   margin-top: 30px;
   margin-left: 20px;
@@ -230,16 +239,16 @@ hr {
   min-height: 600px;
   height: auto;
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);;
   border-radius: 20px;
   backdrop-filter: blur(25px);
   z-index: 10;
   padding: 20px;
   margin-top: 20px;
-  margin-bottom: 100px;
+  /*margin-bottom: 100px;*/
 }
 
 .box .list {
@@ -283,6 +292,7 @@ hr {
   flex-direction: column;
   justify-content: center;
   color: #fff;
+  width: 340px;
 }
 .box .list .content h2, p {
   color: #4686C2;
@@ -295,7 +305,7 @@ hr {
 }
 .box .list .content .rank small {
   font-weight: 500;
-  opacity: 0.25;
+  /*opacity: 0.25;*/
 }
 .box .list:hover .content .rank {
   right: 20px;
