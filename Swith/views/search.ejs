@@ -163,11 +163,17 @@
     if ($('.resultText_category_text').html() != '') {
         $('.resultText_category').css('display','block');
         $('.resultText_search').css('display','none');
-    } else if ($('.resultText_category_text').html() == '') {
+
+    } else if (($('.resultText_category_text').html() == '') && ($('.resultText_search_text').html() !='')) {
+        $('.resultText_category').css('display','none');
+        $('.resultText_search').css('display','block');
+
+    } else {
         $('.resultText_category').css('display','none');
         $('.resultText_search').css('display','block');
         $('.resultText_search').html('<h2> 💡 전체 검색 결과입니다.</h2>');
-    }
+    } 
+
     // 검색 정보 보내기
     function main2_search() {
         var form = document.getElementById('search');
