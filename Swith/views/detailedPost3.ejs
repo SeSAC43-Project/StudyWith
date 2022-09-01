@@ -240,7 +240,10 @@
             </form>
         </div>
     </tbody>
-
+    <form id="searchMove">
+        <input type='hidden' name="search" id="moveinput">
+        <button class="service" style='display: none;'id='service'></button>
+    </form>
     <!-- footer -->
     <footer class="footer">
         <div class="inner-footer">
@@ -349,7 +352,11 @@
         } 
         /* 목록 버튼 */
         function detailedPost_index() {
-            document.location.href="http://49.50.164.134:8000/swith";
+            var form = document.getElementById('searchMove');
+            form.search.value = '';
+            form.action = 'http://49.50.164.134:8000/swith/search';
+            form.method = 'post'; 
+            form.submit();
         }
         /* 로그아웃 */
         function logout() {

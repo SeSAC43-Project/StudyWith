@@ -199,6 +199,7 @@
                         <button class="regi_btn" type="button" onclick="detailedPost_index()" class="list" style="color:white">목록</button>
                     </div>
 
+                    
                     <div>
                         <button class="Lounge_btn" type="button" onclick="Lounge_index()">
                             <i class="fa-regular fa-pen-to-square"></i>
@@ -212,13 +213,17 @@
                             <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </button>
                     </div>
-
+                    
                     <div class="Category_box"></div>
                 </div>    
             </div>   
-            </form>
-        </div>
+        </form>
+    </div>
     </tbody>
+    <form id="searchMove">
+        <input type='hidden' name="search" id="moveinput">
+        <button class="service" style='display: none;'id='service'></button>
+    </form>
     <!-- footer -->
     <footer class="footer">
         <div class="inner-footer">
@@ -316,7 +321,11 @@
 
         /* 목록 버튼 */
         function detailedPost_index() {
-                document.location.href="http://49.50.164.134:8000/swith";
+            var form = document.getElementById('searchMove');
+            form.search.value = '';
+            form.action = 'http://49.50.164.134:8000/swith/search';
+            form.method = 'post'; 
+            form.submit();
         }
 
         /* 로그아웃 */
