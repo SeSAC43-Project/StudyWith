@@ -5,12 +5,12 @@
 
 ## 팀원 소개 
 |팀원|역할(파일명 기준)|
-|:--:|:--:|
+|:--:|:--|
 [곽시하](https://github.com/SashaGwak)|Front) main, search, login, find, feed, modify, mypage, boardDetail, boardPost</br>Back) Board, Feed, Login, Main, Mypage, model, DB설계|
 |[김세준](https://github.com/yesejun-can)|Front)signup, main, navbar&footer, mypage, boardPost, boardDetail, 와이어프레임설계, ppt|
 |[성유하](https://github.com/sungyuha)|Front) find, modify, detailedPost, management, 와이어프레임설계, ppt|
 |[윤미진](https://github.com/mijinyun)|Front) Login, feed, main, search, board, boardDetail, 와이어프레임설계, 발표|
-|[이주옥](https://github.com/juoklee)|Front) signup, detailedPost, management, main</br>Back) DetaildPost, management, signup, model, DB설계|
+|[이주옥](https://github.com/juoklee)|Front) signup, detailedPost, management, main</br>Back) DetaildPost, management, signup, model, DB설계|ㅎ
 
 
 ### 팀원별 responsibility
