@@ -10,14 +10,15 @@
 |[김세준](https://github.com/yesejun-can)|Front)signup, main, navbar&footer, mypage, boardPost, boardDetail, 와이어프레임설계, ppt|
 |[성유하](https://github.com/sungyuha)|Front) find, modify, detailedPost, management, 와이어프레임설계, ppt|
 |[윤미진](https://github.com/mijinyun)|Front) Login, feed, main, search, board, boardDetail, 와이어프레임설계, 발표|
-|[이주옥](https://github.com/juoklee)|Front) signup, detailedPost, management, main</br>Back) DetaildPost, management, signup, model, DB설계|ㅎ
+|[이주옥](https://github.com/juoklee)|Front) signup, detailedPost, management, main</br>Back) DetaildPost, management, signup, model, DB설계|
 
 
 ### 팀원별 responsibility
 <img width="926" alt="스크린샷 2022-09-01 오후 5 19 59" src="https://user-images.githubusercontent.com/92668655/187867183-cdb7754d-f9c3-46e0-b671-f2aef2fd7d1a.png">
 <img width="924" alt="스크린샷 2022-09-01 오후 5 20 32" src="https://user-images.githubusercontent.com/92668655/187867306-0191ee8a-c359-49c7-a2e1-f53f2cd83656.png">
 
-
+### 팀 노션 
+* [Swith Notion](https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56)
 ## 기획 및 설계 
 ### Milestone
 <img width="884" alt="스크린샷 2022-09-01 오후 5 23 58" src="https://user-images.githubusercontent.com/92668655/187868033-13e385e0-157a-41ec-bfae-f88cc7c661dd.png">
