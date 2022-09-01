@@ -17,8 +17,6 @@
 <img width="926" alt="스크린샷 2022-09-01 오후 5 19 59" src="https://user-images.githubusercontent.com/92668655/187867183-cdb7754d-f9c3-46e0-b671-f2aef2fd7d1a.png">
 <img width="924" alt="스크린샷 2022-09-01 오후 5 20 32" src="https://user-images.githubusercontent.com/92668655/187867306-0191ee8a-c359-49c7-a2e1-f53f2cd83656.png">
 
-### 팀 노션 
-* [Swith Notion](https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56)
 ## 기획 및 설계 
 ### Milestone
 <img width="884" alt="스크린샷 2022-09-01 오후 5 23 58" src="https://user-images.githubusercontent.com/92668655/187868033-13e385e0-157a-41ec-bfae-f88cc7c661dd.png">
@@ -32,6 +30,9 @@
 
 ### 개발 환경 
 ![개발환경](https://user-images.githubusercontent.com/92668655/187923449-02bc4a7d-d475-421f-856f-08863966bf58.jpg)
+
+### 팀 노션 
+* [Swith Notion 📓 ](https://www.notion.so/StudyWith-e93a4cc462c24d248243f0695eeaca56)
 
 
 ## DEMO 💻
