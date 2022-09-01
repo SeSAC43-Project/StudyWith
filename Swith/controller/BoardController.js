@@ -37,8 +37,6 @@ exports.lounge_write = async(req, res) => {
         FROM studygroup 
         WHERE study_id = ${req.query.study_id}; 
     `)
-
-    console.log('여기가 스터디데이터', studydata);
     await res.render('boardPost', {studydata: studydata[0]});
 }
 
