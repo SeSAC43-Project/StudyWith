@@ -99,6 +99,7 @@
                         </tbody>
                         </table> -->
                 </form>
+                <div style="display:none" id="moveinput"><%=studydata.study_id%></div>
             
         </div>
     </div>
@@ -125,7 +126,8 @@
             document.location.href=`http://49.50.164.134:8000/feed/board/detail?lounge_id=${clicked_lounge_id}`;
         }
         function goHome() {
-            document.location.href="http://49.50.164.134:8000/swith";
+            var study_id = document.getElementById('moveinput').innerText;
+            document.location.href=`http://49.50.164.134:8000/feed/detailedPost?study_id=${study_id}`;
             }
     </script>
 </body>
