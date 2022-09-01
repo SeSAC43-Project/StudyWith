@@ -520,7 +520,8 @@
 
         /*  목록 버튼 */
         function list() {
-            document.location.href="http://49.50.164.134:8000/swith";
+            var study_id = document.getElementById('study_id').innerText;
+            document.location.href="http://49.50.164.134:8000/feed/detailedPost?study_id="+study_id;
         }
 
         /* 로그아웃 */
