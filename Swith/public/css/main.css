@@ -26,7 +26,7 @@ header {
 }
 header.sticky {
   padding: 5px 100px;
-  background: #f3f7fe;
+  /* background: #f3f7fe; */
 }
 header .logo {
   position: relative;
@@ -162,20 +162,35 @@ header.sticky ul li a {
 }
 
 .img-box {
-  position: inherit;
-  width: inherit;
+  position: absolute;
+  width: 60%;
   top: 0;
   right: 0;
   height: 100%;
   background-color: #275185;
-  overflow: hidden;
+  background-size: contain;
+  background-position: center;
+  /* overflow: hidden; */
+  background-image: url(/public/image/mainFirst.png);
+  transition: background-image 0.5s;
+  /* background-size: 600px; */
 }
 
-.img-box > img {
-  width: 45vw;
-  height: 45vw;
+/* .img-box > img {
+  width: 30vw;
+  height: 30vw;
   overflow: hidden;
   padding-left: 10vw;
+} */
+
+.slogun_search h1:nth-child(1):hover ~ .img-box {
+  background-image: url(/public/image/mainFind-002.png);
+}
+.slogun_search h1:nth-child(2):hover ~ .img-box {
+  background-image: url(/public/image/mainYour.png);
+}
+.slogun_search h1:nth-child(3):hover ~ .img-box {
+  background-image: url(/public/image/mainStudy.png);
 }
 
 .mysearch {
@@ -192,6 +207,7 @@ header.sticky ul li a {
   justify-content: flex-start;
   align-items: center;
 }
+
 
 .mysearch.active {
   width: 500px;
@@ -558,3 +574,4 @@ header.sticky ul li a {
   font-size: 13px;
   background-color: #f3f7fe;
 }
+
