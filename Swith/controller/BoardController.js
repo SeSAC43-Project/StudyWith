@@ -30,8 +30,16 @@ exports.studylounge_index = async(req, res) => {
 }
 
 // 스터디 라운지 게시물 등록 화면
-exports.lounge_write = (req, res) => {
-    res.render('boardPost', {study_id:req.query.study_id});
+exports.lounge_write = async(req, res) => {
+    // 위치이동 및 스터디 이름 위한 스터디 정보
+    const [studydata] = await Models.sequelize.query(`
+        SELECT study_name, study_id
+        FROM studygroup 
+        WHERE study_id = ${req.query.study_id}; 
+    `)
+
+    console.log('여기가 스터디데이터', studydata);
+    await res.render('boardPost', {studydata: studydata[0]});
 }
 
 // 스터디 라운지 게시물 등록
