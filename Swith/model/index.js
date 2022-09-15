@@ -21,14 +21,15 @@ db.Studylounge= require("./Studylounge")(sequelize, Sequelize);
 db.Reply= require("./Reply")(sequelize, Sequelize);
 
 
-/* foreign key설정 */
-db.Studygroup.hasMany(db.Studymember, {
-    foreignKey: 'study_id', 
-    as: 'studymember', // studymember 별칭
-    onDelete: 'cascade', 
-    onUpdate: 'cascade'
-}); 
+/* foreign key설정 include 되는 코드!!*/
+// db.Studygroup.hasMany(db.Studymember, {
+//     foreignKey: 'study_id', 
+//     as: 'studymember', // studymember 별칭
+//     onDelete: 'cascade', 
+//     onUpdate: 'cascade'
+// }); 
 
+// 얘가 있으면 include 실행안됨 중복되는 듯 
 // db.Studymember.belongsTo(db.Studygroup);
 
 /* foreign key설정 */

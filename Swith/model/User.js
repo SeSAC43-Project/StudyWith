@@ -61,19 +61,19 @@ const User = (Sequelize, DataTypes) => {
         }
     );
 
-    // /* foreign key 설정 */
-    // User.associate = models => {
-    //     // 1:N 관계, studygroup의 head_id가 user의 user_id를 참조 하고 있다.
-    //     User.hasMany(models.Studygroup, {foreignKey: "head_id", sourceKey: 'user_id', onDelete: 'cascade', onUpdate: 'cascade'});
-    //     // N:M 관계 
-    //     User.belongsToMany(models.Studygroup, { through: 'Studymember', foreignKey:'study_id' });
-    //     // N:M 관계 
-    //     User.belongsToMany(models.Studygroup, { through: 'Likes' });
-    //     // N:M 관계 
-    //     User.belongsToMany(models.Studygroup, { through: 'Studylounge' });
-    //     // N:M 관계 
-    //     User.belongsToMany(models.Studylounge, { through: 'Reply' });
-    // };
+    /* foreign key 설정 */
+    User.associate = models => {
+        // 1:N 관계, studygroup의 head_id가 user의 user_id를 참조 하고 있다.
+        User.hasMany(models.Studygroup, {foreignKey: "head_id", sourceKey: 'user_id', onDelete: 'cascade', onUpdate: 'cascade'});
+        // N:M 관계 
+        User.belongsToMany(models.Studygroup, { through: 'Studymember', foreignKey:'study_id' });
+        // N:M 관계 
+        User.belongsToMany(models.Studygroup, { through: 'Likes' });
+        // N:M 관계 
+        User.belongsToMany(models.Studygroup, { through: 'Studylounge' });
+        // N:M 관계 
+        User.belongsToMany(models.Studylounge, { through: 'Reply' });
+    };
 
     return model;
 }
