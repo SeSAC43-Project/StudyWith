@@ -25,7 +25,7 @@ exports.main_search = async (req, res) => {
             {
                 model: Models.Studymember,
                 as: 'studymember',
-                attributes: ['study_id', 'head_id', 'study_name']
+                // attributes: ['study_id', 'head_id', 'study_name']
             }
         ], 
         where: {
