@@ -20,6 +20,17 @@ db.Likes = require("./likes")(sequelize, Sequelize);
 db.Studylounge= require("./Studylounge")(sequelize, Sequelize);
 db.Reply= require("./Reply")(sequelize, Sequelize);
 
+
+/* foreign key설정 */
+db.Studygroup.hasMany(db.Studymember, {
+    foreignKey: 'study_id', 
+    as: 'studymember', // studymember 별칭
+    onDelete: 'cascade', 
+    onUpdate: 'cascade'
+}); 
+
+// db.Studymember.belongsTo(db.Studygroup);
+
 /* foreign key설정 */
 // db.Studygroup.hasMany(db.User, {
 //     foreignKey: 'user_id',
