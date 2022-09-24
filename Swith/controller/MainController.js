@@ -20,22 +20,22 @@ exports.main_search = async (req, res) => {
     console.log('검색어 : ',req.body.search);
     console.log('카테고리 : ',req.body.category);
 
-    let searchsql2 = await Models.Studygroup.findAll({
-        include: [
-            {
-                model: Models.Studymember,
-                as: 'studymember',
-                // attributes: ['study_id', 'head_id', 'study_name']
-            }
-        ], 
-        where: {
-            study_name: {
-                [Models.Op.like] : '%' + req.body.search + '%'
-            }
-        }
-    }); 
+    // let searchsql2 = await Models.Studygroup.findAll({
+    //     include: [
+    //         {
+    //             model: Models.Studymember,
+    //             as: 'studymember',
+    //             // attributes: ['study_id', 'head_id', 'study_name']
+    //         }
+    //     ], 
+    //     where: {
+    //         study_name: {
+    //             [Models.Op.like] : '%' + req.body.search + '%'
+    //         }
+    //     }
+    // }); 
     
-    console.log('seque 조인 부분!!!!',searchsql2);
+    // console.log('seque 조인 부분!!!!',searchsql2);
 
     let searchsql = `
     SELECT G.*, COUNT(M.user_id) + 1 AS num
